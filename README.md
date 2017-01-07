@@ -15,6 +15,16 @@ Krav for oppsett av prosjekt er følgande
 4. Installert nyaste Angular cli
 5. Installert Nodepakkane i rotmappa og i klientmappa.
 
+## Køyring av applikasjonen
+Angular cli gjer det eigentleg kjempelett for deg å køyre ein statisk server.
+Men sidan vi vil hovedsakeleg bere måtte køyre ein server (_og sleppe CORS_), må det nok bli litt meir komplisert.
+
+1. Start Mongodb (om ikkje starta enno)
+2. Start node (anten gjennom `nodemon`, eller `npm start`)
+3. Køyr `npm start` eller `npm run watch` i `client` mappa
+
+Du skal då ha eit program køyrande som vil kompilere TypeScript koden om til JavaScript, og legge dette i mappa `dist/`,
+samtidig som node serveren vil gje det alle filene.
 
 ## _config.json format
 ```js
