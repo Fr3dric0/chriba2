@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Chriba';
-  description = 'Chriba er et inverstorfirma';
+  description = 'Chriba er et inverstorfirma.';
 }
