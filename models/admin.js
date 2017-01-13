@@ -18,66 +18,88 @@ const Admins = new Schema({
 });
 
 /**
- *  @param  {String}    uid         Is the user id. I.E. ObjectId
- *  @param  {Function}  callback
+ *  @param  {ObjectId}    uid     The user's id. (i.e. _id)
  *
  *  Updates the last active-data of the user
+ *  @return {Promise}
  * */
-Admins.statics.updateLastActive = function (uid, callback) {
-    this.findOneAndUpdate({ _id: uid }, { last_active: new Date() }, { new: true }, function (err, doc) {
-        if (err) {
-            return callback(err);
-        }
-
-        return callback(null, doc.last_active);
-    });
-};
-
-Admins.statics.verifyPassword = function (uid, pwd, callback) {
-    this.findOne({ _id: uid }, (err, user) => {
-        if (err) {
-            return callback(err);
-        }
-
-        if (!user) {
-            let userErr = new Error('No such user');
-            userErr.status = 500;
-            return callback(userErr);
-        }
-
-        Bcrypt.compare(pwd, user.password, (compErr, result) => {
-            if (compErr) {
-                return callback(new Error('Could not compare passwords'));
+Admins.statics.updateLastActive = function (uid) {
+    return new Promise((rsv, rr) => {
+        this.findOneAndUpdate({ _id: uid }, { lastActive: new Date() }, { new: true }, function (err, doc) {
+            if (err) {
+                return rr(err);
             }
 
-            if (!result) {
-                return callback(new Error('Password do not match'));
-            }
-
-            return callback(user._uid);
+            return rsv(doc.lastActive);
         });
     });
-
 };
 
-Admins.statics.hashField = function (pwd, callback) {
-    Bcrypt.hash(pwd, HASH_ROUNDS, (err, hash) => {
-        if (err) {
-            return callback(err);
-        }
+/**
+ * @param   {ObjectId}  uid     User's id
+ * @param   {String}    pwd     The password to check
+ *
+ * Method meant to be used, when user wants to update
+ * he's password, NOT to do login-authentication
+ *
+ * @return  {Promise}
+ * */
+Admins.statics.verifyPassword = function (uid, pwd) {
+    return new Promise((rsv, rr) => {
+        this.findOne({ _id: uid }, (err, user) => {
+            if (err) {
+                return rr(err);
+            }
 
-        return callback(null, hash);
+            if (!user) {
+                let userErr = new Error('No such user');
+                userErr.status = 500;
+                return rr(userErr);
+            }
+
+            Bcrypt.compare(pwd, user.password, (compErr, result) => {
+                if (compErr) {
+                    return rr(new Error('Could not compare passwords'));
+                }
+
+                if (!result) {
+                    return rr(new Error('Password do not match'));
+                }
+
+                return rsv(true);
+            });
+        });
     });
+};
+
+/**
+ * @param   {String}    pwd     The password to hash
+ *
+ * Hashes a field like the password.
+ * Used when admin is updated, because the password field is
+ * not automatically hashed
+ * @return {Promise}
+ * */
+Admins.statics.hashField = function (pwd) {
+    return new Promise((rsv, rr) => {
+        Bcrypt.hash(pwd, HASH_ROUNDS, (err, hash) => {
+            if (err) {
+                return rr(err);
+            }
+
+            return rsv(hash);
+        });
+    })
 };
 
 /**
  *  @param  {String}    email       The users email
  *  @param  {String}    pwd         The users password, unhashed
- *  @param  {Function}  callback    The callback-function
  *
  *  Handles authentication of a user
+ *  @return {Promise}
  * */
-Admins.statics.authenticate = function (email, pwd, callback) {
+Admins.statics.authenticate = function (email, pwd) {
     return new Promise((rsv, rr) => {
         this.findOne({ email: email }, (err, user) => {
             if (err) {
@@ -113,7 +135,7 @@ Admins.statics.authenticate = function (email, pwd, callback) {
 Admins.pre('save', function (next) {
     let adm = this;
 
-    // Check if user aldready exists
+    // Check if admin already exists
     this.constructor.findOne({ email: this.email }, function (err, data) {
         if (err) {
             return next(err);
@@ -121,7 +143,7 @@ Admins.pre('save', function (next) {
 
         if (data) {
             let err = new Error('Admin already exist');
-            err.status = 401;
+            err.status = 400;
             return next(err);
         }
 
