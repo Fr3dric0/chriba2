@@ -1,4 +1,5 @@
 <section>
-    <h3>Error</h3>
-    <p>Something went wrong when handling your request</p>
+    <h2>{{err.message}}</h2>
+    <strong *ngIf="err && err.status">{{err.status}}</strong>
+    <small *ngIf="err && err.description">{{err.description}}</small>
 </section>
