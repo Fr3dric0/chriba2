@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+/*
+ *  Place your global styles here. However one should also use the component-line
+ *  stylesheets, to prevent filling up this file too much.
+ *
+ *  AVOID using element Ids for styling. Unecessary in almost all situations
+ *
+ *
+ *
+ */
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background-color: #EFEFEF;
+}
+
+/* Element reserved for title */
+h1 {
+
+}
+
+/* Sub-titles */
+h2, h3, h4, h5, h6 {
+
+}

@@ -19,7 +19,7 @@ module.exports = {
             return next(err);
         }
 
-        jwt.verify(token, req.config['token_secret'], (err, decoded) => {
+        jwt.verify(token, req.config['token-secret'], (err, decoded) => {
             if (err) {
                 const authErr = new Error('Authentication Error: Invalid token');
                 authErr.status = 403;

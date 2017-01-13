@@ -7,7 +7,6 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-
 /////////////////////////////
 //        API CONFIG       //
 /////////////////////////////
@@ -42,10 +41,16 @@ if (!database) {
     throw new Error('Missing database-config error: Cannot resolve property "database" in _config.jsons');
 }
 const { username, pwd, domain, port } = database;
-mongoose.connect(`mongodb://${ (username && pwd) ? (username + ':' + pwd + '@') : ''}${domain}:${port}/${database.db}`);
+
+mongoose.Promise = global.Promise; // Use ES6 promise, instead of mongoose's promise
+// Setup to only include authentication, if username and password is provided
+mongoose.connect(`mongodb://${ !!(username && pwd) ? (username + ':' + pwd + '@') : ''}${domain}:${port}/${database.db}`);
 const db = mongoose.connection;
 
 db.on('error', (err) => {
+    // TODO:ffl - Include email warning, when this error occurs
+    // TODO - This error could be a result of loss of data on the database
+
     console.log('\n*********************************************');
     console.error('          MongoDB Connection ERROR           ');
     console.log('*********************************************');

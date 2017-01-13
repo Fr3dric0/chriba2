@@ -9,12 +9,12 @@ const Bcrypt = require('bcryptjs');
 const HASH_ROUNDS = 12;
 
 const Admins = new Schema({
-    firstname: { type: String, required: true },
-    lastname: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     created: { type: Date, default: Date.now },
-    last_active: { type: Date, default: Date.now }
+    lastActive: { type: Date, default: Date.now }
 });
 
 /**
@@ -78,36 +78,35 @@ Admins.statics.hashField = function (pwd, callback) {
  *  Handles authentication of a user
  * */
 Admins.statics.authenticate = function (email, pwd, callback) {
-
-    this.findOne({ email: email }, (err, user) => {
-        if (err) {
-            return callback(err);
-        }
-
-        if (!user) {
-            const userErr = new Error('Could not find user in DB');
-
-            userErr.status = 403;
-
-            return callback(userErr)
-        }
-
-        Bcrypt.compare(pwd, user.password, function (compareErr, result) {
-            if (compareErr) {
-                return callback(compareErr);
+    return new Promise((rsv, rr) => {
+        this.findOne({ email: email }, (err, user) => {
+            if (err) {
+                return rr(err);
             }
 
-            if (result) {
-                user.password = ''; // Wipe the password from the response
-                delete user.password;
-                return callback(null, user);
-            } else {
-                const authErr = new Error('Admins not authenticated');
-                authErr.status = 403;
-                return callback(authErr);
+            if (!user) {
+                const userErr = new Error('Could not find user in DB');
+                userErr.status = 403;
+                return rr(userErr)
             }
+
+            Bcrypt.compare(pwd, user.password, function (compareErr, result) {
+                if (compareErr) {
+                    return rr(compareErr);
+                }
+
+                if (result) {
+                    user.password = ''; // Wipe the password from the response
+                    delete user.password;
+                    return rsv(user);
+                } else {
+                    const authErr = new Error('Admins not authenticated');
+                    authErr.status = 403;
+                    return rr(authErr);
+                }
+            });
         });
-    });
+    })
 };
 
 

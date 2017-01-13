@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProjectsComponent } from "./projects/projects.component";
 import { EstatesComponent } from "./estates/estates.component";
-import { RouteErrorComponent } from "./error/route-error/route-error.component";
+import { ErrorComponent } from "./error/error.component";
 
 
 const routes:Routes = [
@@ -19,7 +19,7 @@ const routes:Routes = [
         path: 'estates',
         component: EstatesComponent
     },
-    { path: '**', component: RouteErrorComponent }
+    { path: '**', component: ErrorComponent }
 ];
 
 @NgModule({
