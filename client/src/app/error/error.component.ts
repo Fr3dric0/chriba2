@@ -16,13 +16,15 @@ export class ErrorComponent implements OnInit, OnDestroy {
         if (this.es.hasErrors()) {
             this.err = this.es.getError();
         } else {
-            this.err = new Error('Uknown Error');
+            this.err = new Error('Unknown Error');
             //noinspection TypeScriptUnresolvedVariable
             this.err.description = `Something went wrong in the application`;
         }
     }
 
-    // No need to keep the fields when the user exits the component
+    /**
+     * Clears out the fields, when the user exists the component
+     * */
     ngOnDestroy() {
         this.es.resetFields();
     }
