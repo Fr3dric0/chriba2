@@ -1,5 +1,6 @@
 const Admin = require('../../models/admin');
 
+
 const findByUid = [validateUid, findAdmin, returnAdmin];
 
 function validateUid (req, res, next) {

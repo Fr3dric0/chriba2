@@ -6,11 +6,13 @@ const remove = [
     returnFeedback
 ];
 
+
 function findAdmin (req, res, next) {
     const { uid } = req.decoded;
 
     Admin.findById(uid)
         .then((admin) => {
+
             if (!admin) {
                 const err = new Error('[Admin Delete Error] Cannot find admin');
                 err.status = 500;
