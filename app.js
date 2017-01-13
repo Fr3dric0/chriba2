@@ -84,11 +84,10 @@ const estates = require(`${apiRoot}/estates`);
 const projects = require(`${apiRoot}/projects`);
 
 const api = '/api';
-app.use(`${api}`, index);
 app.use(`${api}/admin`, admin);
 app.use(`${api}/projects`, projects);
 app.use(`${api}/estates`, estates);
-
+app.use(`${api}`, index); // MUST BE LAST ROUTE!
 
 /////////////////////////////
 //      CLIENT ROUTER      //
@@ -111,6 +110,11 @@ app.use((err, req, res, next) => {
     if ((req.app.get('env') === 'development') && err.stack) {
         e.stack = err.stack;
     }
+
+    if (err.description) {
+        e.description = err.description;
+    }
+
     // render the error page
     res.status(err.status || 500)
         .json(e);
