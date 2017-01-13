@@ -9,19 +9,20 @@ ein betydeleg auke i responsivitet, og ryddigare kode.
 ## Installering
 Krav for oppsett av prosjekt er følgande
 
-1. Ei `_config.json` fil under `bin/config/`, for lagring av `token_secret`, og `mongo_data`
+1. Ei `_config.json` fil under `bin/config/`, for lagring av `token-secret`, og `database`
 2. Ein køyrande MongoDB Server. (_Autentiseringdetaljar, lokasjon, port, etc. leggast i config fila_)
-3. NodeJS >=v7.2.1
-4. Installert nyaste Angular cli
-5. Installert Nodepakkane i rotmappa og i klientmappa.
+3. NodeJS >=v7.4.0
+4. Installert nyaste versjon av _Angular cli_
+5. Ein køyrande klient av _MongoDB_, køyre lokal database no i starten
+6. Installert Nodepakkane i rotmappa og i klientmappa.
 
 ## Køyring av applikasjonen
 Angular cli gjer det eigentleg kjempelett for deg å køyre ein statisk server.
 Men sidan vi vil hovedsakeleg bere måtte køyre ein server (_og sleppe CORS_), må det nok bli litt meir komplisert.
 
 1. Start Mongodb (om ikkje starta enno)
-2. Start node (anten gjennom `nodemon`, eller `npm start`)
-3. Køyr `npm start` eller `npm run watch` i `client` mappa
+2. Køyr `npm start` eller `npm run watch` i `client` mappa
+3. Start node (anten gjennom `npm run watch` eller `npm start`)
 
 Du skal då ha eit program køyrande som vil kompilere TypeScript koden om til JavaScript, og legge dette i mappa `dist/`,
 samtidig som node serveren vil gje det alle filene.
@@ -29,8 +30,8 @@ samtidig som node serveren vil gje det alle filene.
 ## _config.json format
 ```js
 {
-  "token_secret": String,
-  "mongodb": {
+  "token-secret": String,
+  "database": {
     "db": String, // "Chriba"
     "domain": String, // "localhost"
     "port": Number,
@@ -39,3 +40,19 @@ samtidig som node serveren vil gje det alle filene.
   }
 }
 ```
+
+Når ein brukar ein lokal databaseklient, treng du bere å fjerne fjelta `username` og `pwd`, 
+samt sette `"domain": "localhost"`.
+
+
+## Angular `npm start`
+Når du køyre `npm start` i klient mappa, så vil denne transpilere 
+og samle alle nødvendige filene for å køyre _frontend koden_ i mappa `client/dist`.
+
+Hugs derfor å alltid køyr `npm start` når du _pullar_ frå github. Slik at koden er oppdatert
+
+Under generell utvikling er det greit å ha `npm run watch` køyrande, slik at du slepp å tenke på
+å måtte oppdatere _distribusjonsfilene_ for kvar endring.
+ 
+
+
