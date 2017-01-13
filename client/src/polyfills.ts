@@ -17,3 +17,22 @@ import 'core-js/es6/reflect';
 
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
+
+
+declare global {
+    interface Array<T> {
+        includes(elem: T): boolean;
+    }
+
+    interface Error {
+        status?: number;
+        stack?: string;
+        description?: string;
+    }
+}
+//noinspection TypeScriptUnresolvedVariable
+if (!Array.prototype.includes) {
+    Array.prototype.includes = function(elem) {
+        return this.indexOf(elem) != -1;
+    }
+}
