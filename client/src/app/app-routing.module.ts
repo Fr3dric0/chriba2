@@ -5,6 +5,8 @@ import { ProjectsComponent } from "./projects/projects.component";
 import { EstatesComponent } from "./estates/estates.component";
 import { ErrorComponent } from "./error/error.component";
 
+import { AuthGuard } from './shared/auth/auth.guard';
+import { AdminComponent } from './admin/admin.component';
 
 const routes:Routes = [
     {
@@ -18,6 +20,11 @@ const routes:Routes = [
     {
         path: 'estates',
         component: EstatesComponent
+    },
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [ AuthGuard ] // Protects routes from unauthorized access
     },
     { path: '**', component: ErrorComponent }
 ];
