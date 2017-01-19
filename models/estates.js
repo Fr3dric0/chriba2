@@ -11,8 +11,8 @@ const Estates = new Schema({
     name: { type: String, unique: true },
     location: {
         address: { type: String, required: true },
-        address_number: String,
-        postal_code: String,
+        addressNumber: String,
+        postalCode: String,
         city: String,
         country: { type: String, default: 'Norway' }
     },
