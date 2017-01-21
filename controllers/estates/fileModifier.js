@@ -1,7 +1,7 @@
 const Estates = require('../../models/estates');
 const uploader = require('../../lib/uploader');
 const fh = require('../../lib/filehandler');
-const { findOneEstate } = require('./findOne');
+const { findOne } = require('./find');
 
 const root = 'resources/uploads';
 const publicPath = 'resource/uploads';
@@ -38,7 +38,7 @@ function uploadFile (req, res, next) {
 
 const remove = [
     validateDeleteFields,
-    findOneEstate,
+    findOne,
     validateEstate,
     getThumbUrls,
     deleteThumbFiles,
@@ -60,6 +60,8 @@ function validateDeleteFields (req, res, next) {
         req.estates = {};
     }
 
+
+    req.estates.query = { name: estate }; // Used for search
     req.estates.size = size;
     req.estates.name = estate;
     req.estates.index = index;
