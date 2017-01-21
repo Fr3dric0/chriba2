@@ -5,18 +5,17 @@ let uploadFolder = multer({ dest: 'resources/uploads' }); // Video resources sho
 
 const { requireToken } = require('../../middleware/auth');
 const { create } = require('./create');
-const { findOne } = require('./findOne');
-const { findAll } = require('./findAll');
 const { update } = require('./update');
 const { remove } = require('./remove');
-const upload = require('./upload');
+const { find } = require('./find');
+const upload = require('./fileModifier');
 
 // GET /api/estates
-router.get('/', requireToken, findAll);
+router.get('/', requireToken, find);
+// GET /api/estates/:estate
+router.get('/:estate', requireToken, find);
 // POST /api/estates
 router.post('/', requireToken, create);
-// GET /api/estates/:estate
-router.get('/:estate', requireToken, findOne);
 // PUT /api/estates/:estate
 router.put('/:estate', requireToken, update);
 // POST /api/estates/:estate/img/:size

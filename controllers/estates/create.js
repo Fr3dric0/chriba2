@@ -41,7 +41,6 @@ function validateFields(req, res, next) {
 function structureModel (req, res, next) {
     const { fields } = req.estates;
     const values = { location: {}};
-    const str = 'location.address';
     values.location.address = fields.address;
     values.location.addressNumber = fields.addressNumber || undefined;
     values.location.postalCode = fields.postalCode || undefined;
@@ -74,7 +73,6 @@ function saveEstate (req, res, next) {
 
 function returnEstate (req, res, next) {
     const { estate } = req.estates;
-
     res.status(201).json(estate);
 }
 

@@ -1,7 +1,5 @@
 const Estates = require('../../models/estates');
-const uploader = require('../../lib/uploader');
-const fh = require('../../lib/filehandler');
-const { getThumbUrls, deleteThumbFiles } = require('./upload');
+const { getThumbUrls, deleteThumbFiles } = require('./fileModifier');
 
 
 const remove = [
