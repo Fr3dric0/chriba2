@@ -14,9 +14,7 @@ function findOneEstate (req, res, next) {
     Estates.findOne({name: estate})
         .then((e) => {
             if (!e) {
-                const err = new Error(`[Estate Error] Cannot find estate with name: ${estate}`);
-                err.status = 400;
-                throw err;
+                return res.status(204).json({});
             }
 
             req.estates.estate = e;

@@ -8,6 +8,7 @@ const { create } = require('./create');
 const { findOne } = require('./findOne');
 const { findAll } = require('./findAll');
 const { update } = require('./update');
+const { remove } = require('./remove');
 const upload = require('./upload');
 
 // GET /api/estates
@@ -18,6 +19,11 @@ router.post('/', requireToken, create);
 router.get('/:estate', requireToken, findOne);
 // PUT /api/estates/:estate
 router.put('/:estate', requireToken, update);
-
+// POST /api/estates/:estate/img/:size
 router.post('/:estate/img/:size', requireToken, uploadFolder.single('thumb'), upload.upload);
+// DELETE /api/estates/:estate/img/:size | BODY index
+router.delete('/:estate/img/:size', requireToken, upload.remove);
+// DELETE /api/estates/:estate
+router.delete('/:estate', requireToken, remove);
+
 module.exports = router;
