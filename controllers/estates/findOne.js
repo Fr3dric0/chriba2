@@ -1,4 +1,5 @@
 const Estates = require('../../models/estates');
+const { findEstates, getQuery } = require('./findAll');
 
 const findOne = [
     getQuery,
@@ -7,37 +8,21 @@ const findOne = [
     returnEstate
 ];
 
-function getQuery (req, res, next) {
+function findOneEstate (req, res, next) {
     const { estate } = req.params;
 
-    if (!req.estates) {
-        req.estates = {};
-    }
-    req.estates.query = { name: estate };
-    next();
-}
+    Estates.findOne({name: estate})
+        .then((e) => {
+            if (!e) {
+                const err = new Error(`[Estate Error] Cannot find estate with name: ${estate}`);
+                err.status = 400;
+                throw err;
+            }
 
-function findEstates (req, res, next) {
-    const { query } = req.estates;
-
-    Estates.find(query)
-        .then((estates) => {
-            req.estates.estates = estates;
+            req.estates.estate = e;
             next();
         })
-        .catch(err => next(err));
-}
-
-function findOneEstate (req, res, next) {
-    const { estates } = req.estates;
-
-    if (estates.length < 1) {
-        return res.status(204).json({});
-    }
-
-    const [ estate ] = estates;
-    req.estates.estate = estate;
-    next();
+        .catch( err => next(err));
 }
 
 function returnEstate (req, res, next) {
@@ -45,4 +30,4 @@ function returnEstate (req, res, next) {
     res.status(200).json(estate);
 }
 
-module.exports = { findOne, findEstates };
+module.exports = { findOne, findOneEstate };

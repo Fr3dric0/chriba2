@@ -1,9 +1,23 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+let uploadFolder = multer({ dest: 'resources/uploads' }); // Video resources should be placed in it's own folder
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.status(200).json({title: 'Estates'});
-});
+const { requireToken } = require('../../middleware/auth');
+const { create } = require('./create');
+const { findOne } = require('./findOne');
+const { findAll } = require('./findAll');
+const { update } = require('./update');
+const upload = require('./upload');
 
+// GET /api/estates
+router.get('/', requireToken, findAll);
+// POST /api/estates
+router.post('/', requireToken, create);
+// GET /api/estates/:estate
+router.get('/:estate', requireToken, findOne);
+// PUT /api/estates/:estate
+router.put('/:estate', requireToken, update);
+
+router.post('/:estate/img/:size', requireToken, uploadFolder.single('thumb'), upload.upload);
 module.exports = router;

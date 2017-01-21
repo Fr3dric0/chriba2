@@ -6,7 +6,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 const Estates = new Schema({
     name: { type: String, unique: true },
     location: {
@@ -16,7 +15,7 @@ const Estates = new Schema({
         city: String,
         country: { type: String, default: 'Norway' }
     },
-    about: { type: String },
+    description: { type: String },
     size: { type: Number },
     url: String,
     thumbnails: {
