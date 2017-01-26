@@ -8,18 +8,19 @@ const nodemailer = require('@nodemailer/pro');
 
 const app = express();
 
-/////////////////////////////
-//        API CONFIG       //
-/////////////////////////////
+
+////////////////////////////////////////
+//             API CONFIG             //
+////////////////////////////////////////
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'client', 'dist')));
 
-/////////////////////////////
-//       EMAIL SETUP       //
-/////////////////////////////
+
+////////////////////////////////////////
+//             EMAIL SETUP            //
+////////////////////////////////////////
 const mailConfig = require('./bin/config/_email.json');
 const Email = require('./lib/email');
 
@@ -33,9 +34,17 @@ app.use((req, res, next) => {
     next();
 });
 
-/////////////////////////////
-//       CONFIG SETUP      //
-/////////////////////////////
+
+////////////////////////////////////////
+//            STATIC PATHS            //
+////////////////////////////////////////
+app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
+app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
+
+
+////////////////////////////////////////
+//            CONFIG SETUP            //
+////////////////////////////////////////
 const config = require('./bin/config/_config.json');
 
 // Crash server if config is missing
@@ -49,9 +58,10 @@ app.use((req, res, next) => {
     next();
 });
 
-/////////////////////////////
-//      MONGOOSE SETUP     //
-/////////////////////////////
+
+////////////////////////////////////////
+//           MONGOOSE SETUP           //
+////////////////////////////////////////
 const { database } = config;
 if (!database) {
     throw new Error('Missing database-config error: Cannot resolve property "database" in _config.jsons');
@@ -107,9 +117,9 @@ db.on('connection', function () {
 });
 
 
-/////////////////////////////
-//        API ROUTES       //
-/////////////////////////////
+////////////////////////////////////////
+//             API ROUTES             //
+////////////////////////////////////////
 const apiRoot = './controllers';
 const index = require(`${apiRoot}`);
 const admin = require(`${apiRoot}/admin/`);
@@ -124,22 +134,37 @@ app.use(`${api}/estates`, estates);
 app.use(`${api}/general`, general);
 app.use(`${api}`, index); // MUST BE LAST ROUTE!
 
-/////////////////////////////
-//      CLIENT ROUTER      //
-//                         //
-// Responsible for serving //
-// the angular site on all //
-// non api route           //
-/////////////////////////////
+
+////////////////////////////////////////
+//           RESOURCE ROUTER          //
+//                                    //
+// Responsible for catching 404 err   //
+// for the static resources folder.   //
+// Thus preventing us from sending    //
+// the index.html file every time a   //
+// resource WASN'T found              //
+////////////////////////////////////////
+app.all('/resource/*', (req, res) => {
+    res.status(404).send();
+});
+
+
+////////////////////////////////////////
+//           CLIENT ROUTER            //
+//                                    //
+// Responsible for serving the        //
+// angular site on all non api- and   //
+// resources- routes                  //
+////////////////////////////////////////
 app.all('*', (req, res) => {
     // Sends the HTML file, instead of using a view-engine
     res.sendFile(path.join('client', 'dist', 'index.html'), {root: __dirname});
 });
 
 
-/////////////////////////////
-//      ERROR HANDLER      //
-/////////////////////////////
+////////////////////////////////////////
+//           ERROR HANDLER            //
+////////////////////////////////////////
 app.use((err, req, res, next) => {
     const e = { error: err.message};
     if ((req.app.get('env') === 'development') && err.stack) {

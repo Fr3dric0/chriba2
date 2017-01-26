@@ -9,21 +9,22 @@ const Schema = mongoose.Schema;
 const Projects = new Schema({
     name: { type: String, unique: true },
     title: { type: String, required: true },
-    about: String,
+    description: String,
     url: String,
-    icon_url: { type: String, default: null },
+    iconUrl: { type: String, default: null },
     thumbnails: {
         small: [],
         large: []
     },
-    uploaded: { type: Date, default: Date.now },
-    visits: { type: Number, default: 0 }
+    uploaded: { type: Date, default: Date.now }
 });
 
 Projects.pre('save', function (next) {
     this.name = createName(this.title);
     next();
 });
+
+Projects.statics.generateName = createName;
 
 function createName (title) {
     let name = '';
