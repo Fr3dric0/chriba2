@@ -82,11 +82,13 @@ const index = require(`${apiRoot}`);
 const admin = require(`${apiRoot}/admin/`);
 const estates = require(`${apiRoot}/estates`);
 const projects = require(`${apiRoot}/projects`);
+const general = require(`${apiRoot}/general`);
 
 const api = '/api';
 app.use(`${api}/admin`, admin);
 app.use(`${api}/projects`, projects);
 app.use(`${api}/estates`, estates);
+app.use(`${api}/general`, general);
 app.use(`${api}`, index); // MUST BE LAST ROUTE!
 
 /////////////////////////////
