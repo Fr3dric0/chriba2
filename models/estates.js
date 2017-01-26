@@ -6,17 +6,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 const Estates = new Schema({
     name: { type: String, unique: true },
     location: {
         address: { type: String, required: true },
-        address_number: String,
-        postal_code: String,
+        addressNumber: String,
+        postalCode: String,
         city: String,
         country: { type: String, default: 'Norway' }
     },
-    about: { type: String },
+    description: { type: String },
     size: { type: Number },
     url: String,
     thumbnails: {
