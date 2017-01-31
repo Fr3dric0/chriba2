@@ -1,0 +1,21 @@
+/*
+ * @created: 2016-01-31
+ *
+ * Material-buttons contains the styles rules for the buttons, styled to
+ * follow material design
+ */
+
+button {
+  background-color: $primary-background-color;
+  color: $primary-color;
+
+  position: relative;
+  @include border-radius();
+}
+
+// Floating action button
+.fab {
+  background-color: #FFF;
+  position: relative;
+  border-radius: 50%;
+}

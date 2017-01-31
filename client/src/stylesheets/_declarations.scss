@@ -1,0 +1,24 @@
+
+$primary-color: #4CAF50; // Replace on need
+$secondary-color: #2E7D32; // ----- || -----
+
+$primary-background-color: #EFEFEF;
+$secondary-background-color: #FFF;
+
+$shadow: rgba(0,0,0, .1) 0.1em 0.1em 0.2em;
+$shadow-hover: rgba(0,0,0, .05) 0.12em 0.12em 0.23em;
+$shadow-active: none;
+
+
+
+// Defines the default transition animation
+@mixin transition() {
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
+}
+
+@mixin border-radius() {
+  border-radius: 2px;
+}

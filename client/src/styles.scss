@@ -8,11 +8,13 @@
  *
  */
 
+@import "stylesheets/declarations";
+
 body {
     margin: 0;
     padding: 0;
 
-    background-color: #EFEFEF;
+    background-color: $primary-background-color;
 }
 
 /* Element reserved for title */
