@@ -6,11 +6,11 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { PROJECTS_DECLARATIONS, PROJECTS_PROVIDERS } from './projects/index';
-import { ESTATES_DECLARATIONS, ESTATES_PROVIDERS } from './estates/index';
+import { PROJECTS_DECLARATIONS, PROJECTS_PROVIDERS } from './projects';
+import { ESTATES_DECLARATIONS, ESTATES_PROVIDERS } from './estates';
 import { ERROR_DECLARATIONS } from './error';
 import { SHARED_DECLARATIONS, SHARED_PROVIDERS } from './shared';
-import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin/index';
+import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
 
 @NgModule({
     declarations: [

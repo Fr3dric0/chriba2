@@ -7,5 +7,4 @@ export const ESTATES_DECLARATIONS = [
 
 export const ESTATES_PROVIDERS = [
   EstatesService,
-
 ];

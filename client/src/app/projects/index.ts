@@ -7,5 +7,4 @@ export const PROJECTS_DECLARATIONS = [
 
 export const PROJECTS_PROVIDERS = [
   ProjectsService,
-  
 ];
