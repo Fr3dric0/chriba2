@@ -10,11 +10,42 @@
 
 @import "stylesheets/declarations";
 
+html {
+    height: 100%;
+}
+
 body {
+    height: 100%;
+
     margin: 0;
     padding: 0;
 
     background-color: $primary-background-color;
+}
+
+app-root {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+app-root > div {
+    flex: 1;
+}
+
+footer {
+    //Color for testing
+    background-color: #405C6B;
+    color: white;
+}
+
+footer > div{
+  display: flex;
+  flex-direction: row;
+}
+
+footer > div > * {
+  flex: 1;
 }
 
 /* Element reserved for title */

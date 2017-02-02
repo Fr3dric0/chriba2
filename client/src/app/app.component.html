@@ -1,8 +1,23 @@
-<nav>
-    <button [routerLink]="['']">Dashboard</button>
-    <button [routerLink]="['estates']">Estates</button>
-    <button [routerLink]="['projects']">Projects</button>
-</nav>
-<div class="content">
-    <router-outlet></router-outlet>
+<div>
+    <nav>
+        <button [routerLink]="['']">Dashboard</button>
+        <button [routerLink]="['estates']">Estates</button>
+        <button [routerLink]="['projects']">Projects</button>
+    </nav>
+    <div class="content">
+       <router-outlet></router-outlet>
+    </div>
 </div>
+
+<footer>
+    <h2>Kontankt oss</h2>
+    <div>
+        <div>Ardesse</div>
+        <div>Telefon</div>
+        <div>
+            <sebm-google-map [latitude]="lat" [longitude]="lng">
+                <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+            </sebm-google-map>
+        </div>
+    </div>
+</footer>
