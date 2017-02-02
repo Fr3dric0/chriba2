@@ -1,3 +1,6 @@
+/**
+ * Created by toma2 on 02.02.2017.
+ */
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {Observable} from "rxjs";
@@ -8,8 +11,8 @@ export class GeneralService {
     
   }
   
-  getAbout(): Observable<any> {
-    return this.http.get('/api/general')
+  getEstates(): Observable<any> {
+    return this.http.get('/api/estates')
       .map(res => res.json());
   }
 }
