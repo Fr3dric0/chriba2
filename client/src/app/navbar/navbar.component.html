@@ -1,0 +1,11 @@
+<div class="navbar">
+    <a href="/">Chriba</a>
+
+    <div class="flex-spacer">
+        <!-- spacing div -->
+    </div>
+
+    <a *ngFor="let elem of navbarElems" href="{{elem.route}}" [ngClass]="{'active': location.isCurrentPathEqualTo(elem.route) }">
+        {{elem.name}}
+    </a>
+</div>

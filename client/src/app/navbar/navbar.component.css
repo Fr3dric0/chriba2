@@ -1,0 +1,37 @@
+.navbar {
+    align-items: center;
+    background: white;
+    border-bottom: 4px solid rgb(42, 142, 35);
+    box-shadow: 0 0px 3px gray;
+    color: #405c6b;
+    display: flex;
+    font-family: sans;
+    font-size: 16pt;
+    min-height: 2em;
+    vertical-align: center;
+    width: 100%;
+}
+
+.navbar a {
+    color: inherit;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    text-decoration: none;
+}
+
+.flex-spacer {
+    flex: 1 0 auto;
+}
+
+.border-left {
+    border-left: 1px solid;
+}
+
+.active {
+    color: green !important;
+    text-decoration: underline !important;
+}
+
+.navbar a:visited {
+    color: inherit;
+}
