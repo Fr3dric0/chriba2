@@ -6,12 +6,12 @@ import {Http} from '@angular/http';
 import {Observable} from "rxjs";
 
 @Injectable()
-export class GeneralService {
+export class EstatesService {
   constructor(private http: Http) {
     
   }
   
-  getEstates(): Observable<any> {
+  find(): Observable<any> {
     return this.http.get('/api/estates')
       .map(res => res.json());
   }
