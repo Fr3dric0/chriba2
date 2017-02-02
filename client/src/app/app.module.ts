@@ -6,6 +6,8 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from "./app-routing.module";
+import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarService } from './navbar/navbar.service';
 import { PROJECTS_DECLARATIONS, PROJECTS_PROVIDERS } from './projects';
 import { ESTATES_DECLARATIONS, ESTATES_PROVIDERS } from './estates';
 import { ERROR_DECLARATIONS } from './error';
@@ -16,6 +18,7 @@ import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
     declarations: [
         AppComponent,
         DashboardComponent,
+        NavbarComponent,
         ...PROJECTS_DECLARATIONS,
         ...ESTATES_DECLARATIONS,
         ...ERROR_DECLARATIONS,
@@ -29,6 +32,7 @@ import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
         AppRoutingModule
     ],
     providers: [
+        NavbarService,
         ...SHARED_PROVIDERS,
         ...ADMIN_PROVIDERS,
         ...ESTATES_PROVIDERS,
