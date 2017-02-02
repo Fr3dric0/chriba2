@@ -1,15 +1,19 @@
 
+$primary-font: Helvetica, Arial;
+
 $primary-color: #4CAF50; // Replace on need
 $secondary-color: #2E7D32; // ----- || -----
 
 $primary-background-color: #EFEFEF;
 $secondary-background-color: #FFF;
 
-$shadow: rgba(0,0,0, .1) 0.1em 0.1em 0.2em;
-$shadow-hover: rgba(0,0,0, .05) 0.12em 0.12em 0.23em;
+$header-color: #333;
+
+$shadow: rgba(0,0,0, .1) 0em 0.05em 0.05em;
+$shadow-hover: rgba(0,0,0, .05) 0em 0.12em 0.1em;
 $shadow-active: none;
 
-
+$container-border: #CCC 1px solid;
 
 // Defines the default transition animation
 @mixin transition() {
@@ -21,4 +25,11 @@ $shadow-active: none;
 
 @mixin border-radius() {
   border-radius: 2px;
+}
+
+@mixin no-user-select() {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

@@ -7,14 +7,14 @@
  *
  *
  */
-
 @import "stylesheets/declarations";
+@import "stylesheets/material-list";
 
 body {
-    margin: 0;
-    padding: 0;
-
-    background-color: $primary-background-color;
+  margin: 0;
+  padding: 0;
+  font-family: $primary-font;
+  background-color: $primary-background-color;
 }
 
 /* Element reserved for title */
@@ -24,5 +24,22 @@ h1 {
 
 /* Sub-titles */
 h2, h3, h4, h5, h6 {
+  text-align: center;
+  color: $header-color;
+}
 
+section {
+  position: relative;
+  background-color: $secondary-background-color;
+  width: 100%;
+  max-width: 50em;
+
+  border-left: $container-border;
+  border-right: $container-border;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 2em;
+  box-sizing: border-box;
 }
