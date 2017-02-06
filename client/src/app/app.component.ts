@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MapComponent } from './shared/map/map.component';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Chriba';
   description = 'Chriba er et inverstorfirma.';
-
-  lat: number = 51.678418;
-  lng: number = 7.809007;
 }
