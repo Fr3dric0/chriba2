@@ -2,10 +2,10 @@
 export interface About {
   title: string;
   description: string;
-  location?: {
+  location: {
     address: string;
     addressNumber: string;
-    postalCode?: string;
+    postalCode: string;
     city: string;
     country?: string;
   }
