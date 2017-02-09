@@ -19,7 +19,10 @@ class BackupHandler():
         status = res.status_code
 
         if (status > 399):
-            print(res.json())
+            data = res.json()
+            if 'error' in data:
+                raise IOError('[Backup Handler] {} \nurl: {}'.format(data['error'], res.url))
+
             raise IOError('[Backup Handler] Bad request {} '.format(res.url))
 
         return res.json()

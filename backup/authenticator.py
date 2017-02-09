@@ -13,10 +13,10 @@ class Authenticator():
                 raise IOError('[Authenticator authenticate] Cannot find resource at path {}'.format(self.path))
             elif (res.status_code == 403 or res.status_code == 401):
                 print(res.json())
-                raise ValueError('[Authenticator authenticate] Unauthenticated')
+                raise ValueError('[Authenticator authenticate] Username or password is wrong.\n\turl: {}'.format(self.path))
             elif (res.status_code == 400):
                 print(res.json())
-                raise ValueError('[Authenticator authenticate] Request body i most likelly malformed')
+                raise ValueError('[Authenticator authenticate] Request body is most likelly malformed')
             else:
                 print(res.json())
                 raise IOError('[Authenticator authenticate] Uknown server error')
