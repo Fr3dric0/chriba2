@@ -11,9 +11,9 @@ const { find } = require('./find');
 const upload = require('./fileModifier');
 
 // GET /api/estates
-router.get('/', requireToken, find);
+router.get('/', find);
 // GET /api/estates/:estate
-router.get('/:estate', requireToken, find);
+router.get('/:estate', find);
 // POST /api/estates
 router.post('/', requireToken, create);
 // PUT /api/estates/:estate
