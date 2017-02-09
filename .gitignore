@@ -5,3 +5,4 @@ npm-debug.log
 
 bin/config/
 models/about/_about.json
+docs/
