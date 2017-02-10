@@ -9,8 +9,8 @@ export interface Estates {
   size: string;
   url?: string;
   uploaded?: string;
-  thumbnails: {
-    large: string[];
+  thumbnails?: {
+    large?: string[];
     small?: string[];
   };
   

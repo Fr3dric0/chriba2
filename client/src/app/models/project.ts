@@ -10,8 +10,8 @@ export interface Projects {
   url?: string;
   uploaded?: string;
   visits?: number;
-  thumbnails: {
-    large: string[];
+  thumbnails?: {
+    large?: string[];
     small?: string[];
   };
 }
