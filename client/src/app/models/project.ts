@@ -6,10 +6,10 @@ export interface Projects {
   _id: string;
   name: string;
   title: string;
-  about: string;
+  description: string;
   url?: string;
+  iconUrl: string;
   uploaded?: string;
-  visits?: number;
   thumbnails?: {
     large?: string[];
     small?: string[];

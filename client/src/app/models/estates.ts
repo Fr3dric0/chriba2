@@ -5,7 +5,7 @@
 export interface Estates {
   _id: string;
   name: string;
-  about: string;
+  description: string;
   size: string;
   url?: string;
   uploaded?: string;
@@ -16,7 +16,8 @@ export interface Estates {
   
   location: {
     address: string;
-    address_number: string;
+    addressNumber: string;
+    postalCode: string;
     city: string;
     country?: string;
   };
