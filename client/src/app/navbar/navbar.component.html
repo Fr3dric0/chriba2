@@ -1,11 +1,42 @@
-<div class="navbar">
-    <a href="/">Chriba</a>
+<header>
+    <!-- <a href="/" class="logo">Chriba</a> -->
+    <!-- <nav> -->
+    <!-- <input name="show-mobile-nav" type="checkbox" value=""/> -->
+    <!-- <label for="show-mobile-nav">🍔</label> -->
+    <!-- <ul> -->
+    <!-- <li -->
+    <!-- *ngFor="let elem of navbarElems" -->
+    <!-- > -->
+    <!-- <a -->
+    <!-- href="{{elem.route}}" -->
+    <!-- [ngClass]="{'active': location.isCurrentPathEqualTo(elem.route) }" -->
+    <!-- > -->
+    <!-- {{elem.name}} -->
+    <!-- </a> -->
+    <!-- </li> -->
+    <!-- </ul> -->
+    <!-- </nav> -->
 
-    <div class="flex-spacer">
-        <!-- spacing div -->
+    <div class="flex-container">
+        <div class="dont-flex">
+            Chriba
+        </div>
+
+        <div class="flex-spacer">
+        </div>
+
+        <!-- <div class="hidden-wide dont-flex "> -->
+        <!-- </div> -->
+        <label for="menu-button" class="hidden-wide">🍔</label>
+        <input name="menu-button" type="checkbox" value="checked" id="menu-button"/>
+
+        <nav class="dont-flex flex-container">
+            <!-- Start åpen i mobil -->
+            <ul *ngFor="let elem of navbarElems">
+                <a href="{{elem.route}}">
+                    {{elem.name}}
+                </a>
+            </ul>
+        </nav>
     </div>
-
-    <a *ngFor="let elem of navbarElems" href="{{elem.route}}" [ngClass]="{'active': location.isCurrentPathEqualTo(elem.route) }">
-        {{elem.name}}
-    </a>
-</div>
+</header>

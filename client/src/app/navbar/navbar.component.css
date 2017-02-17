@@ -1,37 +1,128 @@
-.navbar {
-    align-items: center;
-    background: white;
-    border-bottom: 4px solid rgb(42, 142, 35);
-    box-shadow: 0 0px 3px gray;
-    color: #405c6b;
-    display: flex;
-    font-family: sans;
-    font-size: 16pt;
-    min-height: 2em;
-    vertical-align: center;
-    width: 100%;
+/* .navbar { */
+/*     align-items: center; */
+/*     background: white; */
+/*     border-bottom: 4px solid rgb(42, 142, 35); */
+/*     box-shadow: 0 0px 3px gray; */
+/*     color: #405c6b; */
+/*     display: flex; */
+/*     font-family: sans; */
+/*     font-size: 16pt; */
+/*     min-height: 2em; */
+/*     vertical-align: center; */
+/*     width: 100%; */
+/* } */
+
+/* .navbar a { */
+/*     color: inherit; */
+/*     padding-left: 0.3em; */
+/*     padding-right: 0.3em; */
+/*     text-decoration: none; */
+/* } */
+
+/* .flex-spacer { */
+/*     flex: 1 0 auto; */
+/* } */
+
+/* .border-left { */
+/*     border-left: 1px solid; */
+/* } */
+
+/* .active { */
+/*     color: green !important; */
+/*     text-decoration: underline !important; */
+/* } */
+
+/* .navbar a:visited { */
+/*     color: inherit; */
+/* } */
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.navbar a {
-    color: inherit;
-    padding-left: 0.3em;
-    padding-right: 0.3em;
-    text-decoration: none;
+li {
+    margin: none;
+    padding: none;
+}
+
+header {
+    font-size: 2em;
+    margin: 0;
+    padding: 5px;
+
+    background: white;
+    color: green;
+    border-bottom: 2px solid green;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .flex-spacer {
-    flex: 1 0 auto;
+    flex: 1;
 }
 
-.border-left {
-    border-left: 1px solid;
+.hidden-wide {
+    display: none;
 }
 
-.active {
-    color: green !important;
-    text-decoration: underline !important;
+nav {
+    display: flex;
 }
 
-.navbar a:visited {
+nav a {
+    padding-left: 0.5em;
+}
+
+nav a, nav a:visited {
     color: inherit;
+    text-decoration: none;
+    margin: auto;
+}
+
+input {
+    display: none;
+}
+
+.nav-current {
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .flex-spacer {
+        flex: 1 0 70%;
+    }
+
+    input:checked + * {
+        display: none;
+    }
+
+    .hidden-wide {
+        display: inline-block;
+    }
+
+    nav * {
+        flex: 1;
+    }
+
+    nav {
+        font-size: 0.7em;
+        display: none;
+        min-width: 99%;
+        justify-content: space-between;
+        flex-direction: column;
+        /* align-content: right; */
+    }
+
+    nav ul {
+        text-align: center;
+    }
+
+    header {
+        align-content: center;
+    }
 }
