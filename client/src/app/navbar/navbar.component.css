@@ -92,6 +92,10 @@ input {
     text-decoration: underline;
 }
 
+.logo-img {
+    max-width: 3em;
+}
+
 @media (max-width: 600px) {
     .flex-spacer {
         flex: 1 0 70%;
