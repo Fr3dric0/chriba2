@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'app-item-list',
@@ -7,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemListComponent implements OnInit {
 
+  _list: any;
+  @Input()
+   set list(l){ this._list = l}
+   get list(){ return this._list}
+
   visible: boolean = false;
   breakpoint: number = 600;
+
 
     constructor() {
     }
