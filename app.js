@@ -4,8 +4,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const nodemailer = require('@nodemailer/pro');
 
 const app = express();
+
 
 ////////////////////////////////////////
 //             API CONFIG             //
@@ -14,6 +16,23 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
+////////////////////////////////////////
+//             EMAIL SETUP            //
+////////////////////////////////////////
+const mailConfig = require('./bin/config/_email.json');
+const Email = require('./lib/email');
+
+Email.init(mailConfig)
+    .then(() => console.log('[Email Notifier] Setup complete!'))
+    .catch( (err) => { throw err; });
+
+// Store library in request object
+app.use((req, res, next) => {
+    req.Email = Email;
+    next();
+});
 
 
 ////////////////////////////////////////
@@ -74,6 +93,23 @@ db.on('error', (err) => {
         (Mongoose would sometimes favour the local connection over the remote)`);
     console.log('\n--------------------------------------------');
 
+    Email.send({
+        from: '"Chriba Server" <server@chriba.com',
+        to: 'fred.lindh96@gmail.com',
+        subject: '[No Reply] Database Connection Problems',
+
+    }, `
+    <h1>Chriba Database Connection Error</h1>
+    <p>The server is having problems connecting to the database.
+    <br>
+    Please check server for errors</p>`
+    )
+        .then(() => {
+            console.log(`[MongoDB Setup] Critical error mail distributed at ${new Date()}`);
+        })
+        .catch((err) => {
+            console.error(`[MongoDB Setup] Problems distributing warning mail (time=${new Date()})`)
+        })
 });
 
 db.on('connection', function () {
@@ -111,6 +147,7 @@ app.use(`${api}`, index); // MUST BE LAST ROUTE!
 app.all('/resource/*', (req, res) => {
     res.status(404).send();
 });
+
 
 ////////////////////////////////////////
 //           CLIENT ROUTER            //
