@@ -1,6 +1,8 @@
 
 $list-height: 35px;
 $list-height-large: 150px;
+$resize-width: 600px;
+
 
 
 .material-list {
@@ -16,7 +18,7 @@ $list-height-large: 150px;
 
   list-style: none;
 
-  @media screen and(min-width: 600px){
+  @media screen and(min-width: $resize-width){
     max-width: 900px;
   }
 }
@@ -37,11 +39,9 @@ $list-height-large: 150px;
   @include no-user-select();
   @include transition();
 
-  box-shadow: $shadow;
-
   cursor: pointer;
 
-  
+
 
   margin-top: 7px;
 
@@ -85,7 +85,7 @@ $list-height-large: 150px;
   }
 
 
-  @media screen and(min-width: 600px) {
+  @media screen and(min-width: $resize-width) {
     margin-top: 15px;
     height: $list-height-large;
 
@@ -94,8 +94,6 @@ $list-height-large: 150px;
       width: $list-height-large + 10px;
     }
 
-
-
     button{
       display: block;
       height: 30px;
@@ -103,6 +101,7 @@ $list-height-large: 150px;
       bottom: 0;
       left: $list-height-large + 30px;
       width: calc(100% - (#{$list-height-large} + 30px) * 2);
+      // TODO: Make this look material
     }
 
     div.info-container{
