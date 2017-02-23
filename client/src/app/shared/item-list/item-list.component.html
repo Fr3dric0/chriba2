@@ -1,9 +1,55 @@
-<ul class="material-list">
-    <li>
-        <div class="img-container">
-            <img src="/resource/uploads/gloshaugen.jpeg" alt="">
-        </div>
-        <em>Hello world</em>
-        <span>></span>
-    </li>
+<ul class="material-list" (window:resize)="onResize($event)" (window:onload)="onResize($event)">
+  <li>
+    <div class="img-container">
+      <img src="/resource/uploads/gloshaugen.jpeg" alt="ABC">
+    </div>
+    <template [ngIf]="!visible">
+      <em>Gløstergata 15</em>
+      <span class="arrow">></span>
+    </template>
+    <template [ngIf]="visible">
+      <!-- large-list:   (TODO: ng-if)-->
+      <div class="info-container">
+        <div class="label area">Adresse</div>
+        <div class="info address">Gløstergata 15</div>
+        <div class="info address">7051 Trondheim</div>
+        <div class="label area">Areal</div>
+        <div class="info area">9000 kvm</div>
+      </div>
+      <button>Til eiendom</button>
+      <div class="map">KART</div>
+      <!-- <app-map [lat]="36" [lng]="42"></app-map> -->
+    </template>
+  </li>
+
+  <li>
+    <div class="img-container">
+      <img src="/resource/uploads/gloshaugen.jpeg" alt="ABC">
+    </div>
+    <template [ngIf]="!visible">
+      <em>Gløstergata 15</em>
+      <span class="arrow">></span>
+    </template>
+    <template [ngIf]="visible">
+      <!-- large-list:   (TODO: ng-if)-->
+      <div class="info-container">
+        <div class="label area">Adresse</div>
+        <div class="info address">Gløstergata 15</div>
+        <div class="info address">7051 Trondheim</div>
+        <div class="label area">Areal</div>
+        <div class="info area">9000 kvm</div>
+      </div>
+      <button>Til eiendom</button>
+      <div class="map">KART</div>
+      <!-- <app-map [lat]="36" [lng]="42"></app-map> -->
+    </template>
+  </li>
+
 </ul>
+
+<template [ngIf]="visible">
+  <div class="test_div">
+    TESTETSTETSTETSTETS
+  </div>
+</template>
+

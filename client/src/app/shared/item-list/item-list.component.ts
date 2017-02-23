@@ -7,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemListComponent implements OnInit {
 
-    constructor() { }
+  visible: boolean = false;
+  breakpoint: number = 600;
 
-    ngOnInit() {
-
+    constructor() {
     }
 
+    ngOnInit() {
+      const w = window.innerWidth;
+
+      this.visible = (w >= this.breakpoint);
+    }
+
+  onResize(event) {
+    const w = event.target.innerWidth;
+
+    this.visible = (w >= this.breakpoint);
+  }
 }

@@ -1,5 +1,7 @@
 
 $list-height: 35px;
+$list-height-large: 150px;
+
 
 .material-list {
   position: relative;
@@ -13,6 +15,10 @@ $list-height: 35px;
   margin-right: auto;
 
   list-style: none;
+
+  @media screen and(min-width: 600px){
+    max-width: 900px;
+  }
 }
 
 
@@ -35,6 +41,10 @@ $list-height: 35px;
 
   cursor: pointer;
 
+  
+
+  margin-top: 7px;
+
   &:hover {
     box-shadow: $shadow-hover;
   }
@@ -49,7 +59,7 @@ $list-height: 35px;
     background-color: #FFF;
     height: $list-height;
     width: $list-height + 10px;
-
+    display: block;
     overflow: hidden;
 
     img {
@@ -60,16 +70,68 @@ $list-height: 35px;
   }
 
   em {
-    margin-top: 3%;
+    margin-top: 10px;
     font-style: normal;
   }
 
-  span {
+
+  .arrow {
     background-color: #FFF;
     height: $list-height;
     width: $list-height;
 
     text-align: center;
     color: $primary-color;
+  }
+
+
+  @media screen and(min-width: 600px) {
+    margin-top: 15px;
+    height: $list-height-large;
+
+    .img-container {
+      height: $list-height-large;
+      width: $list-height-large + 10px;
+    }
+
+
+
+    button{
+      display: block;
+      height: 30px;
+      position: absolute;
+      bottom: 0;
+      left: $list-height-large + 30px;
+      width: calc(100% - (#{$list-height-large} + 30px) * 2);
+    }
+
+    div.info-container{
+      left: $list-height-large + 30px;
+      position: absolute;
+      height: $list-height-large;
+      display: block;
+      margin-top: 7px;
+
+      .label {
+        font-size: .65em;
+      }
+
+      .info {
+
+      }
+
+      .label.area {
+        margin-top: 7px;
+      }
+
+    }
+
+    .map{
+      background-color: #00FF00;
+      height: $list-height-large;
+      width: $list-height-large + 10px;
+      display: block;
+    }
+
   }
 }
