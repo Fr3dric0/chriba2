@@ -1,43 +1,14 @@
-<header>
-    <!-- <a href="/" class="logo">Chriba</a> -->
-    <!-- <nav> -->
-    <!-- <input name="show-mobile-nav" type="checkbox" value=""/> -->
-    <!-- <label for="show-mobile-nav">🍔</label> -->
-    <!-- <ul> -->
-    <!-- <li -->
-    <!-- *ngFor="let elem of navbarElems" -->
-    <!-- > -->
-    <!-- <a -->
-    <!-- href="{{elem.route}}" -->
-    <!-- [ngClass]="{'active': location.isCurrentPathEqualTo(elem.route) }" -->
-    <!-- > -->
-    <!-- {{elem.name}} -->
-    <!-- </a> -->
-    <!-- </li> -->
-    <!-- </ul> -->
-    <!-- </nav> -->
+<header class="flex-container flex-hor flex-wrap">
+    <a href="/" class="logo flex-container flex-hor">
+        <img alt="" src="/assets/logo.png"/>
+        Chriba
+    </a>
 
-    <div class="flex-container">
-        <div class="dont-flex">
-            <img alt="beep boop" src="/assets/logo.png" class="logo-img"/>
-            Chriba
-        </div>
-
-        <div class="flex-spacer">
-        </div>
-
-        <!-- <div class="hidden-wide dont-flex "> -->
-        <!-- </div> -->
-        <label for="menu-button" class="hidden-wide">🍔</label>
-        <input name="menu-button" type="checkbox" value="checked" id="menu-button"/>
-
-        <nav class="dont-flex flex-container">
-            <!-- Start åpen i mobil -->
-            <ul *ngFor="let elem of navbarElems">
-                <a href="{{elem.route}}">
-                    {{elem.name}}
-                </a>
-            </ul>
-        </nav>
-    </div>
+    <label for="menu-checkbox" class="hidden-wide menu-checkbox">☰</label>
+    <input name="menu-checkbox" type="checkbox" value="checked" id="menu-checkbox" class="hidden"/>
+    <nav class="flex-container flex-toggle-direction" >
+        <a *ngFor="let elem of navbarElems" href="{{ elem.route }}"
+           [ngClass]="{'current-route': elem.route == location.path(true) }"
+        >{{ elem.name }}</a>
+    </nav>
 </header>
