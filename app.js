@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const nodemailer = require('@nodemailer/pro');
+const mailgunContainer = require('mailgun-js');
 
 const app = express();
 
@@ -19,27 +20,40 @@ app.use(cookieParser());
 
 
 ////////////////////////////////////////
-//             EMAIL SETUP            //
-////////////////////////////////////////
-const mailConfig = require('./bin/config/_email.json');
-const Email = require('./lib/email');
-
-Email.init(mailConfig)
-    .then(() => console.log('[Email Notifier] Setup complete!'))
-    .catch( (err) => { throw err; });
-
-// Store library in request object
-app.use((req, res, next) => {
-    req.Email = Email;
-    next();
-});
-
-
-////////////////////////////////////////
 //            STATIC PATHS            //
+//  Because the dist folder is auto-  //
+//  generated. We have a dedicated    //
+//  folder for files                  //
 ////////////////////////////////////////
 app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
 app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
+
+
+////////////////////////////////////////
+//             EMAIL SETUP            //
+//  Use Mailgun as email provider     //
+//  for our project, atleast under    //
+//  development.                      //
+////////////////////////////////////////
+const mailConfig = require('./bin/config/_email.json');
+const Mailgun = mailgunContainer({
+    apiKey: mailConfig['api-key'],
+    domain: mailConfig.domain
+});
+
+// Store library in request object
+app.use((req, res, next) => {
+    req.email = {};
+    req.email.Mailgun = Mailgun;
+
+    req.email.config = {
+        from: mailConfig.user,
+        to: mailConfig.distribution,
+        domain: mailConfig.domain
+    };
+
+    next();
+});
 
 
 ////////////////////////////////////////
@@ -93,23 +107,25 @@ db.on('error', (err) => {
         (Mongoose would sometimes favour the local connection over the remote)`);
     console.log('\n--------------------------------------------');
 
-    Email.send({
-        from: '"Chriba Server" <server@chriba.com',
-        to: 'fred.lindh96@gmail.com',
-        subject: '[No Reply] Database Connection Problems',
+    Mailgun.messages().send({
+        from: `Server Chriba <${mailConfig.user}>`,
+        to: mailConfig.distribution.join(','),
+        subject: '[Chriba] Database Connection Error',
+        text: `The server could not connect to the database.\n
+               Timestamp: ${new Date()}\n
+               Following error occured:\n\t${err.message}`,
+        html: ` <h1>Database connection error</h1>
+                <p>The server could not connect to the database.</p>
+                <pre>Timestamp: ${new Date()}</pre>
+                <p>Following error occured</p>
+                <pre>${err.message}</pre>`
+    }, (err) => {
+        if (err) {
+            console.error('\n\n[MongoDB Setup] Problem with email distribution');
+            console.error(err);
+        }
+    });
 
-    }, `
-    <h1>Chriba Database Connection Error</h1>
-    <p>The server is having problems connecting to the database.
-    <br>
-    Please check server for errors</p>`
-    )
-        .then(() => {
-            console.log(`[MongoDB Setup] Critical error mail distributed at ${new Date()}`);
-        })
-        .catch((err) => {
-            console.error(`[MongoDB Setup] Problems distributing warning mail (time=${new Date()})`)
-        })
 });
 
 db.on('connection', function () {
@@ -167,7 +183,8 @@ app.all('*', (req, res) => {
 ////////////////////////////////////////
 app.use((err, req, res, next) => {
     const e = { error: err.message};
-    if ((req.app.get('env') === 'development') && err.stack) {
+    // Show stack only when dev & if stack exists & if status-code is >=500
+    if ((req.app.get('env') === 'development') && err.stack && err.status > 499) {
         e.stack = err.stack;
     }
 
