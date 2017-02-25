@@ -8,7 +8,6 @@
     "watch": "node ./node_modules/concurrently/src/main.js \"npm run watch --prefix ./client\" \"nodemon\""
   },
   "dependencies": {
-    "@nodemailer/pro": "^1.0.0",
     "bcryptjs": "^2.4.0",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
