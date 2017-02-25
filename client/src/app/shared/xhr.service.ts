@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Headers } from "@angular/http";
+import { XHRError } from '../models/XHRError';
+import { XHR } from '../models/xhr';
 
-export interface XHR {
-    url: string;
-    token?: string;
-}
 
 @Injectable()
 export class XHRService {
@@ -159,8 +157,8 @@ export class XHRService {
         return data;
     }
 
-    private errorHandler(xhr: XMLHttpRequest, data?: Object): Error {
-        let err: Error = new Error();
+    private errorHandler(xhr: XMLHttpRequest, data?: Object): XHRError {
+        let err = new XHRError();
 
         let obj;
         if (data) {
@@ -175,7 +173,6 @@ export class XHRService {
         }
 
         err.message = obj.error || obj.err || obj || '[XHR Error] Unknown';
-        //noinspection TypeScriptUnresolvedVariable
         err.status = xhr.status;
 
         return err;
