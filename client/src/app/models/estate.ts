@@ -2,7 +2,7 @@
  * Created by toma2 on 09.02.2017.
  */
 
-export interface Estates {
+export interface Estate {
   _id: string;
   name: string;
   description: string;

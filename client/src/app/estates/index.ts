@@ -1,4 +1,4 @@
-import { EstatesService } from "./estates.service";
+import { EstateService } from "./estates.service";
 import { EstatesComponent } from './estates.component';
 
 export const ESTATES_DECLARATIONS = [
@@ -6,5 +6,5 @@ export const ESTATES_DECLARATIONS = [
 ];
 
 export const ESTATES_PROVIDERS = [
-  EstatesService,
+  EstateService,
 ];
