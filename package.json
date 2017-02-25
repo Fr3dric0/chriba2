@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "./node_modules/concurrently/src/main.js \"npm start --prefix ./client\" \"npm start\"",
-    "watch": "./node_modules/concurrently/src/main.js \"npm run watch --prefix ./client\" \"nodemon\""
+    "build": "node ./node_modules/concurrently/src/main.js \"npm start --prefix ./client\" \"npm start\"",
+    "watch": "node ./node_modules/concurrently/src/main.js \"npm run watch --prefix ./client\" \"nodemon\""
   },
   "dependencies": {
     "bcryptjs": "^2.4.0",
@@ -15,6 +15,7 @@
     "ejs": "~2.5.2",
     "express": "~4.14.0",
     "jsonwebtoken": "^7.2.1",
+    "mailgun-js": "^0.8.2",
     "mongoose": "^4.7.4",
     "morgan": "~1.7.0",
     "multer": "^1.2.1",

@@ -4,8 +4,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const mailgunContainer = require('mailgun-js');
 
 const app = express();
+
 
 ////////////////////////////////////////
 //             API CONFIG             //
@@ -18,9 +20,39 @@ app.use(cookieParser());
 
 ////////////////////////////////////////
 //            STATIC PATHS            //
+//  Because the dist folder is auto-  //
+//  generated. We have a dedicated    //
+//  folder for files                  //
 ////////////////////////////////////////
 app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
 app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
+
+
+////////////////////////////////////////
+//             EMAIL SETUP            //
+//  Use Mailgun as email provider     //
+//  for our project, atleast under    //
+//  development.                      //
+////////////////////////////////////////
+const mailConfig = require('./bin/config/_email.json');
+const Mailgun = mailgunContainer({
+    apiKey: mailConfig['api-key'],
+    domain: mailConfig.domain
+});
+
+// Store library in request object
+app.use((req, res, next) => {
+    req.email = {};
+    req.email.Mailgun = Mailgun;
+
+    req.email.config = {
+        from: mailConfig.user,
+        to: mailConfig.distribution,
+        domain: mailConfig.domain
+    };
+
+    next();
+});
 
 
 ////////////////////////////////////////
@@ -74,6 +106,25 @@ db.on('error', (err) => {
         (Mongoose would sometimes favour the local connection over the remote)`);
     console.log('\n--------------------------------------------');
 
+    Mailgun.messages().send({
+        from: `Server Chriba <${mailConfig.user}>`,
+        to: mailConfig.distribution.join(','),
+        subject: '[Chriba] Database Connection Error',
+        text: `The server could not connect to the database.\n
+               Timestamp: ${new Date()}\n
+               Following error occured:\n\t${err.message}`,
+        html: ` <h1>Database connection error</h1>
+                <p>The server could not connect to the database.</p>
+                <pre>Timestamp: ${new Date()}</pre>
+                <p>Following error occured</p>
+                <pre>${err.message}</pre>`
+    }, (err) => {
+        if (err) {
+            console.error('\n\n[MongoDB Setup] Problem with email distribution');
+            console.error(err);
+        }
+    });
+
 });
 
 db.on('connection', function () {
@@ -112,6 +163,7 @@ app.all('/resource/*', (req, res) => {
     res.status(404).send();
 });
 
+
 ////////////////////////////////////////
 //           CLIENT ROUTER            //
 //                                    //
@@ -130,7 +182,8 @@ app.all('*', (req, res) => {
 ////////////////////////////////////////
 app.use((err, req, res, next) => {
     const e = { error: err.message};
-    if ((req.app.get('env') === 'development') && err.stack) {
+    // Show stack only when dev & if stack exists & if status-code is >=500
+    if ((req.app.get('env') === 'development') && err.stack && err.status > 499) {
         e.stack = err.stack;
     }
 
