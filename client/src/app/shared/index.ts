@@ -1,5 +1,6 @@
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
+import { XHRService } from './xhr.service';
 import { GeneralService } from './general/general.service'
 import { ThumbnailService } from "./general/thumbnails.service";
 import { ProjectService } from "../projects/projects.service";
@@ -13,6 +14,6 @@ export const SHARED_PROVIDERS = [
     GeneralService,
     ThumbnailService,
     ProjectService,
-    EstateService
-  
+    EstateService,
+    XHRService
 ];
