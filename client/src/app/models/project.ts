@@ -2,7 +2,7 @@
  * Created by toma2 on 09.02.2017.
  */
 
-export interface Projects {
+export interface Project {
   _id: string;
   name: string;
   title: string;

@@ -8,7 +8,6 @@ const mailgunContainer = require('mailgun-js');
 
 const app = express();
 
-
 ////////////////////////////////////////
 //             API CONFIG             //
 ////////////////////////////////////////
@@ -20,6 +19,9 @@ app.use(cookieParser());
 
 ////////////////////////////////////////
 //            STATIC PATHS            //
+////////////////////////////////////////
+app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
+app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
 //  Because the dist folder is auto-  //
 //  generated. We have a dedicated    //
 //  folder for files                  //
@@ -53,8 +55,6 @@ app.use((req, res, next) => {
 
     next();
 });
-
-
 ////////////////////////////////////////
 //            CONFIG SETUP            //
 ////////////////////////////////////////
@@ -162,7 +162,6 @@ app.use(`${api}`, index); // MUST BE LAST ROUTE!
 app.all('/resource/*', (req, res) => {
     res.status(404).send();
 });
-
 
 ////////////////////////////////////////
 //           CLIENT ROUTER            //
