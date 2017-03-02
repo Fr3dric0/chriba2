@@ -11,35 +11,29 @@ import { GeneralService } from '../general/general.service';
 })
 
 export class FooterComponent implements OnInit{
-  business: string;
-  email: string;
-  address: string;
-  addressNumber: string;
-  city: string;
-  country: string;
-  postalCode: string;
-  mailbox: string;
-  mobile: string;
+    public business: string;
+    public email: string;
+    public location: any = {address: '', addressNumbe: '', postalCode: '', city: '', country: ''};
+    public mailbox: string;
+    public mobile: string;
+    public lat: number;
+    public long: number;
 
+    constructor(private generalService: GeneralService) { }
 
-  constructor(private generalService: GeneralService) { }
+    ngOnInit(){
+        const sub = this.generalService.getAbout()
+            .subscribe((data) => {
+                    this.business = data.business;
+                    this.email = data.email;
+                    this.location = data.location;
+                    this.mailbox = data.mailbox;
+                    this.mobile = data.mobile;
+                    this.lat = data.location.lat;
+                    this.long = data.location.long;
 
-  ngOnInit(){
-      const sub = this.generalService.getAbout()
-        .subscribe((data) => {
-          this.business = data.business;
-          this.email = data.email;
-          this.address = data.location.address;
-          this.addressNumber = data.location.addressNumber;
-          this.city = data.location.city;
-          this.country = data.location.country;
-          this.postalCode = data.location.postalCode;
-          this.mailbox = data.mailbox;
-          this.mobile = data.mobile;
-
-          sub.unsubscribe();
-          console.log(data);
-        },
-        err => console.error(err));
-  }
+                    sub.unsubscribe();
+                },
+                err => console.error(err));
+    }
 }

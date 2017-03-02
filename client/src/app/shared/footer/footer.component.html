@@ -2,32 +2,17 @@
   <h2>Kontankt oss</h2>
   <div class="flex-container">
     <div>
-      <div class="address">
-        Ardesse
-        <ul>
-          <li>{{address}} {{addressNumber}}</li>
-          <li>{{postalCode}} {{city}}</li>
-          <li>{{country}}</li>
-        </ul>
-        Postboks
-        <ul>
-          <li>{{mailbox}}</li>
-        </ul>
-      </div>
+      <footer-address
+        [location]="location"
+        [mailbox]="mailbox">
+      </footer-address>
     </div>
     <div>
-      <div>
-        Telefon
-        <ul>
-          <li>Mobil: {{mobile}}</li>
-          <li>Business: {{business}}</li>
-        </ul>
-        Email
-        <ul>
-          <li>{{email}}</li>
-        </ul>
-        </div>
+      <footer-phone
+        [mobile]="mobile"
+        [business]="business"
+        [email]="email"></footer-phone>
     </div>
-    <app-map [lat]="45" [lng]="45"></app-map>
+    <app-map [lat]="lat" [long]="long"></app-map>
   </div>
 </footer>

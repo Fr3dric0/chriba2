@@ -7,40 +7,18 @@ footer {
   padding: 0.5em 1em 0;
 }
 
-footer > h2 {
-  text-align: center;
-  margin: 0.5em;
-}
-
-footer > div {
+.flex-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   max-width: 1200px;
   margin: auto;
-}
 
-footer > div > div {
-  flex: 1;
-  padding: 0 1em;
-  min-width: 220px;
-}
-
-footer > div > div > div {
-  width: 220px;
-  margin: auto;
-  font-size: 0.75em;
-  color: #BDBDBD;
-  font-weight: 100;
-}
-
-footer > div > div > div > ul {
-  margin-top: 0.3em;
-  padding: 0;
-  list-style: none;
-  font-size: calc(1em + 1em/3);
-  color: #F5F5F5;
-  font-weight: normal;
+  div {
+    flex: 1;
+    padding: 0 1em;
+    min-width: 220px;
+  }
 }
 
 app-map {
