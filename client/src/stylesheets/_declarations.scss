@@ -9,7 +9,8 @@ $shadow: rgba(0,0,0, .1) 0.1em 0.1em 0.2em;
 $shadow-hover: rgba(0,0,0, .05) 0.12em 0.12em 0.23em;
 $shadow-active: none;
 
-
+$footer-bg-color: #37474F;
+$footer-font: Helvetica, Arial, sans-serifsans-serif;
 
 // Defines the default transition animation
 @mixin transition() {

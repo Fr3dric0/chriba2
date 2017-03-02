@@ -33,21 +33,6 @@ app-root > div {
     flex: 1;
 }
 
-footer {
-    //Color for testing
-    background-color: #405C6B;
-    color: white;
-}
-
-footer > div{
-  display: flex;
-  flex-direction: row;
-}
-
-footer > div > * {
-  flex: 1;
-}
-
 /* Element reserved for title */
 h1 {
 
