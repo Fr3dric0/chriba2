@@ -1,0 +1,33 @@
+<footer>
+  <h2>Kontankt oss</h2>
+  <div class="flex-container">
+    <div>
+      <div class="address">
+        Ardesse
+        <ul>
+          <li>{{address}} {{addressNumber}}</li>
+          <li>{{postalCode}} {{city}}</li>
+          <li>{{country}}</li>
+        </ul>
+        Postboks
+        <ul>
+          <li>{{mailbox}}</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div>
+        Telefon
+        <ul>
+          <li>Mobil: {{mobile}}</li>
+          <li>Business: {{business}}</li>
+        </ul>
+        Email
+        <ul>
+          <li>{{email}}</li>
+        </ul>
+        </div>
+    </div>
+    <app-map [lat]="45" [lng]="45"></app-map>
+  </div>
+</footer>
