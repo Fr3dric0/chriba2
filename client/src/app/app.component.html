@@ -1,8 +1,12 @@
-<nav>
-    <button [routerLink]="['']">Dashboard</button>
-    <button [routerLink]="['estates']">Estates</button>
-    <button [routerLink]="['projects']">Projects</button>
-</nav>
-<div class="content">
-    <router-outlet></router-outlet>
+<div>
+    <nav>
+        <button [routerLink]="['']">Dashboard</button>
+        <button [routerLink]="['estates']">Estates</button>
+        <button [routerLink]="['projects']">Projects</button>
+    </nav>
+    <div class="content">
+       <router-outlet></router-outlet>
+    </div>
 </div>
+
+<app-footer></app-footer>
