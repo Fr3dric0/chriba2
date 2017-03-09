@@ -28,6 +28,7 @@ export class ThumbnailService {
         
         if (!data || data.length < 1) {
           rsv([]);
+          return;
         }
         
         const [estates, projects] = data;
@@ -36,13 +37,13 @@ export class ThumbnailService {
         const shuffled = this.shuffleList(flattened.map((elem) => {
             const obj = <any>{};
             
-            let elemImg = this.shuffleList(elem.thumbnails.large)[0];
+            let img = this.shuffleList(elem.thumbnails.large)[0];
             
             if (elem.thumbnails.large.length < 1) {
-              elemImg = "";
+              img = "";
             }
             
-            obj.img = elemImg;
+            obj.img = img;
             obj.url = `/${typeof elem == 'Project' ? 'projects' : 'estates'}/${elem.name}`;
             obj.description = `
             ${elem.location.address}<br>
