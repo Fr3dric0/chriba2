@@ -9,37 +9,8 @@
       <span class="arrow">></span>
     </template>
     <template [ngIf]="visible">
-      <div class="info-container">
-        <div class="label area">Adresse</div>
-        <div class="info address">{{elem.location.address}} {{elem.location.addressNumber}}</div>
-        <div class="info address">{{elem.location.postalCode}} {{elem.location.city}}</div>
-        <div class="label area">Areal</div>
-        <div class="info area">{{elem.size}} kvm</div>
-      </div>
-      <button>Til eiendom</button>
-      <div class="map">KART</div>
-    </template>
-  </li>
-
-
-  <li>
-    <div class="img-container">
-      <img src="/resource/uploads/gloshaugen.jpeg" alt="ABC">
-    </div>
-    <template [ngIf]="!visible">
-      <em>Gløstergata 15</em>
-      <span class="arrow">></span>
-    </template>
-    <template [ngIf]="visible">
-      <div class="info-container">
-        <div class="label area">Adresse</div>
-        <div class="info address">Gløstergata 15</div>
-        <div class="info address">7051 Trondheim</div>
-        <div class="label area">Areal</div>
-        <div class="info area">9000 kvm</div>
-      </div>
-      <button>Til eiendom</button>
-      <div class="map">KART</div>
+      <app-estates-sub *ngIf="elem.location" [elem]="elem"></app-estates-sub>
+      <app-projects-sub *ngIf="!elem.location" [elem]="elem"></app-projects-sub>
     </template>
   </li>
 

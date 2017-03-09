@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Projects } from "../models/projects";
+import { ProjectsService } from "./projects.service";
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor() { }
+  data: Projects;
+  constructor(private es: ProjectsService) {
+  }
 
   ngOnInit() {
+    this.es.find()
+      .subscribe((d) => {this.data = d; console.log(d)}, (err) => {console.error(err)})
   }
 
 }

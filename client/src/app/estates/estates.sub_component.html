@@ -1,0 +1,9 @@
+<div *ngIf="elem" class="info-container estate">
+  <div class="label area">Adresse</div>
+  <div class="info address">{{elem.location.address}} {{elem.location.addressNumber}}</div>
+  <div class="info address">{{elem.location.postalCode}} {{elem.location.city}}</div>
+  <div class="label area">Areal</div>
+  <div class="info area">{{elem.size}} kvm</div>
+</div>
+<button class="estate">Til eiendom</button>
+<div class="map">KART</div>

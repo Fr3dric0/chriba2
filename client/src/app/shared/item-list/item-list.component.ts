@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./item-list.component.scss']
 })
 export class ItemListComponent implements OnInit {
-
+  elem: any;
   _list: any;
   @Input()
    set list(l){ this._list = l}

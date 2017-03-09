@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ItemListComponent} from "../shared/item-list/item-list.component";
-import {Estates} from "../models/estates";
-import {EstatesService} from "./estates.service";
+import { Estates } from "../models/estates";
+import { EstatesService } from "./estates.service";
 
 @Component({
   selector: 'app-estates',
