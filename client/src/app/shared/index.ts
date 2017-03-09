@@ -5,6 +5,7 @@ import { GeneralService } from './general/general.service'
 import { ThumbnailService } from "./general/thumbnails.service";
 import { ProjectService } from "../projects/projects.service";
 import { EstateService } from "../estates/estates.service";
+
 import { CarouselComponent } from "./carousel/carousel.component";
 // import { MapComponent } from "./map/map.component";
 // import { FooterComponent } from "./footer/footer.component";

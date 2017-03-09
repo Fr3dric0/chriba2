@@ -1,0 +1,23 @@
+@import "../../../stylesheets/declarations";
+
+div {
+    width: 20em;
+    margin: auto;
+    font-size: 0.75em;
+    color: $divider-color;
+    font-weight: 100;
+}
+
+div > ul {
+    margin-top: 0.3em;
+    padding: 0;
+    list-style: none;
+    font-size: calc(1em + 1em/3);
+    color: $primary-background-color;
+    font-weight: normal;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
+}
