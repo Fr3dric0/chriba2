@@ -1,17 +1,27 @@
 
-$primary-font: Helvetica, Arial;
-
-$primary-color: #4CAF50; // Replace on need
-$secondary-color: #2E7D32; // ----- || -----
+$primary-color: #4CAF50; // Proposed color (not determined)
+$dark-primary: #388E3C;
+$light-primary: #C8E6C9;
+$secondary-color: #2E7D32; // ----------- || --------------
 
 $primary-background-color: #EFEFEF;
 $secondary-background-color: #FFF;
+$footer-bg-color: #37474F;
 
 $header-color: #333;
 
 $shadow: rgba(0,0,0, .1) 0em 0.05em 0.05em;
 $shadow-hover: rgba(0,0,0, .05) 0em 0.12em 0.1em;
 $shadow-active: none;
+
+$divider-color: #BDBDBD;
+$accent-color: #607D8B;
+
+$primary-text: #212121;
+$secondary-text: #757575;
+$icon-text: #FFF;
+
+$primary-font: Helvetica, Arial, sans-serifsans-serif;
 
 $container-border: #CCC 1px solid;
 
