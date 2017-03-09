@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
     selector: 'footer-address',
     templateUrl: './address.component.html',
-    styleUrls: ['./address.component.scss']
+    styleUrls: ['../footer-element.component.scss']
 })
 export class AddressComponent implements OnInit {
 

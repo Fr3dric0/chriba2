@@ -1,9 +1,9 @@
 @import "../../../stylesheets/declarations";
 
 footer {
-  font-family: $footer-font;
+  font-family: $primary-font;
   background-color: $footer-bg-color;
-  color: #F5F5F5;
+  color: $primary-background-color;
   padding: 0.5em 1em 0;
 }
 
@@ -11,19 +11,19 @@ footer {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  max-width: 1200px;
+  max-width: 70em;
   margin: auto;
 
   div {
     flex: 1;
     padding: 0 1em;
-    min-width: 220px;
+    min-width: 13em;
   }
 }
 
 app-map {
   flex: 1;
-  min-width: 270px;
-  min-height: 150px;
-  padding-bottom: 1em;
+  min-width: 22em;
+  min-height: 10em;
+  padding: 0 1em 1em 0;
 }

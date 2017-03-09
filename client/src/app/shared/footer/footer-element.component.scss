@@ -1,8 +1,10 @@
+@import "../../../stylesheets/declarations";
+
 div {
-    width: 220px;
+    width: 20em;
     margin: auto;
     font-size: 0.75em;
-    color: #BDBDBD;
+    color: $divider-color;
     font-weight: 100;
 }
 
@@ -11,6 +13,11 @@ div > ul {
     padding: 0;
     list-style: none;
     font-size: calc(1em + 1em/3);
-    color: #F5F5F5;
+    color: $primary-background-color;
     font-weight: normal;
+}
+
+a {
+    color: $primary-color;
+    text-decoration: none;
 }
