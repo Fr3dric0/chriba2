@@ -5,7 +5,7 @@ import { Observable } from "rxjs";
 @Injectable()
 export class GeneralService {
   constructor(private http: Http) {
-    
+
   }
   
   /**
