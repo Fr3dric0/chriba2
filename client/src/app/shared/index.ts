@@ -5,8 +5,11 @@ import { GeneralService } from './general/general.service'
 import { ThumbnailService } from "./general/thumbnails.service";
 import { ProjectService } from "../projects/projects.service";
 import { EstateService } from "../estates/estates.service";
+import { CarouselComponent } from "./carousel/carousel.component";
 
-export const SHARED_DECLARATIONS = [];
+export const SHARED_DECLARATIONS = [
+  CarouselComponent
+];
 
 export const SHARED_PROVIDERS = [
     AuthService,

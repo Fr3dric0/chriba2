@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ProjectService } from "../../projects/projects.service";
 import { EstateService } from "../../estates/estates.service";
+import { Estate } from "../../models/estate";
+import { Project } from "../../models/project";
 
 @Injectable()
 export class ThumbnailService {
@@ -13,25 +15,47 @@ export class ThumbnailService {
    * data is a list of two list where each of the two lists
    * contains all data from estates and projects respectively:
    * [[estates data], [projects data]]
+   *
+   * Creates new objects obj for each element in projects and estates and
+   * applying img, url and description properties to each object in shuffled list
    */
-  generate() {
-    Promise.all([,
-      this.es.findWithPromise(),
-      this.ps.findWithPromise()
-    ]).then((data) => {
-      const [estates, projects] = data;
-      const flattened = [...estates, ...projects];
+  generate(): Promise<any> {
+    return new Promise((rsv, rr) => {
+      Promise.all([
+        this.es.findWithPromise(),
+        this.ps.findWithPromise()
+      ]).then((data) => {
+        
+        if (!data || data.length < 1) {
+          rsv([]);
+        }
+        
+        const [estates, projects] = data;
+        const flattened = [...estates, ...projects];
     
-      const shuffled = this.shuffleList(flattened.map((elem) => {
-          const obj = <any>{};
-          obj.img = this.shuffleList(elem.thumbnails.large)[0];
-          obj.url = `/${typeof elem == 'Project' ? 'projects' : 'estates'}/${elem.name}`;
-          obj.description = elem.description;
-          return obj;
-        })
-      );
+        const shuffled = this.shuffleList(flattened.map((elem) => {
+            const obj = <any>{};
+            
+            let elemImg = this.shuffleList(elem.thumbnails.large)[0];
+            
+            if (!elemImg) {
+              elemImg = "";
+            }
+            
+            obj.img = elemImg;
+            obj.url = `/${typeof elem == 'Project' ? 'projects' : 'estates'}/${elem.name}`;
+            obj.description = `
+            ${elem.location.address}<br>
+            ${elem.location.addressNumber}<br>`;
+            return obj;
+          }));
+        rsv(shuffled);
+      })
       
+        .catch(err => rr(err));
+        
     });
+      
   }
   
   
