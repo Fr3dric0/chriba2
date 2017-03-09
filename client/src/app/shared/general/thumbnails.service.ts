@@ -38,7 +38,7 @@ export class ThumbnailService {
             
             let elemImg = this.shuffleList(elem.thumbnails.large)[0];
             
-            if (!elemImg) {
+            if (elem.thumbnails.large.length < 1) {
               elemImg = "";
             }
             
