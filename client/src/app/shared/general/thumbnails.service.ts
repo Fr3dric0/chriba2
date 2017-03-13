@@ -32,7 +32,12 @@ export class ThumbnailService {
         }
         
         const [estates, projects] = data;
-        const flattened = [...estates, ...projects];
+        let flattened;
+        if (estates && projects) {
+          flattened = [...estates, ...projects];
+        } else {
+          flattened = [];
+        }
     
         const shuffled = this.shuffleList(flattened.map((elem) => {
             const obj = <any>{};
@@ -56,7 +61,6 @@ export class ThumbnailService {
         .catch(err => rr(err));
         
     });
-      
   }
   
   

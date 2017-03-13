@@ -7,6 +7,7 @@ export interface Project {
   name: string;
   title: string;
   description: string;
+  location?: string;
   url?: string;
   iconUrl: string;
   uploaded?: string;
