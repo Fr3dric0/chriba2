@@ -7,6 +7,7 @@ import { ErrorComponent } from "./error/error.component";
 
 import { AuthGuard } from './shared/auth/auth.guard';
 import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
 
 const routes:Routes = [
     {
@@ -25,6 +26,10 @@ const routes:Routes = [
         path: 'admin',
         component: AdminComponent,
         canActivate: [ AuthGuard ] // Protects routes from unauthorized access
+    },
+    {
+        path: 'admin/login',
+        component: LoginComponent
     },
     { path: '**', component: ErrorComponent }
 ];

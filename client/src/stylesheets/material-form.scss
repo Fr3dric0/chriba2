@@ -5,17 +5,85 @@
  * follow material design
  */
 
-// Used only on form
+// Restrict only to form-elements
 form.material-form {
+  box-sizing: border-box;
 
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 1em;
+
+  width: 100%;
+  max-width: 50em;
+
+  label {
+    text-align: right;
+    font-weight: 100;
+  }
+
+  label:after {
+    content: ": ";
+  }
 
   input, textarea {
+    position: relative;
+    background-color: $primary-background-color;
+    border: none;
+    border-bottom: 1px solid $accent-color;
+    float: right;
+  }
 
+  textarea {
+    width: 100%;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-bottom: 2px solid $pending-color;
+  }
+
+  input.ng-dirty.ng-invalid[required] {
+    border-bottom-color: $error-color;
+  }
+
+  input.ng-dirty.ng-valid[required] {
+    border-bottom-color: $success-color;
   }
 
   input[type="text"] {
+    width: 100%;
+    max-width: 20em;
+  }
 
+  .input-feedback {
+    color: $error-color;
+  }
+
+  button[type="submit"] {
+    position: relative;
   }
 
 }
 
+
+form.flexing-form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+}
+
+.flexing-form > div {
+  position: relative;
+  flex-basis: 20em;
+  flex-grow: 2;
+  margin-bottom: 2em;
+}
+
+
+.input-divider {
+  position: relative;
+  display: inherit;
+  padding: 5px;
+}

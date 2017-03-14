@@ -1,5 +1,19 @@
 <section>
-    <h3>Hello admin</h3>
+    <h2>Side administrasjon</h2>
 
-    <p>Welcome to admin</p>
+    <div class="metadata-container">
+        <div class="last-active">
+            <span>last active: </span>
+            <time *ngIf="admin">{{admin.lastActive | date}}</time>
+        </div>
+        <div>
+            <button class="btn-flat" (click)="logout()">Logout</button>
+        </div>
+    </div>
 </section>
+
+<app-general-fields></app-general-fields>
+
+<div class="section-splitter"></div>
+
+<app-profile-fields></app-profile-fields>

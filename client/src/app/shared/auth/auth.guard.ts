@@ -12,8 +12,7 @@ export class AuthGuard implements CanActivate {
         let authenticated = this.auth.authenticated();
 
         if (!authenticated) {
-            // Do some rerouting
-            //this.router.navigate(['']);
+            this.router.navigate(['/admin/login']);
         }
 
         return authenticated; // Can ativate if authenticated

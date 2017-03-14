@@ -6,6 +6,10 @@
  */
 
 button {
+  cursor: pointer;
+}
+
+.btn {
   background-color: $primary-background-color;
   color: $primary-color;
 
@@ -18,4 +22,17 @@ button {
   background-color: #FFF;
   position: relative;
   border-radius: 50%;
+}
+
+button.submit {
+  margin-top: 0.1em;
+  background-color: $secondary-background-color;
+  border: none;
+  border-radius: 2px;
+  color: $dark-primary;
+  font-size: 0.9em;
+  padding: 0.5em 0.8em 0.5em 0.8em;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: $shadow;
 }

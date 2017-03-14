@@ -22,12 +22,6 @@ app.use(cookieParser());
 ////////////////////////////////////////
 app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
 app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
-//  Because the dist folder is auto-  //
-//  generated. We have a dedicated    //
-//  folder for files                  //
-////////////////////////////////////////
-app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
-app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
 
 
 ////////////////////////////////////////
