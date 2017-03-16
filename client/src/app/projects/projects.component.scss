@@ -1,0 +1,11 @@
+@import "../../stylesheets/_declarations.scss";
+@import "../../stylesheets/material-list";
+
+@media screen and(min-width: $resize-width) {
+  margin-top: 15px;
+  height: $list-height-large;
+
+  button.project {
+    width: calc(100% - 60px - (#{$list-height-large}));
+  }
+}

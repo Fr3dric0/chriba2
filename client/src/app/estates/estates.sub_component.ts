@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-estates-sub',
   templateUrl: './estates.sub_component.html',
-  styleUrls: ['./estates.sub_component.css']
+  styleUrls: ['./estates.sub_component.css', './../../stylesheets/material-buttons.scss']
 })
 export class EstatesSubComponent implements OnInit {
 

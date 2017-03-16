@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-projects-sub',
   templateUrl: './projects.sub_component.html',
-  styleUrls: ['./projects.sub_component.css']
+  styleUrls: ['./projects.sub_component.css', './../../stylesheets/material-buttons.scss']
 })
 export class ProjectsSubComponent implements OnInit {
 

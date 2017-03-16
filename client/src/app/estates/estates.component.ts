@@ -6,7 +6,7 @@ import { EstatesService } from "./estates.service";
 @Component({
   selector: 'app-estates',
   templateUrl: './estates.component.html',
-  styleUrls: ['./estates.component.css']
+  styleUrls: ['./estates.component.scss']
 })
 export class EstatesComponent implements OnInit {
 

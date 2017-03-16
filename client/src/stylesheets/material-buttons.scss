@@ -5,9 +5,11 @@
  * follow material design
  */
 
+@import "_declarations.scss";
+
 button {
-  background-color: $primary-background-color;
-  color: $primary-color;
+  background-color: $primary-background-color; // $primary-background-color
+  color: $primary-color; //$primary-color
 
   position: relative;
   @include border-radius();
