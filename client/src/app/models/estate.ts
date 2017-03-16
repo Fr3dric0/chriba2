@@ -13,12 +13,14 @@ export interface Estate {
     large?: string[];
     small?: string[];
   };
-  
+
   location: {
     address: string;
     addressNumber: string;
     postalCode: string;
     city: string;
     country?: string;
+    lat: number;
+    lng: number;
   };
 }

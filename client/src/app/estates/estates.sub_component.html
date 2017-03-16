@@ -6,4 +6,4 @@
   <div class="info area">{{elem.size}} kvm</div>
 </div>
 <button class="estate">Til eiendom</button>
-<div class="map">KART</div>
+<app-map [lat]="elem.location.lat" [long]="elem.location.lng" class="map"></app-map>
