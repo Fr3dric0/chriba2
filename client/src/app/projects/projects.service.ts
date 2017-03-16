@@ -7,11 +7,11 @@ import { Observable } from "rxjs";
 import { Project } from "../models/project";
 
 @Injectable()
-export class ProjectService {
+export class ProjectsService {
   constructor(private http: Http) {
-    
+
   }
-  
+
   /**
    * @returns {Observable<R>}
    * GET request for data about projects
@@ -20,7 +20,7 @@ export class ProjectService {
     return this.http.get('/api/projects')
       .map(res => res.json());
   }
-  
+
   findWithPromise(): Promise<Project[]> {
     return new Promise((rsv, rr) => {
       this.find().subscribe((data) => rsv(data), err => rr(err));
