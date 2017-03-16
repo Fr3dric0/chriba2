@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ItemListComponent} from "../shared/item-list/item-list.component";
-import { Estates } from "../models/estates";
+import { Estate } from "../models/estate";
 import { EstatesService } from "./estates.service";
 
 @Component({
@@ -10,7 +10,7 @@ import { EstatesService } from "./estates.service";
 })
 export class EstatesComponent implements OnInit {
 
-  data: Estates;
+  data: Estate;
   constructor(private es: EstatesService) {
   }
 

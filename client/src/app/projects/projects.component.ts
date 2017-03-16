@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Projects } from "../models/projects";
+import { Project } from "../models/project";
 import { ProjectsService } from "./projects.service";
 @Component({
   selector: 'app-projects',
@@ -8,7 +8,7 @@ import { ProjectsService } from "./projects.service";
 })
 export class ProjectsComponent implements OnInit {
 
-  data: Projects;
+  data: Project;
   constructor(private es: ProjectsService) {
   }
 
