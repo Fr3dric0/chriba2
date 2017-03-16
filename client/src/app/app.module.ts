@@ -14,6 +14,8 @@ import { ERROR_DECLARATIONS } from './error';
 import { SHARED_DECLARATIONS, SHARED_PROVIDERS } from './shared';
 import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
 
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -29,7 +31,10 @@ import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
         BrowserModule,
         FormsModule,
         HttpModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyC8x1S79lhHlDOBgqj1q0kFB6DxCSw8YjU'
+        })
     ],
     providers: [
         NavbarService,
