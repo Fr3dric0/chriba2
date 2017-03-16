@@ -11,7 +11,13 @@
 @import "stylesheets/material-form";
 @import "stylesheets/material-buttons";
 
+html {
+  height: 100%;
+}
+
 body {
+  height: 100%;
+
   margin: 0;
   padding: 0;
 
@@ -20,12 +26,15 @@ body {
 
 /* Element reserved for title */
 h1 {
-
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
 }
 
 /* Sub-titles */
 h2, h3, h4, h5, h6 {
   text-align: center;
+  margin: 0.5em;
 }
 
 .section-splitter {

@@ -1,0 +1,8 @@
+__pycache__
+backup-errors.log
+
+# Backed up files
+about.json
+projects.json
+estates.json
+admin.json

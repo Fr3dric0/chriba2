@@ -13,6 +13,8 @@ import { SHARED_DECLARATIONS, SHARED_PROVIDERS } from './shared';
 import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
 import { LOGIN_DECLARATIONS, LOGIN_PROVIDERS } from './login';
 
+import { AgmCoreModule } from 'angular2-google-maps/core';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -29,7 +31,10 @@ import { LOGIN_DECLARATIONS, LOGIN_PROVIDERS } from './login';
         FormsModule,
         ReactiveFormsModule,
         HttpModule,
-        AppRoutingModule
+        AppRoutingModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyC8x1S79lhHlDOBgqj1q0kFB6DxCSw8YjU'
+        })
     ],
     providers: [
         ...SHARED_PROVIDERS,
