@@ -1,0 +1,8 @@
+<div *ngIf="data">
+    <div *ngIf="isEstate">
+        <details-estate [data]="data"></details-estate>
+    </div>
+    <div *ngIf="!isEstate">
+        <details-project [data]="data"></details-project>
+    </div>
+</div>

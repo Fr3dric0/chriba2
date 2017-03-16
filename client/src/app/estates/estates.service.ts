@@ -26,4 +26,9 @@ export class EstateService {
       this.find().subscribe((data) => rsv(data), err => rr(err));
     });
   }
+
+  findOne(name: string): Observable<Estate> {
+    return this.http.get(`/api/estates/${name}`)
+        .map(res => res.json());
+  }
 }

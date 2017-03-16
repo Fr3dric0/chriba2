@@ -11,6 +11,7 @@ import { ESTATES_DECLARATIONS, ESTATES_PROVIDERS } from './estates';
 import { ERROR_DECLARATIONS } from './error';
 import { SHARED_DECLARATIONS, SHARED_PROVIDERS } from './shared';
 import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
+import { DETAILS_DECLARATIONS } from "./details";
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
@@ -22,7 +23,8 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
         ...ESTATES_DECLARATIONS,
         ...ERROR_DECLARATIONS,
         ...SHARED_DECLARATIONS,
-        ...ADMIN_DECLARATIONS
+        ...ADMIN_DECLARATIONS,
+        ...DETAILS_DECLARATIONS
     ],
     imports: [
         BrowserModule,

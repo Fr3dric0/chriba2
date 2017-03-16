@@ -26,5 +26,10 @@ export class ProjectService {
       this.find().subscribe((data) => rsv(data), err => rr(err));
     });
   }
+
+  findOne(name: string): Observable<Project> {
+    return this.http.get(`/api/projects/${name}`)
+        .map(res => res.json());
+  }
 }
 
