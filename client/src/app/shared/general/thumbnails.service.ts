@@ -49,7 +49,7 @@ export class ThumbnailService {
             }
             
             obj.img = img;
-            obj.url = `/${typeof elem == 'Project' ? 'projects' : 'estates'}/${elem.name}`;
+            obj.url = `/${ !elem.location ? 'projects' : 'estates'}/${elem.name}`;
             obj.description = `
             ${elem.location.address}<br>
             ${elem.location.addressNumber}<br>`;
