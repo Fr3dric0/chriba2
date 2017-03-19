@@ -1,32 +1,44 @@
 <section>
-    <h3>General</h3>
+    <h3>Profilinformasjon</h3>
 
-    <form class="material-form" [formGroup]="form" (ngSubmit)="save(form.value, form.valid)">
+    <form class="material-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
 
         <div class="input-divider">
             <label>Fornavn</label>
             <input type="text" formControlName="firstName" required>
-            <p class="input-feedback" [hidden]="form.get('email').valid">Du må ha fornavn!</p>
+            <small class="input-feedback" [hidden]="form.get('firstName').valid || !form.get('firstName').dirty">Du må ha med fornavn!</small>
         </div>
         <div class="input-divider">
             <label>Etternavn</label>
             <input type="text" formControlName="lastName" required>
-            <p class="input-feedback" [hidden]="form.get('email').valid">Du inkludere etternavn!</p>
+            <small class="input-feedback" [hidden]="form.get('lastName').valid || !form.get('lastName').dirty">Du må ha med etternavn!</small>
         </div>
 
         <div class="input-divider">
             <label>Epost</label>
             <input type="email" formControlName="email" required>
-            <p class="input-feedback" [hidden]="form.get('email').valid">Ugyldig epost-adresse!</p>
+            <small class="input-feedback" [hidden]="form.get('email').valid || !form.get('email').dirty">Ugyldig epost adresse!</small>
         </div>
 
         <div class="input-divider">
-            <label>Epost</label>
-            <input type="email" formControlName="email" required>
-            <p class="input-feedback" [hidden]="form.get('email').valid">Ugyldig epost-adresse!</p>
+            <label>Gammelt passord</label>
+            <input type="email" formControlName="oldPassword">
         </div>
 
-        <button class="submit" [disabled]="!form.valid">Lagre</button>
+        <div class="input-divider">
+            <label>Nytt passord</label>
+            <input type="email" formControlName="password">
+            <small class="input-feedback" [hidden]="form.get('password').valid || !form.get('password').dirty || !form.get('password').value">
+                Ugyldig passord! Må vere minst 8 tegn langt</small>
+        </div>
+
+        <div class="input-divider">
+            <label>Bekreft passord</label>
+            <input type="email" formControlName="confirmPassword">
+            <small class="input-feedback" [hidden]="form.get('confirmPassword').valid || !form.get('confirmPassword').dirty">Ugyldig passord! Må vere minst 8 tegn langt</small>
+        </div>
+
+        <button class="submit" [disabled]="!form.valid || !form.dirty">Lagre</button>
     </form>
 
 </section>

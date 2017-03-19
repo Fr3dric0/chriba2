@@ -18,4 +18,11 @@ export class AdminService {
         return this.http.get('/api/admin', { headers })
             .map( res => res.json());
     }
+
+    save(admin: Admin): Observable<Admin> {
+        const headers: Headers = this.auth.getAuthHeader();
+
+        return this.http.put('/api/admin', admin, {headers})
+            .map( res => res.json());
+    }
 }

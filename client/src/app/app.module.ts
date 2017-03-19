@@ -14,6 +14,7 @@ import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
 import { LOGIN_DECLARATIONS, LOGIN_PROVIDERS } from './login';
 
 import { AgmCoreModule } from 'angular2-google-maps/core';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
     declarations: [
@@ -34,7 +35,8 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
         AppRoutingModule,
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyC8x1S79lhHlDOBgqj1q0kFB6DxCSw8YjU'
-        })
+        }),
+        SimpleNotificationsModule.forRoot()
     ],
     providers: [
         ...SHARED_PROVIDERS,

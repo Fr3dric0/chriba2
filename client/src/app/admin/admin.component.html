@@ -16,4 +16,4 @@
 
 <div class="section-splitter"></div>
 
-<app-profile-fields></app-profile-fields>
+<app-profile-fields [admin]="admin" (save)="saveProfile($event)"></app-profile-fields>

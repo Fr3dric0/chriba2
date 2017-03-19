@@ -58,6 +58,8 @@ form.material-form {
 
   .input-feedback {
     color: $error-color;
+    width: 100%;
+    text-align: right;
   }
 
   button[type="submit"] {
