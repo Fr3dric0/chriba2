@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ProjectService } from "../../projects/projects.service";
-import { EstateService } from "../../estates/estates.service";
+import { ProjectsService } from "../../projects/projects.service";
+import { EstatesService } from "../../estates/estates.service";
 import { Estate } from "../../models/estate";
 import { Project } from "../../models/project";
 
 @Injectable()
 export class ThumbnailService {
-  constructor(private ps: ProjectService,
-              private es: EstateService) {
-    
+  constructor(private ps: ProjectsService,
+              private es: EstatesService) {
+
   }
-  
+
   /**
    * data is a list of two list where each of the two lists
    * contains all data from estates and projects respectively:
@@ -25,12 +25,12 @@ export class ThumbnailService {
         this.es.findWithPromise(),
         this.ps.findWithPromise()
       ]).then((data) => {
-        
+
         if (!data || data.length < 1) {
           rsv([]);
           return;
         }
-        
+
         const [estates, projects] = data;
         let flattened;
         if (estates && projects) {
@@ -38,18 +38,18 @@ export class ThumbnailService {
         } else {
           flattened = [];
         }
-    
+
         const shuffled = this.shuffleList(flattened.map((elem) => {
             const obj = <any>{};
-            
+
             let img = this.shuffleList(elem.thumbnails.large)[0];
-            
+
             if (elem.thumbnails.large.length < 1) {
               img = "";
             }
-            
+
             obj.img = img;
-            obj.url = `/${typeof elem == 'Project' ? 'projects' : 'estates'}/${elem.name}`;
+            obj.url = `/${ !elem.location ? 'projects' : 'estates'}/${elem.name}`;
             obj.description = `
             ${elem.location.address}<br>
             ${elem.location.addressNumber}<br>`;
@@ -57,13 +57,13 @@ export class ThumbnailService {
           }));
         rsv(shuffled);
       })
-      
+
         .catch(err => rr(err));
-        
+
     });
   }
-  
-  
+
+
   /**
    * @param imgList
    * @returns {any}
@@ -79,5 +79,5 @@ export class ThumbnailService {
     }
     return imgList;
   }
-  
+
 }

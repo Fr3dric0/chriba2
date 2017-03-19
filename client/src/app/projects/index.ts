@@ -1,4 +1,4 @@
-import { ProjectService } from "./projects.service";
+import { ProjectsService } from "./projects.service";
 import { ProjectsComponent } from './projects.component';
 
 export const PROJECTS_DECLARATIONS = [
@@ -6,5 +6,5 @@ export const PROJECTS_DECLARATIONS = [
 ];
 
 export const PROJECTS_PROVIDERS = [
-  ProjectService,
+  ProjectsService,
 ];
