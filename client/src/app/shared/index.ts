@@ -11,22 +11,24 @@ import { MapComponent } from "./map/map.component";
 import { FooterComponent } from "./footer/footer.component";
 import { AddressComponent } from "./footer/address/address.component";
 import { PhoneComponent } from  "./footer/phone/phone.component";
+import { HeaderComponent } from './navbar/header.component';
 
 export const SHARED_DECLARATIONS = [
-  ItemListComponent,
-  FooterComponent,
-  AddressComponent,
-  PhoneComponent,
-  MapComponent
+    ItemListComponent,
+    HeaderComponent,
+    FooterComponent,
+    AddressComponent,
+    PhoneComponent,
+    MapComponent
 ];
 
 export const SHARED_PROVIDERS = [
-  AuthService,
-  AuthGuard,
-  GeneralService,
-  ThumbnailService,
-  ProjectsService,
-  EstatesService,
-  XHRService
+    AuthService,
+    AuthGuard,
+    GeneralService,
+    ThumbnailService,
+    ProjectsService,
+    EstatesService,
+    XHRService
 ];
 
