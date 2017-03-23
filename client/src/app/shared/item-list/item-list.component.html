@@ -1,11 +1,12 @@
 <ul *ngIf="list" class="material-list" (window:resize)="onResize($event)" (window:onload)="onResize($event)">
 
-  <li *ngFor="let elem of list">
+  <li *ngFor="let elem of list" [routerLink]="elem.name">
     <div class="img-container">
       <img src="{{elem.thumbnails.small[0]}}" alt="{{elem.name}}">
     </div>
     <template [ngIf]="!visible">
-      <em>{{elem.name}}</em>
+      <em *ngIf="elem.location">{{elem.location.address}} {{elem.location.addressNumber}}</em>
+      <em *ngIf="!elem.location">{{elem.title}}</em>
       <span class="arrow">></span>
     </template>
     <template [ngIf]="visible">

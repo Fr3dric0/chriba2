@@ -1,0 +1,15 @@
+@import "../../stylesheets/_declarations.scss";
+@import "../../stylesheets/material-list";
+
+
+div.info-container{
+  left: $list-height-large + 10px;
+  position: absolute;
+  height: $list-height-large;
+  display: block;
+  margin-top: 7px;
+}
+
+button {
+  width: calc(100% - 60px - (#{$list-height-large}));
+}

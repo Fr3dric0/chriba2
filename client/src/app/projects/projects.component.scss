@@ -8,4 +8,10 @@
   button.project {
     width: calc(100% - 60px - (#{$list-height-large}));
   }
+
+  .info-container.project{
+    width: 100%;
+    height: 100%;
+    padding-left: 15px;
+  }
 }

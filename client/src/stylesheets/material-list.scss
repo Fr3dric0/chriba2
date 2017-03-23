@@ -101,49 +101,6 @@ $resize-width: 600px;
       position: absolute;
       bottom: 0;
       left: $list-height-large + 30px;
-      // TODO: Make this look material
-
-      /*
-
-       */
     }
-
-    button.estate {
-      width: calc(100% - (#{$list-height-large} + 30px) * 2);
-    }
-
-    button.project {
-      width: calc(100% - 60px - (#{$list-height-large}));
-    }
-
-
-    div.info-container{
-      left: $list-height-large + 10px;
-      position: absolute;
-      height: $list-height-large;
-      display: block;
-      margin-top: 7px;
-
-      .label {
-        font-size: .65em;
-      }
-
-      .info {
-
-      }
-
-      .label.area {
-        margin-top: 7px;
-      }
-
-    }
-
-    .map{
-      background-color: #00FF00;
-      height: $list-height-large;
-      width: $list-height-large + 10px;
-      display: block;
-    }
-
   }
 }

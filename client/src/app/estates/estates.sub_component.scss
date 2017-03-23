@@ -1,0 +1,35 @@
+@import "../../stylesheets/_declarations.scss";
+@import "../../stylesheets/material-list";
+
+
+div.info-container{
+  left: $list-height-large + 10px;
+  position: absolute;
+  height: $list-height-large;
+  display: block;
+  margin-top: 7px;
+
+  .label {
+    font-size: .65em;
+  }
+
+  .info {
+
+  }
+
+  .label.area {
+    margin-top: 7px;
+  }
+
+}
+
+.map{
+  background-color: #00FF00;
+  height: $list-height-large;
+  width: $list-height-large + 10px;
+  display: block;
+}
+
+button {
+  width: calc(100% - (#{$list-height-large} + 30px) * 2);
+}
