@@ -1,0 +1,16 @@
+<header class="flex-container flex-hor flex-wrap">
+
+    <a [routerLink]="''" class="logo flex-container flex-hor">
+        <img alt="logo" src="/resource/logo/chriba.svg"/>
+    </a>
+
+    <span class="hamburger-menu hidden-on-wide" (click)="toggleMenu()">☰</span>
+
+    <nav class="flex-container" [ngClass]="{'flex-container minified-menu': !expanded, 'flex-container expanded-menu': expanded}">
+        <a *ngFor="let route of routes" [routerLink]="!route.route.includes('#') ? route.route : null"
+           [fragment]="route.route.includes('#') ? route.route.substring(1) : null"
+
+           [ngClass]="{'current-route': route.route == location.path(true) }">
+            {{ route.label }}</a>
+    </nav>
+</header>

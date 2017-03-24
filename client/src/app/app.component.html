@@ -1,9 +1,5 @@
 <div>
-    <nav>
-        <button [routerLink]="['']">Dashboard</button>
-        <button [routerLink]="['estates']">Estates</button>
-        <button [routerLink]="['projects']">Projects</button>
-    </nav>
+    <app-header></app-header>
     <div class="content">
        <router-outlet></router-outlet>
     </div>
@@ -12,3 +8,4 @@
 <app-footer></app-footer>
 
 <simple-notifications [options]="notifOptions"></simple-notifications>
+
