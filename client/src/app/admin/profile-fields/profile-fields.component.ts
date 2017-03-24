@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn } from '@angular/forms';
 
-import { AdminService } from '../admin.service';
 import { Admin } from '../../models/admin';
 import { NotificationsService } from 'angular2-notifications';
 

@@ -23,12 +23,14 @@ const routes:Routes = [
         component: EstatesComponent
     },
     {
-        path: 'admin',
+        // Uses backdoor instead of 'admin' to fuck with automated
+        // bots.
+        path: 'backdoor',
         component: AdminComponent,
-        canActivate: [ AuthGuard ] // Protects routes from unauthorized access
+        canActivate: [ AuthGuard ]
     },
     {
-        path: 'admin/login',
+        path: 'backdoor/login',
         component: LoginComponent
     },
     { path: '**', component: ErrorComponent }

@@ -29,7 +29,13 @@ export class AdminComponent implements OnInit {
 
     logout(): void {
         this.auth.logout();
-        this.router.navigate(['']);
+
+        setTimeout(() => {
+            this.notif.remove();
+            this.router.navigate(['']);
+        }, 1000);
+
+        this.notif.success('Utlogget', 'Sendes tilbake til fremsiden...');
     }
 
     saveProfile(admin): void {

@@ -17,6 +17,8 @@ form.material-form {
   width: 100%;
   max-width: 50em;
 
+  @include transition();
+
   label {
     text-align: right;
     font-weight: 100;
@@ -51,7 +53,7 @@ form.material-form {
     border-bottom-color: $success-color;
   }
 
-  input[type="text"] {
+  input {
     width: 100%;
     max-width: 20em;
   }

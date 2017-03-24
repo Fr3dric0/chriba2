@@ -1,0 +1,87 @@
+@import "declarations";
+
+.material-table {
+  position: relative;
+  width: 100%;
+  padding: 1em;
+  box-sizing: border-box;
+  border: none;
+
+  max-width: 60em;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  thead {
+    font-weight: 100;
+  }
+
+  tbody {
+    tr, td {
+      padding: 1em 0.5em 1em 0.5em;
+      border-bottom: $secondary-background-color solid 1px;
+    }
+
+  }
+}
+
+.thumb-container {
+
+  img {
+    max-width: 5em;
+  }
+}
+
+.description-container {
+  max-width: 10em;
+}
+
+.modifiers {
+  display: flex;
+  flex-direction: row-reverse;
+  text-align: right;
+
+  svg {
+    fill: $pending-color;
+
+    position: relative;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+
+    cursor: pointer;
+
+    border-radius: 2px;
+
+    &:hover {
+      background-color: $pending-color;
+      fill: $secondary-background-color;
+    }
+  }
+
+  span:last-child {
+    svg {
+      fill: $error-color;
+
+      &:hover {
+        background-color: $error-color;
+        fill: $secondary-background-color;
+      }
+    }
+  }
+
+}
+
+.create-container {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 400px) {
+  .hidden-on-narrow {
+    display: none;
+  }
+}
+

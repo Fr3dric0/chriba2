@@ -7,6 +7,14 @@
 
 button {
   cursor: pointer;
+  background-color: $secondary-background-color;
+  border: none;
+  border-radius: 2px;
+  color: $dark-primary;
+  font-size: 0.9em;
+  padding: 0.5em 0.8em 0.5em 0.8em;
+
+  box-sizing: border-box;
 }
 
 .btn {
@@ -24,15 +32,16 @@ button {
   border-radius: 50%;
 }
 
-button.submit {
+.submit {
   margin-top: 0.1em;
-  background-color: $secondary-background-color;
-  border: none;
-  border-radius: 2px;
-  color: $dark-primary;
-  font-size: 0.9em;
-  padding: 0.5em 0.8em 0.5em 0.8em;
   width: 100%;
-  box-sizing: border-box;
   box-shadow: $shadow;
+}
+
+.btn-flat:hover {
+  color: $secondary-text;
+}
+
+.btn-logout {
+  color: $error-color;
 }

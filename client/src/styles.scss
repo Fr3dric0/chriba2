@@ -21,6 +21,7 @@ body {
   margin: 0;
   padding: 0;
 
+  font-family: $primary-font;
   background-color: $primary-background-color;
 }
 
@@ -51,4 +52,24 @@ button:focus, input:focus, textarea:focus {
   margin: 20px auto 20px auto;
 
   width: 100px;
+}
+
+section {
+  position: relative;
+}
+
+/**
+ * This tag can be used to define descriptions for headers
+ * or elements
+ */
+small {
+  position: relative;
+
+  width: 100%;
+  max-width: 50em;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  text-align: center;
 }
