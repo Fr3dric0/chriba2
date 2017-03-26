@@ -1,35 +1,44 @@
-<table class="material-table" border="0">
+<table class="material-table" border="0" cellpadding="0" cellspacing="0">
     <thead>
     <tr>
-        <td>Thumb</td>
-        <td>Name</td>
-        <td class="hidden-on-narrow">Beskrivelse</td>
-        <td class="modifiers">Handlinger</td>
+        <td>{{headers[0]}}</td>
+        <td>{{headers[1]}}</td>
+        <td class="hidden-on-narrow">{{headers[2]}}</td>
+        <td class="modifiers">{{headers[3]}}</td>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let estate of estates">
-        <td class="thumb-container"><img *ngIf="estate.thumbnails.small.length > 0" [src]="estate.thumbnails.small[0]" [alt]="ikon"></td>
-        <td class="title-container" [routerLink]="'/projects/' + estate.name">
-            {{estate.location.address}} {{estate.location.addressNumber || ' '}}<br>
-            {{estate.location.postalCode || ''}} {{estate.location.city || ''}}
+    <tr *ngFor="let field of fields">
+
+        <td class="thumb-container">
+            <img *ngIf="field.image && field.image.src" [src]="field.image.src" [alt]="field.image.alt">
         </td>
-        <td class="description-container hidden-on-narrow">{{estate.description}}</td>
+        <td class="title-container" [routerLink]="field.title.url"
+            [innerHTML]="field.title.label">
+        </td>
+        <td class="description-container hidden-on-narrow" [innerHTML]="field.description">
+        </td>
         <td class="modifiers">
-                    <span class="btn-edit" [routerLink]="'/backdoor/estates/'+estate.name">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/></svg>
-                    </span>
-            <span class="btn-remove" (click)="remove(estate)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M14 22v4h20v-4H14zM24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16z"/></svg>
-                    </span>
+            <span class="btn-edit" [routerLink]="field.modifiers.edit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                    <path d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/>
+                </svg>
+            </span>
+            <span class="btn-remove" (click)="onRemove(field.id)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                    <path d="M14 22v4h20v-4H14zM24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16z"/>
+                </svg>
+            </span>
         </td>
     </tr>
     </tbody>
 </table>
 
-<div class="create-container">
-    <button class="btn-flat" [routerLink]="'/backdoor/estates'">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M38 26H26v12h-4V26H10v-4h12V10h4v12h12v4z"/></svg>
-        <span>Opprett eiendom</span>
+<div *ngIf="create" class="create-container">
+    <button class="btn-flat" [routerLink]="create.url">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+            <path d="M38 26H26v12h-4V26H10v-4h12V10h4v12h12v4z"/>
+        </svg>
+        <span>{{create.label}}</span>
     </button>
 </div>

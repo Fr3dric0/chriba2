@@ -13,7 +13,7 @@ import { EstatesService } from '../../estates/estates.service';
 export class EstateTableComponent implements OnInit {
 
     estates: Estate[];
-
+    fields: any;
 
     constructor (private es: EstatesService,
                  private notif: NotificationsService) { }
@@ -22,12 +22,18 @@ export class EstateTableComponent implements OnInit {
 
         this.es.find()
             .subscribe(
-                estates => this.estates = estates,
+                (estates) => {
+                    this.estates = estates;
+                    this.fields = this.createFields(estates);
+                },
                 err => this.notif.error('Project Loading Error', err.message)
             );
     }
 
-    remove(estate: Estate) {
+
+    remove(id) {
+        let estate:Estate = this.estates.filter(e => e.name == id)[0];
+
         if (!confirm(`Sikker på at du vil fjerne: ${estate.location.address}?`)) {
             return;
         }
@@ -36,12 +42,34 @@ export class EstateTableComponent implements OnInit {
             .subscribe(
                 (status) => {
                     this.estates = this.estates.filter( p => p.name !== estate.name);
-
+                    this.fields = this.createFields(this.estates);
                     this.notif.success(`Prosjekt fjernet`, `${estate.location.address} er fjernet`)
                 },
                 (err) => {
                     this.notif.error(`Fjerning av prosjekt feilet`, err.message)
                 }
             )
+    }
+
+
+    private createFields(estates: Estate[]) {
+        return estates.map((estate) => {
+            let src = estate.thumbnails.small.length > 0 ? estate.thumbnails.small[0] : undefined;
+
+            return {
+                id: estate.name,
+                image: {
+                    src,
+                    alt: estate.location.address
+                },
+                title: {
+                    url: `/estates/${estate.name}`,
+                    label: `${estate.location.address} ${estate.location.addressNumber || ''}<br>
+                    ${estate.location.postalCode || ''} ${estate.location.city || ''}`
+                },
+                description: estate.description,
+                modifiers: { edit: `/backdoor/estates/${estate.name}`}
+            };
+        });
     }
 }

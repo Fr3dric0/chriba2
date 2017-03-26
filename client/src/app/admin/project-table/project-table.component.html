@@ -1,35 +1,10 @@
 <section>
     <h3>Prosjekt</h3>
-    <small></small>
-
-    <table class="material-table" border="0">
-        <thead>
-            <tr>
-                <td>Thumb</td>
-                <td>Name</td>
-                <td class="hidden-on-narrow">Beskrivelse</td>
-                <td class="modifiers">Handlinger</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let project of projects">
-                <td class="thumb-container"><img *ngIf="project.thumbnails.small.length > 0" [src]="project.thumbnails.small[0]" [alt]="ikon"></td>
-                <td class="title-container" [routerLink]="'/projects/' + project.name">{{project.title}}</td>
-                <td class="description-container hidden-on-narrow">{{project.description}}</td>
-                <td class="modifiers">
-                    <span class="btn-edit" [routerLink]="'/backdoor/projects/'+project.name">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M6 34.5V42h7.5l22.13-22.13-7.5-7.5L6 34.5zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/></svg>
-                    </span>
-                    <span class="btn-remove" (click)="remove(project)">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"><path d="M14 22v4h20v-4H14zM24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16z"/></svg>
-                    </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-    <div class="create-container">
-        <button class="btn-flat" [routerLink]="'/backdoor/projects'">Nytt prosjekt</button>
-    </div>
-
+    <p class="description">Tabellen viser hvilke prosjekt som er tilgjengelige på siden,
+        samt gir deg mulighet til å <em>modifisere</em>, <em>Fjerne</em> eller <em>Opprette nye</em> prosjekt
+    </p>
+    <app-content-table [headers]="['Thumb', 'Navn', 'Beskrivelse', 'Handlinger']"
+                       [fields]="fields"
+                       [create]="{url: '/backdoor/projects', label: 'Opprett prosjekt'}"
+                       (remove)="remove($event)"></app-content-table>
 </section>

@@ -1,5 +1,8 @@
 <section>
     <h3>Profilinformasjon</h3>
+    <p class="description">Her kan du gjøre endringer på profilen din.
+        <strong>N.B.</strong> Hugs at dette kan påvirke pålogginsinformasjonen
+    </p>
 
     <form class="material-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
 
@@ -38,7 +41,7 @@
             <small class="input-feedback" [hidden]="form.get('confirmPassword').valid || !form.get('confirmPassword').dirty">Ugyldig passord! Må vere minst 8 tegn langt</small>
         </div>
 
-        <button class="submit" [disabled]="!form.valid || !form.dirty">Lagre</button>
+        <button class="submit" type="submit" [disabled]="!form.valid || !form.dirty">Oppdater profil</button>
     </form>
 
 </section>

@@ -7,7 +7,7 @@
   box-sizing: border-box;
   border: none;
 
-  max-width: 60em;
+  max-width: $inner-width;
 
   margin-left: auto;
   margin-right: auto;
@@ -18,8 +18,16 @@
 
   tbody {
     tr, td {
+      @include transition();
+
       padding: 1em 0.5em 1em 0.5em;
-      border-bottom: $secondary-background-color solid 1px;
+      margin: 0;
+      border: 0;
+      border-bottom: $primary-background-color solid 1px;
+
+      &:hover {
+        background-color: rgb(250, 250, 250); // Use a really light shading
+      }
     }
 
   }
@@ -73,10 +81,18 @@
 }
 
 .create-container {
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 1em;
   box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: row-reverse;
+
+  margin: 0 auto 0 auto;
+  max-width: $inner-width;
+
+  padding: 1em;
+
+  width: 100%;
 }
 
 @media screen and (max-width: 400px) {

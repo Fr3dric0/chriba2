@@ -13,13 +13,15 @@ import { PhoneComponent } from  "./footer/phone/phone.component";
 import { HeaderComponent } from './navbar/header.component';
 
 import { GeocodeService } from './map/geocode.service';
+import { ContentTableComponent } from './content-table/content-table.component';
 
 export const SHARED_DECLARATIONS = [
     HeaderComponent,
     FooterComponent,
     AddressComponent,
     PhoneComponent,
-    MapComponent
+    MapComponent,
+    ContentTableComponent
 ];
 
 export const SHARED_PROVIDERS = [
