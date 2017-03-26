@@ -10,7 +10,8 @@
     </div>
 
     <h2>Administrer eiendom</h2>
-    <p class="description">Her kan du opprette nye, eller modifisere eksisterende, eiendommer</p>
+    <p class="description">Her kan du opprette nye, eller modifisere eksisterende eiendommer.
+    <strong>N.B.</strong> Hugs å oppdatere posisjon, viss du gjør endringer på addressen</p>
 
     <form class="material-form flexing-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
         <div>
@@ -39,20 +40,25 @@
                 <input type="url" formControlName="url">
             </div>
             <div class="input-divider">
-                <button class="btn-flat btn-find"
+                <button class="btn-find"
                         type="button"
-                        [disabled]="!form.controls['address'] || !form.controls['postalCode'] || !form.controls['city']"
+                        [disabled]="(!form.controls['address'].value || !form.controls['postalCode'].value || !form.controls['city'].value) || (estate.location.lat && estate.location.long)"
                         (click)="localize(form.value)">
-                    <svg [ngClass]="{'location-found': !!estate.location.lat || !!estate.location.long }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
                         <path *ngIf="estate.location.lat && estate.location.long" d="M24 16c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm17.88 6C40.96 13.66 34.34 7.04 26 6.12V2h-4v4.12C13.66 7.04 7.04 13.66 6.12 22H2v4h4.12c.92 8.34 7.54 14.96 15.88 15.88V46h4v-4.12c8.34-.92 14.96-7.54 15.88-15.88H46v-4h-4.12zM24 38c-7.73 0-14-6.27-14-14s6.27-14 14-14 14 6.27 14 14-6.27 14-14 14z"/>
                         <path *ngIf="!estate.location.lat || !estate.location.long" d="M41.88 22.17C40.96 13.83 34.34 7.21 26 6.29V2.17h-4v4.12c-8.34.92-14.96 7.54-15.88 15.88H2v4h4.12c.92 8.34 7.54 14.96 15.88 15.88v4.12h4v-4.12c8.34-.92 14.96-7.54 15.88-15.88H46v-4h-4.12zM24 38.17c-7.73 0-14-6.27-14-14s6.27-14 14-14 14 6.27 14 14-6.27 14-14 14z"/>
                     </svg>
-                    <span>Finn plassering</span>
+                    <span>Finn posisjon</span>
                 </button>
-                <p class="input-feedback"
-                   *ngIf="!form.controls['address'] || !form.controls['addressNumber'] || !form.controls['postalCode'] || !form.controls['city']">
-                    For å kunne finne plasseringa trenger vi minimum <em>adresse</em>, <em>Postkode</em> og <em>By</em>
-                </p>
+
+                <small *ngIf="estate.location.lat && estate.location.long">Posisjon hentet <i class="em em---1"></i></small>
+
+                <small *ngIf="!estate.location.lat || !estate.location.long">
+                    Posisjon er det som gjør at <em>google maps</em> kan finne addressen på kartet.
+                </small>
+                <small *ngIf="!form.controls['address'].value || !form.controls['postalCode'].value || !form.controls['city'].value">
+                    Trenger først <em>adresse</em>, <em>Postkode</em> og <em>By</em>
+                </small>
             </div>
         </div>
         <div>

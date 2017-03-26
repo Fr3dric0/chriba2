@@ -23,7 +23,6 @@ button, .btn {
   font-size: 0.9em;
   flex-wrap: nowrap;
 
-
   justify-content: center;
 
   padding: 0.5em 0.8em 0.5em 0.8em;
@@ -43,7 +42,6 @@ button, .btn {
   }
 }
 
-
 // Floating action button
 .fab {
   background-color: #FFF;
@@ -52,9 +50,21 @@ button, .btn {
 }
 
 .submit, button[type="submit"] {
-  margin-top: 0.1em;
+  margin-top: 1em;
   width: 100%;
   box-shadow: $shadow;
+
+  &:disabled {
+    box-shadow: none;
+
+    color: $secondary-text;
+
+    opacity: 0.8;
+
+    svg {
+      fill: $secondary-text;
+    }
+  }
 }
 
 .btn-flat:hover {
@@ -66,29 +76,49 @@ button, .btn {
 }
 
 .btn-logout {
+  background-color: transparent;
   color: $error-color;
+
+  &:hover {
+    background-color: $primary-background-color;
+    color: $error-color;
+  }
+
+  &:active {
+    color: $secondary-text;
+  }
 }
 
-
-
 .btn-find {
+  box-shadow: $shadow;
+
   color: $pending-color;
+
   width: 100%;
 
   svg {
-    fill: $secondary-text;
-    opacity: .3;
+    fill: $pending-color;
 
     margin-right: .2em;
-  }
 
-  .location-found {
-    fill: $pending-color;
     opacity: 1;
   }
 
-  &:hover svg {
-    fill: $secondary-text;
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+
+  &:disabled {
+    box-shadow: none;
+
+    color: $secondary-text;
+
+    opacity: 0.8;
+
+    svg {
+      fill: $secondary-text;
+    }
+
   }
 
 }

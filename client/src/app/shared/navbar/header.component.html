@@ -10,7 +10,12 @@
         <a *ngFor="let route of routes" [routerLink]="!route.route.includes('#') ? route.route : null"
            [fragment]="route.route.includes('#') ? route.route.substring(1) : null"
 
-           [ngClass]="{'current-route': route.route == location.path(true) }">
+           [ngClass]="{ 'current-route': location.path(true).startsWith(route.route) }">
             {{ route.label }}</a>
+
+        <a *ngIf="authenticated" [routerLink]="'/backdoor'"
+           class="admin-route"
+           [ngClass]="{ 'admin-route current-route': location.path(true).startsWith('/backdoor') }"
+        >admin</a>
     </nav>
 </header>

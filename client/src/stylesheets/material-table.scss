@@ -12,6 +12,12 @@
   margin-left: auto;
   margin-right: auto;
 
+  tr, td {
+    padding: 1em 0.5em 1em 0.5em;
+    margin: 0;
+    border: 0;
+  }
+
   thead {
     font-weight: 100;
   }
@@ -20,16 +26,12 @@
     tr, td {
       @include transition();
 
-      padding: 1em 0.5em 1em 0.5em;
-      margin: 0;
-      border: 0;
       border-bottom: $primary-background-color solid 1px;
 
       &:hover {
         background-color: rgb(250, 250, 250); // Use a really light shading
       }
     }
-
   }
 }
 

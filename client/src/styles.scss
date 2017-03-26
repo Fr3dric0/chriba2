@@ -39,6 +39,7 @@ h2, h3, h4, h5, h6 {
   box-sizing: border-box;
 }
 
+
 // Remove outlining on everything
 button:focus, input:focus, textarea:focus {
   outline: none;
@@ -73,6 +74,8 @@ section {
  */
 .description {
   display: block;
+
+  color: $secondary-text;
 
   font-size: 0.8em;
 

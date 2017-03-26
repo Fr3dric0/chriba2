@@ -19,6 +19,8 @@ form.material-form {
   width: 100%;
   max-width: $inner-width;
 
+  color: $accent-color;
+
   label {
     text-align: right;
     font-weight: 100;
@@ -33,6 +35,8 @@ form.material-form {
     border: none;
     border-bottom: 1px solid $accent-color;
 
+    color: inherit;
+
     float: right;
     font-size: .9em;
 
@@ -46,7 +50,7 @@ form.material-form {
 
   input:focus, textarea:focus {
     outline: none;
-    border-bottom: 2px solid $pending-color;
+    border-bottom: 2px solid $dark-primary;
   }
 
   input.ng-dirty.ng-invalid[required] {
@@ -54,7 +58,7 @@ form.material-form {
   }
 
   input.ng-dirty.ng-valid[required] {
-    border-bottom-color: $success-color;
+    border-bottom-color: $primary-color;
   }
 
   input {
@@ -74,10 +78,7 @@ form.material-form {
     text-align: right;
   }
 
-  button[type="submit"] {
-    position: relative;
-    margin-top: 1em;
-  }
+
 
 }
 
@@ -107,5 +108,4 @@ form.material-form {
   display: inherit;
   padding: 0.44em;
 }
-
 
