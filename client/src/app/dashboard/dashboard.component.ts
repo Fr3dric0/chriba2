@@ -5,7 +5,7 @@ import { ThumbnailService } from "../shared/general/thumbnails.service";
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
   public description : String;
@@ -13,13 +13,12 @@ export class DashboardComponent implements OnInit {
   
   constructor(private gs: GeneralService,
               private ts: ThumbnailService) {
-    
   }
 
   ngOnInit() {
     
     this.ts.generate()
-      .then( data => this.images = data)
+      .then( data => this.images = data )
       .catch( err => console.error(err));
     
     const sub = this.gs.getAbout()
@@ -28,6 +27,8 @@ export class DashboardComponent implements OnInit {
       sub.unsubscribe();
       },
         err => console.error(err));
+    
   }
-
+  
+  
 }

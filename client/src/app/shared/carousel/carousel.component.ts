@@ -1,18 +1,20 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ThumbnailService } from "../general/thumbnails.service";
 
 
 @Component({
   selector: 'app-carousel',
   templateUrl: "./carousel.component.html",
   styleUrls: ['./carousel.component.scss']
-  
 })
 
-export class CarouselComponent implements OnInit {
-
+export class CarouselComponent{
+window:any;
+pointer = [0,1,2];
+  
   private _images;
   @Input()
   set images(images:any){
@@ -23,18 +25,43 @@ export class CarouselComponent implements OnInit {
     }
     
     this._images = images;
+    console.log(images);
   }
   get images() {
     return this._images;
   }
   
-  constructor() {
+  constructor(private ts: ThumbnailService) {
       
   }
   
-  ngOnInit() {
+  updateWindow() {
+    this.window = [this.images()[this.pointer[0]], this.images()[this.pointer[1]], this.images()[this.pointer[2]]];
+  }
+  
+  prev() {
+    for (let i = 0; i < 3; i++) {
+      this.pointer[i]--;
+      if (this.pointer[i] < 0) {
+        this.pointer[i] = this.images().length - 1;
+      }
+    }
     
+    this.updateWindow()
+  }
+  
+  next() {
+    for (let i = 0; i < 3; i++) {
+      this.pointer[i]++;
+      if (this.pointer[i] + 1 > this.images().length) {
+        this.pointer[i] = 0;
+      }
+    }
+  
+    this.updateWindow()
   }
   
 }
+
+
 

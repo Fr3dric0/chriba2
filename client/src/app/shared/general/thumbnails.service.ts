@@ -49,10 +49,13 @@ export class ThumbnailService {
             }
             
             obj.img = img;
-            obj.url = `/${typeof elem == 'Project' ? 'projects' : 'estates'}/${elem.name}`;
-            obj.description = `
-            ${elem.location.address}<br>
-            ${elem.location.addressNumber}<br>`;
+            obj.url = `/${!elem.location ? 'projects' : 'estates'}/${elem.name}`;
+            if (elem.location) {
+              obj.description = `
+              ${elem.location.address}<br>
+              ${elem.location.addressNumber}<br>`;
+            }
+            obj.description = `${elem.description.substring(0, 60)}...`;
             return obj;
           }));
         rsv(shuffled);
