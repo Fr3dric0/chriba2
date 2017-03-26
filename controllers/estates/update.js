@@ -9,7 +9,7 @@ const update = [
 ];
 
 function validateFields (req, res, next) {
-    const locationFields = ['address', 'addressNumber', 'postalCode', 'city', 'country'];
+    const locationFields = ['address', 'addressNumber', 'postalCode', 'city', 'country', 'lat', 'long'];
     const generalFields = ['description', 'size', 'url'];
     const changes = {};
 

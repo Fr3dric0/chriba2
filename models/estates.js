@@ -13,7 +13,9 @@ const Estates = new Schema({
         addressNumber: String,
         postalCode: String,
         city: String,
-        country: { type: String, default: 'Norway' }
+        country: { type: String, default: 'Norway' },
+        lat: Number,
+        long: Number
     },
     description: { type: String },
     size: { type: Number },

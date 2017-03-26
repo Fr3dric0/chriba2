@@ -22,7 +22,7 @@ function getAbout (req, res, next) {
 
 function validateFields (req, res, next) {
     const generalFields = ['title', 'description', 'mobile', 'business', 'email', 'mailbox'];
-    const locationFields = ['address', 'addressNumber', 'postalCode', 'city', 'country'];
+    const locationFields = ['address', 'addressNumber', 'postalCode', 'city', 'country', 'lat', 'long'];
 
     for (const field of generalFields) {
         if (req.body[field]) {

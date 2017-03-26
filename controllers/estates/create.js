@@ -9,7 +9,7 @@ const create = [
 
 function validateFields(req, res, next) {
     const fields = ['address'];
-    const optionalFields = ['url', 'description', 'city', 'country', 'size', 'postalCode', 'addressNumber'];
+    const optionalFields = ['url', 'description', 'city', 'country', 'size', 'postalCode', 'addressNumber', 'lat', 'long'];
     const estate = {};
 
     for (const field of fields) {
@@ -46,6 +46,8 @@ function structureModel (req, res, next) {
     values.location.postalCode = fields.postalCode || undefined;
     values.location.city = fields.city || undefined;
     values.location.country = fields.country || undefined;
+    values.location.lat = fields.lat || undefined;
+    values.location.long = fields.long || undefined;
 
     values.description = fields.description;
     values.size = fields.size;
