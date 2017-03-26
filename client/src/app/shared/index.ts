@@ -12,6 +12,8 @@ import { AddressComponent } from "./footer/address/address.component";
 import { PhoneComponent } from  "./footer/phone/phone.component";
 import { HeaderComponent } from './navbar/header.component';
 
+import { GeocodeService } from './map/geocode.service';
+
 export const SHARED_DECLARATIONS = [
     HeaderComponent,
     FooterComponent,
@@ -27,6 +29,7 @@ export const SHARED_PROVIDERS = [
     ThumbnailService,
     ProjectsService,
     EstatesService,
-    XHRService
+    XHRService,
+    GeocodeService
 ];
 

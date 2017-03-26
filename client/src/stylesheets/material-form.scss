@@ -9,15 +9,15 @@
 form.material-form {
   box-sizing: border-box;
 
+  font-size: 1.0em;
+
   margin-left: auto;
   margin-right: auto;
 
   padding: 1em;
 
   width: 100%;
-  max-width: 50em;
-
-  @include transition();
+  max-width: $inner-width;
 
   label {
     text-align: right;
@@ -29,15 +29,19 @@ form.material-form {
   }
 
   input, textarea {
-    position: relative;
     background-color: $primary-background-color;
     border: none;
     border-bottom: 1px solid $accent-color;
-    float: right;
-  }
 
-  textarea {
-    width: 100%;
+    float: right;
+    font-size: .9em;
+
+    margin: .1em 0 .1em 0;
+
+    padding: .2em;
+    position: relative;
+
+    @include transition();
   }
 
   input:focus, textarea:focus {
@@ -55,7 +59,13 @@ form.material-form {
 
   input {
     width: 100%;
-    max-width: 20em;
+    max-width: 15em;
+  }
+
+  textarea {
+    float: none;
+
+    width: 100%;
   }
 
   .input-feedback {
@@ -70,12 +80,18 @@ form.material-form {
 
 }
 
-
-form.flexing-form {
+.flexing-form {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 
+  > div:last-child {
+    display: block;
+  }
+
+  button[type="submit"] {
+
+  }
 }
 
 .flexing-form > div {
@@ -85,9 +101,10 @@ form.flexing-form {
   margin-bottom: 2em;
 }
 
-
 .input-divider {
   position: relative;
   display: inherit;
-  padding: 5px;
+  padding: 0.44em;
 }
+
+

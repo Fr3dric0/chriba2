@@ -1,0 +1,15 @@
+@import "../../../stylesheets/declarations";
+
+.metadata-container {
+  padding-top: 1em;
+}
+
+app-map {
+  display: block;
+
+  width: 100%;
+  max-width: $inner-width;
+
+  height: 100%;
+  max-height: 25em;
+}

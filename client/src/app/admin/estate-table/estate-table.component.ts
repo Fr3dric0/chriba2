@@ -28,6 +28,10 @@ export class EstateTableComponent implements OnInit {
     }
 
     remove(estate: Estate) {
+        if (!confirm(`Sikker på at du vil fjerne: ${estate.location.address}?`)) {
+            return;
+        }
+
         this.es.remove(estate)
             .subscribe(
                 (status) => {

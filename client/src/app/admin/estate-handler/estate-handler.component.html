@@ -1,0 +1,70 @@
+<section>
+
+    <div class="metadata-container">
+        <button class="btn-back" [routerLink]="'/backdoor'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                <path d="M40 22H15.66l11.17-11.17L24 8 8 24l16 16 2.83-2.83L15.66 26H40v-4z"/>
+            </svg>
+            <span>Tilbake</span>
+        </button>
+    </div>
+
+    <h2>Administrer eiendom</h2>
+    <small>Her kan du opprette nye, eller modifisere eksisterende, eiendommer</small>
+
+    <form class="material-form flexing-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
+        <div>
+            <div class="input-divider">
+                <label>Adresse</label>
+                <input type="text" formControlName="address" required>
+            </div>
+            <div class="input-divider">
+                <label>Adresse nummer</label>
+                <input type="text" formControlName="addressNumber">
+            </div>
+            <div class="input-divider">
+                <label>Postkode</label>
+                <input type="text" formControlName="postalCode">
+            </div>
+            <div class="input-divider">
+                <label>By</label>
+                <input type="text" formControlName="city">
+            </div>
+            <div class="input-divider">
+                <label>Areal</label>
+                <input type="text" formControlName="size">
+            </div>
+            <div class="input-divider">
+                <label>Ekstern side</label>
+                <input type="url" formControlName="url">
+            </div>
+            <div class="input-divider">
+                <button class="btn-flat btn-find"
+                        type="button"
+                        [disabled]="!form.controls['address'] || !form.controls['postalCode'] || !form.controls['city']"
+                        (click)="localize(form.value)">
+                    <svg [ngClass]="{'location-found': !!estate.location.lat || !!estate.location.long }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                        <path *ngIf="estate.location.lat && estate.location.long" d="M24 16c-4.42 0-8 3.58-8 8s3.58 8 8 8 8-3.58 8-8-3.58-8-8-8zm17.88 6C40.96 13.66 34.34 7.04 26 6.12V2h-4v4.12C13.66 7.04 7.04 13.66 6.12 22H2v4h4.12c.92 8.34 7.54 14.96 15.88 15.88V46h4v-4.12c8.34-.92 14.96-7.54 15.88-15.88H46v-4h-4.12zM24 38c-7.73 0-14-6.27-14-14s6.27-14 14-14 14 6.27 14 14-6.27 14-14 14z"/>
+                        <path *ngIf="!estate.location.lat || !estate.location.long" d="M41.88 22.17C40.96 13.83 34.34 7.21 26 6.29V2.17h-4v4.12c-8.34.92-14.96 7.54-15.88 15.88H2v4h4.12c.92 8.34 7.54 14.96 15.88 15.88v4.12h4v-4.12c8.34-.92 14.96-7.54 15.88-15.88H46v-4h-4.12zM24 38.17c-7.73 0-14-6.27-14-14s6.27-14 14-14 14 6.27 14 14-6.27 14-14 14z"/>
+                    </svg>
+                    <span>Finn plassering</span>
+                </button>
+                <p class="input-feedback"
+                   *ngIf="!form.controls['address'] || !form.controls['addressNumber'] || !form.controls['postalCode'] || !form.controls['city']">
+                    For å kunne finne plasseringa trenger vi minimum <em>adresse</em>, <em>Postkode</em> og <em>By</em>
+                </p>
+            </div>
+        </div>
+        <div>
+            <div class="input-divider break-line">
+                <label>Beskrivelse</label><br>
+                <textarea name="description" formControlName="description" rows="15"
+                          placeholder="Liten forklaring om eiendommen"></textarea>
+            </div>
+        </div>
+
+        <button class="submit" type="submit" [disabled]="!form.valid">Lagre eiendom</button>
+    </form>
+
+    <app-map [lat]="estate.location.lat || 0.0" [long]="estate.location.long || 0.0"></app-map>
+</section>

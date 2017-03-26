@@ -36,6 +36,7 @@ h1 {
 h2, h3, h4, h5, h6 {
   text-align: center;
   margin: 0.5em;
+  box-sizing: border-box;
 }
 
 // Remove outlining on everything
@@ -56,6 +57,10 @@ button:focus, input:focus, textarea:focus {
 
 section {
   position: relative;
+  box-sizing: border-box;
+  margin: 0;
+
+  overflow: hidden;
 }
 
 /**
@@ -72,4 +77,33 @@ small {
   margin-right: auto;
 
   text-align: center;
+}
+
+.content {
+  background-color: $secondary-background-color;
+  border-left: #EEE solid 1px;
+  border-right: #EEE solid 1px;
+
+  margin: 0 auto 0 auto;
+  max-width: $container-width;
+
+  position: relative;
+
+  width: 100%;
+
+  z-index: 0;
+}
+
+.metadata-container {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $inner-width;
+
+  position: relative;
+
+  width: 100%;
 }

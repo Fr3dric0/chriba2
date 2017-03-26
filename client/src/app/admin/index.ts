@@ -4,6 +4,7 @@ import { GeneralFieldsComponent } from './general-fields/general-fields.componen
 import { ProfileFieldsComponent } from './profile-fields/profile-fields.component';
 import { ProfileTableComponent } from './project-table/project-table.component';
 import { EstateTableComponent } from './estate-table/estate-table.component';
+import { EstateHandlerComponent } from './estate-handler/estate-handler.component';
 
 
 export const ADMIN_DECLARATIONS = [
@@ -11,7 +12,9 @@ export const ADMIN_DECLARATIONS = [
     GeneralFieldsComponent,
     ProfileFieldsComponent,
     ProfileTableComponent,
-    EstateTableComponent
+    EstateTableComponent,
+
+    EstateHandlerComponent
 ];
 
 export const ADMIN_PROVIDERS = [

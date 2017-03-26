@@ -2,17 +2,22 @@
 
 header {
   background: $secondary-background-color;
-  color: $primary-color;
   border-bottom: 1px solid $primary-color;
-  padding: 0.2em;
+  box-sizing: border-box;
+  box-shadow: $shadow;
+
+  color: $dark-primary;
+
   font-family: $primary-font;
   font-weight: 100;
   font-size: 1.5rem;
 
-  box-sizing: border-box;
   overflow-x: hidden;
 
-  box-shadow: $shadow;
+  padding: 0.2em;
+  position: relative;
+
+  z-index: 5;
 }
 
 .logo img {

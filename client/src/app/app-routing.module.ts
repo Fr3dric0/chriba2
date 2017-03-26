@@ -8,6 +8,7 @@ import { ErrorComponent } from "./error/error.component";
 import { AuthGuard } from './shared/auth/auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
+import { EstateHandlerComponent } from './admin/estate-handler/estate-handler.component';
 
 const routes:Routes = [
     {
@@ -32,6 +33,14 @@ const routes:Routes = [
     {
         path: 'backdoor/login',
         component: LoginComponent
+    },
+    {
+        path: 'backdoor/estates',
+        component: EstateHandlerComponent
+    },
+    {
+        path: 'backdoor/estates/:name',
+        component: EstateHandlerComponent
     },
     { path: '**', component: ErrorComponent }
 ];
