@@ -5,6 +5,8 @@
  * follow material design
  */
 
+$fab-size: 3rem;
+
 button, .btn {
   @include border-radius();
   @include transition();
@@ -44,9 +46,27 @@ button, .btn {
 
 // Floating action button
 .fab {
-  background-color: #FFF;
+  @include transition();
+
+  background-color: $primary-color;
   position: relative;
   border-radius: 50%;
+
+  width: $fab-size;
+  height: $fab-size;
+
+  box-shadow: $shadow;
+
+  svg {
+    fill: $icon-text;
+  }
+
+  &:hover {
+    box-shadow: $shadow-hover;
+
+    transform: rotate(90deg);
+  }
+
 }
 
 .submit, button[type="submit"] {
