@@ -4,11 +4,19 @@
 li{
   font-family: $primary-font;
   color: $primary-color;
-  background-color: $secondary-background-color;
+  background-color: $primary-background-color;
+  box-shadow: $shadow;
+
+  :hover{
+    box-shadow: $shadow-hover;
+  }
+
 
   span{
     background-color: $secondary-background-color;
     svg{
+      margin-top: .20em;
+      transform: scale(0.6);
       line{
         stroke: $primary-color;
       }
