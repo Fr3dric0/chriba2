@@ -128,7 +128,7 @@ export class XHRService {
     }
 
     private setHeaders(xhr:XMLHttpRequest, headers: Headers): XMLHttpRequest {
-        if (headers) {
+        if (headers && 'forEach' in headers) {
             headers.forEach((val, key) => {
                 xhr.setRequestHeader(key, val[0]);
             });
