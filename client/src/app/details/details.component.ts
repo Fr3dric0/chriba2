@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {EstateService} from "../estates/estates.service";
-import {ProjectService} from "../projects/projects.service";
+import { EstateService } from "../estates/estates.service";
+import { ProjectService } from "../projects/projects.service";
 
 @Component({
     selector: 'app-details',

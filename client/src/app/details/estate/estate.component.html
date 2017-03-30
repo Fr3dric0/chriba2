@@ -1,8 +1,28 @@
 <div *ngIf="name">
-    {{name}} <br>
-    {{description}} <br>
-    {{size}} <br>
-    {{url}} <br>
-    {{location.address}} {{location.addressNumber}} <br>
-    {{location.postalCode}} {{location.city}} {{location.country}}
+    <div class="carousel">
+        Carousel
+    </div>
+    <div  class="flex-container">
+        <div class="stats">
+            <div>
+                <h2>Adresse</h2>
+                {{location.address}} {{location.addressNumber}} <br>
+                {{location.postalCode}} {{location.city}} <br>
+                {{location.country}}
+            </div>
+            <div>
+                <h2>Areal</h2>
+                {{size}} kvm
+            </div>
+            <br>
+            <a href="{{url}}">{{url}}</a>
+        </div>
+        <div class="description">
+           <p>{{description}}
+               <!--TODO: Fjern lorem ipsum-->
+               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at est hendrerit, eleifend dolor nec, tincidunt ipsum. Morbi quis dui leo. Fusce felis massa, fermentum et tincidunt in, malesuada id tellus. Sed commodo arcu sit amet volutpat ultricies. Nunc a mattis est. Proin malesuada convallis augue a lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec aliquam et velit et aliquam.
+           </p>
+        </div>
+    </div>
+    <app-map [lat]="50" [long]="50"></app-map>
 </div>

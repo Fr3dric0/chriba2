@@ -6,7 +6,7 @@ import {Component, OnInit, Input} from '@angular/core';
 @Component({
     selector: 'details-estate',
     templateUrl: './estate.component.html',
-    styleUrls: ['../details.component.scss']
+    styleUrls: ['../subdetails.component.scss']
 })
 export class EstateComponent implements OnInit {
 

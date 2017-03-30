@@ -1,0 +1,46 @@
+@import '../../stylesheets/declarations';
+@import '../../stylesheets/material-buttons';
+
+div {
+    font-family: $primary-font;
+    margin: auto;
+
+    div {
+        padding: 0.25em 0;
+    }
+}
+
+.flex-container {
+    margin-left: 3em;
+    margin-right: 0.5em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    div {
+        flex: 1;
+        min-width: 16em;
+        margin-top: 0;
+    }
+}
+
+h2 {
+    text-align: left;
+    margin: 0.5em 0 0.25em;
+    font-size: 0.75em;
+    color: $secondary-text;
+    font-weight: 100;
+}
+
+app-map {
+    display: block;
+    width: 100%;
+    height: 200px; //TODO: Endre verdi
+}
+
+//TODO: Testing erstattes
+.carousel {
+    background: deeppink;
+    min-height: 200px;
+    min-width: 200px;
+}

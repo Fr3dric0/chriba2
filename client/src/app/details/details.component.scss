@@ -1,0 +1,12 @@
+@import '../../stylesheets/declarations';
+
+div {
+    max-width: 60em;
+    margin: auto;
+
+    div {
+        margin: 0 1em;
+        padding: 1em;
+        background: $secondary-background-color;
+    }
+}
