@@ -31,6 +31,8 @@ form.material-form {
   }
 
   input, textarea {
+    @include transition();
+
     background-color: $primary-background-color;
     border: none;
     border-bottom: 1px solid $accent-color;
@@ -42,10 +44,10 @@ form.material-form {
 
     margin: .1em 0 .1em 0;
 
+    outline: none;
+
     padding: .2em;
     position: relative;
-
-    @include transition();
   }
 
   input:focus, textarea:focus {
@@ -53,11 +55,21 @@ form.material-form {
     border-bottom: 2px solid $dark-primary;
   }
 
-  input.ng-dirty.ng-invalid[required] {
+  input:required,
+  textarea:required,
+  selector:required,
+  input:invalid,
+  textarea:invalid,
+  selector:invalid {
+    box-shadow: none; // Firefox adds a red shadow around required fields (which we don't want
+    outline: none;
+  }
+
+  input.ng-dirty.ng-invalid[required], input.ng-dirty:invalid {
     border-bottom-color: $error-color;
   }
 
-  input.ng-dirty.ng-valid[required] {
+  input.ng-dirty.ng-valid[required], input.ng-dirty:valid {
     border-bottom-color: $primary-color;
   }
 
@@ -72,12 +84,11 @@ form.material-form {
     width: 100%;
   }
 
-  .input-feedback {
+  .input-feedback, .material-form small {
     color: $error-color;
     width: 100%;
     text-align: right;
   }
-
 
 
 }
@@ -109,3 +120,45 @@ form.material-form {
   padding: 0.44em;
 }
 
+
+.upload-form {
+
+  .radio-label {
+    margin-left: auto;
+    text-align: center;
+    display: block;
+
+    &:after {
+      content: '';
+    }
+  }
+}
+
+.radio-container {
+  display: flex;
+  justify-content: center;
+
+  div ~ div {
+    margin-left: 1rem;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  // N.B. Relies on the material-buttons
+  .selected {
+    background-color: $light-primary;
+    box-shadow: none;
+
+    color: $icon-text;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    svg {
+      fill: $icon-text;
+    }
+  }
+}

@@ -13,6 +13,8 @@ import { AuthService } from '../auth/auth.service';
 export class HeaderComponent implements OnInit{
     routes: Link[] = headerLinks;
     location: Location;
+    currentPath: string;
+
 
     expanded: boolean = false;
 
@@ -23,6 +25,7 @@ export class HeaderComponent implements OnInit{
     }
 
     ngOnInit() {
+        this.currentPath = this.location.path(true);
         // Tracks if the user is authenticated or not
         this.auth.authStatus.subscribe((authenticated) => this.authenticated = authenticated);
     }

@@ -9,6 +9,7 @@ import { AuthGuard } from './shared/auth/auth.guard';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { EstateHandlerComponent } from './admin/estate-handler/estate-handler.component';
+import { ProjectHandlerComponent } from './admin/project-handler/project-handler.component';
 
 const routes:Routes = [
     {
@@ -24,8 +25,6 @@ const routes:Routes = [
         component: EstatesComponent
     },
     {
-        // Uses backdoor instead of 'admin' to fuck with automated
-        // bots.
         path: 'backdoor',
         component: AdminComponent,
         canActivate: [ AuthGuard ]
@@ -36,14 +35,27 @@ const routes:Routes = [
     },
     {
         path: 'backdoor/estates',
-        component: EstateHandlerComponent
+        component: EstateHandlerComponent,
+        canActivate: [ AuthGuard ]
     },
     {
         path: 'backdoor/estates/:name',
-        component: EstateHandlerComponent
+        component: EstateHandlerComponent,
+        canActivate: [ AuthGuard ]
+    },
+    {
+        path: 'backdoor/projects',
+        component: ProjectHandlerComponent,
+        canActivate: [ AuthGuard ]
+    },
+    {
+        path: 'backdoor/projects/:name',
+        component: ProjectHandlerComponent,
+        canActivate: [ AuthGuard ]
     },
     { path: '**', component: ErrorComponent }
 ];
+
 
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],

@@ -17,17 +17,20 @@ button, .btn {
   border: none;
   box-sizing: border-box;
 
-  cursor: pointer;
   color: $dark-primary;
+  cursor: pointer;
 
   display: flex;
 
   font-size: 0.9em;
+  flex-direction: row;
   flex-wrap: nowrap;
 
   justify-content: center;
 
   padding: 0.5em 0.8em 0.5em 0.8em;
+
+  text-align: center;
 
   svg {
     @include transition();
@@ -44,18 +47,25 @@ button, .btn {
   }
 }
 
+label.btn {
+
+  &:after {
+    content:'';
+  }
+}
+
 // Floating action button
 .fab {
   @include transition();
 
   background-color: $primary-color;
-  position: relative;
   border-radius: 50%;
+  box-shadow: $shadow;
 
   width: $fab-size;
   height: $fab-size;
 
-  box-shadow: $shadow;
+  position: relative;
 
   svg {
     fill: $icon-text;
@@ -70,9 +80,11 @@ button, .btn {
 }
 
 .submit, button[type="submit"] {
-  margin-top: 1em;
-  width: 100%;
   box-shadow: $shadow;
+
+  margin-top: 1em;
+
+  width: 100%;
 
   &:disabled {
     box-shadow: none;
@@ -164,4 +176,63 @@ button, .btn {
   svg {
     fill: $pending-color;
   }
+}
+
+.btn-radio {
+  box-shadow: $shadow;
+  width: 10rem;
+
+  &:hover{
+    box-shadow: $shadow-hover;
+  }
+}
+
+.fab-file {
+  background-color: $pending-color;
+  box-shadow: $shadow;
+
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    //margin-left: 1px;
+  }
+
+  &:hover {
+    box-shadow: $shadow-hover;
+    transform: rotate(0);
+  }
+
+  &:active {
+    box-shadow: $shadow-active;
+  }
+
+  &:after {
+    content: none;
+    display: none;
+  }
+}
+
+label.disabled {
+  background-color: $primary-background-color;
+  box-shadow: none;
+
+  cursor: default;
+  color: $accent-color;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  svg {
+    fill: $accent-color;
+  }
+}
+
+svg.small {
+  width: 10px;
+  margin-right: 5px;
 }

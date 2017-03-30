@@ -22,7 +22,7 @@ export class GeneralService {
 
     save(about) {
         const headers = this.auth.getAuthHeader();
-        return this.http.put('/api/general', about, { headers })
+        return this.http.patch('/api/general', about, { headers })
             .map( res => res.json());
     }
 }

@@ -14,6 +14,8 @@ import { HeaderComponent } from './navbar/header.component';
 
 import { GeocodeService } from './map/geocode.service';
 import { ContentTableComponent } from './content-table/content-table.component';
+import { SubpageNavigatorComponent } from './subpage-navigator/subpage-navigator.component';
+import { LocationButtonComponent } from './location/button/button.component';
 
 export const SHARED_DECLARATIONS = [
     HeaderComponent,
@@ -21,7 +23,9 @@ export const SHARED_DECLARATIONS = [
     AddressComponent,
     PhoneComponent,
     MapComponent,
-    ContentTableComponent
+    ContentTableComponent,
+    SubpageNavigatorComponent,
+    LocationButtonComponent
 ];
 
 export const SHARED_PROVIDERS = [

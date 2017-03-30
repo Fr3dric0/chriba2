@@ -38,10 +38,18 @@
 }
 
 .thumb-container {
-
   img {
     max-width: 5em;
   }
+}
+
+.title-container {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
 }
 
 .description-container {

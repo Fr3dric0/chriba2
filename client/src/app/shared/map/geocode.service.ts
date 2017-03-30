@@ -6,10 +6,26 @@ export class GeocodeService {
     path: string = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
     key: string;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {
+    }
 
-    localize(location): Promise<{lat?:number, long?:number}> {
+    localize(location): Promise<{ lat?: number, long?: number }> {
         return new Promise((rsv, rr) => {
+            const fields = ['address', 'postalCode', 'city']; // Required to get any results
+            const address = {};
+
+            if (!location) {
+                return rsv({});
+            }
+
+            for (let i in fields) {
+                const key = fields[i];
+
+                if (!location[key]) {
+                    return rsv({});
+                }
+            }
+
             const loc = this.serializeAddress(location);
 
             const url = `${this.path}${loc}${this.key ? '&key=' + this.key : ''}`;
@@ -18,7 +34,6 @@ export class GeocodeService {
                 (response) => {
                     // Catch errors
                     if (response.status !== 'OK') {
-                        console.error(response);
                         return rr(response);
                     }
 
@@ -27,14 +42,14 @@ export class GeocodeService {
                         return rsv({});
                     }
 
-                    const { geometry } = response.results[0];
+                    const {geometry} = response.results[0];
 
                     if (!geometry) {
                         return rsv({});
                     }
 
-                    const { lat, lng } = geometry.location;
-                    return rsv({ lat, long: lng });
+                    const {lat, lng} = geometry.location;
+                    return rsv({lat, long: lng});
                 },
                 err => rr(err));
         });
@@ -47,9 +62,13 @@ export class GeocodeService {
             if (typeof prop != 'string') {
                 continue;
             }
-            str += ',' + location[ prop ].split(' ').join('+');
-        }
 
+            const loc = location[prop];
+
+            if (loc && loc !== 0) {
+                str += ',' + loc.split(' ').join('+');
+            }
+        }
 
         return str;
     }

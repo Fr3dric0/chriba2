@@ -3,16 +3,14 @@
  */
 
 export interface Project {
-  _id: string;
-  name: string;
-  title: string;
-  description: string;
-  location?: string;
-  url?: string;
-  iconUrl: string;
-  uploaded?: string;
-  thumbnails?: {
-    large?: string[];
-    small?: string[];
-  };
+    _id?: string; // Assigned by server
+    name?: string; // Assigned by server
+    title?: string;
+    description?: string;
+    url?: string;
+    uploaded?: string;
+    thumbnails?: {
+        large?: string[];
+        small?: string[];
+    };
 }
