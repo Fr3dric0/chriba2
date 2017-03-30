@@ -11,17 +11,17 @@
 @import "stylesheets/material-list";
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 body {
-    height: 100%;
+  height: 100%;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 
-    background-color: $primary-background-color;
-    font-family: $primary-font;
+  background-color: $primary-background-color;
+  font-family: $primary-font;
 }
 
 /* Element reserved for title */
@@ -33,22 +33,21 @@ h1 {
 
 /* Sub-titles */
 h2, h3, h4, h5, h6 {
-    text-align: center;
-    margin: 0.5em;
+  text-align: center;
+  margin: 0.5em;
 }
 
 section {
-  position: relative;
   background-color: $secondary-background-color;
-  width: 100%;
-  max-width: 50em;
 
   border-left: $container-border;
   border-right: $container-border;
-
+  box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
-
+  max-width: 50em;
   padding: 2em;
-  box-sizing: border-box;
+
+  position: relative;
+  width: 100%;
 }

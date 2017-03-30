@@ -7,17 +7,17 @@ $resize-width: 600px;
 
 
 .material-list {
+  list-style: none;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: 300px;
   position: relative;
 
   padding: 0;
 
   width: 100%;
-  max-width: 300px;
-
-  margin-left: auto;
-  margin-right: auto;
-
-  list-style: none;
 
   @media screen and(min-width: $resize-width){
     max-width: 900px;
@@ -26,27 +26,24 @@ $resize-width: 600px;
 
 
 .material-list > li {
-  background-color: $secondary-background-color;
-  position: relative;
-
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-
-  height: $list-height;
-  overflow: hidden;
-
   @include border-radius();
   @include no-user-select();
   @include transition();
 
+  background-color: $secondary-background-color;
+  box-shadow: $shadow;
   cursor: pointer;
 
+  display: flex;
+  flex-wrap: nowrap;
+  height: $list-height;
 
+  justify-content: space-between;
+  overflow: hidden;
 
   margin-top: 7px;
 
-  box-shadow: $shadow;
+  position: relative;
 
   &:hover {
     box-shadow: $shadow-hover;
@@ -59,11 +56,11 @@ $resize-width: 600px;
 
 
   .img-container {
-    background-color: #FFF;
-    height: $list-height;
-    width: $list-height + 10px;
+    background-color: $icon-text;
     display: block;
+    height: $list-height;
     overflow: hidden;
+    width: $list-height + 10px;
 
     img {
       height: 100%;
@@ -73,36 +70,36 @@ $resize-width: 600px;
   }
 
   em {
-    margin-top: 10px;
     font-style: normal;
+    margin-top: 10px;
   }
 
 
   .arrow {
     background-color: $primary-background-color;
+    color: $primary-color;
     height: $list-height;
-    width: $list-height;
 
     text-align: center;
-    color: $primary-color;
+    width: $list-height;
   }
 
 
   @media screen and(min-width: $resize-width) {
-    margin-top: 15px;
     height: $list-height-large;
+    margin-top: 15px;
 
     .img-container {
       height: $list-height-large;
       width: $list-height-large + 10px;
     }
 
-    button{
+    button {
+      bottom: 0;
       display: block;
       height: 30px;
-      position: absolute;
-      bottom: 0;
       left: $list-height-large + 30px;
+      position: absolute;
     }
   }
 }
