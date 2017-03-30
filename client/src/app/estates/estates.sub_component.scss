@@ -1,20 +1,20 @@
-@import "../../stylesheets/_declarations.scss";
-@import "../../stylesheets/material-list.scss";
-@import "../../stylesheets/material-buttons.scss";
+@import "../../stylesheets/_declarations";
+@import "../../stylesheets/material-list";
+@import "../../stylesheets/material-buttons";
 
 
-div.info-container{
-  font-family: $primary-font;
+div.info-container {
   color: $primary-text;
-  left: $list-height-large + 25px;
-  position: absolute;
-  height: $list-height-large;
   display: block;
+  font-family: $primary-font;
+  height: $list-height-large;
+  left: $list-height-large + 25px;
   margin-top: 7px;
+  position: absolute;
 
   .label {
-    font-size: .75em;
     color: $secondary-text;
+    font-size: 0.75em;
   }
 
   .info {
@@ -24,13 +24,12 @@ div.info-container{
   .label.area {
     margin-top: 7px;
   }
-
 }
 
-.map{
+.map {
+  display: block;
   height: $list-height-large;
   width: $list-height-large + 10px;
-  display: block;
 }
 
 button {

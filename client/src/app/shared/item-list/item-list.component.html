@@ -4,7 +4,7 @@
     <div class="img-container">
       <img src="{{elem.thumbnails.small[0]}}" alt="{{elem.name}}">
     </div>
-    <template [ngIf]="!visible">
+    <template *ngIf="!visible">
       <em *ngIf="elem.location">{{elem.location.address}} {{elem.location.addressNumber}}</em>
       <em *ngIf="!elem.location">{{elem.title}}</em>
       <span class="arrow">
@@ -17,7 +17,7 @@
 
       </span>
     </template>
-    <template [ngIf]="visible">
+    <template *ngIf="visible">
       <app-estates-sub *ngIf="elem.location" [elem]="elem"></app-estates-sub>
       <app-projects-sub *ngIf="!elem.location" [elem]="elem"></app-projects-sub>
     </template>
