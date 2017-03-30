@@ -1,13 +1,15 @@
 <div class="carousel-container">
-  <div class="inner-container">
-    <div *ngFor="let obj of images">
-      <img [src]="obj.img">
-        
-      <div *ngIf="obj.description" [innerHTML]="obj.description"></div>
+    <img [src]="images[pointer[0]].img">
+    <img [src]="images[pointer[1]].img">
+    <img [src]="images[pointer[2]].img">
+    
+    <div>
+      <span *ngIf="obj.description" [innerHTML]="obj.description"></span>
+      <button class="info-btn"> Les mer </button>
+      
     </div>
-  </div>
-  <div class="toolbar">
-    <button (click)="prev()"> < </button>
-    <button (click)="next()"> > </button>
-  </div>
+  
+    <button class="prev-button" (click)="prev()"> < </button>
+    <button class="next-button" (click)="next()"> > </button>
+  
 </div>

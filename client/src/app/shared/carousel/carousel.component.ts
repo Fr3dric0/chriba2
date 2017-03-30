@@ -31,12 +31,22 @@ pointer = [0,1,2];
   }
   
   constructor(private ts: ThumbnailService) {
-      
+  
   }
   
   updateWindow() {
     this.window = [this.images[this.pointer[0]], this.images[this.pointer[1]], this.images[this.pointer[2]]];
-    console.log(this.pointer)
+  }
+  
+  next() {
+    for (let i = 0; i < 3; i++) {
+      this.pointer[i]++;
+      if (this.pointer[i] + 1 > this.images.length) {
+        this.pointer[i] = 0;
+      }
+    }
+    
+    this.updateWindow()
   }
   
   prev() {
@@ -47,17 +57,6 @@ pointer = [0,1,2];
       }
     }
     
-    this.updateWindow()
-  }
-  
-  next() {
-    for (let i = 0; i < 3; i++) {
-      this.pointer[i]++;
-      if (this.pointer[i] + 1 > this.images.length) {
-        this.pointer[i] = 0;
-      }
-    }
-  
     this.updateWindow()
   }
   
