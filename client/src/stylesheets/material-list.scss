@@ -5,7 +5,6 @@ $list-height-large: 150px;
 $resize-width: 600px;
 
 
-
 .material-list {
   list-style: none;
 
@@ -13,10 +12,9 @@ $resize-width: 600px;
   margin-right: auto;
 
   max-width: 300px;
-  position: relative;
-
   padding: 0;
 
+  position: relative;
   width: 100%;
 
   @media screen and(min-width: $resize-width){
@@ -39,9 +37,9 @@ $resize-width: 600px;
   height: $list-height;
 
   justify-content: space-between;
-  overflow: hidden;
-
   margin-top: 7px;
+
+  overflow: hidden;
 
   position: relative;
 
@@ -52,8 +50,6 @@ $resize-width: 600px;
   &:active {
     box-shadow: $shadow-active;
   }
-
-
 
   .img-container {
     background-color: $icon-text;
@@ -74,7 +70,6 @@ $resize-width: 600px;
     margin-top: 10px;
   }
 
-
   .arrow {
     background-color: $primary-background-color;
     color: $primary-color;
@@ -83,7 +78,6 @@ $resize-width: 600px;
     text-align: center;
     width: $list-height;
   }
-
 
   @media screen and(min-width: $resize-width) {
     height: $list-height-large;
