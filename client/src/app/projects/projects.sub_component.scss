@@ -7,7 +7,7 @@ div.info-container{
   width: calc(100% - (#{$list-height-large}));
   font-family: $primary-font;
   color: $primary-text;
-  left: $list-height-large + 25px;
+  left: $list-height-large + 30px;
   position: absolute;
   height: $list-height-large;
   display: block;
@@ -15,5 +15,5 @@ div.info-container{
 }
 
 button {
-  width: calc(100% - 60px - (#{$list-height-large}));
+  width: calc(100% - 45px - (#{$list-height-large}));
 }
