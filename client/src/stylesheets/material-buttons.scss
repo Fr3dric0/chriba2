@@ -15,6 +15,14 @@ button {
   @include border-radius();
 }
 
+.btn-bright{
+  background-color: $secondary-background-color;
+  color: $dark-primary;
+  svg{
+    fill: $dark-primary;
+  }
+}
+
 // Floating action button
 .fab {
   background-color: #FFF;
