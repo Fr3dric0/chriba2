@@ -4,7 +4,6 @@ const auth = require('../../middleware/auth');
 const authenticate = [
     validateAuthFields,
     authAdmin,
-    updateActivity,
     generateToken,
     returnToken
 ];
@@ -25,6 +24,7 @@ function validateAuthFields (req, res, next) {
 
 function authAdmin (req, res, next) {
     const { email, password } = req.body;
+
     Admins.authenticate(email, password)
         .then((user) => {
             req.user = user;
@@ -40,17 +40,6 @@ function authAdmin (req, res, next) {
             }
             next(err);
         })
-}
-
-function updateActivity (req, res, next) {
-    const { user } = req;
-
-    Admins.updateLastActive(user._id)
-        .then((lastActive) => {
-            user.lastActive = lastActive;
-            next();
-        })
-        .catch(err => {console.error(err); next();});
 }
 
 function generateToken (req, res, next) {

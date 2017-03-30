@@ -39,6 +39,7 @@ function validateEstateExistance (req, res, next) {
 function deleteSmallThumb (req, res, next) {
     req.estates.paths = undefined;
     req.estates.size = 'small';
+    req.estates.index = 'all'; // Prefix for removing everything
     next();
 }
 
