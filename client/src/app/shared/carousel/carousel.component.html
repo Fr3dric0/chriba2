@@ -1,12 +1,11 @@
 <div class="carousel-container">
-    <img [src]="images[pointer[0]].img">
-    <img [src]="images[pointer[1]].img">
-    <img [src]="images[pointer[2]].img">
+    <img [src]="carouselFrame[0].img">
+    <img [src]="carouselFrame[1].img">
+    <img [src]="carouselFrame[2].img">
     
     <div>
-      <span *ngIf="obj.description" [innerHTML]="obj.description"></span>
-      <button class="info-btn"> Les mer </button>
-      
+      <span *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
+      <button [routerLink]="[carouselFrame[1].url]" class="info-btn"> Les mer </button>
     </div>
   
     <button class="prev-button" (click)="prev()"> < </button>

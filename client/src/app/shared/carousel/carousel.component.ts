@@ -1,7 +1,7 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { ThumbnailService } from "../general/thumbnails.service";
 
 
@@ -11,21 +11,27 @@ import { ThumbnailService } from "../general/thumbnails.service";
   styleUrls: ['./carousel.component.scss']
 })
 
-export class CarouselComponent{
-window:any;
-pointer = [0,1,2];
+export class CarouselComponent {
+  carouselFrame:any = ["", "", ""];
+  pointer = [0,1,2];
   
   private _images;
   @Input()
   set images(images: any) {
     if ( images && typeof images[0] == "string") {
       this._images = images.map((img) => {
-        return {img, description: undefined, url: undefined};
+        return {img, description: undefined, url: undefined}
       })
     }
     
     this._images = images;
+    
+    if (this.images) {
+      this.updateFrame()
+    }
+    
   }
+  
   get images() {
     return this._images;
   }
@@ -34,8 +40,8 @@ pointer = [0,1,2];
   
   }
   
-  updateWindow() {
-    this.window = [this.images[this.pointer[0]], this.images[this.pointer[1]], this.images[this.pointer[2]]];
+  updateFrame() {
+    this.carouselFrame = [this.images[this.pointer[0]], this.images[this.pointer[1]], this.images[this.pointer[2]]];
   }
   
   next() {
@@ -46,7 +52,7 @@ pointer = [0,1,2];
       }
     }
     
-    this.updateWindow()
+    this.updateFrame()
   }
   
   prev() {
@@ -57,7 +63,7 @@ pointer = [0,1,2];
       }
     }
     
-    this.updateWindow()
+    this.updateFrame()
   }
   
 }
