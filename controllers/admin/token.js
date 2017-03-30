@@ -4,6 +4,7 @@ const auth = require('../../middleware/auth');
 const authenticate = [
     validateAuthFields,
     authAdmin,
+    updateActivity,
     generateToken,
     returnToken
 ];
@@ -31,7 +32,7 @@ function authAdmin (req, res, next) {
         })
         .catch((e) => {
             let err;
-            if (e.status == 403) {
+            if (e.status === 403) {
                 err = new Error(`[Authentication Error] Email or password is invalid!`);
                 err.status = 403;
             } else {
@@ -39,6 +40,17 @@ function authAdmin (req, res, next) {
             }
             next(err);
         })
+}
+
+function updateActivity (req, res, next) {
+    const { user } = req;
+
+    Admins.updateLastActive(user._id)
+        .then((lastActive) => {
+            user.lastActive = lastActive;
+            next();
+        })
+        .catch(err => {console.error(err); next();});
 }
 
 function generateToken (req, res, next) {
@@ -50,7 +62,7 @@ function generateToken (req, res, next) {
 function returnToken (req, res, next) {
     const { token } = req;
 
-    res.status(200).json({ succes: true, token });
+    res.status(200).json({ success: true, token });
 }
 
 module.exports = { authenticate, generateToken };

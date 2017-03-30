@@ -16,7 +16,7 @@ function validateFields (req, res, next) {
     const { size } = req.params;
 
     if (!validSize.includes(size)) {
-        const err = new Error(`[Project Img Upload Error] Illegal size value: ${size}. Legal values ${validSize.join(', ')}`);
+        const err = new Error(`[Project Img Upload Error] Illegal size (${size}) for thumb. Legal values ${validSize.join(', ')}`);
         err.status = 400;
         return next(err);
     }
@@ -28,10 +28,8 @@ function uploadFile (req, res, next) {
     const { name, size } = req.params;
     const { file } = req;
 
-    uploader.single('projects', {size, file, root, publicPath}, name)
-        .then((results) => {
-            res.json(results);
-        })
+    uploader.single(Projects, {size, file, root, publicPath}, name)
+        .then((results) => res.status(201).json(results))
         .catch( err => next(err));
 }
 
@@ -43,6 +41,7 @@ const remove = [
     getThumbUrls,
     deleteThumbFiles,
     deleteThumbData,
+    findOne,
     returnResults
 ];
 
@@ -106,11 +105,18 @@ function getThumbUrls (req, res, next) {
 
     // Used for third party middleware
     if (!thumbnails[size]) {
-        next();
+        return next();
     }
 
-    if (!index) {
-        paths = thumbnails[size]; // Should be checked before that thumbnails[size] exists
+    if (!index && index !== 0) {
+        const err = new Error(`[Project Img Delete Error] Cannot find item to remove in index: ${index}`);
+        err.status = 400;
+        return next(err);
+    }
+
+    if (index === 'all') {
+        paths = thumbnails[size];
+
     } else {
         if (index > thumbnails[size].length - 1 || index < 0) {
             const err = new Error(`[Project Img Delete Error] Index: ${index}, is out of range [0, ${thumbnails[size].length - 1}]`);
@@ -155,7 +161,7 @@ function deleteThumbData (req, res, next) {
     const { paths, size, project } = req.projects;
 
     const deletePromises = paths.map((path) => {
-        if (size == 'large') {
+        if (size === 'large') {
             return Projects.update({_id: project._id}, {$pull: {'thumbnails.large': path} })
         } else {
             return Projects.update({_id: project._id}, {$pull: {'thumbnails.small': path} })
@@ -168,9 +174,9 @@ function deleteThumbData (req, res, next) {
 }
 
 function returnResults (req, res, next) {
-    const { paths } = req.projects;
+    const { project } = req.projects;
 
-    res.status(200).json(paths);
+    res.status(200).json(project);
 }
 
 module.exports = { upload, remove, getThumbUrls, deleteThumbFiles };

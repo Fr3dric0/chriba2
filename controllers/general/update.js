@@ -30,20 +30,20 @@ function validateFields (req, res, next) {
         }
     }
 
-    for (const field of locationFields) {
-        if (req.body[field]) {
-            if (!req.about.data.location) {
-                req.about.data.location = {};
-            }
+    if ('location' in req.body) {
+        if (!req.about.data.location) {
+            req.about.data.location = {};
+        }
 
-            req.about.data.location[field] = req.body[field];
+        for (const field of locationFields) {
+            if (req.body.location[field]) {
+
+                req.about.data.location[field] = req.body.location[field];
+            }
         }
     }
-
     next();
 }
-
-
 
 function saveData (req, res, next) {
     const { data } = req.about;
