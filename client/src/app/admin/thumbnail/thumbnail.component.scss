@@ -9,8 +9,8 @@
 
   justify-content: space-between;
 
-  max-width: $inner-width;
   margin: auto;
+  max-width: $inner-width;
 
   padding: 1em;
 
@@ -21,26 +21,31 @@
 
   ul {
     list-style: none;
+
     padding: 0;
 
-    li~li {
+    li ~ li {
       margin-top: 1rem;
     }
   }
 
   strong {
-    text-align: center;
     display: block;
+
+    text-align: center;
   }
 
   img {
-    width: 100%;
     max-width: 10rem;
+
+    width: 100%;
   }
 
   button {
     background-color: $error-color;
+
     color: $icon-text;
+
     width: 100%;
 
     svg {
