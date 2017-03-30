@@ -14,7 +14,7 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.es.find()
-      .subscribe((d) => {this.data = d; console.log(d)}, (err) => {console.error(err)})
+      .subscribe((d) => {this.data = d}, (err) => {console.error(err)})
   }
 
 }

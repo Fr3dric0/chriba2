@@ -7,7 +7,14 @@
     <template [ngIf]="!visible">
       <em *ngIf="elem.location">{{elem.location.address}} {{elem.location.addressNumber}}</em>
       <em *ngIf="!elem.location">{{elem.title}}</em>
-      <span class="arrow">></span>
+      <span class="arrow">
+        <svg width="30" height="40" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+          <g>
+            <line stroke="#000000" id="svg_1" y1="5" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line>
+            <line stroke="#000000" id="svg_1" y1="25" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line>
+          </g>
+        </svg>
+      </span>
     </template>
     <template [ngIf]="visible">
       <app-estates-sub *ngIf="elem.location" [elem]="elem"></app-estates-sub>

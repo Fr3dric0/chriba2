@@ -1,9 +1,9 @@
-<div *ngIf="elem" class="info-container estate">
+<div *ngIf="elem" class="info-container">
   <div class="label area">Adresse</div>
   <div class="info address">{{elem.location.address}} {{elem.location.addressNumber}}</div>
   <div class="info address">{{elem.location.postalCode}} {{elem.location.city}}</div>
   <div class="label area">Areal</div>
   <div class="info area">{{elem.size}} kvm</div>
 </div>
-<button class="estate">Til eiendom</button>
+<button>Til eiendom</button>
 <app-map [lat]="elem.location.lat" [long]="elem.location.lng" class="map"></app-map>

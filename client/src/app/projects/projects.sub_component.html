@@ -1,5 +1,5 @@
-<div *ngIf="elem" class="info-container project">
+<div *ngIf="elem" class="info-container">
   <h2>{{elem.title}}</h2>
-  <p>{{elem.description.length > 100? elem.description.substring(0, 97) + "...": elem.description}}</p>
+  <p>{{elem.description.length > 150? elem.description.substring(0, 147) + "...": elem.description}}</p>
 </div>
-<button class="project">Til prosjekt</button>
+<button>Til prosjekt</button>

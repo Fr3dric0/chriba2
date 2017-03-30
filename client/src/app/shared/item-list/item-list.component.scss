@@ -1,0 +1,17 @@
+@import "../../../stylesheets/_declarations.scss";
+
+
+li{
+  font-family: $primary-font;
+  color: $primary-color;
+  background-color: $secondary-background-color;
+
+  span{
+    background-color: $secondary-background-color;
+    svg{
+      line{
+        stroke: $primary-color;
+      }
+    }
+  }
+}

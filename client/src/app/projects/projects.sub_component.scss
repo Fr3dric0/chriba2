@@ -1,9 +1,13 @@
 @import "../../stylesheets/_declarations.scss";
-@import "../../stylesheets/material-list";
+@import "../../stylesheets/material-list.scss";
+@import "../../stylesheets/material-buttons.scss";
 
 
 div.info-container{
-  left: $list-height-large + 10px;
+  width: calc(100% - (#{$list-height-large}));
+  font-family: $primary-font;
+  color: $primary-text;
+  left: $list-height-large + 25px;
   position: absolute;
   height: $list-height-large;
   display: block;
