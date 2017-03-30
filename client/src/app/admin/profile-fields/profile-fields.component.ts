@@ -11,6 +11,7 @@ import { NotificationsService } from 'angular2-notifications';
 })
 export class ProfileFieldsComponent implements OnInit {
     form: FormGroup;
+    saved: boolean = false;
 
     _admin: Admin;
     @Input()
@@ -46,6 +47,7 @@ export class ProfileFieldsComponent implements OnInit {
         }
 
         this.save.emit(data);
+        this.saved = true;
     }
 
     private updateForm(admin: Admin): void {

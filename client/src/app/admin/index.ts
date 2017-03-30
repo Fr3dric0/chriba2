@@ -5,6 +5,8 @@ import { ProfileFieldsComponent } from './profile-fields/profile-fields.componen
 import { ProfileTableComponent } from './project-table/project-table.component';
 import { EstateTableComponent } from './estate-table/estate-table.component';
 import { EstateHandlerComponent } from './estate-handler/estate-handler.component';
+import { ProjectHandlerComponent } from './project-handler/project-handler.component';
+import { ThumbnailComponent } from './thumbnail/thumbnail.component';
 
 
 export const ADMIN_DECLARATIONS = [
@@ -14,7 +16,9 @@ export const ADMIN_DECLARATIONS = [
     ProfileTableComponent,
     EstateTableComponent,
 
-    EstateHandlerComponent
+    EstateHandlerComponent,
+    ProjectHandlerComponent,
+    ThumbnailComponent
 ];
 
 export const ADMIN_PROVIDERS = [

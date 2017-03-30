@@ -38,13 +38,13 @@ export class ProfileTableComponent implements OnInit {
 
         this.ps.remove(project)
             .subscribe(
-                (status) => {
+                () => {
                     this.projects = this.projects.filter(p => p.name !== project.name);
                     this.fields = this.createFields(this.projects);
                     this.notif.success(`Prosjekt fjernet`, `${project.title} er fjernet`)
                 },
                 (err) => {
-                    this.notif.error(`Fjerning av prosjekt feilet`, err.message)
+                    this.notif.error(`Fjerning av prosjekt feilet`, err.json().error);
                 }
             )
     }

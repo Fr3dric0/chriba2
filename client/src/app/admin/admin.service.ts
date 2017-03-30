@@ -22,7 +22,7 @@ export class AdminService {
     save(admin: Admin): Observable<Admin> {
         const headers: Headers = this.auth.getAuthHeader();
 
-        return this.http.put('/api/admin', admin, {headers})
+        return this.http.patch('/api/admin', admin, {headers})
             .map( res => res.json());
     }
 }

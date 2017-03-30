@@ -46,7 +46,7 @@ export class EstateTableComponent implements OnInit {
                     this.notif.success(`Prosjekt fjernet`, `${estate.location.address} er fjernet`)
                 },
                 (err) => {
-                    this.notif.error(`Fjerning av prosjekt feilet`, err.message)
+                    this.notif.error(`Fjerning av eiendom feilet`, err.json().error)
                 }
             )
     }

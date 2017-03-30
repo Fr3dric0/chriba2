@@ -39,12 +39,14 @@ export class AdminComponent implements OnInit {
     }
 
     saveProfile(admin): void {
+        this.notif.info('Oppdaterer...', 'Oppdaterer profil');
+
         this.adminService.save(admin)
             .subscribe((admin) => {
                 this.admin = admin;
                 this.notif.success(
-                    'Profile Updated',
-                    'Your profile was sucessfully updated'
+                    'Profil oppdatert',
+                    'Vi har nå'
                 );
             }, err => this.notif.error(
                 'Profile Update Error',

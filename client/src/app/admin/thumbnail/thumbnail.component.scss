@@ -1,0 +1,50 @@
+@import "../../../stylesheets/declarations";
+
+.thumb-lister {
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-wrap: nowrap;
+
+  justify-content: space-between;
+
+  max-width: $inner-width;
+  margin: auto;
+
+  padding: 1em;
+
+  width: 100%;
+}
+
+.thumb-lister > div {
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li~li {
+      margin-top: 1rem;
+    }
+  }
+
+  strong {
+    text-align: center;
+    display: block;
+  }
+
+  img {
+    width: 100%;
+    max-width: 10rem;
+  }
+
+  button {
+    background-color: $error-color;
+    color: $icon-text;
+    width: 100%;
+
+    svg {
+      fill: $icon-text;
+    }
+  }
+}
