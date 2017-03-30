@@ -9,21 +9,22 @@
 form.material-form {
   box-sizing: border-box;
 
+  color: $accent-color;
+
   font-size: 1.0em;
 
   margin-left: auto;
   margin-right: auto;
+  max-width: $inner-width;
 
   padding: 1em;
 
   width: 100%;
-  max-width: $inner-width;
-
-  color: $accent-color;
 
   label {
-    text-align: right;
     font-weight: 100;
+
+    text-align: right;
   }
 
   label:after {
@@ -35,7 +36,8 @@ form.material-form {
     @include transition();
 
     background-color: $primary-background-color;
-    border: none;
+
+    border: 0;
     border-bottom: 1px solid $accent-color;
 
     color: inherit;
@@ -53,8 +55,9 @@ form.material-form {
 
   input:focus,
   textarea:focus {
-    outline: none;
     border-bottom: 2px solid $dark-primary;
+
+    outline: none;
   }
 
   input:required,
@@ -64,6 +67,7 @@ form.material-form {
   textarea:invalid,
   selector:invalid {
     box-shadow: none; // Firefox adds a red shadow around required fields (which we don't want
+
     outline: none;
   }
 
@@ -78,8 +82,9 @@ form.material-form {
   }
 
   input {
-    width: 100%;
     max-width: 15em;
+    
+    width: 100%;
   }
 
   textarea {
@@ -91,7 +96,9 @@ form.material-form {
   .input-feedback,
   .material-form small {
     color: $error-color;
+
     width: 100%;
+
     text-align: right;
   }
 
@@ -100,7 +107,9 @@ form.material-form {
 
 .flexing-form {
   display: flex;
+
   justify-content: space-between;
+
   flex-wrap: wrap;
 
   > div:last-child {
@@ -113,25 +122,30 @@ form.material-form {
 }
 
 .flexing-form > div {
-  position: relative;
   flex-basis: 20em;
   flex-grow: 2;
+
   margin-bottom: 2em;
+
+  position: relative;
 }
 
 .input-divider {
-  position: relative;
   display: inherit;
+
   padding: 0.44em;
+  position: relative;
 }
 
 
 .upload-form {
 
   .radio-label {
-    margin-left: auto;
-    text-align: center;
     display: block;
+
+    margin-left: auto;
+
+    text-align: center;
 
     &:after {
       content: '';
@@ -141,6 +155,7 @@ form.material-form {
 
 .radio-container {
   display: flex;
+
   justify-content: center;
 
   div ~ div {

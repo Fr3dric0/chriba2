@@ -1,22 +1,26 @@
 @import "declarations";
 
 .material-table {
-  position: relative;
-  width: 100%;
-  padding: 1em;
-  padding-bottom: 0;
+  border: 0;
   box-sizing: border-box;
-  border: none;
-
-  max-width: $inner-width;
 
   margin-left: auto;
   margin-right: auto;
+  max-width: $inner-width;
 
-  tr, td {
-    padding: 1em 0.5em 1em 0.5em;
-    margin: 0;
+  padding: 1em;
+  padding-bottom: 0;
+  position: relative;
+
+  width: 100%;
+
+  tr,
+  td {
     border: 0;
+
+    margin: 0;
+
+    padding: 1em 0.5em;
   }
 
   thead {
@@ -63,17 +67,18 @@
   text-align: right;
 
   svg {
-    fill: $pending-color;
-
-    position: relative;
-    width: 30px;
-    height: 30px;
-    padding: 5px;
+    border-radius: 2px;
 
     cursor: pointer;
 
-    border-radius: 2px;
+    fill: $pending-color;
 
+    height: 30px;
+
+    padding: 5px;
+    position: relative;
+
+    width: 30px;
     &:hover {
       background-color: $pending-color;
       fill: $secondary-background-color;
@@ -100,7 +105,7 @@
 
   flex-direction: row-reverse;
 
-  margin: 0 auto 0 auto;
+  margin: 0 auto;
   max-width: $inner-width;
 
   padding: 1em;
