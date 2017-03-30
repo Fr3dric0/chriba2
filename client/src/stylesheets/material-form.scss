@@ -30,7 +30,8 @@ form.material-form {
     content: ": ";
   }
 
-  input, textarea {
+  input,
+  textarea {
     @include transition();
 
     background-color: $primary-background-color;
@@ -50,7 +51,8 @@ form.material-form {
     position: relative;
   }
 
-  input:focus, textarea:focus {
+  input:focus,
+  textarea:focus {
     outline: none;
     border-bottom: 2px solid $dark-primary;
   }
@@ -65,11 +67,13 @@ form.material-form {
     outline: none;
   }
 
-  input.ng-dirty.ng-invalid[required], input.ng-dirty:invalid {
+  input.ng-dirty.ng-invalid[required],
+  input.ng-dirty:invalid {
     border-bottom-color: $error-color;
   }
 
-  input.ng-dirty.ng-valid[required], input.ng-dirty:valid {
+  input.ng-dirty.ng-valid[required],
+  input.ng-dirty:valid {
     border-bottom-color: $primary-color;
   }
 
@@ -84,7 +88,8 @@ form.material-form {
     width: 100%;
   }
 
-  .input-feedback, .material-form small {
+  .input-feedback,
+  .material-form small {
     color: $error-color;
     width: 100%;
     text-align: right;

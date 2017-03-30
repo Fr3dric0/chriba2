@@ -24,7 +24,8 @@
   }
 
   tbody {
-    tr, td {
+    tr,
+    td {
       @include transition();
 
       border-bottom: $primary-background-color solid 1px;

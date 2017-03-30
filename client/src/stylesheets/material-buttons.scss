@@ -7,14 +7,15 @@
 
 $fab-size: 3rem;
 
-button, .btn {
+button,
+.btn {
   @include border-radius();
   @include transition();
 
   align-items: center;
 
   background-color: $primary-background-color;
-  border: none;
+  border: 0;
   box-sizing: border-box;
 
   color: $dark-primary;
@@ -22,13 +23,13 @@ button, .btn {
 
   display: flex;
 
-  font-size: 0.9em;
   flex-direction: row;
   flex-wrap: nowrap;
+  font-size: 0.9em;
 
   justify-content: center;
 
-  padding: 0.5em 0.8em 0.5em 0.8em;
+  padding: 0.5em 0.8em;
 
   text-align: center;
 
@@ -49,8 +50,8 @@ button, .btn {
 
 label.btn {
 
-  &:after {
-    content:'';
+  &::after {
+    content: none;
   }
 }
 
@@ -62,10 +63,11 @@ label.btn {
   border-radius: 50%;
   box-shadow: $shadow;
 
-  width: $fab-size;
   height: $fab-size;
 
   position: relative;
+
+  width: $fab-size;
 
   svg {
     fill: $icon-text;
@@ -79,7 +81,8 @@ label.btn {
 
 }
 
-.submit, button[type="submit"] {
+.submit,
+button[type="submit"] {
   box-shadow: $shadow;
 
   margin-top: 1em;
@@ -180,22 +183,25 @@ label.btn {
 
 .btn-radio {
   box-shadow: $shadow;
+
   width: 10rem;
 
-  &:hover{
+  &:hover {
     box-shadow: $shadow-hover;
   }
 }
 
 .fab-file {
+  align-items: center;
+
   background-color: $pending-color;
   box-shadow: $shadow;
 
-  margin: auto;
-
   display: flex;
+
   justify-content: center;
-  align-items: center;
+
+  margin: auto;
 
   svg {
     //margin-left: 1px;
@@ -203,6 +209,7 @@ label.btn {
 
   &:hover {
     box-shadow: $shadow-hover;
+
     transform: rotate(0);
   }
 
@@ -210,8 +217,9 @@ label.btn {
     box-shadow: $shadow-active;
   }
 
-  &:after {
+  &::after {
     content: none;
+
     display: none;
   }
 }
@@ -220,8 +228,8 @@ label.disabled {
   background-color: $primary-background-color;
   box-shadow: none;
 
-  cursor: default;
   color: $accent-color;
+  cursor: default;
 
   &:hover {
     box-shadow: none;
@@ -233,6 +241,7 @@ label.disabled {
 }
 
 svg.small {
-  width: 10px;
-  margin-right: 5px;
+  margin-right: .2em;
+
+  width: 1em;
 }
