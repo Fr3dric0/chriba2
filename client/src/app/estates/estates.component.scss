@@ -1,7 +1,4 @@
-@import "../../stylesheets/_declarations";
-@import "../../stylesheets/material-list";
+@import "../shared/item-list/item-list.component";
 
-@media screen and(min-width: $resize-width) {
-  height: $list-height-large;
-  margin-top: 15px;
-}
+
+

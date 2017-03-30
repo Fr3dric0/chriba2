@@ -1,19 +1,56 @@
 @import "../../../stylesheets/_declarations";
-
+@import "../../../stylesheets/material-list";
+@import "../../../stylesheets/material-buttons";
 
 li{
+  width: 100%;
   font-family: $primary-font;
   color: $primary-color;
-  background-color: $primary-background-color;
-  box-shadow: $shadow;
+  position: relative;
 
-  :hover{
-    box-shadow: $shadow-hover;
+
+  div.info-container {
+    color: $primary-text;
+    display: block;
+    font-family: $primary-font;
+    height: $list-height-large;
+    left: $list-height-large + 25px;
+    margin-top: 7px;
+    position: absolute;
+
+    /* ESTATE stuff (TODO: move this elsewhere)
+    .label {
+      color: $secondary-text;
+      font-size: 0.75em;
+    }
+
+    .info {
+
+    }
+
+    .label.area {
+      margin-top: 7px;
+    }
+    */
   }
 
+  em {
+    position: absolute;
+    left: $list-height + 15px;
+    right: $list-height;
+    // top: 0;
+    text-align: center;
+  }
 
-  span{
-    background-color: $secondary-background-color;
+  .arrow {
+    background-color: $icon-text;
+    color: $primary-color;
+    height: $list-height;
+    text-align: center;
+    width: $list-height;
+    position: absolute;
+    right: 0;
+
     svg{
       margin-top: .20em;
       transform: scale(0.6);
@@ -21,5 +58,31 @@ li{
         stroke: $primary-color;
       }
     }
+  }
+
+  button {
+    bottom: 0;
+    display: block;
+    height: 30px;
+    left: $list-height-large + 30px;
+    position: absolute;
+
+    &.wide{
+      width: calc(100% - (#{$list-height-large} + 30px));
+    }
+
+    &.narrow{
+      width: calc(100% - (#{$list-height-large} + 30px) * 2);
+    }
+  }
+
+
+  .map {
+    display: block;
+    position: absolute;
+    right: 0;
+
+    height: $list-height-large;
+    width: $list-height-large + 10px;
   }
 }

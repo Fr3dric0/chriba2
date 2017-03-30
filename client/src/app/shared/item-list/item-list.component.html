@@ -1,26 +1,23 @@
-<ul *ngIf="list" class="material-list" (window:resize)="onResize($event)" (window:onload)="onResize($event)">
-
-  <li *ngFor="let elem of list" [routerLink]="elem.name">
-    <div class="img-container">
-      <img src="{{elem.thumbnails.small[0]}}" alt="{{elem.name}}">
-    </div>
-    <template *ngIf="!visible">
-      <em *ngIf="elem.location">{{elem.location.address}} {{elem.location.addressNumber}}</em>
-      <em *ngIf="!elem.location">{{elem.title}}</em>
-      <span class="arrow">
-        <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-          <g>
-            <line stroke="#000000" id="svg_1" y1="5" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line>
-            <line stroke="#000000" id="svg_1" y1="25" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line>
-        </g>
+<li [routerLink]="elem.name" (window:resize)="onResize($event)" (window:onload)="onResize($event)">
+  <div class="img-container">
+    <img src="{{elem.thumbnails.small[0]}}" alt="{{elem.name}}">
+  </div>
+  <template [ngIf]="!visible">
+    <em *ngIf="elem.location">{{elem.location.address}} {{elem.location.addressNumber}}</em>
+    <em *ngIf="!elem.location">{{elem.title}}</em>
+    <span class="arrow">
+      <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+        <g>
+          <line stroke="#000000" id="svg_1" y1="5" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line>
+          <line stroke="#000000" id="svg_1" y1="25" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line></g>
       </svg>
-
-      </span>
-    </template>
-    <template *ngIf="visible">
-      <app-estates-sub *ngIf="elem.location" [elem]="elem"></app-estates-sub>
-      <app-projects-sub *ngIf="!elem.location" [elem]="elem"></app-projects-sub>
-    </template>
-  </li>
-
-</ul>
+    </span>
+  </template>
+  <template [ngIf]="visible">
+    <!-- <app-estates-sub *ngIf="elem.location" [elem]="elem"></app-estates-sub> -->
+    <!-- <app-projects-sub *ngIf="!elem.location" [elem]="elem"></app-projects-sub> -->
+    <div class="info-container" [innerHtml]="innerContent"></div>
+    <button [ngClass]="showMap ? 'btn-flat btn-bright narrow' : 'btn-flat btn-bright wide'">Til {{type}}</button>
+    <app-map *ngIf="showMap && elem.location" [lat]="elem.location.lat" [long]="elem.location.lng" class="map"></app-map>
+  </template>
+</li>

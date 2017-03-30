@@ -1,5 +1,15 @@
 <section>
   <h2>Projects</h2>
 
-  <app-item-list [list]="data"></app-item-list>
+  <!--<app-item-list [list]="data"></app-item-list>-->
+
+  <ul *ngIf="data" class="material-list">
+    <app-item-list *ngFor="let elem of data" [elem]="elem" [showMap]="false" [innerContent]="" [type]="'prosjektet'"></app-item-list>
+  </ul>
 </section>
+
+
+<!--
+  <h3>{{elem.title}}</h3>
+  <p>{{elem.description.length > 150? elem.description.substring(0, 147) + "...": elem.description}}</p>
+-->

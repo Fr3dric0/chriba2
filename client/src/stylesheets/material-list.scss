@@ -1,4 +1,5 @@
 @import "_declarations";
+@import "../stylesheets/material-buttons";
 
 $list-height: 35px;
 $list-height-large: 150px;
@@ -23,7 +24,7 @@ $resize-width: 600px;
 }
 
 
-.material-list > li {
+.material-list li {
   @include border-radius();
   @include no-user-select();
   @include transition();
@@ -37,7 +38,7 @@ $resize-width: 600px;
   height: $list-height;
 
   justify-content: space-between;
-  margin-top: 7px;
+  margin-top: 5px;
 
   overflow: hidden;
 
@@ -70,15 +71,6 @@ $resize-width: 600px;
     margin-top: 10px;
   }
 
-  .arrow {
-    background-color: $primary-background-color;
-    color: $primary-color;
-    height: $list-height;
-
-    text-align: center;
-    width: $list-height;
-  }
-
   @media screen and(min-width: $resize-width) {
     height: $list-height-large;
     margin-top: 15px;
@@ -86,14 +78,6 @@ $resize-width: 600px;
     .img-container {
       height: $list-height-large;
       width: $list-height-large + 10px;
-    }
-
-    button {
-      bottom: 0;
-      display: block;
-      height: 30px;
-      left: $list-height-large + 30px;
-      position: absolute;
     }
   }
 }
