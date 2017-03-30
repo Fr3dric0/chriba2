@@ -3,8 +3,8 @@
     <img src="{{elem.thumbnails.small[0]}}" alt="{{elem.name}}">
   </div>
   <template [ngIf]="!visible">
-    <em *ngIf="elem.location">{{elem.location.address}} {{elem.location.addressNumber}}</em>
-    <em *ngIf="!elem.location">{{elem.title}}</em>
+    <em>{{elem.title ? elem.title :
+            elem.location.addressNumber ? elem.location.address + ' ' + elem.location.addressNumber : elem.location.address }}</em>
     <span class="arrow">
       <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
         <g>
@@ -14,8 +14,6 @@
     </span>
   </template>
   <template [ngIf]="visible">
-    <!-- <app-estates-sub *ngIf="elem.location" [elem]="elem"></app-estates-sub> -->
-    <!-- <app-projects-sub *ngIf="!elem.location" [elem]="elem"></app-projects-sub> -->
     <div class="info-container" [innerHtml]="innerContent"></div>
     <button [ngClass]="showMap ? 'btn-flat btn-bright narrow' : 'btn-flat btn-bright wide'">Til {{type}}</button>
     <app-map *ngIf="showMap && elem.location" [lat]="elem.location.lat" [long]="elem.location.lng" class="map"></app-map>
