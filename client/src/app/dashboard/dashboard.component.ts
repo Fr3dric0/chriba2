@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../shared/general/general.service'
-import { ThumbnailService } from "../shared/general/thumbnails.service";
+import { ThumbnailService } from '../shared/general/thumbnails.service';
 
 @Component({
   selector: 'app-dashboard',

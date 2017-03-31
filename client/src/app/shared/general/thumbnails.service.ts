@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProjectsService } from "../../projects/projects.service";
 import { EstatesService } from "../../estates/estates.service";
-import { Estate } from "../../models/estate";
-import { Project } from "../../models/project";
 
 @Injectable()
 export class ThumbnailService {
