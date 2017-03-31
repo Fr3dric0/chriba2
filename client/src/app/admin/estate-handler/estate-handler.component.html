@@ -1,0 +1,81 @@
+<section>
+    <app-subpage-navigator [back]="'/backdoor'"></app-subpage-navigator>
+
+    <h2>Administrer eiendom</h2>
+    <p class="description">Her kan du opprette nye, eller modifisere eksisterende eiendommer.
+        <strong>N.B.</strong> Hugs å oppdatere posisjon, viss du gjør endringer på addressen</p>
+
+    <form class="material-form flexing-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
+        <div>
+            <div formGroupName="location">
+                <div class="input-divider">
+                    <label>Adresse</label>
+                    <input type="text" formControlName="address" required>
+                </div>
+                <div class="input-divider">
+                    <label>Adresse nummer</label>
+                    <input type="text" formControlName="addressNumber">
+                </div>
+                <div class="input-divider">
+                    <label>Postkode</label>
+                    <input type="text" formControlName="postalCode">
+                </div>
+                <div class="input-divider">
+                    <label>By</label>
+                    <input type="text" formControlName="city">
+                </div>
+
+
+            </div>
+            <div class="input-divider">
+                <label>Areal</label>
+                <input type="text" formControlName="size">
+            </div>
+            <div class="input-divider">
+                <label>Ekstern side</label>
+                <input type="url" formControlName="url">
+            </div>
+            <div class="input-divider">
+                <app-location-button
+                        [disable]="(!form.controls.location.controls['address'].value || !form.controls.location.controls['postalCode'].value || !form.controls.location.controls['city'].value)"
+                        [found]="estate.location.lat && estate.location.long"
+                        (localize)="localize(form.value)"></app-location-button>
+
+                <small *ngIf="estate.location.lat && estate.location.long">Posisjon hentet <i class="em em---1"></i>
+                </small>
+
+                <small *ngIf="!estate.location.lat || !estate.location.long">
+                    Posisjon er det som gjør at <em>google maps</em> kan finne addressen på kartet.
+                </small>
+                <small *ngIf="!form.controls.location.controls['address'].value || !form.controls.location.controls['postalCode'].value || !form.controls.location.controls['city'].value">
+                    Trenger først <em>adresse</em>, <em>Postkode</em> og <em>By</em>
+                </small>
+            </div>
+        </div>
+        <div>
+            <div class="input-divider break-line">
+                <label>Beskrivelse</label><br>
+                <textarea name="description" formControlName="description" rows="15"
+                          placeholder="Liten forklaring om eiendommen"></textarea>
+            </div>
+            <small class="input-feedback" [hidden]="!form.controls['description'].value || form.controls['description'].value.length <= 355">
+                Beskrivelsen bør ikkje bestå av meir enn 355 tegn. Kan føre til at sidene ser litt merkelige ut.</small>
+        </div>
+
+        <button class="submit" type="submit" [disabled]="!form.valid">
+            <span>Lagre</span><span *ngIf="saved">t</span>
+            <i *ngIf="saved" class="em em---1"></i>
+        </button>
+    </form>
+
+    <app-map class="preview" [lat]="estate.location.lat || 0.0" [long]="estate.location.long || 0.0"></app-map>
+</section>
+
+<section *ngIf="estate && (estate.name || estate._id)">
+    <h3>Bilder</h3>
+    <p class="description">Registrerte bilder til eiendommen vil dukke opp her.
+        Hvor du har mulighet til å fjerne disse, eller legge til nye</p>
+
+    <app-admin-thumbnail-handler [element]="estate" (upload)="upload($event)" (remove)="remove($event)"></app-admin-thumbnail-handler>
+
+</section>

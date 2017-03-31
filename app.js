@@ -17,8 +17,8 @@ app.set('trust-proxy', 'loopback'); // Trust the proxy with localhost IPs
 //             API CONFIG             //
 ////////////////////////////////////////
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 app.use(cookieParser());
 
 
@@ -52,12 +52,6 @@ app.use(routeProtector({
 
 ////////////////////////////////////////
 //            STATIC PATHS            //
-////////////////////////////////////////
-app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
-app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
-//  Because the dist folder is auto-  //
-//  generated. We have a dedicated    //
-//  folder for files                  //
 ////////////////////////////////////////
 app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
 app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'

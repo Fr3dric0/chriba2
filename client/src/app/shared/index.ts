@@ -12,12 +12,20 @@ import { AddressComponent } from "./footer/address/address.component";
 import { PhoneComponent } from  "./footer/phone/phone.component";
 import { HeaderComponent } from './navbar/header.component';
 
+import { GeocodeService } from './map/geocode.service';
+import { ContentTableComponent } from './content-table/content-table.component';
+import { SubpageNavigatorComponent } from './subpage-navigator/subpage-navigator.component';
+import { LocationButtonComponent } from './location/button/button.component';
+
 export const SHARED_DECLARATIONS = [
     HeaderComponent,
     FooterComponent,
     AddressComponent,
     PhoneComponent,
-    MapComponent
+    MapComponent,
+    ContentTableComponent,
+    SubpageNavigatorComponent,
+    LocationButtonComponent
 ];
 
 export const SHARED_PROVIDERS = [
@@ -27,6 +35,7 @@ export const SHARED_PROVIDERS = [
     ThumbnailService,
     ProjectsService,
     EstatesService,
-    XHRService
+    XHRService,
+    GeocodeService
 ];
 

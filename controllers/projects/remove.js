@@ -37,6 +37,7 @@ function validateProjectExistance (req, res, next) {
 function deleteSmallThumb (req, res, next) {
     req.projects.paths = undefined; // Ensure no path already exists
     req.projects.size = 'small'; // Sets the small thumb to be removed
+    req.projects.index = 'all';
     next();
 }
 
