@@ -33,17 +33,19 @@ function validateEstateExistance (req, res, next) {
         .catch( err => next(err));
 }
 
+/**
+ * Sets the values used by getThumbUrls and deleteThumbFiles
+ * */
 function deleteSmallThumb (req, res, next) {
-
     req.estates.paths = undefined;
     req.estates.size = 'small';
+    req.estates.index = 'all'; // Prefix for removing everything
     next();
 }
 
 function deleteLargeThumb (req, res, next) {
     req.estates.paths = undefined;
     req.estates.size = 'large';
-
     next();
 }
 

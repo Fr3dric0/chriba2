@@ -5,26 +5,53 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const mailgunContainer = require('mailgun-js');
+const routeProtector = require('./middleware/route-protector');
 
 const app = express();
+
+app.disable('x-powered-by');
+app.set('trust-proxy', 'loopback'); // Trust the proxy with localhost IPs
+
 
 ////////////////////////////////////////
 //             API CONFIG             //
 ////////////////////////////////////////
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({ limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 app.use(cookieParser());
 
 
 ////////////////////////////////////////
-//            STATIC PATHS            //
+//            CONFIG SETUP            //
 ////////////////////////////////////////
-app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
-app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
-//  Because the dist folder is auto-  //
-//  generated. We have a dedicated    //
-//  folder for files                  //
+const config = require('./bin/config/_config.json');
+
+// Crash server if config is missing
+if (!config) {
+    throw new Error('Missing config file "./bin/config/_config.json"');
+}
+
+// Place config in request object
+app.use((req, res, next) => {
+    req.config = config;
+    next();
+});
+
+
+////////////////////////////////////////
+//           ROUTE PROTECTOR          //
+// To prevent unnecessary request to  //
+// bad pages, we setup a blacklisting //
+// module. to block IPs.               //
+////////////////////////////////////////
+app.use(routeProtector({
+    allowTokenBearer: true,
+    deniedFile: path.join(__dirname, 'resources', 'denied.gif')
+}));
+
+////////////////////////////////////////
+//            STATIC PATHS            //
 ////////////////////////////////////////
 app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
 app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
@@ -53,21 +80,6 @@ app.use((req, res, next) => {
         domain: mailConfig.domain
     };
 
-    next();
-});
-////////////////////////////////////////
-//            CONFIG SETUP            //
-////////////////////////////////////////
-const config = require('./bin/config/_config.json');
-
-// Crash server if config is missing
-if (!config) {
-    throw new Error('Missing config file "./bin/config/_config.json"');
-}
-
-// Place config in request object
-app.use((req, res, next) => {
-    req.config = config;
     next();
 });
 
@@ -162,6 +174,7 @@ app.use(`${api}`, index); // MUST BE LAST ROUTE!
 app.all('/resource/*', (req, res) => {
     res.status(404).send();
 });
+
 
 ////////////////////////////////////////
 //           CLIENT ROUTER            //

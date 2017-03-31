@@ -1,0 +1,118 @@
+@import "../../../stylesheets/declarations";
+
+header {
+  background: $secondary-background-color;
+  border-bottom: 2px solid $primary-color;
+  box-sizing: border-box;
+  box-shadow: $shadow;
+
+  color: $dark-primary;
+
+  font-family: $primary-font;
+  font-weight: 100;
+  font-size: 1.3rem;
+
+  overflow-x: hidden;
+
+  padding: 0.2em;
+  position: relative;
+
+  z-index: 5;
+}
+
+.logo img {
+  max-height: 2.5rem;
+}
+
+a, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hidden-on-wide {
+  display: none;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-hor {
+  flex-direction: row;
+  align-items: center;
+}
+
+nav {
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  a {
+    padding: 0.1em 0.3em 0.1em 0.3em;
+  }
+
+}
+
+.current-route {
+  border-bottom: 1px solid $primary-color;
+}
+
+label {
+  cursor: pointer;
+  user-select: none;
+}
+
+input {
+  display: none;
+}
+
+.admin-route, .admin-route:visited {
+  color: $error-color !important;
+}
+
+.hamburger-menu {
+  padding-right: inherit;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.minified-menu {
+  display: block; // Default when width is over 600px
+                  // check media query for correct preset
+}
+
+.expanded-menu {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  header {
+    font-size: 1.3rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-end;
+
+    min-width: 100%;
+
+    a {
+      text-align: right;
+      display: block;
+    }
+  }
+
+  .minified-menu {
+    display: none;
+  }
+
+  .hidden-on-wide {
+    display: inherit;
+  }
+
+}
