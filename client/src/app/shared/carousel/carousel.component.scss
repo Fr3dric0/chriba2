@@ -4,15 +4,50 @@
   width: 60em;
   height: 30em;
   margin: 1em auto 0 auto;
-  box-shadow: 5px 5px 5px #888888;
-  border: 1px solid grey;
+  border: 1px solid rgba(30, 30, 30, 0.5);
   
   .desc-container {
+    display: flex;
     position: absolute;
-    bottom: 0;
+    bottom: 0.5em;
+    left: 0.5em;
     height: 3em;
-    width:inherit;
-    background-color: rgb(80, 80, 80, 0.8);
+    color: #F5F5F5;
+    width: 98.5%;
+    background: rgba(100, 100, 100, .7);
+    box-shadow: 0 0 5px 5px rgba(100, 100, 100, .7);
+  
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    span {
+      flex: 7;
+      margin: 0.3em;
+    }
+    
+    button {
+      flex: 1;
+      background-color: #4169E1;
+      background-repeat:no-repeat;
+      border-radius: 2px;
+      color: #F5F5F5;
+      height: 2em;
+      font-size: 0.9em;
+      margin: auto 1em;
+      width: 8em;
+      border: none;
+      cursor:pointer;
+      overflow: hidden;
+      outline:none;
+      
+      transition: 0.2s ease-in-out;
+    }
+    
+    button:hover {
+      background-color: #00B7FF;
+    }
+    
   }
   
   img:not(.cur-image) {
@@ -39,8 +74,10 @@
   
   .arrow-button {
     // css properties
-    padding-top: 3px;
-    background-color: rgba(0,0,0, .1);
+    height: 5em;
+    width: 5em;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.15);
     background-repeat:no-repeat;
     border-radius: 70%;
     border: none;
@@ -54,6 +91,8 @@
     transition:.5s;
     
     svg {
+      width: inherit;
+      height: inherit;
       fill: rgba(230, 230, 230, 0.7);;
       transition:.5s;
     }
@@ -66,6 +105,39 @@
       fill: #FFF;
     }
   }
+  
+  .badges {
+    display: flex;
+    position: absolute;
+    bottom: 4em;
+    height: 2em;
+    color: #F5F5F5;
+    width: inherit;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    
+    span {
+      display: block;
+      border-radius: 50%;
+      margin: auto 0.5em auto 0.5em;
+      border: 1px solid whitesmoke;
+      background-color: transparent;
+      width: 1em;
+      height: 1em;
+      cursor: pointer;
+      flex-direction: row;
+      transition: 0.2s ease-in-out;
+      box-shadow: 0 0 1px 1px rgba(200, 200, 200, .5);
+    }
+    
+    span:hover {
+      background-color: #FFF;
+    }
+    
+  }
+  
+  
 }
 
 

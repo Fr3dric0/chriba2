@@ -1,5 +1,10 @@
 .sub-container {
   width: 60em;
-  margin: 1em auto;
-  border: 1px solid grey;
+  margin: 0 auto 1em auto;
+  padding: 0 auto;
+  background-color: #FFFAFA;
+  
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
