@@ -1,10 +1,15 @@
 .sub-container {
   width: 60em;
-  margin: 0 auto 1em auto;
-  padding: 0 auto;
+  margin: 0 auto;
+  padding: 20px;
   background-color: #FFFAFA;
   
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  line-height: 2em;
+  
+  p {
+    font-size: 18px;
+  }
 }

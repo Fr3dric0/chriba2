@@ -5,6 +5,7 @@
   height: 30em;
   margin: 1em auto 0 auto;
   border: 1px solid rgba(30, 30, 30, 0.5);
+  background-color: #FFF;
   
   .desc-container {
     display: flex;
@@ -58,6 +59,7 @@
     width: inherit;
     height: inherit;
     margin: 0 auto;
+    transition: 5s ease-in-out;
   }
   
   .next-button {
@@ -116,7 +118,7 @@
     background-color: transparent;
     align-items: center;
     justify-content: center;
-    
+  
     span {
       display: block;
       border-radius: 50%;
@@ -130,14 +132,12 @@
       transition: 0.2s ease-in-out;
       box-shadow: 0 0 1px 1px rgba(200, 200, 200, .5);
     }
-    
+  
     span:hover {
       background-color: #FFF;
     }
     
   }
-  
-  
 }
 
 

@@ -1,9 +1,7 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input} from '@angular/core';
-import { ThumbnailService } from "../general/thumbnails.service";
-
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -11,32 +9,36 @@ import { ThumbnailService } from "../general/thumbnails.service";
   styleUrls: ['./carousel.component.scss']
 })
 
-export class CarouselComponent {
+export class CarouselComponent{
   carouselFrame:any = ["", "", ""];
   pointer = [0,1,2];
   badges = [];
   
-  
   /**
    * imageobjects: {img: string, description: string, url: string}
    * Set imagesobjects in _images from input
+   * When images is loaded, this.prev() changes the pointers index to 0
+   * and updates the frame, updateFrame() for then creating all the badges
+   * with createBadgeIndex().
+   *
    */
   private _images;
   @Input()
   set images(images: any) {
     if ( images && typeof images[0] == "string") {
       this._images = images.map((img) => {
-        return {img, description: undefined, url: undefined}
+        return {img: img, description: undefined, url: undefined}
       })
     }
     
     this._images = images;
-    
     if (this.images) {
+      this.prev();
       this.updateFrame();
       this.createBadgeIndex();
+      //setTimeout(this.next, 2000);
+      
     }
-    
   }
   
   /**
@@ -45,10 +47,6 @@ export class CarouselComponent {
    */
   get images() {
     return this._images;
-  }
-  
-  constructor(private ts: ThumbnailService) {
-  
   }
   
   /**
@@ -66,14 +64,14 @@ export class CarouselComponent {
    * Then updates the "window frame" with the previous, current and next image
    */
   next() {
-    for (let i = 0; i < 3; i++) {
-      this.pointer[i]++;
-      if (this.pointer[i] + 1 > this.images.length) {
-        this.pointer[i] = 0;
+      for (let i = 0; i < 3; i++) {
+        this.pointer[i]++;
+        if (this.pointer[i] + 1 > this.images.length) {
+          this.pointer[i] = 0;
+        }
       }
-    }
-    
-    this.updateFrame();
+  
+      this.updateFrame();
   }
   
   /**
@@ -81,14 +79,14 @@ export class CarouselComponent {
    * Then updates the "window frame" with the previous, current and next image
    */
   prev() {
-    for (let i = 0; i < 3; i++) {
-      this.pointer[i]--;
-      if (this.pointer[i] < 0) {
-        this.pointer[i] = this.images.length - 1;
+      for (let i = 0; i < 3; i++) {
+        this.pointer[i]--;
+        if (this.pointer[i] < 0) {
+          this.pointer[i] = this.images.length - 1;
+        }
       }
-    }
-    
-    this.updateFrame()
+      
+      this.updateFrame();
   }
   
   // Change pointers indexes depending on which badge
