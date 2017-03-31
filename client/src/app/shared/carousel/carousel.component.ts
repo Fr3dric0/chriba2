@@ -13,6 +13,8 @@ export class CarouselComponent{
   carouselFrame:any = ["", "", ""];
   pointer = [0,1,2];
   badges = [];
+  curImgClass = "cur-image";
+  displayImage = true;
   
   /**
    * imageobjects: {img: string, description: string, url: string}
@@ -56,6 +58,7 @@ export class CarouselComponent{
    * Updates the carouselFrame depending on indexes in this.pointer
    */
   updateFrame() {
+    this.curImgClass = "cur-image appear";
     this.carouselFrame = [this.images[this.pointer[0]], this.images[this.pointer[1]], this.images[this.pointer[2]]];
   }
   
@@ -64,6 +67,7 @@ export class CarouselComponent{
    * Then updates the "window frame" with the previous, current and next image
    */
   next() {
+    this.curImgClass = "cur-image";
       for (let i = 0; i < 3; i++) {
         this.pointer[i]++;
         if (this.pointer[i] + 1 > this.images.length) {
@@ -79,6 +83,7 @@ export class CarouselComponent{
    * Then updates the "window frame" with the previous, current and next image
    */
   prev() {
+    this.curImgClass = "cur-image";
       for (let i = 0; i < 3; i++) {
         this.pointer[i]--;
         if (this.pointer[i] < 0) {

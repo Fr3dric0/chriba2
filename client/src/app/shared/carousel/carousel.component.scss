@@ -56,10 +56,10 @@
   }
   
   .cur-image {
+    position: absolute;
     width: inherit;
     height: inherit;
     margin: 0 auto;
-    transition: 5s ease-in-out;
   }
   
   .next-button {
