@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <button class="submit" type="submit">Last opp</button>
+    <button class="submit" type="submit" [disabled]="!filename || !size">Last opp</button>
 </form>
 
 <div class="thumb-lister" *ngIf="element && element.thumbnails">

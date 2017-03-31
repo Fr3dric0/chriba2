@@ -151,7 +151,7 @@ export class XHRService {
 
         // Catch error-responses
         if (xhr.status > 399 || xhr.status < 200) {
-            return this.errorHandler(xhr);
+            throw this.errorHandler(xhr);
         }
 
         return data;
@@ -167,7 +167,14 @@ export class XHRService {
             try {
                 obj = JSON.parse(xhr.responseText);
             } catch(e) {
-                obj = {error: '[XHR Error] Invalid response format'};
+
+                // Add a simple check for 413 error
+                if (xhr.status == 413) {
+                    obj = { error: `[XHR Error] File size to large` };
+                } else {
+                    obj = { error: '[XHR Error] Unknown response format' };
+                }
+
                 err.stack = xhr.responseText; // Put original text in as stack
             }
         }

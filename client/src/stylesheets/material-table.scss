@@ -14,13 +14,14 @@
 
   width: 100%;
 
-  tr,
   td {
     border: 0;
 
     margin: 0;
 
     padding: 1em 0.5em;
+
+    vertical-align: top;
   }
 
   thead {
@@ -63,7 +64,9 @@
 
 .modifiers {
   display: flex;
+
   flex-direction: row-reverse;
+
   text-align: right;
 
   svg {
@@ -113,7 +116,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 650px) {
   .hidden-on-narrow {
     display: none;
   }

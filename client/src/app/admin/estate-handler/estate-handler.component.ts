@@ -87,9 +87,9 @@ export class EstateHandlerComponent implements OnInit {
                         `Klarte ikkje å hente posisjonen til addressen ${address} ${addressNumber}, ${postalCode} ${city}`);
                 }
 
-                    this.notif.success('Posisjon funnet', `Posisjonen er funnet ved lat: ${location.lat} og long: ${location.long}`);
-                    this.estate.location.lat = location.lat;
-                    this.estate.location.long = location.long;
+                this.notif.success('Posisjon funnet', `Posisjonen er funnet ved lat: ${ location.lat.toFixed(3)} og long: ${location.long.toFixed(3)}`);
+                this.estate.location.lat = location.lat;
+                this.estate.location.long = location.long;
             })
             .catch(err => this.notif.error('Klarte ikke å hente posisjon', err.message));
     }
@@ -133,16 +133,27 @@ export class EstateHandlerComponent implements OnInit {
             return;
         }
 
+        // Add a simple warning for some large files
+        if (form.thumb.value.endsWith('.mp4') || form.thumb.value.endsWith('.mkv')) {
+            this.notif.alert('Obs. Mulig ulovlig filtype', 'Mulig videofiler er for store for siden');
+        }
+
+        this.notif.info('Laster opp', `fil: ${form.thumb.value}`);
+
         this.es.uploadThumb(form, this.estate)
             .then((estate) => {
                 // Prevent loss of coordinations
-                const { lat, long } = this.estate.location;
+                const {lat, long} = this.estate.location;
                 this.estate = estate;
                 this.estate.location.lat = lat;
                 this.estate.location.long = long;
+                this.notif.remove();
                 this.notif.success(`opplastet`, `Bildet vart lastet opp`);
             })
-            .catch((err) => this.notif.error(`Kunne ikke laste opp bildet`, err));
+            .catch((err) => {
+                this.notif.remove();
+                this.notif.error(`Kunne ikke laste opp bildet`, err);
+            });
     }
 
     /**

@@ -58,6 +58,8 @@
                 <textarea name="description" formControlName="description" rows="15"
                           placeholder="Liten forklaring om eiendommen"></textarea>
             </div>
+            <small class="input-feedback" [hidden]="!form.controls['description'].value || form.controls['description'].value.length <= 355">
+                Beskrivelsen bør ikkje bestå av meir enn 355 tegn. Kan føre til at sidene ser litt merkelige ut.</small>
         </div>
 
         <button class="submit" type="submit" [disabled]="!form.valid">

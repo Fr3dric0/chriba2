@@ -83,12 +83,23 @@ export class ProjectHandlerComponent implements OnInit {
             return;
         }
 
+        // Add a simple warning for some large files
+        if (form.thumb.value.endsWith('.mp4') || form.thumb.value.endsWith('.mkv')) {
+            this.notif.alert('Obs. Mulig ulovlig filtype', 'Mulig videofiler er for store for siden');
+        }
+
+        this.notif.info('Laster opp', `fil: ${form.thumb.value}`);
+
         this.ps.uploadThumb(form, this.project)
             .then((project) => {
+                this.notif.remove();
                 this.project = project;
                 this.notif.success(`opplastet`, `Bildet vart lastet opp`);
             })
-            .catch((err) => this.notif.error(`Kunne ikke laste opp bildet`, err));
+            .catch((err) => {
+                this.notif.remove();
+                this.notif.error(`Kunne ikke laste opp bildet`, err);
+            });
     }
 
     remove(data: {index, size}) {

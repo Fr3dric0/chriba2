@@ -33,6 +33,11 @@ button,
 
   text-align: center;
 
+
+  &[disabled] {
+    cursor: default;
+  }
+
   svg {
     @include transition();
 

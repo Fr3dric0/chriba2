@@ -1,10 +1,10 @@
 <section>
-    <h2>Side administrasjon</h2>
+    <h2>Side-administrasjon</h2>
 
     <div class="metadata-container">
         <div class="last-active">
             <span>last active: </span>
-            <time *ngIf="admin">{{admin.lastActive | date}}</time>
+            <time *ngIf="admin">{{admin.lastActive}}</time>
         </div>
         <div>
             <button class="btn-flat btn-logout" (click)="logout()">Logg ut</button>

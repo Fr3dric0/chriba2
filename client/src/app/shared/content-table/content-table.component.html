@@ -13,11 +13,13 @@
         <td class="thumb-container">
             <img *ngIf="field.image && field.image.src" [src]="field.image.src" [alt]="field.image.alt">
         </td>
+
         <td class="title-container" [routerLink]="field.title.url"
             [innerHTML]="field.title.label">
         </td>
-        <td class="description-container hidden-on-narrow" [innerHTML]="field.description">
-        </td>
+
+        <td class="description-container hidden-on-narrow" [innerHTML]="field.description"></td>
+
         <td class="modifiers">
             <span class="btn-edit" [routerLink]="field.modifiers.edit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
@@ -30,6 +32,7 @@
                 </svg>
             </span>
         </td>
+
     </tr>
     </tbody>
 </table>

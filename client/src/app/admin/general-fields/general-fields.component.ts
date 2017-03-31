@@ -66,7 +66,7 @@ export class GeneralFieldsComponent implements OnInit {
                         `Klarte ikkje å hente posisjonen til addressen ${address} ${addressNumber}, ${postalCode} ${city}`);
                 }
 
-                this.notif.success('Posisjon funnet', `Posisjonen er funnet ved lat: ${location.lat} og long: ${location.long}`);
+                this.notif.success('Posisjon funnet', `Posisjonen er funnet ved lat: ${location.lat.toFixed(3)} og long: ${location.long.toFixed(3)}`);
                 this.about.location.lat = location.lat;
                 this.about.location.long = location.long;
             })
