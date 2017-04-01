@@ -18,6 +18,7 @@ $resize-width: 600px;
   position: relative;
   width: 100%;
 
+  
   @media screen and(min-width: $resize-width){
     max-width: 900px;
   }

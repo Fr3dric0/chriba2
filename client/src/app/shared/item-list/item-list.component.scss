@@ -14,7 +14,6 @@ li {
   div.info-container {
     color: $primary-text;
     display: block;
-    font-family: $primary-font;
     height: $list-height-large;
     left: $list-height-large + $offset-left;
     margin-top: 7px;
@@ -30,7 +29,6 @@ li {
 
   .arrow {
     background-color: $icon-text;
-    color: $primary-color;
     height: $list-height;
     position: absolute;
     right: 0;
