@@ -1,2 +1,12 @@
 @import "../shared/item-list/item-list.component";
 
+* /deep/ li div.info-container{
+  right: $offset-left;
+  text-align: justify;
+
+  li h1, h2, h3 {
+    margin-left: 0;
+    margin-right: 0;
+    width: calc(100% - ((#{$offset-left})*2));
+  }
+}

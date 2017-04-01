@@ -2,11 +2,13 @@
 @import "../../../stylesheets/material-list";
 @import "../../../stylesheets/material-buttons";
 
+$offset-left: 30px;
+
 li{
-  width: 100%;
-  font-family: $primary-font;
   color: $primary-color;
+  font-family: $primary-font;
   position: relative;
+  width: 100%;
 
 
   div.info-container {
@@ -14,31 +16,15 @@ li{
     display: block;
     font-family: $primary-font;
     height: $list-height-large;
-    left: $list-height-large + 25px;
+    left: $list-height-large + $offset-left;
     margin-top: 7px;
     position: absolute;
-
-    /* ESTATE stuff (TODO: move this elsewhere)
-    .label {
-      color: $secondary-text;
-      font-size: 0.75em;
-    }
-
-    .info {
-
-    }
-
-    .label.area {
-      margin-top: 7px;
-    }
-    */
   }
 
   em {
-    position: absolute;
     left: $list-height + 15px;
+    position: absolute;
     right: $list-height;
-    // top: 0;
     text-align: center;
   }
 
@@ -46,10 +32,10 @@ li{
     background-color: $icon-text;
     color: $primary-color;
     height: $list-height;
-    text-align: center;
-    width: $list-height;
     position: absolute;
     right: 0;
+    text-align: center;
+    width: $list-height;
 
     svg{
       margin-top: .20em;
@@ -64,25 +50,24 @@ li{
     bottom: 0;
     display: block;
     height: 30px;
-    left: $list-height-large + 30px;
+    left: $list-height-large + $offset-left;
     position: absolute;
 
+
     &.wide{
-      width: calc(100% - (#{$list-height-large} + 30px));
+      width: calc(100% - (#{$list-height-large} + #{$offset-left} * 2));
     }
 
     &.narrow{
-      width: calc(100% - (#{$list-height-large} + 30px) * 2);
+      width: calc(100% - (#{$list-height-large} + #{$offset-left}) * 2);
     }
   }
 
-
   .map {
     display: block;
+    height: $list-height-large;
     position: absolute;
     right: 0;
-
-    height: $list-height-large;
     width: $list-height-large + 10px;
   }
 }

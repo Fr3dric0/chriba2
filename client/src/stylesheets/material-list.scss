@@ -61,7 +61,8 @@ $resize-width: 600px;
 
     img {
       height: 100%;
-      width: auto;
+      object-fit: cover;
+      width: 100%;
     }
 
   }

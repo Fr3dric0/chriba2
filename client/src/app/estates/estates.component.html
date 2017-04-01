@@ -2,15 +2,6 @@
   <h2>Eiendommer</h2>
 
   <ul *ngIf="data" class="material-list">
-    <app-item-list *ngFor="let elem of data" [elem]="elem" [showMap]="true" [innerContent]="" [type]="'eiendommen'"></app-item-list>
+    <app-item-list *ngFor="let elem of data" [elem]="elem" [showMap]="true" [type]="'eiendommen'"></app-item-list>
   </ul>
 </section>
-
-
-<!--
-  <div class="label area">Adresse</div>
-  <div class="info address">{{elem.location.address}} {{elem.location.addressNumber}}</div>
-  <div class="info address">{{elem.location.postalCode}} {{elem.location.city}}</div>
-  <div class="label area">Areal</div>
-  <div class="info area">{{elem.size}} kvm</div>
--->

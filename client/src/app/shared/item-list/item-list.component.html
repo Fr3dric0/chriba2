@@ -14,7 +14,7 @@
     </span>
   </template>
   <template [ngIf]="visible">
-    <div class="info-container" [innerHtml]="innerContent"></div>
+    <div class="info-container" [innerHtml]="elem.innerContent"></div>
     <button [ngClass]="showMap ? 'btn-flat btn-bright narrow' : 'btn-flat btn-bright wide'">Til {{type}}</button>
     <app-map *ngIf="showMap && elem.location" [lat]="elem.location.lat" [long]="elem.location.lng" class="map"></app-map>
   </template>

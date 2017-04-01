@@ -1,4 +1,13 @@
 @import "../shared/item-list/item-list.component";
 
+* /deep/ li div.info-container {
 
+  .label {
+    color: $secondary-text;
+    font-size: 0.75em;
+  }
 
+  .label.area {
+    margin-top: 7px;
+  }
+}
