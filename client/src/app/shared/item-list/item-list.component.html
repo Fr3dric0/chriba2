@@ -13,9 +13,9 @@
       </svg>
     </span>
   </template>
-  <template [ngIf]="visible">
+  <div class="mid-content">
     <div class="info-container" [innerHtml]="elem.innerContent"></div>
-    <button [ngClass]="showMap ? 'btn-flat btn-bright narrow' : 'btn-flat btn-bright wide'">Til {{type}}</button>
-    <app-map *ngIf="showMap && elem.location" [lat]="elem.location.lat" [long]="elem.location.lng" class="map"></app-map>
-  </template>
+    <button [ngClass]="'btn-flat btn-bright'">Til {{type}}</button>
+  </div>
+  <app-map *ngIf="showMap && elem.location" [lat]="elem.location.lat" [long]="elem.location.lng" class="map"></app-map>
 </li>

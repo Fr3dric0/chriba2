@@ -3,37 +3,74 @@
 @import "../../../stylesheets/material-buttons";
 
 $offset-left: 30px;
+$vertical-margin: 30px;
+$button-height: 30px;
 
 li {
   color: $primary-color;
   font-family: $primary-font;
   position: relative;
   width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
 
+  div.mid-content {
 
-  div.info-container {
-    color: $primary-text;
-    display: block;
-    height: $list-height-large;
-    left: $list-height-large + $offset-left;
-    margin-top: 7px;
-    position: absolute;
+    margin: 0 $vertical-margin 0 $vertical-margin;
+
+    flex-grow: 1;
+
+    div.img-container {
+      flex-grow: 0;
+    }
+
+    div.info-container {
+      color: $primary-text;
+      height: $list-height-large - $button-height - 10px;
+      margin: 0;
+      //left: $list-height-large + $offset-left;
+      //margin-top: 7px;
+      //position: absolute;
+      width: 100%
+    }
+
+    button {
+      margin: 0;
+      height: $button-height;
+      width: 100%;
+      background-color: cyan;
+      // left: $list-height-large + $offset-left;
+      // position: absolute;
+
+      /*
+      &.wide {
+        width: calc(100% - (#{$list-height-large} + #{$offset-left} * 2));
+      }
+
+      &.narrow {
+        width: calc(100% - (#{$list-height-large} + #{$offset-left}) * 2);
+      }
+
+      */
+    }
   }
 
   em {
-    left: $list-height + 15px;
-    position: absolute;
-    right: $list-height;
+    //left: $list-height + 15px;
+    //position: absolute;
+    //right: $list-height;
     text-align: center;
+    flex-grow: 1;
   }
 
   .arrow {
     background-color: $icon-text;
     height: $list-height;
-    position: absolute;
-    right: 0;
+    //position: absolute;
+    //right: 0;
     text-align: center;
     width: $list-height;
+    flex-grow: 0;
 
     svg {
       margin-top: 0.20em;
@@ -45,28 +82,24 @@ li {
     }
   }
 
-  button {
-    bottom: 0;
-    display: block;
-    height: 30px;
-    left: $list-height-large + $offset-left;
-    position: absolute;
 
 
-    &.wide {
-      width: calc(100% - (#{$list-height-large} + #{$offset-left} * 2));
-    }
-
-    &.narrow {
-      width: calc(100% - (#{$list-height-large} + #{$offset-left}) * 2);
-    }
+  app-map {
+    height: $list-height-large;
+    //position: absolute;
+    //right: 0;
+    width: $list-height-large + 10px;
+    flex-grow: 0;
   }
 
-  .map {
-    display: block;
-    height: $list-height-large;
-    position: absolute;
-    right: 0;
-    width: $list-height-large + 10px;
+
+  .mid-content, app-map {
+    display: none;
+  }
+
+  @media screen and(min-width: $resize-width) {
+    .mid-content, app-map {
+      display: block;
+    }
   }
 }
