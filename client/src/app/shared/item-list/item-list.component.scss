@@ -4,7 +4,7 @@
 
 $offset-left: 30px;
 
-li{
+li {
   color: $primary-color;
   font-family: $primary-font;
   position: relative;
@@ -37,10 +37,10 @@ li{
     text-align: center;
     width: $list-height;
 
-    svg{
-      margin-top: .20em;
+    svg {
+      margin-top: 0.20em;
       transform: scale(0.6);
-      line{
+      line {
         stroke: $primary-color;
       }
     }
@@ -54,11 +54,11 @@ li{
     position: absolute;
 
 
-    &.wide{
+    &.wide {
       width: calc(100% - (#{$list-height-large} + #{$offset-left} * 2));
     }
 
-    &.narrow{
+    &.narrow {
       width: calc(100% - (#{$list-height-large} + #{$offset-left}) * 2);
     }
   }
