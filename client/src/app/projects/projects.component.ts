@@ -14,13 +14,14 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit() {
     this.es.find()
-      .subscribe((d) => {this.data = d.map(parseInnerContent)}, (err) => {console.error(err)})
+      .subscribe((d) => {this.data = d.map(ProjectsComponent.parseInnerContent)}, (err) => {console.error(err)})
   }
-}
 
-function parseInnerContent(elem){
+  static parseInnerContent(elem){
   elem.innerContent = `
     <h3>${elem.title}</h3>
     <p>${elem.description.length > 150? elem.description.substring(0, 147) + "...": elem.description}</p>`;
   return elem;
 }
+}
+
