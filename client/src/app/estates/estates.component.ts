@@ -9,23 +9,13 @@ import { EstatesService } from "./estates.service";
 })
 export class EstatesComponent implements OnInit {
 
-  data: Estate;
-  parsing_data: any;
+  data: Estate[];
   constructor(private es: EstatesService) {
   }
 
   ngOnInit() {
     this.es.find()
-      .subscribe((d) => {
-        this.parsing_data = d;
-        try {
-          this.data = this.parsing_data.map(parseInnerContent);
-        }
-        catch (e){
-          console.error(e);
-        }
-        this.data = this.parsing_data;
-      }, (err) => {console.error(err)});
+      .subscribe((d) => {this.data = d.map(parseInnerContent)}, (err) => {console.error(err)});
   }
 }
 

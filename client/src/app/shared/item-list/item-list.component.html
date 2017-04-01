@@ -1,12 +1,12 @@
 <li [routerLink]="elem.name" (window:resize)="onResize($event)" (window:onload)="onResize($event)">
   <div class="img-container">
-    <img src="{{elem.thumbnails.small[0]}}" alt="{{elem.name}}">
+    <img [src]="elem.thumbnails.small[0]" [alt]="elem.name">
   </div>
   <template [ngIf]="!visible">
     <em>{{elem.title ? elem.title :
             elem.location.addressNumber ? elem.location.address + ' ' + elem.location.addressNumber : elem.location.address }}</em>
     <span class="arrow">
-      <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+      <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg">
         <g>
           <line stroke="#000000" id="svg_1" y1="5" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line>
           <line stroke="#000000" id="svg_1" y1="25" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line></g>
