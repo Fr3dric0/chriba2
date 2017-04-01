@@ -1,0 +1,75 @@
+<section>
+    <h3>Om Chriba</h3>
+
+    <form class="material-form flexing-form" [formGroup]="form" (ngSubmit)="save(form.value, form.valid)">
+        <div>
+            <div formGroupName="location">
+                <div class="input-divider">
+                    <label>Adresse</label>
+                    <input type="text" formControlName="address">
+                </div>
+
+                <div class="input-divider">
+                    <label>Adresse nummer</label>
+                    <input type="text" formControlName="addressNumber">
+                </div>
+
+                <div class="input-divider">
+                    <label>Postkode</label>
+                    <input type="text" formControlName="postalCode">
+                </div>
+
+                <div class="input-divider">
+                    <label>By</label>
+                    <input type="text" formControlName="city">
+                </div>
+
+                <div class="input-divider">
+                    <label>Land</label>
+                    <input type="text" formControlName="country">
+                </div>
+            </div>
+            <div class="input-divider">
+                <label>Epost</label>
+                <input type="email" formControlName="email">
+                <p class="input-feedback" [hidden]="form.controls['email'].valid">Ugyldig epost-adresse!</p>
+            </div>
+            <div class="input-divider">
+                <label>Mobilnummer</label>
+                <input type="text" formControlName="mobile">
+            </div>
+            <div class="input-divider">
+                <label>Jobbnummer</label>
+                <input type="text" formControlName="business">
+            </div>
+            <div class="input-divider">
+                <label>Postboks</label>
+                <input type="text" formControlName="mailbox">
+            </div>
+
+
+            <app-location-button
+                    [disable]="(!form.controls.location.controls['address'].value || !form.controls.location.controls['postalCode'].value || !form.controls.location.controls['city'].value)"
+                    [found]="about.location.lat && about.location.long"
+                    (localize)="localize(form.value)"></app-location-button>
+
+        </div>
+        <div>
+            <div class="input-divider break-line">
+                <label>Om Chriba</label><br>
+                <textarea name="description" formControlName="description" rows="15"></textarea>
+                <p class="input-feedback" *ngIf="!form.controls['description'].valid && form.controls['description'].touched">"Om Chriba" må inneholde noe
+                    innhold!</p>
+            </div>
+        </div>
+
+
+        <button class="submit" [disabled]="!form.valid" type="submit">
+            <span>Lagre</span><span *ngIf="saved">t</span>
+            <i *ngIf="saved" class="em em---1"></i>
+        </button>
+    </form>
+
+
+    <app-map class="preview" [lat]="about.location.lat || 0.0" [long]="about.location.long || 0.0"></app-map>
+</section>

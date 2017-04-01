@@ -17,11 +17,11 @@ router.get('/:estate', find);
 // POST /api/estates
 router.post('/', requireToken, create);
 // PUT /api/estates/:estate
-router.put('/:estate', requireToken, update);
+router.patch('/:estate', requireToken, update);
 // POST /api/estates/:estate/img/:size
-router.post('/:estate/img/:size', requireToken, uploadFolder.single('thumb'), upload.upload);
+router.post('/:estate/thumb/:size', requireToken, uploadFolder.single('thumb'), upload.upload);
 // DELETE /api/estates/:estate/img/:size | BODY index
-router.delete('/:estate/img/:size', requireToken, upload.remove);
+router.delete('/:estate/thumb/:size', requireToken, upload.remove);
 // DELETE /api/estates/:estate
 router.delete('/:estate', requireToken, remove);
 

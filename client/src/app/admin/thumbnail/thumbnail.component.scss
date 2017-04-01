@@ -1,0 +1,55 @@
+@import "../../../stylesheets/declarations";
+
+.thumb-lister {
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-wrap: nowrap;
+
+  justify-content: space-between;
+
+  margin: auto;
+  max-width: $inner-width;
+
+  padding: 1em;
+
+  width: 100%;
+}
+
+.thumb-lister > div {
+
+  ul {
+    list-style: none;
+
+    padding: 0;
+
+    li ~ li {
+      margin-top: 1rem;
+    }
+  }
+
+  strong {
+    display: block;
+
+    text-align: center;
+  }
+
+  img {
+    max-width: 10rem;
+
+    width: 100%;
+  }
+
+  button {
+    background-color: $error-color;
+
+    color: $icon-text;
+
+    width: 100%;
+
+    svg {
+      fill: $icon-text;
+    }
+  }
+}

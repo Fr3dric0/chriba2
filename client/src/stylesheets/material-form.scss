@@ -5,17 +5,180 @@
  * follow material design
  */
 
-// Used only on form
+// Restrict only to form-elements
 form.material-form {
+  box-sizing: border-box;
 
+  color: $accent-color;
 
-  input, textarea {
+  font-size: 1.0em;
 
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $inner-width;
+
+  padding: 1em;
+
+  width: 100%;
+
+  label {
+    font-weight: 100;
+
+    text-align: right;
   }
 
-  input[type="text"] {
-
+  label:after {
+    content: ": ";
   }
+
+  input,
+  textarea {
+    @include transition();
+
+    background-color: $primary-background-color;
+
+    border: 0;
+    border-bottom: 1px solid $accent-color;
+
+    color: inherit;
+
+    float: right;
+    font-size: .9em;
+
+    margin: .1em 0 .1em 0;
+
+    outline: none;
+
+    padding: .2em;
+    position: relative;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-bottom: 2px solid $dark-primary;
+
+    outline: none;
+  }
+
+  input:required,
+  textarea:required,
+  selector:required,
+  input:invalid,
+  textarea:invalid,
+  selector:invalid {
+    box-shadow: none; // Firefox adds a red shadow around required fields (which we don't want
+
+    outline: none;
+  }
+
+  input.ng-dirty.ng-invalid[required],
+  input.ng-dirty:invalid {
+    border-bottom-color: $error-color;
+  }
+
+  input.ng-dirty.ng-valid[required],
+  input.ng-dirty:valid {
+    border-bottom-color: $primary-color;
+  }
+
+  input {
+    max-width: 15em;
+    
+    width: 100%;
+  }
+
+  textarea {
+    float: none;
+
+    width: 100%;
+  }
+
+  .input-feedback,
+  .material-form small {
+    color: $error-color;
+
+    width: 100%;
+
+    text-align: right;
+  }
+
 
 }
 
+.flexing-form {
+  display: flex;
+
+  justify-content: space-between;
+
+  flex-wrap: wrap;
+
+  > div:last-child {
+    display: block;
+  }
+
+  button[type="submit"] {
+    margin-top: 0;
+  }
+}
+
+.flexing-form > div {
+  flex-basis: 20em;
+  flex-grow: 2;
+
+  margin-bottom: 2em;
+
+  position: relative;
+}
+
+.input-divider {
+  display: inherit;
+
+  padding: 0.44em;
+  position: relative;
+}
+
+
+.upload-form {
+
+  .radio-label {
+    display: block;
+
+    margin-left: auto;
+
+    text-align: center;
+
+    &:after {
+      content: '';
+    }
+  }
+}
+
+.radio-container {
+  display: flex;
+
+  justify-content: center;
+
+  div ~ div {
+    margin-left: 1rem;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  // N.B. Relies on the material-buttons
+  .selected {
+    background-color: $light-primary;
+    box-shadow: none;
+
+    color: $icon-text;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    svg {
+      fill: $icon-text;
+    }
+  }
+}

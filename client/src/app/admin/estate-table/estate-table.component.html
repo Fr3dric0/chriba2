@@ -1,0 +1,10 @@
+<section>
+    <h3>Eiendommer</h3>
+    <p class="description">Her finner du en oversikt over alle eksisterene eiendommer på siden</p>
+
+    <app-content-table [headers]="['Thumb', 'Navn', 'Beskrivelse', 'Handlinger']"
+                       [fields]="fields"
+                       [create]="{ url: '/backdoor/estates' }"
+                       (remove)="remove($event)"></app-content-table>
+
+</section>

@@ -13,7 +13,7 @@ router.get('/backup', requireToken, backup);
 
 router.post('/token', authenticate);
 router.post('/register', register);
-router.put('/', requireToken, update);
+router.patch('/', requireToken, update);
 router.delete('/', requireToken, remove);
 
 
