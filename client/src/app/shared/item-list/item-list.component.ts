@@ -26,7 +26,7 @@ export class ItemListComponent implements OnInit {
   get innerContent(){ return this._innerContent }
 
 
-  visible: boolean = false;
+  expanded: boolean = false;
   breakpoint: number = 600;
 
 
@@ -36,12 +36,12 @@ export class ItemListComponent implements OnInit {
     ngOnInit() {
       const w = window.innerWidth;
 
-      this.visible = (w >= this.breakpoint);
+      this.expanded = (w >= this.breakpoint);
     }
 
   onResize(event) {
     const w = event.target.innerWidth;
 
-    this.visible = (w >= this.breakpoint);
+    this.expanded = (w >= this.breakpoint);
   }
 }
