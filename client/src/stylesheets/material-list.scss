@@ -12,12 +12,10 @@ $resize-width: 600px;
   margin-left: auto;
   margin-right: auto;
 
-  min-width: 300px;
-  padding: 0;
-
-  position: relative;
-  // width: 100%;
   max-width: $inner-width;
+  min-width: 300px;
+
+  padding: 0;
 }
 
 
@@ -26,7 +24,7 @@ $resize-width: 600px;
   @include no-user-select();
   @include transition();
 
-  background-color: $secondary-background-color;
+  background-color: $primary-background-color;
   box-shadow: $shadow;
   cursor: pointer;
 
