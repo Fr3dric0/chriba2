@@ -4,19 +4,17 @@
   width: 60em;
   height: 30em;
   margin: 1em auto 0 auto;
-  border: 1px solid rgba(30, 30, 30, 0.5);
   background-color: #FFF;
   
   .desc-container {
     display: flex;
     position: absolute;
-    bottom: 0.5em;
-    left: 0.5em;
+    bottom: 0;
+    left: 0;
     height: 3em;
     color: #F5F5F5;
-    width: 98.5%;
+    width: inherit;
     background: rgba(100, 100, 100, .7);
-    box-shadow: 0 0 5px 5px rgba(100, 100, 100, .7);
   
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -29,8 +27,7 @@
     
     button {
       flex: 1;
-      background-color: #4169E1;
-      background-repeat:no-repeat;
+      background-color: #388E3C;
       border-radius: 2px;
       color: #F5F5F5;
       height: 2em;
@@ -46,7 +43,7 @@
     }
     
     button:hover {
-      background-color: #00B7FF;
+      background-color: #4CAF50;
     }
     
   }
@@ -76,11 +73,10 @@
   
   .arrow-button {
     // css properties
-    height: 5em;
-    width: 5em;
+    height: 3.5em;
+    width: 3.5em;
     padding: 0;
     background-color: rgba(0, 0, 0, 0.15);
-    background-repeat:no-repeat;
     border-radius: 70%;
     border: none;
     cursor:pointer;
@@ -130,13 +126,12 @@
       cursor: pointer;
       flex-direction: row;
       transition: 0.2s ease-in-out;
-      box-shadow: 0 0 1px 1px rgba(200, 200, 200, .5);
+      box-shadow: 0 0 1px 1px rgba(150, 150, 150, .4);
     }
   
     span:hover {
-      background-color: #FFF;
+      background-color: #FFF !important;
     }
-    
   }
 }
 

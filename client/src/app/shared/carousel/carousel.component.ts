@@ -141,7 +141,7 @@ export class CarouselComponent{
    */
   getBgColor(badgeIndex) {
     if (badgeIndex == this.pointer[1]) {
-      return 	"#F5F5F5";
+      return "#F5F5F5";
     } else {
       return "transparent";
     }
