@@ -7,6 +7,7 @@ $resize-width: 600px;
 
 
 .material-list {
+  box-sizing: border-box;
   list-style: none;
 
   margin-left: auto;
@@ -15,7 +16,7 @@ $resize-width: 600px;
   max-width: $inner-width;
   min-width: 300px;
 
-  padding: 0;
+  padding: 0 1em 0 1em;
 }
 
 
