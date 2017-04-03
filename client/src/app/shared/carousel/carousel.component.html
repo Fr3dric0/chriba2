@@ -1,6 +1,6 @@
-<div class="carousel-container">
+<div class="carousel-container" (window:resize)="onResize($event)" [style.height.px]="getHeight()">
     <img [src]="carouselFrame[0].img">
-    <img class="cur-image" [src]="carouselFrame[1].img">
+    <img class="cur-image" #curImage [src]="carouselFrame[1].img">
     <img [src]="carouselFrame[2].img">
     
     <div class="desc-container">

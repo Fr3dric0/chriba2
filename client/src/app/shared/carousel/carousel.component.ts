@@ -15,6 +15,7 @@ export class CarouselComponent{
   badges = [];
   curImgClass = "cur-image";
   displayImage = true;
+  width = 0;
   
   /**
    * imageobjects: {img: string, description: string, url: string}
@@ -38,7 +39,7 @@ export class CarouselComponent{
       this.prev();
       this.updateFrame();
       this.createBadgeIndex();
-      //setTimeout(this.next, 2000);
+      //setTimeout(this.next, 2000); // for autoscrolling
     }
   }
   
@@ -141,6 +142,19 @@ export class CarouselComponent{
       return "transparent";
     }
   }
+  
+  getHeight(this) {
+    if (this.width != 0 && this.width * 0.5 < 1200) {
+      return (this.width * 0.5).toString();
+    }
+    
+    return (this.innerWidth * 0.5).toString();
+  }
+  
+  onResize(event) {
+    this.width = event.target.innerWidth;
+  }
+  
 }
 
 
