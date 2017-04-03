@@ -94,8 +94,6 @@ export class CarouselComponent{
       this.updateFrame();
   }
   
-  // Change pointers indexes depending on which badge
-  // that has been clicked
   /**
    * Receives badgeIndex from current clicked or selected badge
    * Changes which image to display correspondingly
@@ -130,8 +128,6 @@ export class CarouselComponent{
     }
   }
   
-  // return the backgroundscolor for each badge depended of which image
-  // that are in the focus
   /**
    * Returns the backgroundcolor for each badge depending of which image
    * that are in focus. If the badges index's <badgeIndex> is selected to be displayed:
