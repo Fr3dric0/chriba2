@@ -39,7 +39,6 @@ export class CarouselComponent{
       this.updateFrame();
       this.createBadgeIndex();
       //setTimeout(this.next, 2000);
-      
     }
   }
   
