@@ -94,7 +94,8 @@ section {
 
 .content {
   background-color: $secondary-background-color;
-  outline: #EEE solid 1px;
+  border-left: 1px solid #EEE;
+  border-left: 1px solid #EEE;
   
   margin: 0 auto 0 auto;
   max-width: $container-width;
