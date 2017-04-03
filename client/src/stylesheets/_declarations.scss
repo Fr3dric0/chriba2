@@ -8,8 +8,8 @@ $primary-background-color: rgb(250, 250, 250);
 $secondary-background-color: #FFF;
 $footer-bg-color: #37474F;
 
-$shadow: rgba(0,0,0, .1) 0.1em 0.1em 0.2em;
-$shadow-hover: rgba(0,0,0, .15) 0.1em 0.12em 0.23em;
+$shadow: rgba(0,0,0, .1) 0em 0.05em 0.05em;
+$shadow-hover: rgba(0,0,0, .05) 0 0.12em 0.1em;
 $shadow-active: none;
 
 $divider-color: #EEE;
@@ -25,6 +25,8 @@ $icon-text: #FFF;
 
 $primary-font: Helvetica, Arial, sans-serifsans-serif;
 
+
+$container-border: #EEE 1px solid;
 $container-width: 60em;
 $inner-width: 50em;
 
@@ -41,4 +43,11 @@ $max-width: 400px;
 
 @mixin border-radius() {
   border-radius: 2px;
+}
+
+@mixin no-user-select() {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

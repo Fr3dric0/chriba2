@@ -72,8 +72,8 @@ function createName (location) {
         name += location.address;
     }
 
-    if (location.address_number) {
-        name += '_' + location.address_number;
+    if (location.addressNumber) {
+        name += '_' + location.addressNumber;
     }
 
     if (location.city && location.city != '') {

@@ -1,3 +1,7 @@
-<p>
-  estates works!
-</p>
+<section>
+  <h2>Eiendommer</h2>
+
+  <ul *ngIf="data" class="material-list">
+    <app-item-list *ngFor="let elem of data" [elem]="elem" [showMap]="true" [type]="'eiendommen'"></app-item-list>
+  </ul>
+</section>

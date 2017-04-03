@@ -8,6 +8,7 @@
  *
  */
 @import "stylesheets/declarations";
+@import "stylesheets/material-list";
 @import "stylesheets/material-form";
 @import "stylesheets/material-buttons";
 
@@ -21,8 +22,8 @@ body {
   margin: 0;
   padding: 0;
 
-  font-family: $primary-font;
   background-color: $primary-background-color;
+  font-family: $primary-font;
 }
 
 /* Element reserved for title */
@@ -34,11 +35,10 @@ h1 {
 
 /* Sub-titles */
 h2, h3, h4, h5, h6 {
-  text-align: center;
-  margin: 0.5em;
   box-sizing: border-box;
+  margin: 0.5em;
+  text-align: center;
 }
-
 
 // Remove outlining on everything
 button:focus, input:focus, textarea:focus {

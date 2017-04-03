@@ -1,5 +1,6 @@
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
+import { ItemListComponent } from './item-list/item-list.component';
 import { XHRService } from './xhr.service';
 import { GeneralService } from './general/general.service'
 import { ThumbnailService } from "./general/thumbnails.service";
@@ -19,6 +20,7 @@ import { LocationButtonComponent } from './location/button/button.component';
 import { CarouselComponent } from "./carousel/carousel.component";
 
 export const SHARED_DECLARATIONS = [
+    ItemListComponent,
     HeaderComponent,
     FooterComponent,
     AddressComponent,
