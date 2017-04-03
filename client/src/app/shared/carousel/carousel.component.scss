@@ -1,7 +1,9 @@
+@import "../../../stylesheets/declarations";
+
 .carousel-container {
   
   position: relative;
-  width: 60em;
+  width: 100%;
   height: 30em;
   margin: 1em auto 0 auto;
   background-color: #FFF;
@@ -12,7 +14,7 @@
     bottom: 0;
     left: 0;
     height: 3em;
-    color: #F5F5F5;
+    color: $icon-text;
     width: inherit;
     background: rgba(100, 100, 100, .7);
   
@@ -27,9 +29,9 @@
     
     button {
       flex: 1;
-      background-color: #388E3C;
+      background-color: $dark-primary;
       border-radius: 2px;
-      color: #F5F5F5;
+      color: $icon-text;
       height: 2em;
       font-size: 0.9em;
       margin: auto 1em;
@@ -43,7 +45,7 @@
     }
     
     button:hover {
-      background-color: #4CAF50;
+      background-color: $primary-color;
     }
     
   }
@@ -71,7 +73,7 @@
     top: 15em;
   }
   
-  .arrow-button {
+  .arrow-btn {
     // css properties
     height: 3.5em;
     width: 3.5em;
