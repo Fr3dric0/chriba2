@@ -1,7 +1,7 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -9,13 +9,13 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./carousel.component.scss']
 })
 
-export class CarouselComponent{
+export class CarouselComponent {
   carouselFrame:any = ["", "", ""];
   pointer = [0,1,2];
   badges = [];
   curImgClass = "cur-image";
   displayImage = true;
-  width = 0;
+  width = window.innerWidth;
   
   /**
    * imageobjects: {img: string, description: string, url: string}
@@ -143,18 +143,19 @@ export class CarouselComponent{
     }
   }
   
+  // Changes height of picture depending of current width
   getHeight(this) {
     if (this.width != 0 && this.width * 0.5 < 1200) {
-      return (this.width * 0.5).toString();
+      return (this.width * 0.6).toString();
     }
     
-    return (this.innerWidth * 0.5).toString();
+    return (this.innerWidth * 0.6).toString();
   }
   
+  // Updates width when resizing
   onResize(event) {
     this.width = event.target.innerWidth;
   }
-  
 }
 
 
