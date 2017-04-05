@@ -130,7 +130,7 @@ export class CarouselComponent {
   
   /**
    * Returns the backgroundcolor for each badge depending of which image
-   * that are in focus. If the badges index's <badgeIndex> is selected to be displayed:
+   * that is in focus. If the badge's index <badgeIndex> is selected to be displayed:
    * this.pointer[1], otherwise make the background transparent
    * @param badgeIndex
    * @returns {any}
