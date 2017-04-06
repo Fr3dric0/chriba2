@@ -14,7 +14,6 @@ export class CarouselComponent {
   pointer = [0,1,2];
   badges = [];
   curImgClass = "cur-image";
-  displayImage = true;
   width = window.innerWidth;
   
   /**
@@ -83,7 +82,6 @@ export class CarouselComponent {
    * Then updates the "window frame" with the previous, current and next image
    */
   prev() {
-    this.curImgClass = "cur-image";
       for (let i = 0; i < 3; i++) {
         this.pointer[i]--;
         if (this.pointer[i] < 0) {
@@ -143,7 +141,10 @@ export class CarouselComponent {
     }
   }
   
-  // Changes height of picture depending of current width
+  /**
+   * Returns the height in px depending on current carousel width (this.width)
+   * @returns {string}
+   */
   getHeight(this) {
     if (this.width != 0 && this.width * 0.5 < 1200) {
       return (this.width * 0.6).toString();
@@ -152,7 +153,10 @@ export class CarouselComponent {
     return (this.innerWidth * 0.6).toString();
   }
   
-  // Updates width when resizing
+  /**
+   * On resizing window, sets this.width equal to current carousel's width
+   * @param event
+   */
   onResize(event) {
     this.width = event.target.innerWidth;
   }
