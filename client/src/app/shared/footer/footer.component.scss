@@ -5,6 +5,8 @@ footer {
   background-color: $footer-bg-color;
   color: $primary-background-color;
   padding: 0.5em 1em 0;
+
+  overflow-x: hidden; // Denne må fiksast
 }
 
 .flex-container {

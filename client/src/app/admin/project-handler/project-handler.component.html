@@ -1,0 +1,42 @@
+<section>
+
+    <app-subpage-navigator [back]="'/backdoor'"></app-subpage-navigator>
+
+    <h2>Administrer Prosjekt</h2>
+    <p class="description">Her kan du opprette nye, eller modifisere eksisterende prosjekt</p>
+
+    <form class="material-form flexing-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
+        <div>
+            <div class="input-divider">
+                <label>Tittel</label>
+                <input type="text" formControlName="title" required>
+            </div>
+            <div class="input-divider">
+                <label>Ekstern side</label>
+                <input type="url" formControlName="url">
+            </div>
+        </div>
+        <div>
+            <div class="input-divider break-line">
+                <label>Beskrivelse</label><br>
+                <textarea name="description" formControlName="description" rows="15"
+                          placeholder="Liten forklaring om prosjektet"></textarea>
+            </div>
+            <small class="input-feedback" [hidden]="!form.controls['description'].value || form.controls['description'].value.length <= 355">
+                Beskrivelsen bør ikkje bestå av meir enn 355 tegn. Kan føre til at sidene ser litt merkelige ut.</small>
+        </div>
+
+        <button class="submit" type="submit" [disabled]="!form.valid">
+            <span>Lagre</span><span *ngIf="saved">t</span>
+            <i *ngIf="saved" class="em em---1"></i>
+        </button>
+    </form>
+</section>
+
+<section *ngIf="project && (project.name || project._id)">
+    <h3>Bilder</h3>
+    <p class="description">Registrerte bilder til prosjektet vil dukke opp her.
+        Hvor du har mulighet til å fjerne disse, eller legge til nye</p>
+
+    <app-admin-thumbnail-handler [element]="project" (upload)="upload($event)" (remove)="remove($event)"></app-admin-thumbnail-handler>
+</section>

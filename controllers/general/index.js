@@ -7,6 +7,6 @@ const { find } = require('./find');
 // GET /api/general
 router.get('/', find);
 // PUT /api/general
-router.put('/', requireToken, update);
+router.patch('/', requireToken, update);
 
 module.exports = router;

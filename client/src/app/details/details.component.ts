@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EstateService } from "../estates/estates.service";
-import { ProjectService } from "../projects/projects.service";
+import { EstatesService } from "../estates/estates.service";
+import { ProjectsService } from "../projects/projects.service";
 
 @Component({
     selector: 'app-details',
@@ -13,8 +13,8 @@ export class DetailsComponent implements OnInit {
     private name: any;
     private data: any;
 
-    constructor(private es: EstateService,
-                private ps: ProjectService) { }
+    constructor(private es: EstatesService,
+                private ps: ProjectsService) { }
 
     ngOnInit() {
         this.name = location.pathname.substring(1).split("/");

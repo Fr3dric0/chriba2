@@ -28,13 +28,10 @@ function uploadFile (req, res, next) {
     const { estate, size } = req.params;
     const { file } = req;
 
-    uploader.single('estates', {size, file, root, publicPath}, estate)
-        .then((results) => {
-            res.json(results);
-        })
+    uploader.single(Estates, {size, file, root, publicPath}, estate)
+        .then((results) => res.json(results))
         .catch( err => next(err));
 }
-
 
 const remove = [
     validateDeleteFields,
@@ -43,6 +40,7 @@ const remove = [
     getThumbUrls,
     deleteThumbFiles,
     deleteThumbData,
+    findOne,
     returnResults
 ];
 
@@ -59,7 +57,6 @@ function validateDeleteFields (req, res, next) {
     if (!req.estates) {
         req.estates = {};
     }
-
 
     req.estates.query = { name: estate }; // Used for search
     req.estates.size = size;
@@ -107,12 +104,22 @@ function getThumbUrls (req, res, next) {
 
     // Used for third party middleware
     if (!thumbnails[size]) {
-        next();
+        return next();
     }
 
-    if (!index) {
-        paths = thumbnails[size]; // Should be checked before that thumbnails[size] exists
+    if (!index && index !== 0) {
+        const err = new Error(`[Estate Img Delete Error] Cannot find item to remove index: ${index}`);
+        err.status = 400;
+        return next(err);
+    }
+
+    // Custom value: one can set index to 'all'
+    // to remove everything from `thumbnails[size]`
+    if (index === 'all') {
+        paths = thumbnails[size];
+
     } else {
+
         if (index > thumbnails[size].length - 1 || index < 0) {
             const err = new Error(`[Estate Img Delete Error] Index: ${index}, is out of range [0, ${thumbnails[size].length - 1}]`);
             err.status = 400;
@@ -156,7 +163,7 @@ function deleteThumbData (req, res, next) {
     const { paths, size, estate } = req.estates;
 
     const deletePromises = paths.map((path) => {
-        if (size == 'large') {
+        if (size === 'large') {
             return Estates.update({_id: estate._id}, {$pull: {'thumbnails.large': path} })
         } else {
             return Estates.update({_id: estate._id}, {$pull: {'thumbnails.small': path} })
@@ -169,9 +176,9 @@ function deleteThumbData (req, res, next) {
 }
 
 function returnResults (req, res, next) {
-    const { paths } = req.estates;
+    const { estate } = req.estates;
 
-    res.status(200).json(paths);
+    res.status(200).json(estate);
 }
 
 module.exports = { upload, remove, getThumbUrls, deleteThumbFiles };

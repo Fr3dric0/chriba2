@@ -8,6 +8,9 @@ import { DetailsComponent } from "./details/details.component";
 
 import { AuthGuard } from './shared/auth/auth.guard';
 import { AdminComponent } from './admin/admin.component';
+import { LoginComponent } from './login/login.component';
+import { EstateHandlerComponent } from './admin/estate-handler/estate-handler.component';
+import { ProjectHandlerComponent } from './admin/project-handler/project-handler.component';
 
 const routes:Routes = [
     {
@@ -31,12 +34,37 @@ const routes:Routes = [
         component: DetailsComponent
     },
     {
-        path: 'admin',
+        path: 'backdoor',
         component: AdminComponent,
-        canActivate: [ AuthGuard ] // Protects routes from unauthorized access
+        canActivate: [ AuthGuard ]
+    },
+    {
+        path: 'backdoor/login',
+        component: LoginComponent
+    },
+    {
+        path: 'backdoor/estates',
+        component: EstateHandlerComponent,
+        canActivate: [ AuthGuard ]
+    },
+    {
+        path: 'backdoor/estates/:name',
+        component: EstateHandlerComponent,
+        canActivate: [ AuthGuard ]
+    },
+    {
+        path: 'backdoor/projects',
+        component: ProjectHandlerComponent,
+        canActivate: [ AuthGuard ]
+    },
+    {
+        path: 'backdoor/projects/:name',
+        component: ProjectHandlerComponent,
+        canActivate: [ AuthGuard ]
     },
     { path: '**', component: ErrorComponent }
 ];
+
 
 @NgModule({
     imports: [ RouterModule.forRoot(routes) ],

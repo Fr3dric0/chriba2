@@ -1,0 +1,81 @@
+@import "../../../stylesheets/declarations";
+@import "../../../stylesheets/material-list";
+@import "../../../stylesheets/material-buttons";
+
+$vertical-margin: 30px;
+$button-height: 30px;
+
+li {
+  color: $primary-color;
+  display: flex;
+  flex-wrap: nowrap;
+  font-family: $primary-font;
+
+  position: relative;
+  width: 100%;
+
+  div.img-container {
+    flex-shrink: 0;
+  }
+
+  div.mid-content {
+    flex-grow: 1;
+    margin: 0 $vertical-margin 0 $vertical-margin;
+
+
+    div.info-container {
+      color: $primary-text;
+      height: $list-height-large - $button-height - 10px;
+      margin: 0;
+      width: 100%
+    }
+
+    button {
+      height: $button-height;
+      margin: 0;
+      width: 100%;
+    }
+  }
+
+  em {
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .arrow {
+    background-color: $icon-text;
+    flex-shrink: 0;
+    height: $list-height;
+    text-align: center;
+    width: $list-height;
+
+    svg {
+      margin-top: 0.20em;
+      transform: scale(0.6);
+
+      line {
+        stroke: $primary-color;
+      }
+    }
+  }
+
+  app-map {
+    flex-shrink: 0;
+    height: $list-height-large;
+    width: $list-height-large + 10px;
+  }
+
+  .mid-content, app-map {
+    display: none;
+  }
+
+  @media screen and(min-width: $resize-width) {
+    .mid-content, app-map {
+      display: block;
+    }
+
+    .collapsed-view {
+      display: none;
+    }
+  }
+}

@@ -17,12 +17,12 @@ router.get('/:name', find);
 // POST /api/projects
 router.post('/', requireToken, create);
 // PUT /api/projects/:name
-router.put('/:name', requireToken, update);
+router.patch('/:name', requireToken, update);
 // DELETE /api/projects/:name
 router.delete('/:name', requireToken, remove);
 
 // POST /api/estates/:estate/img/:size
-router.post('/:name/img/:size', requireToken, uploadFolder.single('thumb'), fileModifier.upload);
+router.post('/:name/thumb/:size', requireToken, uploadFolder.single('thumb'), fileModifier.upload);
 // DELETE /api/estates/:estate/img/:size | BODY index
-router.delete('/:name/img/:size', requireToken, fileModifier.remove);
+router.delete('/:name/thumb/:size', requireToken, fileModifier.remove);
 module.exports = router;

@@ -24,6 +24,7 @@ function validateAuthFields (req, res, next) {
 
 function authAdmin (req, res, next) {
     const { email, password } = req.body;
+
     Admins.authenticate(email, password)
         .then((user) => {
             req.user = user;
@@ -31,7 +32,7 @@ function authAdmin (req, res, next) {
         })
         .catch((e) => {
             let err;
-            if (e.status == 403) {
+            if (e.status === 403) {
                 err = new Error(`[Authentication Error] Email or password is invalid!`);
                 err.status = 403;
             } else {
@@ -50,7 +51,7 @@ function generateToken (req, res, next) {
 function returnToken (req, res, next) {
     const { token } = req;
 
-    res.status(200).json({ succes: true, token });
+    res.status(200).json({ success: true, token });
 }
 
 module.exports = { authenticate, generateToken };

@@ -29,8 +29,7 @@ Admins.statics.updateLastActive = function (uid) {
             if (err) {
                 return rr(err);
             }
-
-            return rsv(doc.lastActive);
+            rsv(doc.lastActive);
         });
     });
 };
@@ -91,6 +90,7 @@ Admins.statics.hashField = function (pwd) {
         });
     })
 };
+
 
 /**
  *  @param  {String}    email       The users email

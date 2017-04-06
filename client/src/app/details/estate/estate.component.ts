@@ -1,7 +1,7 @@
 /**
  * Created by Ruben Johannessen on 15.03.2017.
  */
-import {Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'details-estate',

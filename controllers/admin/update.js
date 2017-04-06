@@ -37,6 +37,10 @@ function validatePassword (req, res, next) {
     const { uid } = req.decoded;
     const { admin } = req;
 
+    if (!admin.password) {
+        return next(); // Skip to next process
+    }
+
     if (admin.password !== admin.confirmPassword) {
         const err = new Error('[Admin Modify Error] New Password fields do not match');
         err.status = 400;

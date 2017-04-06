@@ -1,0 +1,12 @@
+@import "../shared/item-list/item-list.component";
+
+* /deep/ li div.info-container {
+  right: $vertical-margin;
+  text-align: justify;
+
+  li h1, h2, h3 {
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+}
