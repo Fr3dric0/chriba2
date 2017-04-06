@@ -15,5 +15,5 @@
     <div class="info-container" [innerHtml]="elem.innerContent"></div>
     <button [ngClass]="'btn-flat btn-bright'">Til {{type}}</button>
   </div>
-  <app-map *ngIf="expanded && showMap && elem.location" [lat]="elem.location.lat" [long]="elem.location.lng" class="map"></app-map>
+  <app-map *ngIf="expanded && showMap && elem.location" [lat]="elem.location.lat" [long]="elem.location.long" class="map"></app-map>
 </li>
