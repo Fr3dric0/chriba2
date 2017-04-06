@@ -2,65 +2,72 @@
 
 .carousel-container {
   
+  background-color: #FFF;
+  min-height: 150px;
+  max-height: 550px;
+  margin: 1em auto 0 auto;
   position: relative;
   width: 100%;
-  min-height: 150px;
-  max-height: 500px;
-  margin: 1em auto 0 auto;
-  background-color: #FFF;
   
   .desc-container {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 3em;
-    color: $icon-text;
-    width: inherit;
-    background: rgba(100, 100, 100, .7);
-  
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    align-items: center;
     box-sizing: border-box;
+    background: rgba(100, 100, 100, .7);
+    bottom: 0;
+    color: $icon-text;
+    display: flex;
+    height: 3em;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: inherit;
     
-    span {
+    .desc {
       flex: 7;
       margin: 0.3em;
     }
     
-    button {
-      flex: 1;
-      background-color: $dark-primary;
-      border-radius: 2px;
-      color: $icon-text;
-      height: 2em;
-      font-size: 0.9em;
-      margin: auto 1em;
-      min-width: 8em;
-      width: 8em;
+    .desc-btn {
+      background-color: $primary-background-color;
       border: none;
+      border-radius: 2px;
       cursor:pointer;
-      overflow: hidden;
+      flex: 1;
+      font-size: 0.9em;
+      height: 2em;
+      margin: auto 1em;
+      min-width: 6em;
       outline:none;
-      
+      overflow: hidden;
+      padding: 0;
       transition: 0.2s ease-in-out;
+      width: 6em;
+      
+      .info-txt {
+        width: 5em;
+      }
     }
     
-    button:hover {
-      background-color: $primary-color;
+    .desc-btn:hover {
+      background-color: $secondary-background-color;
     }
     
   }
   
-  img:not(.cur-image) {
+  img:not(.viewed) {
     display: none;
   }
   
-  .cur-image {
-    position: absolute;
-    width: inherit;
+  img.viewed {
     height: 100%;
     margin: 0 auto;
+    object-fit: cover;
+    position: absolute;
+    width: inherit;
+  }
+  
+  .next {
+    opacity: 0;
   }
   
   .next-btn {
@@ -74,28 +81,23 @@
   }
   
   .arrow-btn {
-    // css properties
+    background-color: rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 70%;
+    cursor:pointer;
     height: 3.5em;
-    width: 3.5em;
+    outline:none;
+    overflow: hidden;
     padding: 0;
     top: 45%;
-    background-color: rgba(0, 0, 0, 0.15);
-    border-radius: 70%;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
-    outline:none;
-  
-    // Transitions
-    -o-transition:.5s;
-    -moz-transition:.5s;
     transition:.5s;
+    width: 3.5em;
     
     svg {
-      width: inherit;
+      fill: rgba(230, 230, 230, 0.7);
       height: inherit;
-      fill: rgba(230, 230, 230, 0.7);;
       transition:.5s;
+      width: inherit;
     }
   }
   
@@ -107,34 +109,65 @@
     }
   }
   
-  .badges {
-    display: flex;
+  .fullscreen-btn {
+    background-color: rgba(100, 100, 100, .7);
+    cursor: pointer;
+    height: 3em;
+    padding: 0;
     position: absolute;
-    bottom: 3em;
-    height: 2em;
-    color: #F5F5F5;
-    width: inherit;
-    background-color: transparent;
+    right: 0;
+    top: 0;
+    width: 3em;
+    z-index: 2;
+    
+    svg {
+      fill: #FFF;
+      height: 3em;
+      width: 3em;
+    }
+    
+    svg:hover {
+      background-color: #757575;
+    }
+  }
+  
+  .badges {
     align-items: center;
+    bottom: 3em;
+    color: #F5F5F5;
+    display: flex;
+    height: 2em;
     justify-content: center;
+    position: absolute;
+    width: inherit;
+    z-index: 1;
   
     span {
-      display: block;
-      border-radius: 50%;
-      margin: auto 0.5em auto 0.5em;
       border: 1px solid whitesmoke;
-      background-color: transparent;
-      width: 1em;
-      height: 1em;
-      cursor: pointer;
-      flex-direction: row;
-      transition: 0.2s ease-in-out;
+      border-radius: 50%;
       box-shadow: 0 0 1px 1px rgba(150, 150, 150, .4);
+      cursor: pointer;
+      display: block;
+      flex-direction: row;
+      height: 1em;
+      margin: auto 0.5em auto 0.5em;
+      transition: 0.2s ease-in-out;
+      width: 1em;
     }
-  
+    
     span:hover {
-      background-color: #FFF !important;
+      background-color: #F5F5F5;
     }
+  }
+  
+  .selected {
+    background-color: #F5F5F5;
+  }
+  
+  .fullscreen {
+    height: 100%;
+    width: 100%;
+    
   }
 }
 

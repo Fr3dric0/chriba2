@@ -1,7 +1,7 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -13,8 +13,9 @@ export class CarouselComponent {
   carouselFrame:any = ["", "", ""];
   pointer = [0,1,2];
   badges = [];
-  curImgClass = "cur-image";
+  viewedClass = "viewed";
   width = window.innerWidth;
+  fullScreen = false;
   
   /**
    * imageobjects: {img: string, description: string, url: string}
@@ -57,7 +58,7 @@ export class CarouselComponent {
    * Updates the carouselFrame depending on indexes in this.pointer
    */
   updateFrame() {
-    this.curImgClass = "cur-image appear";
+    this.viewedClass = "cur-image";
     this.carouselFrame = [this.images[this.pointer[0]], this.images[this.pointer[1]], this.images[this.pointer[2]]];
   }
   
@@ -66,7 +67,6 @@ export class CarouselComponent {
    * Then updates the "window frame" with the previous, current and next image
    */
   next() {
-    this.curImgClass = "cur-image";
       for (let i = 0; i < 3; i++) {
         this.pointer[i]++;
         if (this.pointer[i] + 1 > this.images.length) {
@@ -134,11 +134,7 @@ export class CarouselComponent {
    * @returns {any}
    */
   getBgColor(badgeIndex) {
-    if (badgeIndex == this.pointer[1]) {
-      return "#F5F5F5";
-    } else {
-      return "transparent";
-    }
+    return badgeIndex == this.pointer[1];
   }
   
   /**
@@ -146,12 +142,14 @@ export class CarouselComponent {
    * @returns {string}
    */
   getHeight(this) {
-    if (this.width != 0 && this.width * 0.5 < 1200) {
-      return (this.width * 0.6).toString();
+    let precentage = 0.56; // 16:9 ratio, height is 56 % of width
+    if (this.width != 0 && this.width * precentage < 1200) {
+      return (this.width * precentage).toString();
     }
     
-    return (this.innerWidth * 0.6).toString();
+    return (this.innerWidth * precentage).toString();
   }
+  
   
   /**
    * On resizing window, sets this.width equal to current carousel's width
@@ -160,6 +158,19 @@ export class CarouselComponent {
   onResize(event) {
     this.width = event.target.innerWidth;
   }
+  
+  fullscreen() {
+    if (this.fullScreen) {
+      this.viewedClass = "viewed";
+      this.fullScreen = false;
+    } else {
+      this.viewedClass = "viewed fullscreen";
+      this.fullScreen = true;
+    }
+  }
+  
+  
+  
 }
 
 

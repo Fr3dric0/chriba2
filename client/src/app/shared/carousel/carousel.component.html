@@ -1,13 +1,17 @@
 <div class="carousel-container" (window:resize)="onResize($event)" [style.height.px]="getHeight()">
     <img [src]="carouselFrame[0].img">
-    <img class="cur-image" [src]="carouselFrame[1].img">
+    <img class="viewed" [ngClass]="viewedClass" [src]="carouselFrame[1].img">
     <img [src]="carouselFrame[2].img">
     
     <div class="desc-container">
-      <span *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
-      <button *ngIf="carouselFrame[1].url" [routerLink]="[carouselFrame[1].url]"> Les mer </button>
+      <span class="desc" *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
+      <button class="desc-btn btn-flat" *ngIf="carouselFrame[1].url" [routerLink]="[carouselFrame[1].url]">
+        <span class="info-txt">Les mer</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+          <path d="M22 34h4V22h-4v12zm2-30C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16zm-2-22h4v-4h-4v4z"/>
+        </svg>
+      </button>
     </div>
-  
   
     <button class="prev-btn arrow-btn" (click)="prev()">
       <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
@@ -21,7 +25,13 @@
       </svg>
     </button>
   
+  <button class="fullscreen-btn" (click)="fullscreen()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+      <path d="M14 28h-4v10h10v-4h-6v-6zm-4-8h4v-6h6v-4H10v10zm24 14h-6v4h10V28h-4v6zm-6-24v4h6v6h4V10H28z"/>
+    </svg>
+  </button>
+  
     <div class="badges">
-      <span *ngFor="let badge of badges" [style.background-color]="getBgColor(badge)" (click)="viewImage(badge)"></span>
+      <span *ngFor="let badge of badges" [ngClass]="{'selected': getBgColor(badge)}" (click)="viewImage(badge)"></span>
     </div>
 </div>
