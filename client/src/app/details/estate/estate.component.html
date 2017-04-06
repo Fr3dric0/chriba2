@@ -4,7 +4,7 @@
     </div>
     <div  class="flex-container">
 
-        <div class="stats">
+        <div>
             <div>
                 <h2>Adresse</h2>
                 {{location.address}} {{location.addressNumber}} <br>
@@ -16,10 +16,10 @@
                 {{size}} kvm
             </div>
             <br>
-            <a href="{{url}}">{{url}}</a>
+            <a *ngIf="url" href="{{url}}" class="btn btn-find btn-details">{{url}}</a>
         </div>
 
-        <div class="description">
+        <div>
            <p>{{description}}
                <!--TODO: Fjern lorem ipsum-->
                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at est hendrerit, eleifend dolor nec, tincidunt ipsum. Morbi quis dui leo. Fusce felis massa, fermentum et tincidunt in, malesuada id tellus. Sed commodo arcu sit amet volutpat ultricies. Nunc a mattis est. Proin malesuada convallis augue a lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec aliquam et velit et aliquam.

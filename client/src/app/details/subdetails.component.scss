@@ -11,7 +11,7 @@ div {
 }
 
 .flex-container {
-    margin-left: 3em;
+    margin-left: 2em;
     margin-right: 0.5em;
     display: flex;
     flex-direction: row;
@@ -21,6 +21,7 @@ div {
         flex: 1;
         min-width: 16em;
         margin-top: 0;
+        box-sizing: border-box;
     }
 }
 
@@ -32,7 +33,13 @@ h2 {
     font-weight: 100;
 }
 
+.btn-details {
+    width: 75%;
+    margin: auto;
+}
+
 app-map {
+    margin: 1em auto;
     display: block;
     width: 100%;
     height: 250px; //TODO: Endre verdi
