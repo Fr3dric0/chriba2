@@ -3,6 +3,7 @@
         Carousel
     </div>
     <div  class="flex-container">
+
         <div class="stats">
             <div>
                 <h2>Adresse</h2>
@@ -17,6 +18,7 @@
             <br>
             <a href="{{url}}">{{url}}</a>
         </div>
+
         <div class="description">
            <p>{{description}}
                <!--TODO: Fjern lorem ipsum-->
@@ -24,5 +26,6 @@
            </p>
         </div>
     </div>
-    <app-map [lat]="50" [long]="50"></app-map>
+
+    <app-map [lat]="location.lat" [long]="location.long"></app-map>
 </div>

@@ -23,7 +23,8 @@ footer {
 
 app-map {
   flex: 1;
+  box-sizing: border-box;
   min-width: 22em;
   min-height: 10em;
-  padding: 0 1em 1em 0;
+  padding-bottom: 1em;
 }
