@@ -1,12 +1,26 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input} from '@angular/core';
+import { Component, Input, trigger, state, style, animate, transition} from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: "./carousel.component.html",
-  styleUrls: ['./carousel.component.scss']
+  styleUrls: ['./carousel.component.scss'],
+  animations: [
+    trigger('imageState', [
+      state('inactive', style({
+        opacity: 0,
+        transform: 'scale(1.0)'
+      })),
+      state('active',   style({
+        opacity: 1,
+        transform: 'scale(1.0)'
+      })),
+      transition('inactive => active, active => inactive',
+        animate('100ms ease-out'))
+    ])
+  ]
 })
 
 export class CarouselComponent {
@@ -14,8 +28,15 @@ export class CarouselComponent {
   pointer = [0,1,2];
   badges = [];
   viewedClass = "viewed";
-  width = window.innerWidth;
-  fullScreen = false;
+  windowWidth = window.innerWidth;
+  fullWidth = window.innerWidth;
+  fullHeight = window.innerHeight;
+  halfWidth = this.fullWidth / 2;
+  leftMargin = - this.halfWidth * 2;
+  imgState = "active";
+  fullScreen = "disappear";
+  fullScreenSrc = "";
+  standBy = true;
   
   /**
    * imageobjects: {img: string, description: string, url: string}
@@ -23,6 +44,10 @@ export class CarouselComponent {
    * When images is loaded, this.prev() changes the pointers index to 0
    * and updates the frame, updateFrame() for then creating all the badges
    * with createBadgeIndex().
+   *
+   * setInterval starts a loop as long as the carousel is on standby.
+   * standBy is true when initializing and the interval scrolls every 10 secs
+   * as long as standBy is true.
    *
    */
   private _images;
@@ -39,7 +64,7 @@ export class CarouselComponent {
       this.prev();
       this.updateFrame();
       this.createBadgeIndex();
-      //setTimeout(this.next, 2000); // for autoscrolling
+      setInterval(() => this.standBy ? this.next() : "", 10000); // loop for autoscroll
     }
   }
   
@@ -55,11 +80,17 @@ export class CarouselComponent {
    * obj = {img: string, description: string, url: string}
    * (or obj = imageobject in _images)
    * carouselFrame = [obj, obj, obj]
-   * Updates the carouselFrame depending on indexes in this.pointer
+   * Updates the carouselFrame depending on index in this.pointer
    */
   updateFrame() {
-    this.viewedClass = "cur-image";
-    this.carouselFrame = [this.images[this.pointer[0]], this.images[this.pointer[1]], this.images[this.pointer[2]]];
+    this.changeImgState();
+    setTimeout(() =>  this.changeImgState(), 100);
+    setTimeout(() => this.carouselFrame =
+      [
+        this.images[this.pointer[0]],
+        this.images[this.pointer[1]],
+        this.images[this.pointer[2]]
+      ], 100);
   }
   
   /**
@@ -73,7 +104,6 @@ export class CarouselComponent {
           this.pointer[i] = 0;
         }
       }
-  
       this.updateFrame();
   }
   
@@ -88,7 +118,7 @@ export class CarouselComponent {
           this.pointer[i] = this.images.length - 1;
         }
       }
-      
+    
       this.updateFrame();
   }
   
@@ -142,12 +172,11 @@ export class CarouselComponent {
    * @returns {string}
    */
   getHeight(this) {
-    let precentage = 0.56; // 16:9 ratio, height is 56 % of width
-    if (this.width != 0 && this.width * precentage < 1200) {
-      return (this.width * precentage).toString();
+    let percentage = 0.56; // 16:9 ratio, height is 56 % of width
+    if (this.fullWidth != 0 && this.fullWidth * percentage < 1200) {
+      return (this.fullWidth * percentage).toString();
     }
-    
-    return (this.innerWidth * precentage).toString();
+    return (this.fullWidth * percentage).toString();
   }
   
   
@@ -156,20 +185,41 @@ export class CarouselComponent {
    * @param event
    */
   onResize(event) {
-    this.width = event.target.innerWidth;
+    this.fullWidth = event.target.innerWidth;
+    
   }
   
+  /**
+   * Changes the class for the fullscreen container depending on wether there
+   * is fullscreen in the class or not, also, changes wether the image should
+   * load or not by adding and removing the source src.
+   */
   fullscreen() {
-    if (this.fullScreen) {
-      this.viewedClass = "viewed";
-      this.fullScreen = false;
-    } else {
-      this.viewedClass = "viewed fullscreen";
-      this.fullScreen = true;
-    }
+    this.fullScreen.includes("fullscreen") ? (
+      this.fullScreen = "disappear",
+        this.fullScreenSrc = ""
+    ) : (
+      this.fullScreen = "fullscreen",
+        this.fullScreenSrc = this.carouselFrame[1].img
+    );
   }
   
+  /**
+   * This function is used to change wether the current (shown) image
+   * should be active or not and cooperates with the transitions at the top.
+   */
+  changeImgState() {
+    this.imgState = this.imgState == "active" ? "inactive" : "active";
+  }
   
+  /**
+   * This is for the autoscrolling. Sets the standby to false if the user
+   * interacts with the carousel (clicking any button).
+   * standBy Boolean   initialized as true;
+   */
+  standbyOff() {
+    this.standBy = false;
+  }
   
 }
 
