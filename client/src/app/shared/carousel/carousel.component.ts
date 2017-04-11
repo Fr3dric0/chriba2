@@ -1,7 +1,7 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input, trigger, state, style, animate, transition} from '@angular/core';
+import { Component, Input, trigger, state, style, animate, transition, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -30,12 +30,9 @@ export class CarouselComponent {
   viewedClass = "viewed";
   windowWidth = window.innerWidth;
   fullWidth = window.innerWidth;
-  fullHeight = window.innerHeight;
-  halfWidth = this.fullWidth / 2;
-  leftMargin = - this.halfWidth * 2;
   imgState = "active";
   fullScreen = "disappear";
-  fullScreenSrc = "";
+  fullScreenBackground = "";
   standBy = true;
   
   /**
@@ -186,7 +183,6 @@ export class CarouselComponent {
    */
   onResize(event) {
     this.fullWidth = event.target.innerWidth;
-    
   }
   
   /**
@@ -194,13 +190,14 @@ export class CarouselComponent {
    * is fullscreen in the class or not, also, changes wether the image should
    * load or not by adding and removing the source src.
    */
+  
   fullscreen() {
     this.fullScreen.includes("fullscreen") ? (
       this.fullScreen = "disappear",
-        this.fullScreenSrc = ""
+      this.fullScreenBackground = ""
     ) : (
       this.fullScreen = "fullscreen",
-        this.fullScreenSrc = this.carouselFrame[1].img
+      this.fullScreenBackground = "background"
     );
   }
   
@@ -220,7 +217,6 @@ export class CarouselComponent {
   standbyOff() {
     this.standBy = false;
   }
-  
 }
 
 
