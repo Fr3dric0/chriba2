@@ -1,7 +1,7 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input, trigger, state, style, animate, transition, ViewChild } from '@angular/core';
+import { Component, Input, trigger, state, style, animate, transition } from '@angular/core';
 
 @Component({
   selector: 'app-carousel',
@@ -10,12 +10,10 @@ import { Component, Input, trigger, state, style, animate, transition, ViewChild
   animations: [
     trigger('imageState', [
       state('inactive', style({
-        opacity: 0,
-        transform: 'scale(1.0)'
+        opacity: 0
       })),
       state('active',   style({
-        opacity: 1,
-        transform: 'scale(1.0)'
+        opacity: 1
       })),
       transition('inactive => active, active => inactive',
         animate('100ms ease-out'))
@@ -28,10 +26,10 @@ export class CarouselComponent {
   pointer = [0,1,2];
   badges = [];
   viewedClass = "viewed";
-  windowWidth = window.innerWidth;
   fullWidth = window.innerWidth;
   imgState = "active";
   fullScreen = "disappear";
+  badgesClass = "";
   fullScreenBackground = "";
   standBy = true;
   
@@ -61,7 +59,7 @@ export class CarouselComponent {
       this.prev();
       this.updateFrame();
       this.createBadgeIndex();
-      setInterval(() => this.standBy ? this.next() : "", 10000); // loop for autoscroll
+      setInterval(() => this.standBy ? this.next() : "", 10000);
     }
   }
   
@@ -193,11 +191,13 @@ export class CarouselComponent {
   
   fullscreen() {
     this.fullScreen.includes("fullscreen") ? (
-      this.fullScreen = "disappear",
-      this.fullScreenBackground = ""
+        this.fullScreen = "disappear",
+        this.fullScreenBackground = "",
+        this.viewedClass = "viewed"
     ) : (
-      this.fullScreen = "fullscreen",
-      this.fullScreenBackground = "background"
+        this.fullScreen = "fullscreen",
+        this.fullScreenBackground = "background",
+        this.viewedClass = "viewed scale-down"
     );
   }
   

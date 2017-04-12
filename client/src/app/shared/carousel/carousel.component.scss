@@ -66,6 +66,10 @@
     width: inherit;
   }
   
+  img.scale-down {
+    object-fit: scale-down;
+  }
+  
   .toolbar {
     align-items: center;
     box-sizing: border-box;
@@ -91,12 +95,12 @@
     border: none;
     border-radius: 70%;
     cursor:pointer;
-    height: 3.5em;
+    height: 3em;
     outline:none;
     overflow: hidden;
     padding: 0;
     transition:.5s;
-    width: 3.5em;
+    width: 3em;
     z-index: 99;
     
     svg {
@@ -199,16 +203,12 @@
   width: 100%;
   z-index: 95;
   
-  img {
-    background-color: whitesmoke;
+  .viewed {
     display: block;
-    object-fit: cover;
     max-width: 80vw;
     z-index: 94;
   }
 }
-
-
 
 
 

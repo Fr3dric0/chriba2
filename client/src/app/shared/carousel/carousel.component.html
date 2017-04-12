@@ -1,8 +1,10 @@
 <div [ngClass]="fullScreenBackground">
   <div class="carousel-container" [ngClass]="fullScreen" (window:resize)="onResize($event);" [style.height.px]="getHeight()">
+    
     <img [src]="carouselFrame[0].img">
     <img class="viewed" [ngClass]="viewedClass" [@imageState]="imgState" [src]="carouselFrame[1].img">
     <img [src]="carouselFrame[2].img">
+    
     <div class="desc-container">
       <span class="desc" *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
       <button class="desc-btn btn-flat" *ngIf="carouselFrame[1].url" [routerLink]="[carouselFrame[1].url]">
