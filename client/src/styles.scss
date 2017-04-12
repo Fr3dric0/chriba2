@@ -92,10 +92,11 @@ section {
   width: 100%;
 }
 
-.content {
+main {
   background-color: $secondary-background-color;
   border-left: #EEE solid 1px;
   border-right: #EEE solid 1px;
+  box-sizing: border-box;
 
   margin: 0 auto 0 auto;
   max-width: $container-width;
@@ -140,7 +141,25 @@ app-map.preview {
   width: 100%;
 }
 
-@media screen and (max-width: $max-width) {
+
+/**
+ * MOBILE VIEW
+ *
+ */
+@media screen and (max-width: $breakpoint) {
+
+}
+
+/**
+ * BREAKPOINT WHERE `main` MEETS WINDOW EDGE
+ *
+ *
+ */
+@media screen and (max-width: $container-width) {
+  main {
+    border: none;
+  }
+
   .metadata-container {
     font-size: 0.9em;
   }
