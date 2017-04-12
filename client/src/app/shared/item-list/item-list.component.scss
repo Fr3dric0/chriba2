@@ -69,7 +69,7 @@ li {
     display: none;
   }
 
-  @media screen and(min-width: $resize-width) {
+  @media screen and (min-width: $breakpoint) {
     .mid-content, app-map {
       display: block;
     }
