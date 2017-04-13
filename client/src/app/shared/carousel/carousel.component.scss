@@ -1,18 +1,18 @@
 @import "../../../stylesheets/declarations";
 
-.carousel-container {
+.carousel {
   
-  background-color: #FFF;
-  min-height: 150px;
-  max-height: 550px;
+  background-color: $secondary-background-color;
+  min-height: 9.4em;
+  max-height: 34.4em;
   margin: 0 auto;
   position: relative;
   width: 100%;
   
-  .desc-container {
+  .desc-carousel {
     align-items: center;
     box-sizing: border-box;
-    background: rgba(100, 100, 100, .7);
+    background: $carousel-background-color;
     bottom: 0;
     color: $icon-text;
     display: flex;
@@ -20,37 +20,30 @@
     left: 0;
     overflow: hidden;
     position: absolute;
-    width: inherit;
+    width: 100%;
     z-index: 97;
     
-    .desc {
+    span {
       flex: 7;
       margin: 0.3em;
     }
     
-    .desc-btn {
-      background-color: $primary-background-color;
-      border: none;
-      border-radius: 2px;
-      cursor:pointer;
+    .btn-desc {
       flex: 1;
-      font-size: 0.9em;
       height: 2em;
       margin: auto 1em;
       min-width: 6em;
-      outline:none;
       overflow: hidden;
       padding: 0;
-      transition: 0.2s ease-in-out;
       width: 6em;
       
-      .info-txt {
+      span {
         width: 4em;
       }
-    }
-    
-    .desc-btn:hover {
-      background-color: $secondary-background-color;
+      
+      &:hover {
+        background-color: $secondary-background-color;
+      }
     }
   
     .disappear {
@@ -81,21 +74,21 @@
     height: 100%;
     justify-content: space-between;
     padding: 1em;
-    width: 100%
+    width: 100%;
+    
+    &:first-child {
+      position: absolute;
+      left: 1em;
+    }
+    
+    &:last-child {
+      position: absolute;
+      right: 1em;
+    }
   }
   
-  .next-btn {
-    position: absolute;
-    right: 1em;
-  }
-  
-  .prev-btn {
-    position: absolute;
-    left: 1em;
-  }
-  
-  .arrow-btn {
-    background-color: rgba(0, 0, 0, 0.15);
+  .btn-arrow {
+    background-color: $blurred;
     border: none;
     border-radius: 70%;
     cursor:pointer;
@@ -108,18 +101,19 @@
     z-index: 99;
     
     svg {
-      fill: rgba(230, 230, 230, 0.7);
+      fill: $svg-icon;
       height: inherit;
       transition:.5s;
       width: inherit;
     }
-  }
-  
-  .arrow-btn:hover {
-    background-color: #757575;
     
-    svg {
-      fill: #FFF;
+    &:hover {
+      background-color: $carousel-background-color;
+      
+      svg {
+        fill: $secondary-background-color;
+      }
+      
     }
   }
   
@@ -127,27 +121,24 @@
     display: none;
   }
   
-  .fullscreen-btn {
-    background-color: $transparent-grey;
-    cursor: pointer;
+  .btn-fullscreen {
+    background-color: $blurred;
     height: 3em;
-    opacity: 1;
     padding: 0;
     position: absolute;
     right: 0;
     top: 0;
-    transition: opacity 0.2s ease-in-out, visibility 0.5s;
     width: 3em;
     z-index: 101;
-    
-    svg {
-      fill: #FFF;
-      height: 3em;
-      width: 3em;
+  
+    &:hover {
+      background-color: $secondary-text;
     }
     
-    svg:hover {
-      background-color: #757575;
+    svg {
+      fill: $secondary-background-color;
+      height: 3em;
+      width: 3em;
     }
   }
   
@@ -162,7 +153,7 @@
   .badges {
     align-items: center;
     bottom: 3em;
-    color: $whitesmoke;
+    color: $primary-background-color;
     display: flex;
     height: 2em;
     justify-content: center;
@@ -171,20 +162,21 @@
     z-index: 98;
     
   span {
-    border: 1px solid $whitesmoke;
+    @include transition();
+    border: 1px solid $primary-background-color;
     border-radius: 50%;
-    box-shadow: 0 0 1px 1px $transparent-grey;
+    box-shadow: 0 0 1px 1px $blurred;
     cursor: pointer;
     display: block;
     flex-direction: row;
     height: 1em;
     margin: auto 0.5em;
-    transition: 0.2s ease-in-out;
     width: 1em;
-  }
-  
-  span:hover {
-    background-color: $whitesmoke;
+    
+    &:hover {
+      background-color: $primary-background-color;
+    }
+    
   }
   
   }
@@ -194,12 +186,12 @@
   }
   
   .selected {
-    background-color: $whitesmoke;
+    background-color: $primary-background-color;
   }
 }
 
 .background {
-  background-color: $transparent-black;
+  background-color: $carousel-background-color;
   height: 100vh;
   left: 0;
   position: fixed;
@@ -210,7 +202,7 @@
 
 .fullscreen {
   align-items: center;
-  background-color: $transparent;
+  background-color: transparent;
   display: flex;
   height: 100%;
   justify-content: center;

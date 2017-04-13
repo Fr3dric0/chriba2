@@ -12,11 +12,8 @@ $shadow: rgba(0,0,0, .1) 0em 0.05em 0.05em;
 $shadow-hover: rgba(0,0,0, .05) 0 0.12em 0.1em;
 $shadow-active: none;
 
-$transparent-grey: rgba(150, 150, 150, 0.4);
-$transparent-black: rgba(50, 50, 50, 0.9);
-$transparent: rgba(50, 50, 50, 0);
-
-$whitesmoke: #F5F5F5;
+$blurred: rgba(150, 150, 150, 0.5);
+$carousel-background-color: rgba(50, 50, 50, 0.9);
 
 $divider-color: #EEE;
 $accent-color: #607D8B;
@@ -28,6 +25,7 @@ $pending-color: #2196F3;
 $primary-text: #212121;
 $secondary-text: #757575;
 $icon-text: #FFF;
+$svg-icon: rgba(230, 230, 230, 0.7);
 
 $primary-font: Helvetica, Arial, sans-serifsans-serif;
 

@@ -1,14 +1,14 @@
 <div [ngClass]="fullScreenBackground">
-  <div class="carousel-container" [ngClass]="fullScreen" (window:resize)="onResize($event);" [style.height.px]="getHeight()">
+  <div class="carousel" [ngClass]="fullScreen" (window:resize)="onResize($event);" [style.height.px]="getHeight()">
     
     <img [src]="carouselFrame[0].img">
     <img class="viewed" [ngClass]="viewedClass" [@imageState]="imgState" [src]="carouselFrame[1].img">
     <img [src]="carouselFrame[2].img">
     
-    <div class="desc-container" [ngClass]="descClass">
-      <span class="desc" *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
-      <button class="desc-btn btn-flat" *ngIf="carouselFrame[1].url" [routerLink]="[carouselFrame[1].url]">
-        <span class="info-txt">Les mer</span>
+    <div class="desc-carousel" [ngClass]="descClass">
+      <span *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
+      <button class="btn-desc btn-flat" *ngIf="carouselFrame[1].url" [routerLink]="[carouselFrame[1].url]">
+        <span>Les mer</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
           <path d="M22 34h4V22h-4v12zm2-30C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16zm-2-22h4v-4h-4v4z"/>
         </svg>
@@ -16,27 +16,27 @@
     </div>
     
     <div class="toolbar">
-      <button class="prev-btn arrow-btn" (click)="prev(); standbyOff()">
+      <button class="btn-arrow" (click)="prev(); standbyOff()">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
           <path d="M30.83 14.83L28 12 16 24l12 12 2.83-2.83L21.66 24z"/>
         </svg>
       </button>
       
-      <button class="next-btn arrow-btn" (click)="next(); standbyOff()">
+      <button class="btn-arrow" (click)="next(); standbyOff()">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
           <path d="M20 12l-2.83 2.83L26.34 24l-9.17 9.17L20 36l12-12z"/>
         </svg>
       </button>
     </div>
     
-    <button class="fullscreen-btn" [ngClass]="fullScreenBtn" (click)="fullscreen(); standbyOff()">
+    <button class="btn-fullscreen" [ngClass]="fullScreenBtn" (click)="fullscreen(); standbyOff()">
       <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
         <path d="M14 28h-4v10h10v-4h-6v-6zm-4-8h4v-6h6v-4H10v10zm24 14h-6v4h10V28h-4v6zm-6-24v4h6v6h4V10H28z"/>
       </svg>
     </button>
     
     <div class="badges" [ngStyle]="{'bottom': getBottomValue()}">
-      <span *ngFor="let badge of badges" [ngClass]="{'selected': getBgColor(badge)}" (click)="viewImage(badge); standbyOff()"></span>
+      <span *ngFor="let badge of badges" [ngClass]="{'selected': isSelected(badge)}" (click)="viewImage(badge); standbyOff()"></span>
     </div>
   </div>
 </div>

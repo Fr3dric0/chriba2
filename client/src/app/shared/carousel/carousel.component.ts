@@ -25,14 +25,24 @@ export class CarouselComponent {
   carouselFrame:any = ["", "", ""];
   pointer = [0,1,2];
   badges = [];
-  viewedClass = "viewed";
   fullWidth = window.innerWidth;
   imgState = "active";
+  
+  /**
+   * Classes depending on wether the carousel is in fullscreen or not
+   * viewedClass = current viewing image
+   * fullScreen = fullscreen mode or not
+   * descClass = if the description should disappear or not
+   * fullScrenBtn = set the fullscreen button to fixed if in fullscreen mode
+   * @type {string}
+   */
+  viewedClass = "viewed";
   fullScreen = "disappear";
   fullScreenBackground = "";
   descClass = "";
   fullScreenBtn = "";
-  standBy = true;
+  
+  standBy = true; // As long as standBy is true, the carousel autoscrolls
   
   /**
    * imageobjects: {img: string, description: string, url: string}
@@ -139,7 +149,7 @@ export class CarouselComponent {
     
     this.pointer = [prevIdx, badgeIndex, nextIdx];
     this.updateFrame();
-    this.getBgColor(badgeIndex)
+    this.isSelected(badgeIndex)
   }
   
   /**
@@ -153,13 +163,11 @@ export class CarouselComponent {
   }
   
   /**
-   * Returns the backgroundcolor for each badge depending of which image
-   * that is in focus. If the badge's index <badgeIndex> is selected to be displayed:
-   * this.pointer[1], otherwise make the background transparent
+   * Returns if the selected badge (badgeIndex) should have backgroundcolour or not.
    * @param badgeIndex
    * @returns {any}
    */
-  getBgColor(badgeIndex) {
+  isSelected(badgeIndex) {
     return badgeIndex == this.pointer[1];
   }
   
@@ -181,9 +189,8 @@ export class CarouselComponent {
    * @returns {string}
    */
   getBottomValue() {
-    return this.fullScreen.includes("fullscreen") ? "0" : "3em";
+    return this.fullScreen == "fullscreen" ? "0" : "3em";
   }
-  
   
   /**
    * On resizing window, sets this.width equal to current carousel's width
@@ -202,11 +209,12 @@ export class CarouselComponent {
   
   fullscreen() {
     this.fullScreen.includes("fullscreen") ? (
-        this.fullScreen = "disappear",
-        this.fullScreenBackground = "",
+        this.fullScreen = "disappear", // toggles wether fullscreen should appear or not
+        this.fullScreenBackground = "", // toggles background for fullscreen
+        // toggles the image resolution to adjust depending on fullscreen or not
         this.viewedClass = "viewed",
-        this.descClass = "",
-        this.fullScreenBtn = ""
+        this.descClass = "", // toggles class for the description below the images
+        this.fullScreenBtn = "" // toggles class for the fullscreen button
     ) : (
         this.fullScreen = "fullscreen",
         this.fullScreenBackground = "background",
