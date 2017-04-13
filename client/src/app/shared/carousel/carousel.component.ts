@@ -29,7 +29,6 @@ export class CarouselComponent {
   fullWidth = window.innerWidth;
   imgState = "active";
   fullScreen = "disappear";
-  badgesClass = "";
   fullScreenBackground = "";
   descClass = "";
   fullScreenBtn = "";
@@ -122,7 +121,7 @@ export class CarouselComponent {
   /**
    * Receives badgeIndex from current clicked or selected badge
    * Changes which image to display correspondingly
-   * Checks for previous index and next index to avoid error and index out of bounds
+   * Checks for previous and next index to avoid error and index out of bounds
    * Updates the frame for the carousel
    * Updates the backgroundcolor for badges
    * @param badgeIndex
@@ -165,7 +164,7 @@ export class CarouselComponent {
   }
   
   /**
-   * Returns the height in px depending on current carousel width (this.width)
+   * Returns the height in px depending on current carousel width (this.fullWidth)
    * @returns {string}
    */
   getHeight(this) {
@@ -174,6 +173,15 @@ export class CarouselComponent {
       return (this.fullWidth * percentage).toString();
     }
     return (this.fullWidth * percentage).toString();
+  }
+  
+  /**
+   * Return the bottom value for badges depening on wether the carousel is
+   * in fullscreen or not.
+   * @returns {string}
+   */
+  getBottomValue() {
+    return this.fullScreen.includes("fullscreen") ? "0" : "3em";
   }
   
   
@@ -186,10 +194,10 @@ export class CarouselComponent {
   }
   
   /**
-   * Changes the class for the fullscreen container, description, button, fullscreen button
-   * depending on wether there
-   * is fullscreen in the class or not, also, changes wether the image should
-   * load or not by adding and removing the source src.
+   * Changes the class for the fullscreen container, description, button and
+   * background depending on wether there is fullscreen in the class or not,
+   * also, changes wether the image should load or not by adding and removing
+   * the source src.
    */
   
   fullscreen() {
@@ -218,8 +226,8 @@ export class CarouselComponent {
   
   /**
    * This is for the autoscrolling. Sets the standby to false if the user
-   * interacts with the carousel (clicking any button).
-   * standBy Boolean   initialized as true;
+   * interacts with the carousel (clicking any buttons).
+   * standBy {Boolean}   initialized as true;
    */
   standbyOff() {
     this.standBy = false;

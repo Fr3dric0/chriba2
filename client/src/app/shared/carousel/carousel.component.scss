@@ -128,7 +128,7 @@
   }
   
   .fullscreen-btn {
-    background-color: rgba(100, 100, 100, .7);
+    background-color: $transparent-grey;
     cursor: pointer;
     height: 3em;
     opacity: 1;
@@ -162,42 +162,47 @@
   .badges {
     align-items: center;
     bottom: 3em;
-    color: #F5F5F5;
+    color: $whitesmoke;
     display: flex;
     height: 2em;
     justify-content: center;
     position: absolute;
     width: inherit;
     z-index: 98;
-  
-    span {
-      border: 1px solid whitesmoke;
-      border-radius: 50%;
-      box-shadow: 0 0 1px 1px rgba(150, 150, 150, .4);
-      cursor: pointer;
-      display: block;
-      flex-direction: row;
-      height: 1em;
-      margin: auto 0.5em auto 0.5em;
-      transition: 0.2s ease-in-out;
-      width: 1em;
-    }
     
-    span:hover {
-      background-color: #F5F5F5;
-    }
+  span {
+    border: 1px solid $whitesmoke;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 1px $transparent-grey;
+    cursor: pointer;
+    display: block;
+    flex-direction: row;
+    height: 1em;
+    margin: auto 0.5em;
+    transition: 0.2s ease-in-out;
+    width: 1em;
+  }
+  
+  span:hover {
+    background-color: $whitesmoke;
+  }
+  
+  }
+  
+  .bottom {
+    bottom: 0;
   }
   
   .selected {
-    background-color: #F5F5F5;
+    background-color: $whitesmoke;
   }
 }
 
 .background {
-  background-color: rgba(50, 50, 50, 0.9);
+  background-color: $transparent-black;
   height: 100vh;
-  position: fixed;
   left: 0;
+  position: fixed;
   top: 0;
   width: 100vw;
   z-index: 80;
@@ -205,7 +210,7 @@
 
 .fullscreen {
   align-items: center;
-  background-color: rgba(50, 50, 50, 0);
+  background-color: $transparent;
   display: flex;
   height: 100%;
   justify-content: center;
@@ -221,16 +226,3 @@
     z-index: 94;
   }
 }
-
-.fixed {
-  position: fixed;
-}
-
-
-
-
-
-
-
-
-
