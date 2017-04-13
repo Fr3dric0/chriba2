@@ -188,7 +188,7 @@ export class CarouselComponent {
    * in fullscreen or not.
    * @returns {string}
    */
-  getBottomValue() {
+  getBottomClass() {
     return this.fullScreen == "fullscreen" ? "bottom" : "";
   }
   

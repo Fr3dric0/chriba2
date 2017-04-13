@@ -28,15 +28,15 @@
       margin: 0.3em;
     }
     
-    .btn-desc {
-      flex: 1;
-      height: 2em;
-      margin: auto 1em;
-      min-width: 6em;
-      overflow: hidden;
-      padding: 0;
-      width: 6em;
-      
+  .btn-desc {
+    flex: 1.5;
+    height: 2em;
+    margin: auto 1em;
+    min-width: 7em;
+    overflow: hidden;
+    padding: 0 0.5em 0;
+    width: 7em;
+    
     span {
       width: 4em;
     }
@@ -44,8 +44,8 @@
     &:hover {
       background-color: $secondary-background-color;
     }
-    
-    }
+  
+  }
   
     .disappear {
       display: none;
