@@ -1,18 +1,18 @@
 <header>
 
-    <img [routerLink]="''" alt="Chriba" class="logo" src="/resource/logo/chriba.svg"/>
+    <img [routerLink]="''" alt="Chriba" class="logo" src="/resource/logo/chriba.svg" draggable="false"/>
 
     <span class="hamburger-menu hidden-on-wide" (click)="toggleMenu()">☰</span>
 
     <nav [ngClass]="{'minified-menu': !expanded, 'expanded-menu': expanded}">
 
-        <a *ngFor="let route of routes" [routerLink]="!route.route.includes('#') ? route.route : null"
+        <a draggable="false" *ngFor="let route of routes" [routerLink]="!route.route.includes('#') ? route.route : null"
            [fragment]="route.route.includes('#') ? route.route.substring(1) : null"
 
            [ngClass]="{ 'current-route': this.location.path(true).startsWith(route.route) }">
             {{ route.label }}</a>
 
-        <a *ngIf="authenticated" [routerLink]="'/backdoor'"
+        <a draggable="false" *ngIf="authenticated" [routerLink]="'/backdoor'"
            class="admin-route"
            [ngClass]="{ 'admin-route current-route': this.location.path(true).startsWith('/backdoor') }">
             admin

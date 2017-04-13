@@ -32,7 +32,11 @@ header {
 }
 
 img.logo {
+  cursor: pointer;
+
   max-width: 9rem;
+
+  user-select: none;
 
   width: auto;
 }
@@ -55,7 +59,10 @@ nav {
 
   a {
     box-sizing: border-box;
+
     padding: 0.2em 0.3em;
+
+    user-select: none;
   }
 
 }
