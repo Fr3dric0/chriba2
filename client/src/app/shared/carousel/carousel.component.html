@@ -35,7 +35,7 @@
       </svg>
     </button>
     
-    <div class="badges" [ngStyle]="{'bottom': getBottomValue()}">
+    <div class="badges" [ngClass]="getBottomValue()">
       <span *ngFor="let badge of badges" [ngClass]="{'selected': isSelected(badge)}" (click)="viewImage(badge); standbyOff()"></span>
     </div>
   </div>

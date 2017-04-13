@@ -189,7 +189,7 @@ export class CarouselComponent {
    * @returns {string}
    */
   getBottomValue() {
-    return this.fullScreen == "fullscreen" ? "0" : "3em";
+    return this.fullScreen == "fullscreen" ? "bottom" : "";
   }
   
   /**

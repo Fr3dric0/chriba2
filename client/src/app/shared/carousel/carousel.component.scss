@@ -147,7 +147,7 @@
   }
   
   .bottom {
-    bottom: 0;
+    bottom: 0 !important;
   }
   
   .badges {
@@ -179,10 +179,6 @@
     
   }
   
-  }
-  
-  .bottom {
-    bottom: 0;
   }
   
   .selected {
