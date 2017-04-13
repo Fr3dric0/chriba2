@@ -53,6 +53,10 @@ export class EstateTableComponent implements OnInit {
 
 
     private createFields(estates: Estate[]) {
+        if (!estates) {
+            return null;
+        }
+
         return estates.map((estate) => {
             let src = estate.thumbnails.small.length > 0 ? estate.thumbnails.small[0] : undefined;
 

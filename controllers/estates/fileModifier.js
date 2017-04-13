@@ -2,12 +2,12 @@ const Estates = require('../../models/estates');
 const uploader = require('../../lib/uploader');
 const fh = require('../../lib/filehandler');
 const { findOne } = require('./find');
+const { setFolders } = require('../projects/fileModifier');
 
-const root = 'resources/uploads';
-const publicPath = 'resource/uploads';
 const validSize = ['large', 'small'];
 
 const upload = [
+    setFolders,
     validateFields,
     uploadFile
 ];
@@ -27,6 +27,7 @@ function validateFields (req, res, next) {
 function uploadFile (req, res, next) {
     const { estate, size } = req.params;
     const { file } = req;
+    const { root, publicPath } = req.media;
 
     uploader.single(Estates, {size, file, root, publicPath}, estate)
         .then((results) => res.json(results))
@@ -34,6 +35,7 @@ function uploadFile (req, res, next) {
 }
 
 const remove = [
+    setFolders,
     validateDeleteFields,
     findOne,
     validateEstate,
@@ -146,6 +148,8 @@ function deleteThumbFiles (req, res, next) {
     if (!paths) {
         next();
     }
+
+    const { root, publicPath } = req.media;
 
     const deletePromises = paths.map((path) => {
         let p = path.substring(publicPath.length + 1);
