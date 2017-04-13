@@ -37,13 +37,14 @@
       padding: 0;
       width: 6em;
       
-      span {
-        width: 4em;
-      }
-      
-      &:hover {
-        background-color: $secondary-background-color;
-      }
+    span {
+      width: 4em;
+    }
+    
+    &:hover {
+      background-color: $secondary-background-color;
+    }
+    
     }
   
     .disappear {
@@ -100,21 +101,21 @@
     width: 3em;
     z-index: 99;
     
+  svg {
+    fill: $svg-icon;
+    height: inherit;
+    transition:.5s;
+    width: inherit;
+  }
+  
+  &:hover {
+    background-color: $carousel-background-color;
+    
     svg {
-      fill: $svg-icon;
-      height: inherit;
-      transition:.5s;
-      width: inherit;
+      fill: $secondary-background-color;
     }
     
-    &:hover {
-      background-color: $carousel-background-color;
-      
-      svg {
-        fill: $secondary-background-color;
-      }
-      
-    }
+  }
   }
   
   .disappear {
@@ -161,7 +162,7 @@
     width: inherit;
     z-index: 98;
     
-  span {
+    span {
     @include transition();
     border: 1px solid $primary-background-color;
     border-radius: 50%;
@@ -173,10 +174,10 @@
     margin: auto 0.5em;
     width: 1em;
     
-    &:hover {
-      background-color: $primary-background-color;
-    }
-    
+  &:hover {
+    background-color: $primary-background-color;
+  }
+  
   }
   
   }
