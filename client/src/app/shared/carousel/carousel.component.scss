@@ -162,22 +162,21 @@
     width: inherit;
     z-index: 98;
     
-    span {
-    @include transition();
-    border: 1px solid $primary-background-color;
-    border-radius: 50%;
-    box-shadow: 0 0 1px 1px $blurred;
-    cursor: pointer;
-    display: block;
-    flex-direction: row;
-    height: 1em;
-    margin: auto 0.5em;
-    width: 1em;
+      span {
+      @include transition();
+      border: 1px solid $primary-background-color;
+      border-radius: 50%;
+      box-shadow: 0 0 1px 1px $blurred;
+      cursor: pointer;
+      display: block;
+      flex-direction: row;
+      height: 1em;
+      margin: auto 0.5em;
+      width: 1em;
     
-  &:hover {
-    background-color: $primary-background-color;
-  }
-  
+    &:hover {
+      background-color: $primary-background-color;
+    }
   }
   
   }
