@@ -31,6 +31,8 @@ export class CarouselComponent {
   fullScreen = "disappear";
   badgesClass = "";
   fullScreenBackground = "";
+  descClass = "";
+  fullScreenBtn = "";
   standBy = true;
   
   /**
@@ -184,7 +186,8 @@ export class CarouselComponent {
   }
   
   /**
-   * Changes the class for the fullscreen container depending on wether there
+   * Changes the class for the fullscreen container, description, button, fullscreen button
+   * depending on wether there
    * is fullscreen in the class or not, also, changes wether the image should
    * load or not by adding and removing the source src.
    */
@@ -193,11 +196,15 @@ export class CarouselComponent {
     this.fullScreen.includes("fullscreen") ? (
         this.fullScreen = "disappear",
         this.fullScreenBackground = "",
-        this.viewedClass = "viewed"
+        this.viewedClass = "viewed",
+        this.descClass = "",
+        this.fullScreenBtn = ""
     ) : (
         this.fullScreen = "fullscreen",
         this.fullScreenBackground = "background",
-        this.viewedClass = "viewed scale-down"
+        this.viewedClass = "viewed scale-down",
+        this.descClass = "disappear",
+        this.fullScreenBtn = "fixed"
     );
   }
   
