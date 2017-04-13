@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../shared/general/general.service'
-import { ThumbnailService } from "../shared/general/thumbnails.service";
+import { ThumbnailService } from '../shared/general/thumbnails.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +13,6 @@ export class DashboardComponent implements OnInit {
   
   constructor(private gs: GeneralService,
               private ts: ThumbnailService) {
-    
   }
 
   ngOnInit() {
@@ -28,6 +27,8 @@ export class DashboardComponent implements OnInit {
       sub.unsubscribe();
       },
         err => console.error(err));
+    
   }
-
+  
+  
 }

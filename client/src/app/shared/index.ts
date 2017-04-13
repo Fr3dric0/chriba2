@@ -17,6 +17,7 @@ import { GeocodeService } from './map/geocode.service';
 import { ContentTableComponent } from './content-table/content-table.component';
 import { SubpageNavigatorComponent } from './subpage-navigator/subpage-navigator.component';
 import { LocationButtonComponent } from './location/button/button.component';
+import { CarouselComponent } from "./carousel/carousel.component";
 
 export const SHARED_DECLARATIONS = [
     ItemListComponent,
@@ -27,7 +28,8 @@ export const SHARED_DECLARATIONS = [
     MapComponent,
     ContentTableComponent,
     SubpageNavigatorComponent,
-    LocationButtonComponent
+    LocationButtonComponent,
+    CarouselComponent
 ];
 
 export const SHARED_PROVIDERS = [
