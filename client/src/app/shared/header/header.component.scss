@@ -1,5 +1,16 @@
 @import "../../../stylesheets/declarations";
 
+header,
+nav {
+  align-items: center;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: space-between;
+}
+
 header {
   background: $secondary-background-color;
   border-bottom: 2px solid $primary-color;
@@ -17,13 +28,23 @@ header {
   padding: 0.2em;
   position: relative;
 
+  a {
+    outline-style: none;
+  }
 }
 
-.logo img {
-  max-height: 2.5rem;
+img.logo {
+  cursor: pointer;
+
+  max-width: 9rem;
+
+  user-select: none;
+
+  width: auto;
 }
 
-a, a:visited {
+a,
+a:visited {
   color: inherit;
   text-decoration: none;
 }
@@ -32,26 +53,18 @@ a, a:visited {
   display: none;
 }
 
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.flex-hor {
-  flex-direction: row;
-  align-items: center;
-}
-
 nav {
+  box-sizing: border-box;
+
   flex-direction: row;
   flex-wrap: wrap;
 
   a {
-    padding: 0.1em 0.3em 0.1em 0.3em;
+    box-sizing: border-box;
+
+    padding: 0.2em 0.3em;
+
+    user-select: none;
   }
 
 }
@@ -60,29 +73,25 @@ nav {
   border-bottom: 1px solid $primary-color;
 }
 
-label {
-  cursor: pointer;
-  user-select: none;
-}
 
-input {
-  display: none;
-}
-
-.admin-route, .admin-route:visited {
+.admin-route,
+.admin-route:visited {
   color: $error-color !important;
 }
 
 .hamburger-menu {
+  cursor: pointer;
+
+  font-size: 1.2em;
+
   padding-right: inherit;
 
-  cursor: pointer;
   user-select: none;
 }
 
 .minified-menu {
-  display: block; // Default when width is over 600px
-                  // check media query for correct preset
+  display: flex; // Default when width is over 600px
+  // check media query for correct preset
 }
 
 .expanded-menu {

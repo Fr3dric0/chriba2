@@ -11,7 +11,7 @@ import { MapComponent } from "./map/map.component";
 import { FooterComponent } from "./footer/footer.component";
 import { AddressComponent } from "./footer/address/address.component";
 import { PhoneComponent } from  "./footer/phone/phone.component";
-import { HeaderComponent } from './navbar/header.component';
+import { HeaderComponent } from './header/header.component';
 
 import { GeocodeService } from './map/geocode.service';
 import { ContentTableComponent } from './content-table/content-table.component';
