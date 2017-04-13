@@ -29,6 +29,10 @@ header {
   position: relative;
 
   z-index: 5;
+
+  a {
+    outline-style:none;
+  }
 }
 
 img.logo {
