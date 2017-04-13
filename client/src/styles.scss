@@ -1,8 +1,7 @@
 /*
- *  Place your global styles here. However one should also use the component-line
- *  stylesheets, to prevent filling up this file too much.
+ *  Place your global styles here.
  *
- *  AVOID using element Ids for styling. Unecessary in almost all situations
+ *  AVOID using element Ids for styling. Unnecessary in almost all situations
  *
  *
  *
@@ -12,21 +11,29 @@
 @import "stylesheets/material-form";
 @import "stylesheets/material-buttons";
 
-html {
-  height: 100%;
-}
-
 body {
-  height: 100%;
+  background-color: $primary-background-color;
+
+  font-family: $primary-font;
 
   margin: 0;
-  padding: 0;
 
-  background-color: $primary-background-color;
-  font-family: $primary-font;
+  padding: 0;
 }
 
-/* Element reserved for title */
+/**
+ * Set the root container
+ * to use flexbox. Ensures a sticky footer without calculations
+ */
+app-root {
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 100vh;
+}
+
+/* Reserved for header title */
 h1 {
   text-align: center;
   margin-top: 1em;
@@ -92,14 +99,18 @@ section {
   width: 100%;
 }
 
-.content {
+main {
   background-color: $secondary-background-color;
   border-left: #EEE solid 1px;
   border-right: #EEE solid 1px;
+  box-sizing: border-box;
+
+  flex-grow: 1;
 
   margin: 0 auto 0 auto;
   max-width: $container-width;
 
+  padding: 1em 0;
   position: relative;
 
   width: 100%;
@@ -140,7 +151,25 @@ app-map.preview {
   width: 100%;
 }
 
-@media screen and (max-width: $max-width) {
+
+/**
+ * MOBILE VIEW
+ *
+ */
+@media screen and (max-width: $breakpoint) {
+
+}
+
+/**
+ * BREAKPOINT WHERE `main` MEETS WINDOW EDGE
+ *
+ *
+ */
+@media screen and (max-width: $container-width) {
+  main {
+    border: none;
+  }
+
   .metadata-container {
     font-size: 0.9em;
   }

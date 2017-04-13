@@ -4,8 +4,8 @@
  * Material-buttons contains the styles rules for the buttons, styled to
  * follow material design
  */
-
 @import "declarations";
+
 $fab-size: 3rem;
 
 button,
@@ -17,6 +17,7 @@ button,
 
   background-color: $primary-background-color;
   border: 0;
+  box-shadow: $shadow;
   box-sizing: border-box;
 
   color: $dark-primary;
@@ -33,6 +34,14 @@ button,
   padding: 0.5em 0.8em;
 
   text-align: center;
+
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+
+  &:active {
+    box-shadow: $shadow-active;
+  }
 
   &[disabled] {
     cursor: default;
@@ -116,11 +125,16 @@ button[type="submit"] {
   }
 }
 
-.btn-flat:hover {
-  color: $secondary-text;
+.btn-flat {
+  box-shadow: none;
 
-  svg {
-    fill: $secondary-text;
+  &:hover {
+    box-shadow: none;
+    color: $secondary-text;
+
+    svg {
+      fill: $secondary-text;
+    }
   }
 }
 
