@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="140" height="140">
-
-
-
-
-    <defs>
-        <marker id="InverseSemicircleEnd"
-                viewBox="0 0 5 10" refX="0" refY="5"
-                markerUnits="strokeWidth"
-                markerWidth="0.5" markerHeight="1"
-                orient="auto" fill="salmon">
-            <path d="M 0 0 L 5 0 A 5 5 0 0 0 5 10 L 0 10 z" />
-        </marker>
-    </defs>
-
     <style type="text/css">
 
         .st0{stroke:#FFFFFF;}
@@ -87,10 +73,7 @@
     <g>
 
         <!-- Outer blue/grey circle -->
-        <circle r="64" cx="70" cy="70" fill="none" stroke="#405C6B" stroke-width="8"/>
-
-
-
+        <!--<circle r="64" cx="70" cy="70" fill="none" stroke="#405C6B" stroke-width="8"/> -->
 
         <!-- Opening gape -->
         <!-- <rect x="106" y="27" class="f0" width="65.9" height="86"/> -->
@@ -135,9 +118,6 @@
                 <circle class="st0" r="57.5" cx="70" cy="70" fill="none" stroke-width="5" />
 
 
-
-                <!--<path stroke="salmon" d="M 70 6 a 64 64 0 1 0 0.00001 0 " stroke-width="8" fill="none"/>-->
-                <path stroke="salmon" d="M 135,70 A63,63 0 1,0 70,135" stroke-width="8" fill="none" marker-end="url(#InverseSemicircleEnd)"/>
             </g>
         </g>
     </g>
