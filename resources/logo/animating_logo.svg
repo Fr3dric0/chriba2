@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" width="140" height="140">
     <style type="text/css">
-
         .st0{stroke:#FFFFFF;}
         .st1{stroke:#405C6B;}
         .st2{stroke:#8CC63F;}
@@ -12,6 +11,16 @@
         .f1{fill:#405C6B;}
         .f2{fill:#8CC63F;}
         .f3{fill:#AEE23B;}
+
+        .no_fill {
+        fill: none;
+        }
+
+        .text {
+        font-family: CopperplateGothic-Light, Copperplate Gothic Light, Copperplate Gothic, Helvetica, Arial, monospace;
+        font-size:128.4782px;
+        }
+
 
         svg:hover .bar_0 {
         animation: animate-bar0 5s infinite;
@@ -70,53 +79,33 @@
         100%{height: 48px}
         }
     </style>
-    <g>
+
+    <g> <!-- LOGO -->
+        <!-- Inner green circle -->
+        <circle class="f2" r="56" cx="70" cy="70" />
+
+        <!-- White "backwards L" -->
+        <rect class="f0" x="70" y="14" width="4" height="60" />
+        <rect class="f0" x="14" y="70" width="60" height="4" />
+
+        <!-- Darker corner area -->
+        <circle class="st3 no_fill" r="28" cx="70" cy="70" stroke-width="56" stroke-dashoffset="88" stroke-dasharray="44, 132" />
+
+        <!-- Three "Corner dots" -->
+        <rect x="49.6" y="41" class="f0" width="8.7" height="9.2"/>
+        <rect x="42.2" y="34.7" class="f0" width="8.7" height="9.2"/>
+        <rect x="39.2" y="51.6" class="f0" width="8.7" height="9.2"/>
+
+        <!-- Four bars -->
+        <rect x="55" y="130" class="f0 bar_0" width="10" height="33" transform="rotate(180 55 130)"/>
+        <rect x="70" y="130" class="f0 bar_1" width="10" height="38" transform="rotate(180 70 130)"/>
+        <rect x="85" y="130" class="f0 bar_2" width="10" height="43" transform="rotate(180 85 130)"/>
+        <rect x="100" y="130" class="f0 bar_3" width="10" height="48" transform="rotate(180 100 130)"/>
 
         <!-- Outer blue/grey circle -->
-        <circle r="64" cx="70" cy="70" fill="none" stroke="#405C6B" stroke-width="8" />
+        <circle class="st1 no_fill" r="64" cx="70" cy="70" stroke-width="8" stroke-dashoffset="-60" stroke-dasharray="290, 120" />
 
-        <!-- Opening gape -->
-        <rect x="106" y="27" class="f0" width="65.9" height="86"/>
-
-        <g>
-            <!-- Inner green circle -->
-            <!-- <ellipse class="st2" cx="74.4" cy="70" rx="49.7" ry="52.5"/> -->
-            <circle class="f2" r="56" cx="70" cy="70" />
-            <g>
-                <g>
-                    <!-- White "backwards L" -->
-                    <!--<path class="st0" d="M74.4,17.8c-27.5,0-49.7,24.7-49.7,55.2l49.7-0.2V17.8z"/> -->
-                    <rect class="f0" x="70" y="14" width="4" height="60" />
-                    <rect class="f0" x="14" y="70" width="60" height="4" />
-                </g>
-            </g>
-            <g>
-                <g>
-                    <!-- Darker corner area -->
-                    <circle class="st3" r="28" cx="70" cy="70" fill="none" stroke-width="56" stroke-dashoffset="88" stroke-dasharray="44, 132" />
-
-                </g>
-            </g>
-            <g>
-                <!-- Three "Corner dots" -->
-                <rect x="49.6" y="41" class="f0" width="8.7" height="9.2"/>
-                <rect x="42.2" y="34.7" class="f0" width="8.7" height="9.2"/>
-                <rect x="39.2" y="51.6" class="f0" width="8.7" height="9.2"/>
-            </g>
-            <g>
-                <!-- Four bars -->
-                <rect x="55" y="130" class="f0 bar_0" width="10" height="33" transform="rotate(180 55 130)"/>
-                <rect x="70" y="130" class="f0 bar_1" width="10" height="38" transform="rotate(180 70 130)"/>
-                <rect x="85" y="130" class="f0 bar_2" width="10" height="43" transform="rotate(180 85 130)"/>
-                <rect x="100" y="130" class="f0 bar_3" width="10" height="48" transform="rotate(180 100 130)"/>
-            </g>
-            <g>
-                <!-- Outer blue/grey circle filler -->
-                <circle class="st1" r="64" cx="70" cy="70" fill="none" stroke-width="8" stroke-dashoffset="-60" stroke-dasharray="290, 120" />
-
-                <!-- White inner circle -->
-                <circle class="st0" r="57.5" cx="70" cy="70" fill="none" stroke-width="5" />
-            </g>
-        </g>
+        <!-- White inner circle -->
+        <circle class="st0 no_fill" r="57.5" cx="70" cy="70" stroke-width="5" />
     </g>
 </svg>

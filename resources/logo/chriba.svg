@@ -1,48 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 475 140" style="enable-background:new 0 0 475 140;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#FFFFFF;}
-	.st1{fill:#405C6B;}
-	.st2{fill:#8CC63F;}
-	.st3{fill:#AEE23B;}
-	.st4{fill:none;}
-	.st5{font-family: CopperplateGothic-Light, Copperplate Gothic Light, Copperplate Gothic, Helvetica, Arial, monospace;}
-	.st6{font-size:128.4782px;}
-</style>
-<g>
-	<path class="st0" d="M175.6,107.2c-0.5,0.1-1,0.3-1.5,0.4v1.1C174.6,108.2,175.2,107.7,175.6,107.2z"/>
-	<g>
-		<g>
-			<ellipse class="st1" cx="67.8" cy="70" rx="63.4" ry="67"/>
-			<ellipse class="st0" cx="67.8" cy="70" rx="54.9" ry="58"/>
-		</g>
-		<rect x="67.8" y="27" class="st0" width="65.9" height="86"/>
-		<ellipse class="st2" cx="67.7" cy="70" rx="49.7" ry="52.5"/>
-		<g>
-			<g>
-				<path class="st0" d="M67.8,17.8C40.3,17.8,18,42.5,18,73.1l49.7-0.2V17.8z"/>
-			</g>
-		</g>
-		<g>
-			<g>
-				<path class="st3" d="M64.6,17.8C39,17.8,18,41.2,18,70l46.6-0.2V17.8z"/>
-			</g>
-		</g>
-		<g>
-			<rect x="43" y="41" class="st0" width="8.7" height="9.2"/>
-			<rect x="35.5" y="34.7" class="st0" width="8.7" height="9.2"/>
-			<rect x="32.5" y="51.6" class="st0" width="8.7" height="9.2"/>
-		</g>
-		<g>
-			<polygon class="st0" points="47,118.1 47,98.2 36.3,98.2 36.3,113.6 41.3,118.1 			"/>
-			<rect x="52.5" y="92.2" class="st0" width="9.6" height="33.1"/>
-			<rect x="67.8" y="86.3" class="st0" width="9.6" height="39.5"/>
-			<path class="st0" d="M93.6,119.1V80.8H83.1v41.7c2.1,0,4.1,0,6.2,0C90.6,121.3,92.1,120.2,93.6,119.1z"/>
-		</g>
-	</g>
-</g>
-<rect x="125.1" y="36.8" class="st4" width="345.5" height="72.4"/>
-<text transform="matrix(0.9466 0 0 1 125.1364 107.1255)" class="st1 st5 st6">hriba</text>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 475 140">
+	<style type="text/css">
+		.st0{stroke:#FFFFFF;}
+		.st1{stroke:#405C6B;}
+		.st2{stroke:#8CC63F;}
+		.st3{stroke:#AEE23B;}
+
+
+		.f0{fill:#FFFFFF;}
+		.f1{fill:#405C6B;}
+		.f2{fill:#8CC63F;}
+		.f3{fill:#AEE23B;}
+
+		.no_fill {
+			fill: none;
+		}
+
+		.text {
+			font-family: CopperplateGothic-Light, Copperplate Gothic Light, Copperplate Gothic, Helvetica, Arial, monospace;
+			font-size:128.4782px;
+		}
+
+
+
+		.bar_0 {
+		animation: animate-bar0 5s infinite;
+		}
+
+		.bar_1 {
+		animation: animate-bar1 5s infinite;
+		}
+
+		.bar_2 {
+		animation: animate-bar2 5s infinite;
+		}
+
+		.bar_3 {
+		animation: animate-bar3 5s infinite;
+		}
+
+
+		@keyframes animate-bar0 {
+		0%{height: 33px}
+		10%{height: 44px}
+		30%{height: 5px}
+		40%{height: 50px}
+		60%{height: 13px}
+		80%{height: 38px}
+		100%{height: 33px}
+		}
+
+		@keyframes animate-bar1 {
+		0%{height: 38px}
+		10%{height: 5px}
+		30%{height: 39px}
+		40%{height: 2px}
+		60%{height: 50px}
+		80%{height: 43px}
+		100%{height: 38px}
+		}
+
+		@keyframes animate-bar2 {
+		0%{height: 43px}
+		10%{height: 3px}
+		30%{height: 50px}
+		40%{height: 34px}
+		60%{height: 20px}
+		80%{height: 18px}
+		100%{height: 43px}
+		}
+
+		@keyframes animate-bar3 {
+		0%{height: 48px}
+		10%{height: 40px}
+		30%{height: 5px}
+		40%{height: 100px}
+		60%{height: 13px}
+		80%{height: 7px}
+		100%{height: 48px}
+		}
+	</style>
+
+	<g> <!-- LOGO -->
+		<!-- Inner green circle -->
+        <circle class="f2" r="56" cx="70" cy="70" />
+
+		<!-- White "backwards L" -->
+		<rect class="f0" x="70" y="14" width="4" height="60" />
+		<rect class="f0" x="14" y="70" width="60" height="4" />
+
+		<!-- Darker corner area -->
+		<circle class="st3 no_fill" r="28" cx="70" cy="70" stroke-width="56" stroke-dashoffset="88" stroke-dasharray="44, 132" />
+
+		<!-- Three "Corner dots" -->
+		<rect x="49.6" y="41" class="f0" width="8.7" height="9.2"/>
+		<rect x="42.2" y="34.7" class="f0" width="8.7" height="9.2"/>
+		<rect x="39.2" y="51.6" class="f0" width="8.7" height="9.2"/>
+
+		<!-- Four bars -->
+		<rect x="55" y="130" class="f0 bar_0" width="10" height="33" transform="rotate(180 55 130)"/>
+		<rect x="70" y="130" class="f0 bar_1" width="10" height="38" transform="rotate(180 70 130)"/>
+		<rect x="85" y="130" class="f0 bar_2" width="10" height="43" transform="rotate(180 85 130)"/>
+		<rect x="100" y="130" class="f0 bar_3" width="10" height="48" transform="rotate(180 100 130)"/>
+
+		<!-- Outer blue/grey circle -->
+		<circle class="st1 no_fill" r="64" cx="70" cy="70" stroke-width="8" stroke-dashoffset="-60" stroke-dasharray="290, 120" />
+
+		<!-- White inner circle -->
+		<circle class="st0 no_fill" r="57.5" cx="70" cy="70" stroke-width="5" />
+    </g>
+
+	<!-- TEXT -->
+	<text transform="matrix(0.9466 0 0 1 125.1364 107.1255)" class="f1 text">hriba</text>
 </svg>
