@@ -4,24 +4,21 @@
 div {
     font-family: $primary-font;
     margin: auto;
-
-    div {
-        padding: 0.25em 0;
-    }
 }
 
 .flex-container {
-    margin-left: 2em;
-    margin-right: 0.5em;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
 
     div {
         flex: 1;
-        min-width: 16em;
+        min-width: 15em;
+        max-width: 20em;
         margin-top: 0;
         box-sizing: border-box;
+        padding: 0.25em 0.5em;
     }
 }
 
@@ -33,8 +30,12 @@ h2 {
     font-weight: 100;
 }
 
+p {
+    font-weight: 100;
+}
+
 .btn-details {
-    width: 75%;
+    width: 100%;
     margin: auto;
 }
 
@@ -45,9 +46,13 @@ app-map {
     height: 250px; //TODO: Endre verdi
 }
 
-//TODO: Testing erstattes
-.carousel {
-    background: deeppink;
-    min-height: 200px;
-    min-width: 200px;
+@media screen and (max-width: $breakpoint * 0.57){
+
+    .flex-container {
+        div {
+            margin: auto 0;
+            padding: 0.25em 0;
+        }
+    }
+;
 }

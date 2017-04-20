@@ -14,14 +14,16 @@ export class EstateComponent implements OnInit {
     private description: string;
     private size: number;
     private url: string;
+    private images: string[];
     private location: any;
 
     @Input()
-    set data({name, description, size, url, location}) {
+    set data({name, description, size, url, thumbnails, location}) {
         this.name = name;
         this.description = description;
         this.size = size;
         this.url = url;
+        this.images = thumbnails.large;
         this.location = location;
     }
 

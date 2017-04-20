@@ -14,13 +14,15 @@ export class ProjectComponent implements OnInit {
     private title: string;
     private description: string;
     private url: string;
+    private images: string[];
 
     @Input()
-    set data({name, title, description, url}) {
+    set data({name, title, description, url, thumbnails}) {
         this.name = name;
         this.title = title;
         this.description = description;
         this.url = url;
+        this.images = thumbnails.large;
     }
 
     constructor() { }

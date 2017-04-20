@@ -1,17 +1,15 @@
 <div *ngIf="name">
-    <div class="carousel">
-        Carousel
-    </div>
-
+   <app-carousel [images]="images"></app-carousel>
     <div  class="flex-container">
         <div>
+            <br>
             <h3>{{title}}</h3>
-            <p>
-                {{description}}
-                <!--TODO: Fjern lorem ipsum-->
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at est hendrerit, eleifend dolor nec, tincidunt ipsum. Morbi quis dui leo. Fusce felis massa, fermentum et tincidunt in, malesuada id tellus. Sed commodo arcu sit amet volutpat ultricies. Nunc a mattis est. Proin malesuada convallis augue a lacinia. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec aliquam et velit et aliquam.
-            </p>
-            <a *ngIf="url" class="btn btn-find btn-details" href="{{url}}">{{url}}</a>
+            <br>
+            <a *ngIf="url" class="btn btn-find btn-details" target="_blank" href="{{url}}">{{url}}</a>
+        </div>
+
+        <div>
+            <p>{{description}}</p>
         </div>
     </div>
 </div>
