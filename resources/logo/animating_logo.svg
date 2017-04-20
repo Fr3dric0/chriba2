@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140">
     <style type="text/css">
+
         .st0{stroke:#FFFFFF;}
         .st1{stroke:#405C6B;}
         .st2{stroke:#8CC63F;}
@@ -15,12 +16,6 @@
         .no_fill {
         fill: none;
         }
-
-        .text {
-        font-family: CopperplateGothic-Light, Copperplate Gothic Light, Copperplate Gothic, Helvetica, Arial, monospace;
-        font-size:128.4782px;
-        }
-
 
         svg:hover .bar_0 {
         animation: animate-bar0 5s infinite;
@@ -84,12 +79,12 @@
         <!-- Inner green circle -->
         <circle class="f2" r="56" cx="70" cy="70" />
 
+        <!-- Darker corner area -->
+        <circle class="st3 no_fill" r="28" cx="70" cy="70" stroke-width="56" stroke-dashoffset="88" stroke-dasharray="44, 132" />
+
         <!-- White "backwards L" -->
         <rect class="f0" x="70" y="14" width="4" height="60" />
         <rect class="f0" x="14" y="70" width="60" height="4" />
-
-        <!-- Darker corner area -->
-        <circle class="st3 no_fill" r="28" cx="70" cy="70" stroke-width="56" stroke-dashoffset="88" stroke-dasharray="44, 132" />
 
         <!-- Three "Corner dots" -->
         <rect x="49.6" y="41" class="f0" width="8.7" height="9.2"/>
@@ -103,9 +98,9 @@
         <rect x="100" y="130" class="f0 bar_3" width="10" height="48" transform="rotate(180 100 130)"/>
 
         <!-- Outer blue/grey circle -->
-        <circle class="st1 no_fill" r="64" cx="70" cy="70" stroke-width="8" stroke-dashoffset="-60" stroke-dasharray="290, 120" />
+        <circle class="st1 no_fill" r="64" cx="70" cy="70" stroke-width="8" stroke-dashoffset="-56" stroke-dasharray="290, 120" />
 
         <!-- White inner circle -->
-        <circle class="st0 no_fill" r="57.5" cx="70" cy="70" stroke-width="5" />
+        <circle class="st0 no_fill" r="58" cx="70" cy="70" stroke-width="4" stroke-dashoffset="-50.9" stroke-dasharray="262.6, 100" />
     </g>
 </svg>
