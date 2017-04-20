@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475 140">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140">
     <style type="text/css">
 
         .st0{stroke:#FFFFFF;}
@@ -17,27 +17,19 @@
         fill: none;
         }
 
-        .text {
-        font-family: Helvetica, Arial, monospace;
-        font-size: 115px;
-        user-select: none;
-        }
-
-
-
-        svg:hover .bar_0 {
+        .bar_0 {
         animation: animate-bar0 5s infinite;
         }
 
-        svg:hover .bar_1 {
+        .bar_1 {
         animation: animate-bar1 5s infinite;
         }
 
-        svg:hover .bar_2 {
+        .bar_2 {
         animation: animate-bar2 5s infinite;
         }
 
-        svg:hover .bar_3 {
+        .bar_3 {
         animation: animate-bar3 5s infinite;
         }
 
@@ -111,7 +103,4 @@
         <!-- White inner circle -->
         <circle class="st0 no_fill" r="58" cx="70" cy="70" stroke-width="4" stroke-dashoffset="-50.9" stroke-dasharray="262.6, 100" />
     </g>
-
-    <!-- TEXT -->
-    <text x="123" y="112.5" class="f1 text">HRIBA</text>
 </svg>
