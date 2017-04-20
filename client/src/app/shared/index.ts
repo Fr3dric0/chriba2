@@ -11,12 +11,13 @@ import { MapComponent } from "./map/map.component";
 import { FooterComponent } from "./footer/footer.component";
 import { AddressComponent } from "./footer/address/address.component";
 import { PhoneComponent } from  "./footer/phone/phone.component";
-import { HeaderComponent } from './navbar/header.component';
+import { HeaderComponent } from './header/header.component';
 
 import { GeocodeService } from './map/geocode.service';
 import { ContentTableComponent } from './content-table/content-table.component';
 import { SubpageNavigatorComponent } from './subpage-navigator/subpage-navigator.component';
 import { LocationButtonComponent } from './location/button/button.component';
+import { CarouselComponent } from "./carousel/carousel.component";
 
 export const SHARED_DECLARATIONS = [
     ItemListComponent,
@@ -27,7 +28,8 @@ export const SHARED_DECLARATIONS = [
     MapComponent,
     ContentTableComponent,
     SubpageNavigatorComponent,
-    LocationButtonComponent
+    LocationButtonComponent,
+    CarouselComponent
 ];
 
 export const SHARED_PROVIDERS = [

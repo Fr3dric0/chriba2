@@ -3,11 +3,26 @@ const uploader = require('../../lib/uploader');
 const fh = require('../../lib/filehandler');
 const { findOne } = require('./find');
 
-const root = 'resources/uploads';
-const publicPath = 'resource/uploads';
 const validSize = ['large', 'small'];
 
+
+/**
+ * We use this function to declare our mediafolders
+ * based on the config values.
+ *
+ * */
+function setFolders (req, res, next) {
+    req.media = {};
+
+    req.media.root = `${req.config.media['root']}/${req.config.media['upload']}`;
+    req.media.publicPath = req.config.media['url'];
+
+    next();
+}
+
+
 const upload = [
+    setFolders,
     validateFields,
     uploadFile
 ];
@@ -27,6 +42,7 @@ function validateFields (req, res, next) {
 function uploadFile (req, res, next) {
     const { name, size } = req.params;
     const { file } = req;
+    const { root, publicPath } = req.media;
 
     uploader.single(Projects, {size, file, root, publicPath}, name)
         .then((results) => res.status(201).json(results))
@@ -35,6 +51,7 @@ function uploadFile (req, res, next) {
 
 
 const remove = [
+    setFolders,
     validateDeleteFields,
     findOne,
     validateProject,
@@ -145,6 +162,8 @@ function deleteThumbFiles (req, res, next) {
         next();
     }
 
+    const { root, publicPath } = req.media;
+
     const deletePromises = paths.map((path) => {
         let p = path.substring(publicPath.length + 1);
         return fh.rm(`${root}${p}`);
@@ -179,4 +198,4 @@ function returnResults (req, res, next) {
     res.status(200).json(project);
 }
 
-module.exports = { upload, remove, getThumbUrls, deleteThumbFiles };
+module.exports = { upload, remove, getThumbUrls, deleteThumbFiles, setFolders };

@@ -4,13 +4,16 @@ $dark-primary: #388E3C;
 $light-primary: #C8E6C9;
 $secondary-color: #2E7D32; // ----------- || --------------
 
-$primary-background-color: rgb(250, 250, 250);
+$primary-background-color: rgb(245, 245, 245);
 $secondary-background-color: #FFF;
 $footer-bg-color: #37474F;
 
 $shadow: rgba(0,0,0, .1) 0em 0.05em 0.05em;
 $shadow-hover: rgba(0,0,0, .05) 0 0.12em 0.1em;
 $shadow-active: none;
+
+$blurred: rgba(150, 150, 150, 0.5);
+$carousel-background-color: rgba(50, 50, 50, 0.9);
 
 $divider-color: #EEE;
 $accent-color: #607D8B;
@@ -22,15 +25,19 @@ $pending-color: #2196F3;
 $primary-text: #212121;
 $secondary-text: #757575;
 $icon-text: #FFF;
+$svg-icon: rgba(230, 230, 230, 0.7);
 
 $primary-font: Helvetica, Arial, sans-serifsans-serif;
 
 
 $container-border: #EEE 1px solid;
 $container-width: 60em;
+$breakpoint: 0.7 * $container-width;
+
 $inner-width: 50em;
 
 $max-width: 400px;
+
 
 // Defines the default transition animation
 @mixin transition() {
