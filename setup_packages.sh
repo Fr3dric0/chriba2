@@ -1,7 +1,7 @@
 #!/bin/bash
 
 printf "Installing angular cli\n\n"
-npm install -g angular-cli
+npm install -g @angular/cli
 
 printf "\nInstalling server packages\n\n"
 npm install
