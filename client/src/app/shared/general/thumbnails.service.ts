@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProjectsService } from "../../projects/projects.service";
 import { EstatesService } from "../../estates/estates.service";
-import { Estate } from "../../models/estate";
-import { Project } from "../../models/project";
 
 @Injectable()
 export class ThumbnailService {
@@ -49,10 +47,13 @@ export class ThumbnailService {
             }
 
             obj.img = img;
-            obj.url = `/${ !elem.location ? 'projects' : 'estates'}/${elem.name}`;
-            obj.description = `
-            ${elem.location.address}<br>
-            ${elem.location.addressNumber}<br>`;
+            obj.url = `/${!elem.location ? 'projects' : 'estates'}/${elem.name}`;
+            if (elem.location) {
+              obj.description = `
+              ${elem.location.address}<br>
+              ${elem.location.addressNumber}<br>`;
+            }
+            obj.description = `${elem.description.substring(0, 60)}...`;
             return obj;
           }));
         rsv(shuffled);

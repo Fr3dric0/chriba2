@@ -50,6 +50,10 @@ export class ProfileTableComponent implements OnInit {
     }
 
     private createFields(projects: Project[]) {
+        if (!projects) {
+            return null;
+        }
+
         return projects.map((project) => {
             let src = project.thumbnails.small.length > 0 ? project.thumbnails.small[ 0 ] : undefined;
 

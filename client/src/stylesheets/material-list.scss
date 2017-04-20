@@ -68,7 +68,7 @@ $resize-width: 600px;
     margin-top: 10px;
   }
 
-  @media screen and(min-width: $resize-width) {
+  @media screen and(min-width: $breakpoint) {
     height: $list-height-large;
     margin-top: 15px;
 

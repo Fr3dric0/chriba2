@@ -54,8 +54,14 @@ app.use(routeProtector({
 //            STATIC PATHS            //
 ////////////////////////////////////////
 app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
-app.use('/resource', express.static(path.join(__dirname, 'resources'))); // Resources folder pref: '/resource'
 
+/**
+ * Because we cannot rely on every developer having nginx running,
+ * we will enable nodejs to server the static-resources in 'development'
+ * */
+if (app.get('env') === 'development') {
+    app.use('/resources', express.static(path.join(__dirname, 'resources')));
+}
 
 ////////////////////////////////////////
 //             EMAIL SETUP            //
