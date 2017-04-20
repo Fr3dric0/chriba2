@@ -33,14 +33,9 @@ header {
   }
 }
 
-img.logo {
-  cursor: pointer;
 
-  max-width: 9rem;
-
-  user-select: none;
-
-  width: auto;
+.logo svg {
+  height: 2.5rem;
 }
 
 a,
