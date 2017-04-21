@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Angulartics2GoogleAnalytics } from 'angulartics2';
 
 @Component({
     selector: 'app-root',
@@ -6,8 +7,8 @@ import { Component } from '@angular/core';
     styleUrls: [ './app.component.scss' ]
 })
 export class AppComponent {
-    title = 'Chriba';
-    description = 'Chriba er et inverstorfirma.';
+
+    constructor(angulartics2GoogleAnalytics: Angulartics2GoogleAnalytics) {}
 
     notifOptions = {
         timeOut: 10000 // 10s
