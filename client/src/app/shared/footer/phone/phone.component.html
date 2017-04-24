@@ -1,11 +1,23 @@
 <div>
     Telefon
     <ul>
-        <li>Mobil: <a href="tel:{{mobile}}">{{mobile}}</a></li>
-        <li>Business: <a href="tel:{{business}}">{{business}}</a></li>
+        <li>Mobil: <a href="tel:{{mobile}}"
+                      angulartics2On="click" angularticsEvent="ContactMobilePhone"
+                      [angularticsCategory]="'footer'"
+                      [angularticsProperties]="{ label: mobile }">{{mobile}}</a></li>
+        <li>Bedrift: <a href="tel:{{business}}"
+                         angulartics2On="click" angularticsEvent="ContactBusinessPhone"
+                         [angularticsCategory]="'footer'"
+                         [angularticsProperties]="{ label: business }">{{business}}</a></li>
     </ul>
-    Email
+    E-post
     <ul>
-        <li><a href="mailto:{{email}}">{{email}}</a></li>
+        <li>
+            <a href="mailto:{{email}}"
+               angulartics2On="click" angularticsEvent="ContactEmail"
+               [angularticsCategory]="'footer'"
+               [angularticsProperties]="{ label: email }">
+            {{email}}</a>
+        </li>
     </ul>
 </div>

@@ -2,6 +2,7 @@
  * Created by toma2 on 22.01.2017.
  */
 import { Component, Input, trigger, state, style, animate, transition } from '@angular/core';
+import { Angulartics2 } from 'angulartics2';
 
 @Component({
   selector: 'app-carousel',
@@ -27,7 +28,7 @@ export class CarouselComponent {
   badges = [];
   fullWidth = window.innerWidth;
   imgState = "active";
-  
+
   /**
    * Classes depending on wether the carousel is in fullscreen or not
    * viewedClass = current viewing image
@@ -41,9 +42,14 @@ export class CarouselComponent {
   fullScreenBackground = "";
   descClass = "";
   fullScreenBtn = "";
-  
+
   standBy = true; // As long as standBy is true, the carousel autoscrolls
-  
+
+  // Used to determine if analytics should start tracking events
+  instantiated: boolean = false;
+
+  constructor(private angulartics2: Angulartics2) {}
+
   /**
    * imageobjects: {img: string, description: string, url: string}
    * Set imagesobjects in _images from input
@@ -64,7 +70,7 @@ export class CarouselComponent {
         return {img: img, description: undefined, url: undefined}
       })
     }
-    
+
     this._images = images;
     if (this.images) {
       this.prev();
@@ -72,8 +78,10 @@ export class CarouselComponent {
       this.createBadgeIndex();
       setInterval(() => this.standBy ? this.next() : "", 10000);
     }
+
+    this.instantiated = true;
   }
-  
+
   /**
    * Expected: Returns a list of imageobjects describes above
    * @returns {any}
@@ -81,7 +89,7 @@ export class CarouselComponent {
   get images() {
     return this._images;
   }
-  
+
   /**
    * obj = {img: string, description: string, url: string}
    * (or obj = imageobject in _images)
@@ -98,7 +106,7 @@ export class CarouselComponent {
         this.images[this.pointer[2]]
       ], 100);
   }
-  
+
   /**
    * Changes the pointers indexes so the next image is displayed
    * Then updates the "window frame" with the previous, current and next image
@@ -111,8 +119,21 @@ export class CarouselComponent {
         }
       }
       this.updateFrame();
+
+
+    if (this.instantiated) {
+        this.angulartics2.eventTrack.next({
+            action: 'NextImage',
+            properties: {
+                category: 'carousel',
+                label: this.carouselFrame[1] && this.carouselFrame[1].img ?
+                    this.carouselFrame[1].img :
+                    '[Unknown Image]'
+            }
+        });
+    }
   }
-  
+
   /**
    * Changes the pointers indexes so the previous image is displayed
    * Then updates the "window frame" with the previous, current and next image
@@ -124,10 +145,22 @@ export class CarouselComponent {
           this.pointer[i] = this.images.length - 1;
         }
       }
-    
+
       this.updateFrame();
+
+      if (this.instantiated) {
+          this.angulartics2.eventTrack.next({
+              action: 'PreviousImage',
+              properties: {
+                  category: 'carousel',
+                  label: this.carouselFrame[1] && this.carouselFrame[1].img ?
+                      this.carouselFrame[1].img :
+                      '[Unknown Image]'
+              }
+          });
+      }
   }
-  
+
   /**
    * Receives badgeIndex from current clicked or selected badge
    * Changes which image to display correspondingly
@@ -142,16 +175,28 @@ export class CarouselComponent {
     if (prevIdx < 0) {
       prevIdx = this.images.length - 1;
     }
-    
+
     if (nextIdx >= this.images.length) {
       nextIdx = 0;
     }
-    
+
     this.pointer = [prevIdx, badgeIndex, nextIdx];
     this.updateFrame();
-    this.isSelected(badgeIndex)
+    this.isSelected(badgeIndex);
+
+    if (this.instantiated) {
+        this.angulartics2.eventTrack.next({
+            action: 'ChangeImageThroughBadge',
+            properties: {
+                category: 'carousel',
+                label: this.carouselFrame[1] && this.carouselFrame[1].img ?
+                    this.carouselFrame[1].img :
+                    '[Unknown Image]'
+            }
+        });
+    }
   }
-  
+
   /**
    * Creates same amount of badges as there are images
    * These are saved in this.badges
@@ -161,7 +206,7 @@ export class CarouselComponent {
       this.badges.push(i);
     }
   }
-  
+
   /**
    * Returns if the selected badge (badgeIndex) should have backgroundcolour or not.
    * @param badgeIndex
@@ -170,7 +215,7 @@ export class CarouselComponent {
   isSelected(badgeIndex) {
     return badgeIndex == this.pointer[1];
   }
-  
+
   /**
    * Returns the height in px depending on current carousel width (this.fullWidth)
    * @returns {string}
@@ -182,7 +227,7 @@ export class CarouselComponent {
     }
     return (this.fullWidth * percentage).toString();
   }
-  
+
   /**
    * Return the bottom value for badges depening on wether the carousel is
    * in fullscreen or not.
@@ -191,7 +236,7 @@ export class CarouselComponent {
   getBottomClass() {
     return this.fullScreen == "fullscreen" ? "bottom" : "";
   }
-  
+
   /**
    * On resizing window, sets this.width equal to current carousel's width
    * @param event
@@ -199,14 +244,14 @@ export class CarouselComponent {
   onResize(event) {
     this.fullWidth = event.target.innerWidth;
   }
-  
+
   /**
    * Changes the class for the fullscreen container, description, button and
    * background depending on wether there is fullscreen in the class or not,
    * also, changes wether the image should load or not by adding and removing
    * the source src.
    */
-  
+
   fullscreen() {
     this.fullScreen.includes("fullscreen") ? (
         this.fullScreen = "disappear", // toggles wether fullscreen should appear or not
@@ -222,8 +267,18 @@ export class CarouselComponent {
         this.descClass = "disappear",
         this.fullScreenBtn = "fixed"
     );
+
+        this.angulartics2.eventTrack.next({
+          action: 'ToggleFullscreen',
+          properties: {
+              category: 'carousel',
+              label: this.carouselFrame[1] && this.carouselFrame[1].img ?
+                  this.carouselFrame[1].img :
+                  '[Unknown Image]'
+          }
+      });
   }
-  
+
   /**
    * This function is used to change wether the current (shown) image
    * should be active or not and cooperates with the transitions at the top.
@@ -231,7 +286,7 @@ export class CarouselComponent {
   changeImgState() {
     this.imgState = this.imgState == "active" ? "inactive" : "active";
   }
-  
+
   /**
    * This is for the autoscrolling. Sets the standby to false if the user
    * interacts with the carousel (clicking any buttons).
