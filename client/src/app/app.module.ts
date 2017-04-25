@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+///////////////////////////////////////
+//         Project modules           //
+///////////////////////////////////////
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AppRoutingModule } from "./app-routing.module";
@@ -13,8 +16,12 @@ import { SHARED_DECLARATIONS, SHARED_PROVIDERS } from './shared';
 import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
 import { LOGIN_DECLARATIONS, LOGIN_PROVIDERS } from './login';
 
+///////////////////////////////////////
+//         3rd party modules         //
+///////////////////////////////////////
 import { AgmCoreModule } from 'angular2-google-maps/core';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 
 @NgModule({
     declarations: [
@@ -36,6 +43,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
         AgmCoreModule.forRoot({
             apiKey: 'AIzaSyC8x1S79lhHlDOBgqj1q0kFB6DxCSw8YjU'
         }),
+        Angulartics2Module.forRoot([ Angulartics2GoogleAnalytics ]),
         SimpleNotificationsModule.forRoot()
     ],
     providers: [

@@ -24,6 +24,7 @@
     "@angular/router": "3.4.9",
     "angular2-google-maps": "0.17.0",
     "angular2-notifications": "^0.4.53",
+    "angulartics2": "^2.2.0",
     "core-js": "2.4.1",
     "rxjs": "5.2.0",
     "ts-helpers": "1.1.2",

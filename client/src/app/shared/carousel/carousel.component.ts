@@ -28,10 +28,11 @@ export class CarouselComponent {
         return {img: img, description: '', url: ''}
       })
     }
+    
     this._images = images;
     this.initGallery();
   }
-  
+
   /**
    * Expected: Returns a list of imageobjects describes above
    * @returns {any}
@@ -113,5 +114,4 @@ export class CarouselComponent {
       this.fullScreen = !this.fullScreen;
     });
   }
-  
 }
