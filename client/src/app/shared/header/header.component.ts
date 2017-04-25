@@ -36,8 +36,32 @@ export class HeaderComponent implements OnInit{
         this.auth.authStatus.subscribe((authenticated) => this.authenticated = authenticated);
     }
 
+    addClickListener(): void {
+      document.addEventListener('click', this.offClickHandler.bind(this));
+      console.log('listening');
+    }
+
+    removeClickListener(): void {
+      document.removeEventListener('click', this.offClickHandler.bind(this));
+      console.log('not listening');
+    }
+
     toggleMenu(): void {
         this.expanded = !this.expanded;
+
+        if (this.expanded) {
+          console.log('expanded!');
+          setTimeout(this.addClickListener, 1);
+
+        } else {
+          console.log('closed!');
+          setTimeout(this.removeClickListener, 1);
+        }
+    }
+
+    offClickHandler(event:any) {
+      console.log('click registered!');
+      this.toggleMenu();
     }
 
     scrollToElement(element): void {
