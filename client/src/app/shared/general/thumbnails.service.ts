@@ -62,7 +62,8 @@ export class ThumbnailService {
                   desc = `<h3>${elem.location.address}</h3><br>`
                 }
               }
-  
+              
+              // Shortens long description
               if (elem.description) {
                 desc += `${elem.description}`;
                 let length = 200; // length of description

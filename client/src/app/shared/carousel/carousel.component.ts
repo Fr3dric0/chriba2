@@ -15,10 +15,6 @@ declare let PhotoSwipeUI_Default: any;
 export class CarouselComponent {
   fullScreen: boolean = false;
   
-  constructor() {
-  
-  }
-  
   private _images;
   @Input()
   set images(images: any) {
@@ -41,6 +37,13 @@ export class CarouselComponent {
     return this._images;
   }
   
+  /**
+   * Initializes and opens Photoswipe (Carousel)
+   * pswpElement is the outer container for the carousel
+   * PhotoSwipeUI_Default is the layout for toolbar, buttons etc.
+   * {items} Array   is the images
+   * {options} Object   is the options for the carousel
+   */
   initGallery() {
     if (!this.images) {
       return;
@@ -66,13 +69,14 @@ export class CarouselComponent {
       };
     });
     
-    // define options
+    // Define options
     let options = {
       // Includes caption (description) to each image
       captionEl: true,
       
-      // Removes close button
+      // Removes close button (User closes fullscreen with fullscreen button)
       closeEl: false,
+      
       // Prevent the carousel from closing when clicking anything but close-btn
       closeElClasses: [],
       
@@ -87,13 +91,7 @@ export class CarouselComponent {
       
     };
 
-    /**
-     * Initializes and opens Photoswipe (Carousel)
-     * pswpElement is the outer container for the carousel
-     * PhotoSwipeUI_Default is the layout for toolbar, buttons etc.
-     * {items} Array   is the images
-     * {options} Object   is the options for the carousel
-     */
+    // The initialization
     let gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
     gallery.init();
   
