@@ -25,7 +25,7 @@ export class CarouselComponent {
     
     if (images && typeof images[0] == "string") {
       this._images = images.map((img) => {
-        return {img: img, description: undefined, url: undefined}
+        return {img: img, description: '', url: ''}
       })
     }
     this._images = images;
@@ -47,8 +47,7 @@ export class CarouselComponent {
     
     let pswpElement = document.querySelectorAll('.pswp')[0];
 
-    // TODO add caption
-// build items array
+    // build items array
     let items = this.images.map((elem) => {
       if (!elem.img) {
         elem.img = '/resources/defined.gif';
@@ -87,7 +86,6 @@ export class CarouselComponent {
       
     };
 
-// Initializes and opens PhotoSwipe
     /**
      * Initializes and opens Photoswipe (Carousel)
      * pswpElement is the outer container for the carousel
@@ -99,6 +97,10 @@ export class CarouselComponent {
     gallery.init();
   
     // Overkjører funksjonene slik at den ikke lukkes og ødelegges når du prøver å lukke den.
+    // Overrides close and destroy function so that the carousel either closes
+    /**
+     * Overrides close and destroy functions
+     */
     gallery.close = function() {
       return;
     };
@@ -106,14 +108,6 @@ export class CarouselComponent {
     gallery.destroy = function() {
       return;
     };
-    
-    gallery.listen('close', function() {
-      console.log('closed');
-    });
-    
-    gallery.listen('destroy', function() {
-      console.log('destroyed');
-    });
     
     gallery.listen('resize', () => {
       this.fullScreen = !this.fullScreen;

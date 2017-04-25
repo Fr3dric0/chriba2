@@ -48,12 +48,31 @@ export class ThumbnailService {
 
             obj.img = img;
             obj.url = `/${!elem.location ? 'projects' : 'estates'}/${elem.name}`;
-            if (elem.location) {
-              obj.description = `
-              ${elem.location.address}<br>
-              ${elem.location.addressNumber}<br>`;
+            obj.description = "";
+            let desc = "";
+  
+            // Adds description only if it has images
+            if (elem.thumbnails.large.length > 0) {
+              
+              // Adds header depending on wether the element has images and location or not
+              if (elem.location) {
+                if (elem.location.address && elem.location.addressNumber) {
+                  desc = `<h3>${elem.location.address} ${elem.location.addressNumber}</h3><br>`;
+                } else if (elem.location.address) {
+                  desc = `<h3>${elem.location.address}</h3><br>`
+                }
+              }
+  
+              if (elem.description) {
+                desc += `${elem.description}`;
+                let length = 200; // length of description
+                if (desc.length > length) {
+                  desc = `${desc.substring(0, length)}...`;
+                }
+              }
+              
+              obj.description = desc;
             }
-            obj.description = `${elem.description.substring(0, 60)}...`;
             return obj;
           }));
         rsv(shuffled);

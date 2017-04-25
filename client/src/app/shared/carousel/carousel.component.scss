@@ -11,4 +11,12 @@
   .fixed {
     position: fixed !important;
   }
+  
+  .pswp__button {
+    z-index: 10;
+  }
+  
+  .description-fullscreen {
+    height: 25vh;
+  }
 }
