@@ -1,8 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
-import { headerLinks, Link } from './header-links';
 import { AuthService } from '../auth/auth.service';
+
+export const headerLinks: Link[] =  [
+  {label: 'prosjekter', route: '/projects'},
+  {label: 'eiendommer', route: '/estates'}
+];
+
+export interface Link {
+  label?: string;
+  route: string;
+}
 
 @Component({
     selector: 'app-header',
