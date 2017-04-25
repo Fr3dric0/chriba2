@@ -63,10 +63,12 @@ export class ThumbnailService {
                 }
               }
               
-              // Shortens long description
+              // Adds description if the elem has
               if (elem.description) {
                 desc += `${elem.description}`;
                 let length = 200; // length of description
+  
+                // Shortens long description
                 if (desc.length > length) {
                   desc = `${desc.substring(0, length)}...`;
                 }
