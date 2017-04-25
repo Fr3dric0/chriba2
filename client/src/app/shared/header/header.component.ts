@@ -31,4 +31,8 @@ export class HeaderComponent implements OnInit{
         this.expanded = !this.expanded;
     }
 
+    scrollToElement(element): void {
+      document.querySelector(element).scrollIntoView();
+    }
+
 }

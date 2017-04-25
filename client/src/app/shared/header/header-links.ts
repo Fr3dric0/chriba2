@@ -1,8 +1,7 @@
 
 export const headerLinks: Link[] =  [
     {label: 'prosjekter', route: '/projects'},
-    {label: 'eiendommer', route: '/estates'},
-    {label: 'kontakt oss', route: '#footer'}
+    {label: 'eiendommer', route: '/estates'}
 ];
 
 export interface Link {
