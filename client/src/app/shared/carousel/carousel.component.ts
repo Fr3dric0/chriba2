@@ -13,8 +13,7 @@ declare let PhotoSwipeUI_Default: any;
 })
 
 export class CarouselComponent {
-  gallery: any;
-  fullscreen: boolean = false;
+  fullScreen: boolean = false;
   
   constructor() {
   
@@ -32,7 +31,6 @@ export class CarouselComponent {
     this._images = images;
     this.initGallery();
   }
-  
   
   /**
    * Expected: Returns a list of imageobjects describes above
@@ -55,10 +53,16 @@ export class CarouselComponent {
       if (!elem.img) {
         elem.img = '/resources/defined.gif';
       }
+      
+      if (!elem.description) {
+        elem.description = '';
+      }
+      
       return {
-        src: elem.img,
+        h: 400,
         w: 600,
-        h: 400
+        src: elem.img,
+        title: elem.description
       };
     });
     
@@ -112,7 +116,7 @@ export class CarouselComponent {
     });
     
     gallery.listen('resize', () => {
-      this.fullscreen = !this.fullscreen;
+      this.fullScreen = !this.fullScreen;
     });
   }
   
