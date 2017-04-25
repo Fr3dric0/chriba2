@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     
     this.ts.generate()
-      .then( data => this.images = data)
+      .then( data => {this.images = data; console.log("data found")})
       .catch( err => console.error(err));
     
     const sub = this.gs.getAbout()

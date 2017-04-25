@@ -1,78 +1,38 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input, trigger, state, style, animate, transition } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+declare let PhotoSwipe: any;
+declare let PhotoSwipeUI_Default: any;
 
 @Component({
   selector: 'app-carousel',
   templateUrl: "./carousel.component.html",
   styleUrls: ['./carousel.component.scss'],
-  animations: [
-    trigger('imageState', [
-      state('inactive', style({
-        opacity: 0
-      })),
-      state('active',   style({
-        opacity: 1
-      })),
-      transition('inactive => active, active => inactive',
-        animate('100ms ease-out'))
-    ])
-  ]
 })
 
 export class CarouselComponent {
-  carouselFrame:any = ["", "", ""];
-  pointer = [0,1,2];
-  badges = [];
-  fullWidth = window.innerWidth;
-  imgState = "active";
+  gallery: any;
+  fullscreen: boolean = false;
   
-  /**
-   * Classes depending on wether the carousel is in fullscreen or not
-   * viewedClass = current viewing image
-   * fullScreen = fullscreen mode or not
-   * descClass = if the description should disappear or not
-   * fullScrenBtn = set the fullscreen button to fixed if in fullscreen mode
-   * @type {string}
-   */
-  viewedClass = "viewed";
-  fullScreen = "disappear";
-  fullScreenBackground = "";
-  descClass = "";
-  fullScreenBtn = "";
+  constructor() {
   
-  standBy = true; // As long as standBy is true, the carousel autoscrolls
+  }
   
-  /**
-   * imageobjects: {img: string, description: string, url: string}
-   * Set imagesobjects in _images from input
-   * When images is loaded, this.prev() changes the pointers index to 0
-   * and updates the frame, updateFrame() for then creating all the badges
-   * with createBadgeIndex().
-   *
-   * setInterval starts a loop as long as the carousel is on standby.
-   * standBy is true when initializing and the interval scrolls every 10 secs
-   * as long as standBy is true.
-   *
-   */
   private _images;
   @Input()
   set images(images: any) {
-    if ( images && typeof images[0] == "string") {
+    
+    if (images && typeof images[0] == "string") {
       this._images = images.map((img) => {
         return {img: img, description: undefined, url: undefined}
       })
     }
-    
     this._images = images;
-    if (this.images) {
-      this.prev();
-      this.updateFrame();
-      this.createBadgeIndex();
-      setInterval(() => this.standBy ? this.next() : "", 10000);
-    }
+    this.initGallery();
   }
+  
   
   /**
    * Expected: Returns a list of imageobjects describes above
@@ -82,165 +42,78 @@ export class CarouselComponent {
     return this._images;
   }
   
-  /**
-   * obj = {img: string, description: string, url: string}
-   * (or obj = imageobject in _images)
-   * carouselFrame = [obj, obj, obj]
-   * Updates the carouselFrame depending on index in this.pointer
-   */
-  updateFrame() {
-    this.changeImgState();
-    setTimeout(() =>  this.changeImgState(), 100);
-    setTimeout(() => this.carouselFrame =
-      [
-        this.images[this.pointer[0]],
-        this.images[this.pointer[1]],
-        this.images[this.pointer[2]]
-      ], 100);
-  }
-  
-  /**
-   * Changes the pointers indexes so the next image is displayed
-   * Then updates the "window frame" with the previous, current and next image
-   */
-  next() {
-      for (let i = 0; i < 3; i++) {
-        this.pointer[i]++;
-        if (this.pointer[i] + 1 > this.images.length) {
-          this.pointer[i] = 0;
-        }
+  initGallery() {
+    if (!this.images) {
+      return;
+    }
+    
+    let pswpElement = document.querySelectorAll('.pswp')[0];
+
+    // TODO add caption
+// build items array
+    let items = this.images.map((elem) => {
+      if (!elem.img) {
+        elem.img = '/resources/defined.gif';
       }
-      this.updateFrame();
-  }
-  
-  /**
-   * Changes the pointers indexes so the previous image is displayed
-   * Then updates the "window frame" with the previous, current and next image
-   */
-  prev() {
-      for (let i = 0; i < 3; i++) {
-        this.pointer[i]--;
-        if (this.pointer[i] < 0) {
-          this.pointer[i] = this.images.length - 1;
-        }
-      }
+      return {
+        src: elem.img,
+        w: 600,
+        h: 400
+      };
+    });
     
-      this.updateFrame();
-  }
+    // define options
+    let options = {
+      // Includes caption (description) to each image
+      captionEl: true,
+      
+      // Removes close button
+      closeEl: false,
+      // Prevent the carousel from closing when clicking anything but close-btn
+      closeElClasses: [],
+      
+      // Prevent closing when swiping vertical
+      // because of carousel "closing" when not in fullscreen
+      closeOnVerticalDrag: false,
   
-  /**
-   * Receives badgeIndex from current clicked or selected badge
-   * Changes which image to display correspondingly
-   * Checks for previous and next index to avoid error and index out of bounds
-   * Updates the frame for the carousel
-   * Updates the backgroundcolor for badges
-   * @param badgeIndex
-   */
-  viewImage(badgeIndex) {
-    let prevIdx = badgeIndex - 1;
-    let nextIdx = badgeIndex + 1;
-    if (prevIdx < 0) {
-      prevIdx = this.images.length - 1;
-    }
+      index: 0, // start at first slide
+  
+      // preventing user to close carousel when clicking on a image
+      tapToClose: false,
+      
+    };
+
+// Initializes and opens PhotoSwipe
+    /**
+     * Initializes and opens Photoswipe (Carousel)
+     * pswpElement is the outer container for the carousel
+     * PhotoSwipeUI_Default is the layout for toolbar, buttons etc.
+     * {items} Array   is the images
+     * {options} Object   is the options for the carousel
+     */
+    let gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+    gallery.init();
+  
+    // Overkjører funksjonene slik at den ikke lukkes og ødelegges når du prøver å lukke den.
+    gallery.close = function() {
+      return;
+    };
     
-    if (nextIdx >= this.images.length) {
-      nextIdx = 0;
-    }
+    gallery.destroy = function() {
+      return;
+    };
     
-    this.pointer = [prevIdx, badgeIndex, nextIdx];
-    this.updateFrame();
-    this.isSelected(badgeIndex)
+    gallery.listen('close', function() {
+      console.log('closed');
+    });
+    
+    gallery.listen('destroy', function() {
+      console.log('destroyed');
+    });
+    
+    gallery.listen('resize', () => {
+      this.fullscreen = !this.fullscreen;
+    });
   }
   
-  /**
-   * Creates same amount of badges as there are images
-   * These are saved in this.badges
-   */
-  createBadgeIndex() {
-    for (let i = 0; i < this.images.length; i++) {
-      this.badges.push(i);
-    }
-  }
-  
-  /**
-   * Returns if the selected badge (badgeIndex) should have backgroundcolour or not.
-   * @param badgeIndex
-   * @returns {any}
-   */
-  isSelected(badgeIndex) {
-    return badgeIndex == this.pointer[1];
-  }
-  
-  /**
-   * Returns the height in px depending on current carousel width (this.fullWidth)
-   * @returns {string}
-   */
-  getHeight(this) {
-    let percentage = 0.56; // 16:9 ratio, height is 56 % of width
-    if (this.fullWidth != 0 && this.fullWidth * percentage < 1200) {
-      return (this.fullWidth * percentage).toString();
-    }
-    return (this.fullWidth * percentage).toString();
-  }
-  
-  /**
-   * Return the bottom value for badges depening on wether the carousel is
-   * in fullscreen or not.
-   * @returns {string}
-   */
-  getBottomClass() {
-    return this.fullScreen == "fullscreen" ? "bottom" : "";
-  }
-  
-  /**
-   * On resizing window, sets this.width equal to current carousel's width
-   * @param event
-   */
-  onResize(event) {
-    this.fullWidth = event.target.innerWidth;
-  }
-  
-  /**
-   * Changes the class for the fullscreen container, description, button and
-   * background depending on wether there is fullscreen in the class or not,
-   * also, changes wether the image should load or not by adding and removing
-   * the source src.
-   */
-  
-  fullscreen() {
-    this.fullScreen.includes("fullscreen") ? (
-        this.fullScreen = "disappear", // toggles wether fullscreen should appear or not
-        this.fullScreenBackground = "", // toggles background for fullscreen
-        // toggles the image resolution to adjust depending on fullscreen or not
-        this.viewedClass = "viewed",
-        this.descClass = "", // toggles class for the description below the images
-        this.fullScreenBtn = "" // toggles class for the fullscreen button
-    ) : (
-        this.fullScreen = "fullscreen",
-        this.fullScreenBackground = "background",
-        this.viewedClass = "viewed scale-down",
-        this.descClass = "disappear",
-        this.fullScreenBtn = "fixed"
-    );
-  }
-  
-  /**
-   * This function is used to change wether the current (shown) image
-   * should be active or not and cooperates with the transitions at the top.
-   */
-  changeImgState() {
-    this.imgState = this.imgState == "active" ? "inactive" : "active";
-  }
-  
-  /**
-   * This is for the autoscrolling. Sets the standby to false if the user
-   * interacts with the carousel (clicking any buttons).
-   * standBy {Boolean}   initialized as true;
-   */
-  standbyOff() {
-    this.standBy = false;
-  }
 }
-
-
-
