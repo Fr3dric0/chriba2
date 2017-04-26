@@ -27,6 +27,8 @@ export class HeaderComponent implements OnInit{
 
     authenticated: boolean = false;
 
+    boundOffClickHandler: any = this.offClickHandler.bind(this);
+
     constructor(private loc: Location, private auth: AuthService) {
         this.location = loc;
     }
@@ -36,32 +38,25 @@ export class HeaderComponent implements OnInit{
         this.auth.authStatus.subscribe((authenticated) => this.authenticated = authenticated);
     }
 
-    addClickListener(): void {
-      document.addEventListener('click', this.offClickHandler.bind(this));
-      console.log('listening');
-    }
-
-    removeClickListener(): void {
-      document.removeEventListener('click', this.offClickHandler.bind(this));
-      console.log('not listening');
-    }
-
     toggleMenu(): void {
         this.expanded = !this.expanded;
 
         if (this.expanded) {
-          console.log('expanded!');
-          setTimeout(this.addClickListener, 1);
+          setTimeout(()=>{
+            document.addEventListener('click', this.boundOffClickHandler);
+          },1);
 
         } else {
-          console.log('closed!');
-          setTimeout(this.removeClickListener, 1);
+          setTimeout(()=>{
+            document.removeEventListener('click', this.boundOffClickHandler);
+          },1);
         }
     }
 
-    offClickHandler(event:any) {
-      console.log('click registered!');
-      this.toggleMenu();
+    offClickHandler(evt: any) {
+      if (!evt.target.className.includes('hamburger-menu')){
+        this.toggleMenu();
+      }
     }
 
     scrollToElement(element): void {
