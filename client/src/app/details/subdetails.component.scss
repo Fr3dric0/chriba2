@@ -1,5 +1,5 @@
-@import '../../stylesheets/declarations';
-@import '../../stylesheets/material-buttons';
+@import "../../stylesheets/declarations";
+@import "../../stylesheets/material-buttons";
 
 app-map {
   display: block;
@@ -43,7 +43,8 @@ p {
   flex-wrap: wrap;
   justify-content: space-between;
 
-  div, section {
+  div,
+  section {
     box-sizing: border-box;
     flex: 1;
     margin-top: 0;
