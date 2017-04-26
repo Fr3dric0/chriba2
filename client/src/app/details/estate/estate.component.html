@@ -10,10 +10,9 @@
          </section>
          <section *ngIf="size">
              <h3>Areal</h3>
-             {{size}} kvm
+             {{size}} m<sup>2</sup>
          </section>
-         <br>
-         <a id="url" *ngIf="url" [href]="url" target="_blank" class="btn btn-find btn-details">{{url.hostname}}</a>
+         <a *ngIf="url" [href]="url" target="_blank" class="btn btn-find btn-details">{{url.hostname}}</a>
      </div>
 
      <div *ngIf="description">
