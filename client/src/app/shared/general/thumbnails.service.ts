@@ -57,12 +57,14 @@ export class ThumbnailService {
               // Adds header depending on wether the element has images and location or not
               if (elem.location) {
                 if (elem.location.address && elem.location.addressNumber) {
-                  desc = `<h3>${elem.location.address} ${elem.location.addressNumber}</h3><br>`;
+                  desc = `${elem.location.address} ${elem.location.addressNumber}
+                    <button [ngClass]="readMoreClass" [routerLink]="${obj.url}">Les mer</button><br>`;
+                
                 } else if (elem.location.address) {
-                  desc = `<h3>${elem.location.address}</h3><br>`
+                  desc = `${elem.location.address}<br>`
                 }
               }
-              
+               /*
               // Adds description if the elem has
               if (elem.description) {
                 desc += `${elem.description}`;
@@ -74,6 +76,7 @@ export class ThumbnailService {
                 }
               }
               
+              */
               obj.description = desc;
             }
             return obj;

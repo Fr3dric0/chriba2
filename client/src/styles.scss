@@ -26,10 +26,6 @@ body {
  * to use flexbox. Ensures a sticky footer without calculations
  */
 app-root {
-  display: flex;
-
-  flex-direction: column;
-
   min-height: 100vh;
 }
 
@@ -104,8 +100,6 @@ main {
   border-left: #EEE solid 1px;
   border-right: #EEE solid 1px;
   box-sizing: border-box;
-
-  flex-grow: 1;
 
   margin: 0 auto 0 auto;
   max-width: $container-width;

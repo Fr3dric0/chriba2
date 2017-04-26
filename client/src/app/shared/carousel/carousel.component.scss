@@ -3,10 +3,6 @@
   min-height: 45vw;
   position: relative !important;
   
-  .relative {
-    position: relative !important;
-  }
-  
   .fixed {
     position: fixed !important;
   }
@@ -14,4 +10,22 @@
   .pswp__button {
     z-index: 10;
   }
+  
+  .pswp__caption {
+    align-items: center;
+    display: flex;
+    
+    .pswp__caption__center {
+      flex: 4;
+      text-align: center;
+    }
+    
+    a {
+      flex: 2;
+      text-align: center;
+    }
+  }
+  
 }
+
+
