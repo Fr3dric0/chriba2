@@ -63,7 +63,7 @@ export class CarouselComponent {
       
       return {
         h: 600,
-        w: 1000,
+        w: 840,
         src: elem.img,
         title: elem.description
       };
