@@ -169,6 +169,15 @@ app.use(`${api}`, index); // MUST BE LAST ROUTE!
 
 
 ////////////////////////////////////////
+//           ROBOTS ROUTER            //
+// Responsible for serving the        //
+// robots.txt file on a root url      //
+////////////////////////////////////////
+app.all('/robots.txt', (req, res) => {
+    res.status(200).sendFile('robots.txt', {root: __dirname});
+});
+
+////////////////////////////////////////
 //           RESOURCE ROUTER          //
 //                                    //
 // Responsible for catching 404 err   //
