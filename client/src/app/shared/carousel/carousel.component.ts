@@ -93,6 +93,49 @@ export class CarouselComponent {
 
     // The initialization
     let gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+  
+    let realViewportWidth,
+      useLargeImages = false,
+      firstResize = true,
+      imageSrcWillChange;
+    
+    // beforeResize event fires each time size of gallery viewport updates
+    gallery.listen('beforeResize', function() {
+      // gallery.viewportSize.x - width of PhotoSwipe viewport
+      // gallery.viewportSize.y - height of PhotoSwipe viewport
+      // window.devicePixelRatio - ratio between physical pixels and device independent pixels (Number)
+      //                          1 (regular display), 2 (@2x, retina) ...
+    
+    
+      // calculate real pixels when size changes
+      realViewportWidth = gallery.viewportSize.x * window.devicePixelRatio;
+    
+      // Code below is needed if you want image to switch dynamically on window.resize
+    
+      // Find out if current images need to be changed
+      if(useLargeImages && realViewportWidth < 1200) {
+        useLargeImages = false;
+        imageSrcWillChange = true;
+      } else if(!useLargeImages && realViewportWidth >= 1200) {
+        useLargeImages = true;
+        imageSrcWillChange = true;
+      }
+    
+      // Invalidate items only when source is changed and when it's not the first update
+      if(imageSrcWillChange && !firstResize) {
+        // invalidateCurrItems sets a flag on slides that are in DOM,
+        // which will force update of content (image) on window.resize.
+        gallery.invalidateCurrItems();
+      }
+    
+      if(firstResize) {
+        firstResize = false;
+      }
+    
+      imageSrcWillChange = false;
+    
+    });
+    
     gallery.init();
   
     // Overkjører funksjonene slik at den ikke lukkes og ødelegges når du prøver å lukke den.
