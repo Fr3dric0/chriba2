@@ -4,6 +4,7 @@ import { AdminService } from './admin.service';
 import { Admin } from '../models/admin';
 import { Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
+import { ChribaTitleService } from '../shared/chriba-title.service';
 
 @Component({
     selector: 'app-admin',
@@ -16,9 +17,12 @@ export class AdminComponent implements OnInit {
     constructor(private auth: AuthService,
                 private adminService: AdminService,
                 private router: Router,
-                private notif: NotificationsService) {}
+                private notif: NotificationsService,
+                private titleService: ChribaTitleService) {}
 
     ngOnInit(): void {
+        this.titleService.setTitle('Administrator');
+
         this.adminService.find()
             .subscribe(
                 (adm) => this.admin = adm,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Estate } from "../models/estate";
 import { EstatesService } from "./estates.service";
+import { ChribaTitleService } from '../shared/chriba-title.service';
 
 @Component({
   selector: 'app-estates',
@@ -10,10 +11,14 @@ import { EstatesService } from "./estates.service";
 export class EstatesComponent implements OnInit {
 
   data: Estate[];
-  constructor(private es: EstatesService) {
+  constructor(private es: EstatesService,
+              private titleService: ChribaTitleService) {
   }
 
   ngOnInit() {
+    // Update our title with the correct sub-page
+    this.titleService.setTitle('Eiendommer');
+
     this.es.find()
       .subscribe((d) => {this.data = d.map(EstatesComponent.parseInnerContent)}, (err) => {console.error(err)});
   }

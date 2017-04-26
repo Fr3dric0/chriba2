@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from "../models/project";
 import { ProjectsService } from "./projects.service";
+import { ChribaTitleService } from '../shared/chriba-title.service';
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
@@ -9,10 +10,13 @@ import { ProjectsService } from "./projects.service";
 export class ProjectsComponent implements OnInit {
 
   data: Project[];
-  constructor(private es: ProjectsService) {
+  constructor(private es: ProjectsService,
+              private titleService: ChribaTitleService) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Prosjekt');
+
     this.es.find()
       .subscribe((d) => {this.data = d.map(ProjectsComponent.parseInnerContent)}, (err) => {console.error(err)})
   }

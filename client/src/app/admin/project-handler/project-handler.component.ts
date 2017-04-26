@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeocodeService } from '../../shared/map/geocode.service';
 import { ProjectsService } from '../../projects/projects.service';
 import { Project } from '../../models/project';
+import { ChribaTitleService } from '../../shared/chriba-title.service';
 
 @Component({
     selector: 'app-admin-project-handler',
@@ -22,10 +23,13 @@ export class ProjectHandlerComponent implements OnInit {
     constructor(private ps: ProjectsService,
                 private route: ActivatedRoute,
                 private fb: FormBuilder,
-                private notif: NotificationsService) {
+                private notif: NotificationsService,
+                private titleService: ChribaTitleService) {
     }
 
     ngOnInit() {
+        this.titleService.setTitle('Admin Prosjekt');
+
         this.form = this.fb.group({
             title: [null, <any>Validators.required],
             description: [null],
