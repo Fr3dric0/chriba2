@@ -49,37 +49,10 @@ export class ThumbnailService {
             obj.img = img;
             obj.url = `/${!elem.location ? 'projects' : 'estates'}/${elem.name}`;
             obj.description = "";
-            let desc = "";
   
             // Adds description only if it has images
             if (elem.thumbnails.large.length > 0) {
-              
-              // Adds header depending on wether the element has images and location or not
-              if (elem.location) {
-                if (elem.location.address && elem.location.addressNumber) {
-                  desc = `${elem.location.address} ${elem.location.addressNumber}
-                    <button class="btn-flat" style="float:right; width: 12em;"
-                    [routerLink]="${obj.url}">Les mer
-                    </button><br>`;
-                
-                } else if (elem.location.address) {
-                  desc = `${elem.location.address}<br>`
-                }
-              }
-               /*
-              // Adds description if the elem has
-              if (elem.description) {
-                desc += `${elem.description}`;
-                let length = 200; // length of description
-  
-                // Shortens long description
-                if (desc.length > length) {
-                  desc = `${desc.substring(0, length)}...`;
-                }
-              }
-              
-              */
-              obj.description = desc;
+              obj.description = this.getDescription(elem, obj.url);
             }
             return obj;
           }));
@@ -89,6 +62,52 @@ export class ThumbnailService {
         .catch(err => rr(err));
 
     });
+  }
+  
+  /**
+   * Returns description created depended of wether elem has location,
+   * address or adressnumber. May also add elem.description as well.
+   * The url is the link to the internal page for current elem.
+   *
+   * @param elem
+   * @param url
+   * @returns {any}
+   */
+  getDescription(elem, url) {
+    let desc;
+  
+    // Adds header depending on wether the element has images and location or not
+    if (elem.location) {
+      if (elem.location.address && elem.location.addressNumber) {
+        desc = `${elem.location.address} ${elem.location.addressNumber}
+                    <button class="btn-flat" style="float:right; width: 12em;"
+                    [routerLink]="${url}">Les mer
+                    
+                    <svg style="margin-left:1em;" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+                      <path d="M22 34h4V22h-4v12zm2-30C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16zm-2-22h4v-4h-4v4z"/>
+                    </svg>
+                    </button><br>`;
+      
+      } else if (elem.location.address) {
+        desc = `${elem.location.address}<br>`
+      }
+    }
+  
+    /*
+     // Adds description if the elem has
+     if (elem.description) {
+       desc += `${elem.description}`;
+       let length = 200; // length of description
+     
+       // Shortens long description
+       if (desc.length > length) {
+        desc = `${desc.substring(0, length)}...`;
+       }
+     }
+   
+     */
+    
+    return desc;
   }
 
 
