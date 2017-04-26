@@ -42,6 +42,7 @@ export class HeaderComponent implements OnInit{
         this.expanded = !this.expanded;
 
         if (this.expanded) {
+          this.scrollToElement('header');
           setTimeout(()=>{
             document.addEventListener('click', this.boundOffClickHandler);
           },1);
