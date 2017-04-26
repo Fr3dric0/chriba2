@@ -14,7 +14,6 @@ declare let PhotoSwipeUI_Default: any;
 
 export class CarouselComponent {
   fullScreen: boolean = false;
-  readMoreClass: string = "btn-flat";
   
   private _images;
   @Input()
@@ -63,8 +62,8 @@ export class CarouselComponent {
       }
       
       return {
-        h: 1050,
-        w: 1680,
+        h: 600,
+        w: 1000,
         src: elem.img,
         title: elem.description
       };

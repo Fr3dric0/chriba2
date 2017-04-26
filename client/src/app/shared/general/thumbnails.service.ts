@@ -58,7 +58,9 @@ export class ThumbnailService {
               if (elem.location) {
                 if (elem.location.address && elem.location.addressNumber) {
                   desc = `${elem.location.address} ${elem.location.addressNumber}
-                    <button [ngClass]="readMoreClass" [routerLink]="${obj.url}">Les mer</button><br>`;
+                    <button class="btn-flat" style="float:right; width: 12em;"
+                    [routerLink]="${obj.url}">Les mer
+                    </button><br>`;
                 
                 } else if (elem.location.address) {
                   desc = `${elem.location.address}<br>`
