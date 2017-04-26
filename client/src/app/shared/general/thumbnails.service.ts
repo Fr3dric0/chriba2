@@ -74,7 +74,7 @@ export class ThumbnailService {
    * @returns {any}
    */
   getDescription(elem, url) {
-    let desc;
+    let desc = "";
   
     // Adds header depending on wether the element has images and location or not
     if (elem.location) {
