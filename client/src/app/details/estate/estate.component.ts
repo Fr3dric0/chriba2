@@ -13,7 +13,7 @@ export class EstateComponent implements OnInit {
     private name: string;
     private description: string;
     private size: number;
-    private url: string;
+    private url: any;
     private images: string[];
     private location: any;
 
@@ -22,7 +22,7 @@ export class EstateComponent implements OnInit {
         this.name = name;
         this.description = description;
         this.size = size;
-        this.url = url;
+        this.url = new URL(url);
         this.images = thumbnails.large;
         this.location = location;
     }

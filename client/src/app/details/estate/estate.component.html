@@ -1,25 +1,24 @@
-<div *ngIf="name">
-    <app-carousel [images]="images"></app-carousel>
-    <div  class="flex-container">
-        <div>
-            <div>
-                <h2>Adresse</h2>
-                {{location.address}} {{location.addressNumber}} <br>
-                {{location.postalCode}} {{location.city}} <br>
-                {{location.country}}
-            </div>
-            <div>
-                <h2>Areal</h2>
-                {{size}} kvm
-            </div>
-            <br>
-            <a *ngIf="url" href="{{url}}" target="_blank" class="btn btn-find btn-details">{{url}}</a>
-        </div>
+ <app-carousel *ngIf="images" [images]="images"></app-carousel>
 
-        <div>
-           <p>{{description}}</p>
-        </div>
-    </div>
+ <div  class="flex-container">
+     <div>
+         <section *ngIf="location">
+             <h3>Adresse</h3>
+             {{location.address}} {{location.addressNumber}} <br>
+             {{location.postalCode}} {{location.city}} <br>
+             {{location.country}}
+         </section>
+         <section *ngIf="size">
+             <h3>Areal</h3>
+             {{size}} kvm
+         </section>
+         <br>
+         <a id="url" *ngIf="url" [href]="url" target="_blank" class="btn btn-find btn-details">{{url.hostname}}</a>
+     </div>
 
-    <app-map [lat]="location.lat" [long]="location.long"></app-map>
-</div>
+     <div *ngIf="description">
+         <p class="details-description" [innerHTML]="description"></p>
+     </div>
+ </div>
+
+ <app-map *ngIf="location.lat" [lat]="location.lat" [long]="location.long"></app-map>

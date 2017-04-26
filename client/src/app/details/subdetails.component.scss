@@ -1,58 +1,66 @@
 @import '../../stylesheets/declarations';
 @import '../../stylesheets/material-buttons';
 
-div {
-    font-family: $primary-font;
-    margin: auto;
+app-map {
+  display: block;
+  height: 16em;
+  margin: 1em auto;
+  width: 100%;
 }
 
-.flex-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    div {
-        flex: 1;
-        min-width: 15em;
-        max-width: 20em;
-        margin-top: 0;
-        box-sizing: border-box;
-        padding: 0.25em 0.5em;
-    }
+div {
+  margin: auto;
 }
 
 h2 {
-    text-align: left;
-    margin: 0.5em 0 0.25em;
-    font-size: 0.75em;
-    color: $secondary-text;
-    font-weight: 100;
+  margin: 2em auto;
+}
+
+h3 {
+  color: $secondary-text;
+  font-size: 0.75em;
+  font-weight: 100;
+  margin: 0.5em 0 0.25em;
+  text-align: left;
 }
 
 p {
-    font-weight: 100;
+  font-weight: 100;
 }
 
 .btn-details {
-    width: 100%;
-    margin: auto;
+  margin: auto;
+  width: 100%;
 }
 
-app-map {
-    margin: 1em auto;
-    display: block;
-    width: 100%;
-    height: 250px; //TODO: Endre verdi
+.details-description {
+  white-space: pre-wrap;
 }
 
-@media screen and (max-width: $breakpoint * 0.57){
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 
-    .flex-container {
-        div {
-            margin: auto 0;
-            padding: 0.25em 0;
-        }
+  div, section {
+    box-sizing: border-box;
+    flex: 1;
+    margin-top: 0;
+    max-width: 20em;
+    min-width: 15em;
+    padding: 0.25em 0.5em;
+  }
+}
+
+@media screen and (max-width: $breakpoint * 0.53){
+
+  .flex-container {
+    margin: 0 1em;
+
+    div {
+      margin: auto 0;
+      padding: 0.25em 0;
     }
-;
+  }
 }

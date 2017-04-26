@@ -13,7 +13,7 @@ export class ProjectComponent implements OnInit {
     private name: string;
     private title: string;
     private description: string;
-    private url: string;
+    private url: any;
     private images: string[];
 
     @Input()
@@ -21,7 +21,7 @@ export class ProjectComponent implements OnInit {
         this.name = name;
         this.title = title;
         this.description = description;
-        this.url = url;
+        this.url = new URL(url);
         this.images = thumbnails.large;
     }
 
