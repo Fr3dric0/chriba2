@@ -55,7 +55,7 @@ export class CarouselComponent {
     // build items array
     let items = this.images.map((elem) => {
       if (!elem.img) {
-        elem.img = '/resources/defined.gif';
+        elem.img = '//';
       }
       
       if (!elem.description) {
