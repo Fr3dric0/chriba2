@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../shared/general/general.service'
 import { ThumbnailService } from '../shared/general/thumbnails.service';
+import { ChribaTitleService } from '../shared/chriba-title.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,11 +13,13 @@ export class DashboardComponent implements OnInit {
   images: any;
   
   constructor(private gs: GeneralService,
-              private ts: ThumbnailService) {
+              private ts: ThumbnailService,
+              private titleService: ChribaTitleService) {
   }
 
   ngOnInit() {
-    
+    this.titleService.setTitle(); // Use only the Root-title
+
     this.ts.generate()
       .then( data => this.images = data)
       .catch( err => console.error(err));
@@ -24,7 +27,7 @@ export class DashboardComponent implements OnInit {
     const sub = this.gs.getAbout()
       .subscribe((data) => {
         this.description = data.description;
-      sub.unsubscribe();
+        sub.unsubscribe();
       },
         err => console.error(err));
     
