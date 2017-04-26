@@ -1,10 +1,17 @@
-<sebm-google-map
+<sebm-google-map *ngIf="mapDone"
   [latitude]="lat"
   [longitude]="long"
+  [zoom]="zoom"
   [draggable]="false"
-  [disableDoubleClickZoom]="true"
+  [disableDoubleClickZoom]="zooming"
+  [disableDefaultUI]="defaultUI"
   [scrollwheel]="false"
-  [streetViewControl]="false">
+  [keyboardShortcuts]="shortcuts"
+  [zoomControl]="zooming"
+  [streetViewControl]="streetView"
+  [scaleControl]="scaling"
+  [mapTypeControl]="typeChanging"
+>
   <sebm-google-map-marker
     [latitude]="lat"
     [longitude]="long">
