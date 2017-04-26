@@ -83,8 +83,6 @@ nav {
 
   cursor: pointer;
 
-  display: flex;
-
   flex-grow: 1;
 
   font-size: 1.2em;
@@ -130,4 +128,7 @@ nav {
     display: inherit;
   }
 
+  .hamburger-menu {
+    display: flex;
+  }
 }
