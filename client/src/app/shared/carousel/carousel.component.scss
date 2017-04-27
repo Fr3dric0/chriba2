@@ -150,10 +150,10 @@
           border: none;
           border-radius: 70%;
           height: 3em;
+          margin: 1em;
           outline:none;
           overflow: hidden;
           padding: 0;
-          position: absolute;
           transition:.5s;
           width: 3em;
           z-index: 19;
@@ -166,12 +166,8 @@
           }
         }
     
-        .left-arrow {
-          left: 1em;
-        }
-    
         .right-arrow {
-          right: 1em;
+          margin-left: auto;
         }
     
       }
@@ -245,7 +241,6 @@
 }
 
 .fullscreen {
-  align-items: center;
   background-color: transparent;
   display: flex;
   height: 100%;
@@ -257,7 +252,10 @@
   
   .viewed {
     display: block;
+    left: 50%;
     max-width: 80vw;
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 22;
   }
 }
