@@ -44,4 +44,3 @@ export const SHARED_PROVIDERS = [
     GeocodeService,
     ChribaTitleService
 ];
-
