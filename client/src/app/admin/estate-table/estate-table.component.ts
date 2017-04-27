@@ -26,7 +26,7 @@ export class EstateTableComponent implements OnInit {
                     this.estates = estates;
                     this.fields = this.createFields(estates);
                 },
-                err => this.notif.error('Project Loading Error', err.message)
+                err => this.notif.error('Klarte ikke å laste eiendommene', err.message)
             );
     }
 
@@ -34,7 +34,7 @@ export class EstateTableComponent implements OnInit {
     remove(id) {
         let estate:Estate = this.estates.filter(e => e.name == id)[0];
 
-        if (!confirm(`Sikker på at du vil fjerne: ${estate.location.address}?`)) {
+        if (!confirm(`Sikker på at du vil fjerne ${estate.location.address}?`)) {
             return;
         }
 
@@ -43,7 +43,7 @@ export class EstateTableComponent implements OnInit {
                 (status) => {
                     this.estates = this.estates.filter( p => p.name !== estate.name);
                     this.fields = this.createFields(this.estates);
-                    this.notif.success(`Prosjekt fjernet`, `${estate.location.address} er fjernet`)
+                    this.notif.success(`Eiendom fjernet`, `${estate.location.address} er fjernet`)
                 },
                 (err) => {
                     this.notif.error(`Fjerning av eiendom feilet`, err.json().error)

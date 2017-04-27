@@ -45,7 +45,7 @@ export class ProjectHandlerComponent implements OnInit {
             this.ps.findOne(name).subscribe(
                 (project) => {
                     if (!project) {
-                        return this.notif.alert('Fant ikkje prosjekt', `Fant ikke prosjekt: ${name}`);
+                        return this.notif.alert('Fant ikke prosjekt', `Fant ikke prosjekt: ${name}`);
                     }
 
                     this.updateForm(project);
@@ -73,7 +73,7 @@ export class ProjectHandlerComponent implements OnInit {
 
             }, (err) => {
                 this.saved = false;
-                this.notif.error('Kunne ikkje lagre prosjekt', `${err.json().error}${err.json().description}`);
+                this.notif.error('Kunne ikke lagre prosjekt', `${err.json().error}${err.json().description}`);
             });
     }
 
@@ -104,7 +104,7 @@ export class ProjectHandlerComponent implements OnInit {
 
     remove(data: {index, size}) {
         if (data.index < 0) {
-            return this.notif.alert('Ugyldig bilde', 'Ser ut som at bildet du valgte ikke finst');
+            return this.notif.alert('Ugyldig bilde', 'Ser ut som at bildet du valgte ikke finnes');
         }
 
         this.ps.removeThumb(data.size, data.index, this.project)

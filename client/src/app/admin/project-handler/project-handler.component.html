@@ -3,7 +3,7 @@
     <app-subpage-navigator [back]="'/backdoor'"></app-subpage-navigator>
 
     <h2>Administrer Prosjekt</h2>
-    <p class="description">Her kan du opprette nye, eller modifisere eksisterende prosjekt</p>
+    <p class="description">Her kan du opprette nye, eller modifisere eksisterende prosjekter</p>
 
     <form class="material-form flexing-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
         <div>
@@ -23,7 +23,7 @@
                           placeholder="Liten forklaring om prosjektet"></textarea>
             </div>
             <small class="input-feedback" [hidden]="!form.controls['description'].value || form.controls['description'].value.length <= 355">
-                Beskrivelsen bør ikkje bestå av meir enn 355 tegn. Kan føre til at sidene ser litt merkelige ut.</small>
+                Beskrivelsen bør ikke bestå av mer enn 355 tegn. Forbi dette kan sidene se litt merkelige ut.</small>
         </div>
 
         <button class="submit" type="submit" [disabled]="!form.valid">
@@ -36,7 +36,7 @@
 <section *ngIf="project && (project.name || project._id)">
     <h3>Bilder</h3>
     <p class="description">Registrerte bilder til prosjektet vil dukke opp her.
-        Hvor du har mulighet til å fjerne disse, eller legge til nye</p>
+      Du har mulighet til å fjerne eller legge til nye bilder</p>
 
     <app-admin-thumbnail-handler [element]="project" (upload)="upload($event)" (remove)="remove($event)"></app-admin-thumbnail-handler>
 </section>
