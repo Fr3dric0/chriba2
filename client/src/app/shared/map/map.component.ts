@@ -1,7 +1,7 @@
 /**
  * Created by Ruben Johannessen on 06.02.2017.
  */
-import {Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-map',
@@ -16,6 +16,8 @@ export class MapComponent implements OnInit{
   private streetView: boolean;
   private scaling: boolean;
   private typeChanging: boolean;
+  private fullscreen: boolean;
+  private rotate: boolean;
 
   private mapDone: boolean = false;
 
@@ -31,12 +33,16 @@ export class MapComponent implements OnInit{
       this.streetView = false;
       this.scaling = false;
       this.typeChanging = false;
+      this.rotate = false;
+      this.fullscreen = true;
     } else if (this.control == 1) {
       this.zooming = true;
       this.shortcuts = true;
       this.streetView = true;
       this.scaling = true;
       this.typeChanging = true;
+      this.rotate = true;
+      this.fullscreen = true;
     } else {
       this.zooming = false;
       this.defaultUI = true;
@@ -44,6 +50,8 @@ export class MapComponent implements OnInit{
       this.streetView = false;
       this.scaling = false;
       this.typeChanging = false;
+      this.rotate = false;
+      this.fullscreen = false;
     }
     this.mapDone = true;
   }
