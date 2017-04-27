@@ -5,7 +5,7 @@ app-map {
   display: block;
   height: 16em;
   margin: 1em auto;
-  width: 100%;
+  width: calc(100% - 2em);
 }
 
 div {
