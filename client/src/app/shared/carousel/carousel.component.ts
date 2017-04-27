@@ -142,7 +142,7 @@ export class CarouselComponent {
       this.updateFrame();
 
 
-    if (this.instantiated) {
+    if (this.instantiated && !this.standBy) {
         this.angulartics2.eventTrack.next({
             action: 'NextImage',
             properties: {
@@ -169,7 +169,7 @@ export class CarouselComponent {
 
       this.updateFrame();
 
-      if (this.instantiated) {
+      if (this.instantiated && !this.standBy) {
           this.angulartics2.eventTrack.next({
               action: 'PreviousImage',
               properties: {
@@ -205,7 +205,7 @@ export class CarouselComponent {
     this.updateFrame();
     this.isSelected(badgeIndex);
 
-    if (this.instantiated) {
+    if (this.instantiated && !this.standBy) {
         this.angulartics2.eventTrack.next({
             action: 'ChangeImageThroughBadge',
             properties: {

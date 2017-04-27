@@ -85,12 +85,12 @@
     
     .toolbar-top {
       display: flex;
-      height: 2em;
+      height: 3em;
       top: 0;
       
       span {
-        text-align: center;
         flex: 9;
+        text-align: center;
       }
   
       .btn-fullscreen {
@@ -101,6 +101,7 @@
         position: absolute;
         right: 0;
         top: 0;
+        width: 3em;
         z-index: 25;
     
         &:hover {
@@ -109,11 +110,10 @@
     
         svg {
           fill: $secondary-background-color;
-          height: 2em;
-          width: 2em;
+          height: inherit;
+          width: inherit;
         }
       }
-      
     }
     
     .btn-container {

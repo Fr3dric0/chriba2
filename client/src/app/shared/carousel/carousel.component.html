@@ -1,9 +1,9 @@
 <div [ngClass]="fullScreenBackground">
   <div class="carousel" [ngClass]="fullScreen" (window:resize)="onResize($event);" [style.height.px]="getHeight()">
     
-    <img [src]="carouselFrame[0].img">
+    <img *ngIf="carouselFrame[0].img" [src]="carouselFrame[0].img">
     <img class="viewed" [ngClass]="viewedClass" [@imageState]="imgState" [src]="carouselFrame[1].img">
-    <img [src]="carouselFrame[2].img">
+    <img *ngIf="carouselFrame[2].img" [src]="carouselFrame[2].img">
     
     <div *ngIf="carouselFrame[1].description && carouselFrame[1].url" class="desc-carousel showcase" [ngClass]="descClass">
       <span *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
