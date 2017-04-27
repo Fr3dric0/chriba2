@@ -17,7 +17,7 @@
     </div>
     
     <div class="toolbar">
-      <div class="toolbar-top showcase" [ngClass]="{'no-background' : fullScreen.includes('fullscreen')}">
+      <div class="toolbar-top showcase" [ngClass]="toolbarTop">
         <span *ngIf="carouselFrame[1].title" [innerHTML]="carouselFrame[1].title"></span>
         <button class="btn-fullscreen" [ngClass]="fullScreenBtn" (click)="fullscreen(); standbyOff()">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">

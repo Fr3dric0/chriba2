@@ -175,10 +175,6 @@
     position: fixed;
   }
   
-  .bottom {
-    bottom: 0 !important;
-  }
-  
   .badges {
     align-items: center;
     bottom: 3em;
@@ -212,6 +208,15 @@
   .selected {
     background-color: $primary-background-color;
   }
+  
+  .toolbar-at-top {
+    background-color: transparent;
+    position: fixed;
+  }
+  
+  .bottom {
+    bottom: 0;
+  }
 }
 
 .background {
@@ -236,7 +241,6 @@
   justify-content: center;
   left: 0;
   position: fixed;
-  top: 3em;
   width: 100%;
   z-index: 100;
   

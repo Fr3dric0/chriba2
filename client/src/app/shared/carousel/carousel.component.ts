@@ -35,6 +35,7 @@ export class CarouselComponent {
    * fullScreen = fullscreen mode or not
    * descClass = if the description should disappear or not
    * fullScrenBtn = set the fullscreen button to fixed if in fullscreen mode
+   * toolbarTop = class for the toolbar a top when in fullscreen or not
    * @type {string}
    */
   viewedClass = "viewed";
@@ -42,6 +43,7 @@ export class CarouselComponent {
   fullScreenBackground = "";
   descClass = "";
   fullScreenBtn = "";
+  toolbarTop = "";
 
   standBy = true; // As long as standBy is true, the carousel autoscrolls
 
@@ -259,13 +261,15 @@ export class CarouselComponent {
         // toggles the image resolution to adjust depending on fullscreen or not
         this.viewedClass = "viewed",
         this.descClass = "", // toggles class for the description below the images
-        this.fullScreenBtn = "" // toggles class for the fullscreen button
+        this.fullScreenBtn = "", // toggles class for the fullscreen button
+        this.toolbarTop = "" // toggles class for the toolbar at top
     ) : (
         this.fullScreen = "fullscreen",
         this.fullScreenBackground = "background",
         this.viewedClass = "viewed scale-down",
         this.descClass = "disappear",
-        this.fullScreenBtn = "fixed"
+        this.fullScreenBtn = "fixed",
+        this.toolbarTop = "toolbar-at-top"
     );
 
         this.angulartics2.eventTrack.next({
