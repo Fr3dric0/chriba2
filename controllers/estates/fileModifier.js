@@ -184,9 +184,9 @@ function deleteThumbData (req, res, next) {
 
     const deletePromises = paths.map((path) => {
         if (size === 'large') {
-            return Estates.update({ _id: estate._id }, { $pull: { 'thumbnails.large': path } })
+            return Estates.update({ _id: estate._id }, { $pull: { 'thumbnails.large': path } });
         } else {
-            return Estates.update({ _id: estate._id }, { $pull: { 'thumbnails.small': path } })
+            return Estates.update({ _id: estate._id }, { $pull: { 'thumbnails.small': path } });
         }
     });
 
