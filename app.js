@@ -69,11 +69,21 @@ if (app.get('env') === 'development') {
 //  for our project, atleast under    //
 //  development.                      //
 ////////////////////////////////////////
-const mailConfig = require('./bin/config/_email.json');
-const Mailgun = mailgunContainer({
-    apiKey: mailConfig['api-key'],
-    domain: mailConfig.domain
-});
+let mailConfig;
+try {
+    mailConfig = require('./bin/config/_email.json');
+} catch (e) {
+    console.warn('[WARN] Missing _email.json in config. You will not receive email warnings')
+}
+
+let Mailgun;
+
+if (mailConfig) {
+    Mailgun = mailgunContainer({
+        apiKey: mailConfig['api-key'],
+        domain: mailConfig.domain
+    });
+}
 
 // Store library in request object
 app.use((req, res, next) => {
@@ -110,38 +120,31 @@ db.on('error', (err) => {
 
     console.log('\n*********************************************');
     console.error('          MongoDB Connection ERROR           ');
-    console.log('*********************************************');
+    console.log('*********************************************\n');
 
     console.error(err);
 
-    console.log('\n============ POSSIBLE SOLUTIONS ============');
-    console.log(`
-    1. Username or password is wrong for the database
-    2. Port is wrong
-    3. The remote database is not set to listen on remote requests (0.0.0.0)
-    4. Database has not created a remote user
-    5. Check that your local instance of MongoDB is NOT running
-        (Mongoose would sometimes favour the local connection over the remote)`);
-    console.log('\n--------------------------------------------');
-
-    Mailgun.messages().send({
-        from: `Server Chriba <${mailConfig.user}>`,
-        to: mailConfig.distribution.join(','),
-        subject: '[Chriba] Database Connection Error',
-        text: `The server could not connect to the database.\n
+    if (Mailgun) {
+        Mailgun.messages().send({
+            from: `Server Chriba <${mailConfig.user}>`,
+            to: mailConfig.distribution.join(','),
+            subject: '[Chriba] Database Connection Error',
+            text: `The server could not connect to the database.\n
                Timestamp: ${new Date()}\n
                Following error occured:\n\t${err.message}`,
-        html: ` <h1>Database connection error</h1>
+            html: ` <h1>Database connection error</h1>
                 <p>The server could not connect to the database.</p>
                 <pre>Timestamp: ${new Date()}</pre>
                 <p>Following error occured</p>
+                <p></p>
                 <pre>${err.message}</pre>`
-    }, (err) => {
-        if (err) {
-            console.error('\n\n[MongoDB Setup] Problem with email distribution');
-            console.error(err);
-        }
-    });
+        }, (err) => {
+            if (err) {
+                console.error('\n\n[MongoDB Setup] Problem with email distribution');
+                console.error(err);
+            }
+        });
+    }
 
 });
 
