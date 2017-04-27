@@ -48,11 +48,15 @@ export class ThumbnailService {
 
             obj.img = img;
             obj.url = `/${!elem.location ? 'projects' : 'estates'}/${elem.name}`;
+            
             if (elem.location) {
-              obj.description = `
-              ${elem.location.address}<br>
-              ${elem.location.addressNumber}<br>`;
+              obj.title = `${elem.location.address} ${elem.location.addressNumber}`;
             }
+            
+            if (obj.img) {
+              obj.description = `${elem.description}`;
+            }
+            
             obj.description = `${elem.description.substring(0, 60)}...`;
             return obj;
           }));
