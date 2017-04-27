@@ -14,6 +14,7 @@ import { ESTATES_DECLARATIONS, ESTATES_PROVIDERS } from './estates';
 import { ERROR_DECLARATIONS } from './error';
 import { SHARED_DECLARATIONS, SHARED_PROVIDERS } from './shared';
 import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
+import { DETAILS_DECLARATIONS } from "./details";
 import { LOGIN_DECLARATIONS, LOGIN_PROVIDERS } from './login';
 
 ///////////////////////////////////////
@@ -32,6 +33,7 @@ import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
         ...ERROR_DECLARATIONS,
         ...SHARED_DECLARATIONS,
         ...ADMIN_DECLARATIONS,
+        ...DETAILS_DECLARATIONS,
         ...LOGIN_DECLARATIONS
     ],
     imports: [
