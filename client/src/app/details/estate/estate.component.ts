@@ -22,7 +22,17 @@ export class EstateComponent implements OnInit {
         this.name = name;
         this.description = description;
         this.size = size;
-        this.url = new URL(url);
+        this.url = (
+            (new RegExp("^((https|http|ftp|rtsp|mms)+://)+"
+                + "(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?"
+                + "(([0-9a-z_!~*'()-]+\.)*"
+                + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\."
+                + "[a-z]{2,6})"
+                + "(:[0-9]{1,4})?"
+                + "((/?)|"
+                + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$"))
+                .test(url) ? new URL(url) : null
+        );
         this.images = thumbnails.large;
         this.location = location;
     }
