@@ -26,6 +26,7 @@ export class ThumbnailComponent {
     submit(evt) {
         this.upload.emit(evt.target);
         this.filename = null;
+        evt.target.reset(); // Assures fileChange will trigger
     }
 
     fileChange(evt) {

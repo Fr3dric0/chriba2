@@ -38,7 +38,7 @@ export class GeneralFieldsComponent implements OnInit {
             mailbox: ['']
         });
 
-        this.gs.getAbout()
+        this.gs.find()
             .subscribe(
                 about => this.updateForm(about),
                 err => this.notif.error(
@@ -83,7 +83,7 @@ export class GeneralFieldsComponent implements OnInit {
         data.location.lat = this.about.location.lat;
         data.location.long = this.about.location.long;
 
-        this.gs.save(data)
+        this.gs.update(null, data)
             .subscribe((about) => {
                     this.updateForm(about);
                     this.saved = true;
