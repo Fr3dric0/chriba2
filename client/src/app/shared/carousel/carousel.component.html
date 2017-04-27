@@ -5,7 +5,7 @@
     <img class="viewed" [ngClass]="viewedClass" [@imageState]="imgState" [src]="carouselFrame[1].img">
     <img [src]="carouselFrame[2].img">
     
-    <div class="desc-carousel showcase" [ngClass]="descClass">
+    <div *ngIf="carouselFrame[1].description && carouselFrame[1].url" class="desc-carousel showcase" [ngClass]="descClass">
       <span *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
       <button class="btn-desc btn-flat" *ngIf="carouselFrame[1].url" [routerLink]="[carouselFrame[1].url]"
               angulartics2On="click" angularticsEvent="ReadMore" [angularticsCategory]="'carousel'" [angularticsProperties]="{ label: carouselFrame[1].url }">

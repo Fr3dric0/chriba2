@@ -1,7 +1,7 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input, trigger, state, style, animate, transition } from '@angular/core';
+import { Component, Input, HostListener, trigger, state, style, animate, transition } from '@angular/core';
 import { Angulartics2 } from 'angulartics2';
 
 @Component({
@@ -49,6 +49,17 @@ export class CarouselComponent {
 
   // Used to determine if analytics should start tracking events
   instantiated: boolean = false;
+  
+  @HostListener('document:keydown', ['$event'])
+  keypress(e: KeyboardEvent) {
+    console.log("Key Up! " + e.key);
+    if (e.key == "ArrowLeft") {
+      this.prev();
+    }
+    if (e.key == "ArrowRight") {
+      this.next();
+    }
+  }
 
   constructor(private angulartics2: Angulartics2) {}
 
