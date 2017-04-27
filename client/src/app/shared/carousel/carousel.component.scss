@@ -11,27 +11,28 @@
   
   .desc-carousel {
     bottom: 0;
+    display: flex;
     height: 3em;
     
     span {
-      flex: 7;
-      margin: 0.3em;
+      flex: 6;
+      margin: 1em;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
     
     .btn-desc {
-      flex: 1.5;
+      align-items: center;
+      flex: 4;
       height: 2em;
       margin: auto 1em;
-      min-width: 7em;
+      max-width: 11em;
       overflow: hidden;
-      padding: 0 0.5em 0;
-      width: 7em;
+      padding: 0 2em 0;
       
       span {
-        width: 4em;
+        margin: 0;
       }
       
       &:hover {
