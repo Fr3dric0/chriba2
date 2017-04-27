@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     this.titleService.setTitle(); // Use only the Root-title
 
     this.ts.generate()
-        .then( data => this.images = data)
+        .then( data => this.images = data )
         .catch( err => console.error(err));
 
     const sub = this.gs.find().subscribe(

@@ -57,6 +57,8 @@ export class ThumbnailService {
               obj.description = `${elem.description}`;
             }
             
+            console.log("hei")
+            
             return obj;
           }));
         rsv(shuffled);

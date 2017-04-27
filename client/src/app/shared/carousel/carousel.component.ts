@@ -23,8 +23,8 @@ import { Angulartics2 } from 'angulartics2';
 })
 
 export class CarouselComponent {
-  carouselFrame:any = ["", "", ""];
-  pointer = [0,1,2];
+  carouselFrame: any = ["", "", ""];
+  pointer: any = [0, 1, 2];
   badges = [];
   fullWidth = window.innerWidth;
   imgState = "active";
@@ -36,6 +36,7 @@ export class CarouselComponent {
    * descClass = if the description should disappear or not
    * fullScrenBtn = set the fullscreen button to fixed if in fullscreen mode
    * toolbarTop = class for the toolbar a top when in fullscreen or not
+   * bottomClass = class for badges
    * @type {string}
    */
   viewedClass = "viewed";
@@ -44,6 +45,7 @@ export class CarouselComponent {
   descClass = "";
   fullScreenBtn = "";
   toolbarTop = "";
+  badgesClass = "";
 
   standBy = true; // As long as standBy is true, the carousel autoscrolls
 
@@ -52,7 +54,6 @@ export class CarouselComponent {
   
   @HostListener('document:keydown', ['$event'])
   keypress(e: KeyboardEvent) {
-    console.log("Key Up! " + e.key);
     if (e.key == "ArrowLeft") {
       this.prev();
       this.standBy = false;
@@ -93,7 +94,9 @@ export class CarouselComponent {
     }
 
     this._images = images;
+    
     if (this.images) {
+      this.setPointer();
       this.prev();
       this.updateFrame();
       this.createBadgeIndex();
@@ -110,6 +113,14 @@ export class CarouselComponent {
   get images() {
     return this._images;
   }
+  
+  setPointer() {
+    if (this.images.length == 2) {
+      this.pointer = [1,0,1];
+    } else if (this.images.length == 1) {
+      this.pointer = [0,0,0];
+    }
+  }
 
   /**
    * obj = {img: string, description: string, url: string}
@@ -119,13 +130,14 @@ export class CarouselComponent {
    */
   updateFrame() {
     this.changeImgState();
-    setTimeout(() =>  this.changeImgState(), 100);
-    setTimeout(() => this.carouselFrame =
-      [
+    setTimeout(() => this.changeImgState(), 100);
+    setTimeout(() => {
+      this.carouselFrame = [
         this.images[this.pointer[0]],
         this.images[this.pointer[1]],
         this.images[this.pointer[2]]
-      ], 100);
+      ]
+    }, 100);
   }
 
   /**
@@ -250,15 +262,6 @@ export class CarouselComponent {
   }
 
   /**
-   * Return the bottom value for badges depening on wether the carousel is
-   * in fullscreen or not.
-   * @returns {string}
-   */
-  getBottomClass() {
-    return this.fullScreen == "fullscreen" ? "bottom" : "";
-  }
-
-  /**
    * On resizing window, sets this.width equal to current carousel's width
    * @param event
    */
@@ -281,14 +284,16 @@ export class CarouselComponent {
         this.viewedClass = "viewed",
         this.descClass = "", // toggles class for the description below the images
         this.fullScreenBtn = "", // toggles class for the fullscreen button
-        this.toolbarTop = "" // toggles class for the toolbar at top
+        this.toolbarTop = "", // toggles class for the toolbar at top
+        this.badgesClass = "" //toggles class for badges
     ) : (
         this.fullScreen = "fullscreen",
         this.fullScreenBackground = "background",
         this.viewedClass = "viewed scale-down",
         this.descClass = "disappear",
         this.fullScreenBtn = "fixed",
-        this.toolbarTop = "toolbar-at-top"
+        this.toolbarTop = "toolbar-at-top",
+        this.badgesClass = "bottom"
     );
 
         this.angulartics2.eventTrack.next({
@@ -319,6 +324,3 @@ export class CarouselComponent {
     this.standBy = false;
   }
 }
-
-
-

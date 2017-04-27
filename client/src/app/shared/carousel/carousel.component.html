@@ -1,13 +1,13 @@
 <div [ngClass]="fullScreenBackground">
   <div class="carousel" [ngClass]="fullScreen" (window:resize)="onResize($event);" [style.height.px]="getHeight()">
     
-    <img *ngIf="carouselFrame[0].img" [src]="carouselFrame[0].img">
-    <img class="viewed" [ngClass]="viewedClass" [@imageState]="imgState" [src]="carouselFrame[1].img">
-    <img *ngIf="carouselFrame[2].img" [src]="carouselFrame[2].img">
+    <img *ngIf="carouselFrame[0]" [src]="carouselFrame[0].img">
+    <img *ngIf="carouselFrame[1]" class="viewed" [ngClass]="viewedClass" [@imageState]="imgState" [src]="carouselFrame[1].img">
+    <img *ngIf="carouselFrame[2]" [src]="carouselFrame[2].img">
     
-    <div *ngIf="carouselFrame[1].description && carouselFrame[1].url" class="desc-carousel showcase" [ngClass]="descClass">
+    <div *ngIf="carouselFrame[1]" class="desc-carousel showcase" [ngClass]="descClass">
       <span *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
-      <button class="btn-desc btn-flat" *ngIf="carouselFrame[1].url" [routerLink]="[carouselFrame[1].url]"
+      <button *ngIf="carouselFrame[1].url"  class="btn-desc btn-flat" [routerLink]="[carouselFrame[1].url]"
               angulartics2On="click" angularticsEvent="ReadMore" [angularticsCategory]="'carousel'" [angularticsProperties]="{ label: carouselFrame[1].url }">
         <span>Les mer</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
@@ -16,9 +16,9 @@
       </button>
     </div>
     
-    <div class="toolbar">
+    <div *ngIf="images" class="toolbar">
       <div class="toolbar-top showcase" [ngClass]="toolbarTop">
-        <span *ngIf="carouselFrame[1].title" [innerHTML]="carouselFrame[1].title"></span>
+        <span *ngIf="carouselFrame[1]" [innerHTML]="carouselFrame[1].title"></span>
         <button class="btn-fullscreen" [ngClass]="fullScreenBtn" (click)="fullscreen(); standbyOff()">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
             <path d="M14 28h-4v10h10v-4h-6v-6zm-4-8h4v-6h6v-4H10v10zm24 14h-6v4h10V28h-4v6zm-6-24v4h6v6h4V10H28z"/>
@@ -26,7 +26,7 @@
         </button>
       </div>
       
-      <div class="btn-container">
+      <div *ngIf="images[1]" class="btn-container">
         <div (click)="prev(); standbyOff()">
           <button class="btn-arrow">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
@@ -44,10 +44,9 @@
         </div>
       </div>
       
-      <div class="badges" [ngClass]="getBottomClass()">
+      <div *ngIf="images[1]" class="badges" [ngClass]="badgesClass">
         <span *ngFor="let badge of badges" [ngClass]="{'selected': isSelected(badge)}" (click)="viewImage(badge); standbyOff()"></span>
       </div>
-      
     </div>
   </div>
 </div>
