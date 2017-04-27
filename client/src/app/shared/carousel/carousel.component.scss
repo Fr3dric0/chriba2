@@ -117,56 +117,64 @@
     }
     
     .btn-container {
-      align-items: center;
-      cursor: pointer;
-      display: flex;
-      height: 100%;
-      width: 33vw;
-      z-index: 22;
+      justify-content: space-between;
+      height: inherit;
+      position: absolute;
+      width: inherit;
       
-      &:nth-child(3) {
-        margin-left: auto;
+      div:nth-child(2) {
+        right: 0;
       }
-  
-      &:hover {
-        .btn-arrow {
-          background-color: $carousel-background-color;
-  
-          svg {
-            fill: $secondary-background-color;
+      
+      div {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        height: 100%;
+        position: absolute;
+        width: 33vw;
+        z-index: 22;
+    
+        &:hover {
+          .btn-arrow {
+            background-color: $carousel-background-color;
+        
+            svg {
+              fill: $secondary-background-color;
+            }
           }
         }
-      }
-  
-      .btn-arrow {
-        background-color: $blurred;
-        border: none;
-        border-radius: 70%;
-        height: 3em;
-        outline:none;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        transition:.5s;
-        width: 3em;
-        z-index: 19;
     
-        svg {
-          fill: $svg-icon;
-          height: inherit;
+        .btn-arrow {
+          background-color: $blurred;
+          border: none;
+          border-radius: 70%;
+          height: 3em;
+          outline:none;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
           transition:.5s;
-          width: inherit;
-        }
-      }
-  
-      .left-arrow {
-        left: 1em;
-      }
-  
-      .right-arrow {
-        right: 1em;
-      }
+          width: 3em;
+          z-index: 19;
       
+          svg {
+            fill: $svg-icon;
+            height: inherit;
+            transition:.5s;
+            width: inherit;
+          }
+        }
+    
+        .left-arrow {
+          left: 1em;
+        }
+    
+        .right-arrow {
+          right: 1em;
+        }
+    
+      }
     }
   }
   
@@ -201,10 +209,10 @@
         width: 1em;
         z-index: 25;
     
-    &:hover {
-      background-color: $primary-background-color;
-    }
-  }
+        &:hover {
+          background-color: $primary-background-color;
+        }
+      }
   
   }
   

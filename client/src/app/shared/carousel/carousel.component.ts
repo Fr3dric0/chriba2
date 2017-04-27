@@ -55,9 +55,17 @@ export class CarouselComponent {
     console.log("Key Up! " + e.key);
     if (e.key == "ArrowLeft") {
       this.prev();
+      this.standBy = false;
     }
     if (e.key == "ArrowRight") {
       this.next();
+      this.standBy = false;
+    }
+    
+    if (e.key == "Escape") {
+      if (this.fullScreen == "fullscreen") {
+        this.fullscreen();
+      }
     }
   }
 
