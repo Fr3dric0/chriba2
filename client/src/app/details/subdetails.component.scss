@@ -2,10 +2,12 @@
 @import "../../stylesheets/material-buttons";
 
 app-map {
+  box-sizing: border-box;
   display: block;
   height: 16em;
   margin: 1em auto;
-  width: calc(100% - 2em);
+  padding: 0 1em;
+  width: 100%;
 }
 
 div {

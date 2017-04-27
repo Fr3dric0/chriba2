@@ -1,7 +1,8 @@
 /**
  * Created by Ruben Johannessen on 06.02.2017.
  */
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, HostListener } from '@angular/core';
+import {AgmMap} from "@agm/core";
 
 @Component({
   selector: 'app-map',
@@ -25,6 +26,13 @@ export class MapComponent implements OnInit{
   @Input() long: number;
   @Input() zoom: number = 9;
   @Input() control: number = 0;
+
+  @ViewChild(AgmMap) private map: any;
+  @HostListener('window:resize', ['$event'])
+  public onResize(event) {
+    this.map._mapsWrapper.setCenter({lat: this.lat, lng: this.long});
+  }
+
 
   ngOnInit(){
     if (this.control == 0) {
