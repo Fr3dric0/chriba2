@@ -2,9 +2,11 @@
 @import "../../stylesheets/material-buttons";
 
 app-map {
+  box-sizing: border-box;
   display: block;
   height: 16em;
   margin: 1em auto;
+  padding: 0 1em;
   width: 100%;
 }
 

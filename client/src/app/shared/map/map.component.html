@@ -1,12 +1,22 @@
-<sebm-google-map
-  [latitude]="lat"
-  [longitude]="long"
-  [draggable]="false"
-  [disableDoubleClickZoom]="true"
-  [scrollwheel]="false"
-  [streetViewControl]="false">
-  <sebm-google-map-marker
+<div>
+  <agm-map *ngIf="mapDone"
     [latitude]="lat"
-    [longitude]="long">
-  </sebm-google-map-marker>
-</sebm-google-map>
+    [longitude]="long"
+    [zoom]="zoom"
+    [draggable]="false"
+    [disableDoubleClickZoom]="zooming"
+    [disableDefaultUI]="defaultUI"
+    [scrollwheel]="false"
+    [keyboardShortcuts]="shortcuts"
+    [zoomControl]="zooming"
+    [streetViewControl]="streetView"
+    [scaleControl]="scaling"
+    [mapTypeControl]="typeChanging"
+    [rotateControl]="rotate"
+    [fullscreenControl]="fullscreen">
+    <agm-marker
+      [latitude]="lat"
+      [longitude]="long">
+    </agm-marker>
+  </agm-map>
+</div>

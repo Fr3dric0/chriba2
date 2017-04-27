@@ -20,7 +20,7 @@ import { LOGIN_DECLARATIONS, LOGIN_PROVIDERS } from './login';
 ///////////////////////////////////////
 //         3rd party modules         //
 ///////////////////////////////////////
-import { AgmCoreModule } from 'angular2-google-maps/core';
+import { AgmCoreModule } from '@agm/core';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 
