@@ -16,6 +16,9 @@
     span {
       flex: 7;
       margin: 0.3em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     
     .btn-desc {

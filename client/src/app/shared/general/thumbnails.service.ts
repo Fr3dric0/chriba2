@@ -53,11 +53,10 @@ export class ThumbnailService {
               obj.title = `${elem.location.address} ${elem.location.addressNumber}`;
             }
             
-            if (obj.img) {
+            if (elem.description) {
               obj.description = `${elem.description}`;
             }
             
-            obj.description = `${elem.description.substring(0, 60)}...`;
             return obj;
           }));
         rsv(shuffled);
