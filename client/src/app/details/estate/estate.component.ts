@@ -33,11 +33,13 @@ export class EstateComponent implements OnInit {
                 + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$"))
                 .test(url) ? new URL(url) : null
         );
-        this.images = thumbnails.large;
-        this.location = location;
+  
+      this.images = thumbnails.large;
+      this.location = location;
     }
 
     constructor() { }
+    
 
     ngOnInit() { }
 }

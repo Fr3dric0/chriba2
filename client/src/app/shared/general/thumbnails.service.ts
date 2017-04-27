@@ -28,11 +28,15 @@ export class ThumbnailService {
           rsv([]);
           return;
         }
-
+        
         const [estates, projects] = data;
         let flattened;
         if (estates && projects) {
           flattened = [...estates, ...projects];
+        } else if (estates) {
+          flattened = [...estates];
+        } else if (projects) {
+          flattened = [...projects];
         } else {
           flattened = [];
         }

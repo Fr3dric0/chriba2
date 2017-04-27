@@ -87,17 +87,16 @@ export class CarouselComponent {
   private _images;
   @Input()
   set images(images: any) {
+    this._images = images;
+    
     if ( images && typeof images[0] == "string") {
       this._images = images.map((img) => {
         return {img: img, description: undefined, url: undefined}
       })
     }
-
-    this._images = images;
     
     if (this.images) {
       this.setPointer();
-      this.prev();
       this.updateFrame();
       this.createBadgeIndex();
       setInterval(() => this.standBy ? this.next() : "", 10000);
