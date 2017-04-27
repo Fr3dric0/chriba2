@@ -2,12 +2,25 @@ const Estates = require('../../models/estates');
 const uploader = require('../../lib/uploader');
 const fh = require('../../lib/filehandler');
 const { findOne } = require('./find');
-const { setFolders } = require('../projects/fileModifier');
 
 const validSize = ['large', 'small'];
 
+/**
+ * We use this function to declare our mediafolders
+ * based on the config values.
+ *
+ * */
+function createFolders (req, res, next) {
+    req.media = {};
+
+    req.media.root = `${req.config.media['root']}/${req.config.media['upload']}`;
+    req.media.publicPath = req.config.media['url'];
+
+    next();
+}
+
 const upload = [
-    setFolders,
+    createFolders,
     validateFields,
     uploadFile
 ];
@@ -29,13 +42,13 @@ function uploadFile (req, res, next) {
     const { file } = req;
     const { root, publicPath } = req.media;
 
-    uploader.single(Estates, {size, file, root, publicPath}, estate)
+    uploader.single(Estates, { size, file, root, publicPath }, estate)
         .then((results) => res.json(results))
-        .catch( err => next(err));
+        .catch(err => next(err));
 }
 
 const remove = [
-    setFolders,
+    createFolders,
     validateDeleteFields,
     findOne,
     validateEstate,
@@ -94,7 +107,6 @@ function validateEstate (req, res, next) {
     next();
 }
 
-
 /**
  * @middleware
  * Maps all the thumb-urls to remove from `document`
@@ -128,7 +140,7 @@ function getThumbUrls (req, res, next) {
             return next(err);
         }
 
-        paths = [ thumbnails[size][index] ];
+        paths = [thumbnails[size][index]];
     }
 
     req.estates.paths = paths;
@@ -146,7 +158,11 @@ function deleteThumbFiles (req, res, next) {
     // Used for middleware
     // Make them able to skip this function
     if (!paths) {
-        next();
+        return next();
+    }
+
+    if (!req.media) {
+        return next();
     }
 
     const { root, publicPath } = req.media;
@@ -168,15 +184,15 @@ function deleteThumbData (req, res, next) {
 
     const deletePromises = paths.map((path) => {
         if (size === 'large') {
-            return Estates.update({_id: estate._id}, {$pull: {'thumbnails.large': path} })
+            return Estates.update({ _id: estate._id }, { $pull: { 'thumbnails.large': path } })
         } else {
-            return Estates.update({_id: estate._id}, {$pull: {'thumbnails.small': path} })
+            return Estates.update({ _id: estate._id }, { $pull: { 'thumbnails.small': path } })
         }
     });
 
     Promise.all(deletePromises)
-        .then( result => next())
-        .catch( err => next(err));
+        .then(result => next())
+        .catch(err => next(err));
 }
 
 function returnResults (req, res, next) {

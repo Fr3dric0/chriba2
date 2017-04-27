@@ -159,7 +159,11 @@ function deleteThumbFiles (req, res, next) {
     // Used for middleware
     // Make them able to skip this function
     if (!paths) {
-        next();
+        return next();
+    }
+
+    if (!req.media) {
+        return next();
     }
 
     const { root, publicPath } = req.media;
