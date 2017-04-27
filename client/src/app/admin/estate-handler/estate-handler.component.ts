@@ -113,7 +113,9 @@ export class EstateHandlerComponent implements OnInit {
 
         this.es.save(this.concatEstate(this.estate, values))
             .subscribe((estate) => {
-                this.updateForm(estate);
+                if (estate) {
+                    this.updateForm(estate);
+                }
 
                 this.saved = true;
 
@@ -199,7 +201,6 @@ export class EstateHandlerComponent implements OnInit {
 
     updateForm(estate: Estate) {
         this.estate = estate;
-
         this.form.patchValue(estate);
     }
 }

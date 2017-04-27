@@ -159,7 +159,11 @@ function deleteThumbFiles (req, res, next) {
     // Used for middleware
     // Make them able to skip this function
     if (!paths) {
-        next();
+        return next();
+    }
+
+    if (!req.media) {
+        return next();
     }
 
     const { root, publicPath } = req.media;
@@ -181,9 +185,9 @@ function deleteThumbData (req, res, next) {
 
     const deletePromises = paths.map((path) => {
         if (size === 'large') {
-            return Projects.update({_id: project._id}, {$pull: {'thumbnails.large': path} })
+            return Projects.update({_id: project._id}, {$pull: {'thumbnails.large': path} });
         } else {
-            return Projects.update({_id: project._id}, {$pull: {'thumbnails.small': path} })
+            return Projects.update({_id: project._id}, {$pull: {'thumbnails.small': path} });
         }
     });
 
