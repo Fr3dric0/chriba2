@@ -1,12 +1,19 @@
 @import "../../../stylesheets/declarations";
 
+app-map {
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 10em;
+  min-width: 17em;
+  padding-bottom: 1em;
+}
+
 footer {
-  font-family: $primary-font;
   background-color: $footer-bg-color;
   color: $primary-background-color;
+  font-family: $primary-font;
+  overflow-x: hidden;
   padding: 0.5em 1em 0;
-
-  overflow-x: hidden; // Denne må fiksast
 }
 
 .flex-container {
@@ -18,15 +25,7 @@ footer {
 
   div {
     flex: 1;
-    padding: 0 1em;
     min-width: 13em;
+    padding: 0 1em;
   }
-}
-
-app-map {
-  flex: 1;
-  min-width: 22em;
-  min-height: 10em;
-  padding-bottom: 1em;
-  z-index: 1;
 }

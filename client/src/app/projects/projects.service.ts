@@ -79,6 +79,5 @@ export class ProjectsService {
         return this.http.post('/api/projects', project, { headers })
             .map(res => res.json());
     }
-
 }
 

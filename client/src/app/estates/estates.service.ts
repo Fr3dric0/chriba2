@@ -84,5 +84,4 @@ export class EstatesService {
         return this.http.post(`/api/estates`, estate, {headers})
             .map(res => res.json());
     }
-
 }

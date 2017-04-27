@@ -4,6 +4,7 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
 import { ProjectsComponent } from "./projects/projects.component";
 import { EstatesComponent } from "./estates/estates.component";
 import { ErrorComponent } from "./error/error.component";
+import { DetailsComponent } from "./details/details.component";
 
 import { AuthGuard } from './shared/auth/auth.guard';
 import { AdminComponent } from './admin/admin.component';
@@ -21,8 +22,16 @@ const routes:Routes = [
         component: ProjectsComponent
     },
     {
+        path: 'projects/:name',
+        component: DetailsComponent
+    },
+    {
         path: 'estates',
         component: EstatesComponent
+    },
+    {
+        path: 'estates/:name',
+        component: DetailsComponent
     },
     {
         path: 'backdoor',
