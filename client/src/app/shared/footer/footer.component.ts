@@ -22,7 +22,7 @@ export class FooterComponent implements OnInit{
     constructor(private generalService: GeneralService) { }
 
     ngOnInit(){
-        const sub = this.generalService.getAbout()
+        const sub = this.generalService.find()
             .subscribe((data) => {
                     this.business = data.business;
                     this.email = data.email;
