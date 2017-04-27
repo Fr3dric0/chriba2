@@ -1,4 +1,4 @@
- <app-carousel [images]="images"></app-carousel>
+ <app-carousel (fullscreenUpdated)="handleFullscreenUpdated($event)" [images]="images"></app-carousel>
  
  <div  class="flex-container">
      <div>

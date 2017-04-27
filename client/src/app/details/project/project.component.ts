@@ -36,6 +36,20 @@ export class ProjectComponent implements OnInit {
     }
 
     constructor() { }
-
+  
+    /**
+     * Handles the style for footer from event when fullscreen is initiated or not
+     * @param event {boolean}
+     */
+    handleFullscreenUpdated(event) {
+      // Getting DOM element with id #footer
+      let footer = document.querySelector('.footer');
+      if (event && footer) {
+        footer.className = "";
+      } else if (!event && footer) {
+        footer.className = "neg-index";
+      }
+    }
+    
     ngOnInit() { }
 }

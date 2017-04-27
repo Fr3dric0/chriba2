@@ -1,7 +1,7 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input, HostListener, trigger, state, style, animate, transition } from '@angular/core';
+import { Component, Input, HostListener, Output, EventEmitter, trigger, state, style, animate, transition } from '@angular/core';
 import { Angulartics2 } from 'angulartics2';
 
 @Component({
@@ -54,21 +54,27 @@ export class CarouselComponent {
   
   @HostListener('document:keydown', ['$event'])
   keypress(e: KeyboardEvent) {
-    if (e.key == "ArrowLeft") {
-      this.prev();
-      this.standBy = false;
-    }
-    if (e.key == "ArrowRight") {
-      this.next();
-      this.standBy = false;
-    }
     
-    if (e.key == "Escape") {
-      if (this.fullScreen == "fullscreen") {
-        this.fullscreen();
+    if (this.images && this.images.length > 1) {
+  
+      if (e.key == "ArrowLeft") {
+        this.prev();
+        this.standBy = false;
+      }
+      if (e.key == "ArrowRight") {
+        this.next();
+        this.standBy = false;
+      }
+  
+      if (e.key == "Escape") {
+        if (this.fullScreen == "fullscreen") {
+          this.fullscreen();
+        }
       }
     }
   }
+  
+  @Output() fullscreenUpdated = new EventEmitter();
 
   constructor(private angulartics2: Angulartics2) {}
 
@@ -113,6 +119,12 @@ export class CarouselComponent {
     return this._images;
   }
   
+  /**
+   * This sets the pointer depending on wether the carousel is given 1 or 2 images
+   * If the carousel is given 1, then there will be no buttons to change image
+   * If the carousel is given 2 or more, then the buttons will appear, but it will
+   * change between the two images as shown below
+   */
   setPointer() {
     if (this.images.length == 2) {
       this.pointer = [1,0,1];
@@ -276,6 +288,7 @@ export class CarouselComponent {
    */
 
   fullscreen() {
+    this.emitFullscreen();
     this.fullScreen.includes("fullscreen") ? (
         this.fullScreen = "disappear", // toggles wether fullscreen should appear or not
         this.fullScreenBackground = "", // toggles background for fullscreen
@@ -304,6 +317,13 @@ export class CarouselComponent {
                   '[Unknown Image]'
           }
       });
+  }
+  /**
+   * Emits the boolean value for when the carousel is in fullscreen or not
+   * @this.fullScreen.includes("fullscreen") {boolean}
+   */
+  emitFullscreen() {
+    this.fullscreenUpdated.emit(this.fullScreen.includes("fullscreen"));
   }
 
   /**

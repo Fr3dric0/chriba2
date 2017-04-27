@@ -7,7 +7,7 @@
     
     <div *ngIf="carouselFrame[1]" class="desc-carousel showcase" [ngClass]="descClass">
       <span *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
-      <button *ngIf="carouselFrame[1].url"  class="btn-desc btn-flat" [routerLink]="[carouselFrame[1].url]"
+      <button *ngIf="carouselFrame[1].url" class="btn-desc btn-flat" [routerLink]="[carouselFrame[1].url]"
               angulartics2On="click" angularticsEvent="ReadMore" [angularticsCategory]="'carousel'" [angularticsProperties]="{ label: carouselFrame[1].url }">
         <span>Les mer</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">

@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { GeneralService } from '../shared/general/general.service'
 import { ThumbnailService } from '../shared/general/thumbnails.service';
 import { ChribaTitleService } from '../shared/chriba-title.service';
@@ -16,6 +16,20 @@ export class DashboardComponent implements OnInit {
   constructor(private gs: GeneralService,
               private ts: ThumbnailService,
               private titleService: ChribaTitleService) {
+  }
+  
+  /**
+   * Handles the style for footer from event when fullscreen is initiated or not
+   * @param event {boolean}
+   */
+  handleFullscreenUpdated(event) {
+    // Getting DOM element with id #footer
+    let footer = document.querySelector('.footer');
+    if (event && footer) {
+      footer.className = "";
+    } else if (!event && footer) {
+      footer.className = "neg-index";
+    }
   }
 
   ngOnInit() {
