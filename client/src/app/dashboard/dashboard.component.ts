@@ -1,5 +1,5 @@
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../shared/general/general.service'
 import { ThumbnailService } from '../shared/general/thumbnails.service';
 import { ChribaTitleService } from '../shared/chriba-title.service';
