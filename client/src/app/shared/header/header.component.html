@@ -1,6 +1,6 @@
 <header>
 
-    <a [routerLink]="''" class="logo flex-container flex-hor">
+  <a [routerLink]="''" class="logo flex-container flex-hor">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475 140">
             <style type="text/css">
 
@@ -127,9 +127,7 @@
             {{ route.label }}
         </a>
 
-        <a (click)="scrollToElement('footer')">
-          kontakt oss
-        </a>
+        <a (click)="scrollToElement('footer')">kontakt oss</a>
 
         <a *ngIf="authenticated" [routerLink]="'/backdoor'"
            class="admin-route"
