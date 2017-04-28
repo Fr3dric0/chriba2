@@ -91,12 +91,10 @@ export class CarouselComponent {
       if (e.key == "ArrowRight") {
         this.next();
       }
-      
-      if (e.key == "Escape") {
-        if (this.isFullscreen) {
-          this.fullscreen();
-        }
-      }
+    }
+    
+    if (this.isFullscreen && e.key == "Escape") {
+      this.fullscreen();
     }
   }
   
