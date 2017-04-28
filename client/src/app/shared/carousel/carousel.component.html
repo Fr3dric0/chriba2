@@ -1,14 +1,22 @@
-<div [ngClass]="fullScreenBackground">
-  <div class="carousel" [ngClass]="fullScreen" (window:resize)="onResize($event);" [style.height.px]="getHeight()">
+<div [ngClass]="{'background' : isFullscreen}">
+  <div class="carousel"
+       [ngClass]="{'fullscreen no-background' : isFullscreen, 'disappear' : !isFullscreen}"
+       (window:resize)="onResize($event);" [style.height.px]="getHeight()">
     
     <img *ngIf="carouselFrame[0]" [src]="carouselFrame[0].img">
-    <img *ngIf="carouselFrame[1]" class="viewed" [ngClass]="viewedClass" [@imageState]="imgState" [src]="carouselFrame[1].img">
+    
+    <img *ngIf="carouselFrame[1]"
+         class="viewed" [ngClass]="{'scale-down' : isFullscreen}"
+         [@imageState]="imgState" [src]="carouselFrame[1].img">
+    
     <img *ngIf="carouselFrame[2]" [src]="carouselFrame[2].img">
     
-    <div *ngIf="carouselFrame[1]" class="desc-carousel showcase" [ngClass]="descClass">
+    <div *ngIf="carouselFrame[1]" class="desc-carousel showcase" [ngClass]="{'disappear' : isFullscreen}">
       <span *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
       <button *ngIf="carouselFrame[1].url" class="btn-desc btn-flat" [routerLink]="[carouselFrame[1].url]"
-              angulartics2On="click" angularticsEvent="ReadMore" [angularticsCategory]="'carousel'" [angularticsProperties]="{ label: carouselFrame[1].url }">
+              angulartics2On="click" angularticsEvent="ReadMore" [angularticsCategory]="'carousel'"
+              [angularticsProperties]="{ label: carouselFrame[1].url }">
+        
         <span>Les mer</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
           <path d="M22 34h4V22h-4v12zm2-30C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16zm-2-22h4v-4h-4v4z"/>
@@ -17,9 +25,9 @@
     </div>
     
     <div *ngIf="images" class="toolbar">
-      <div class="toolbar-top showcase" [ngClass]="toolbarTop">
+      <div class="toolbar-top showcase" [ngClass]="{'toolbar-at-top' : isFullscreen}">
         <span *ngIf="carouselFrame[1]" [innerHTML]="carouselFrame[1].title"></span>
-        <button class="btn-fullscreen" [ngClass]="fullScreenBtn" (click)="fullscreen(); standbyOff()">
+        <button class="btn-fullscreen" [ngClass]="{'fixed' : isFullscreen}" (click)="fullscreen()">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
             <path d="M14 28h-4v10h10v-4h-6v-6zm-4-8h4v-6h6v-4H10v10zm24 14h-6v4h10V28h-4v6zm-6-24v4h6v6h4V10H28z"/>
           </svg>
@@ -27,7 +35,7 @@
       </div>
       
       <div *ngIf="images[1]" class="btn-container">
-        <div (click)="prev(); standbyOff()">
+        <div (click)="prev()">
           <button class="btn-arrow">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
               <path d="M30.83 14.83L28 12 16 24l12 12 2.83-2.83L21.66 24z"/>
@@ -35,7 +43,7 @@
           </button>
         </div>
   
-        <div (click)="next(); standbyOff()">
+        <div (click)="next()">
           <button class="btn-arrow right-arrow">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
               <path d="M20 12l-2.83 2.83L26.34 24l-9.17 9.17L20 36l12-12z"/>
@@ -44,8 +52,9 @@
         </div>
       </div>
       
-      <div *ngIf="images[1]" class="badges" [ngClass]="badgesClass">
-        <span *ngFor="let badge of badges" [ngClass]="{'selected': isSelected(badge)}" (click)="viewImage(badge); standbyOff()"></span>
+      <div *ngIf="images[1]" class="badges" [ngClass]="{'bottom' : isFullscreen}">
+        <span *ngFor="let badge of badges" [ngClass]="{'selected': isSelected(badge)}"
+              (click)="viewImage(badge); standbyOff()"></span>
       </div>
     </div>
   </div>

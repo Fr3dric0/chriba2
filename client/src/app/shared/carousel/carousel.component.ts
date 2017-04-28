@@ -26,6 +26,7 @@ export class CarouselComponent {
   carouselFrame: any = ["", "", ""];
   pointer: any = [0, 1, 2];
   badges = [];
+  isFullscreen: boolean = false;
   fullWidth = window.innerWidth;
   imgState = "active";
 
@@ -51,28 +52,6 @@ export class CarouselComponent {
 
   // Used to determine if analytics should start tracking events
   instantiated: boolean = false;
-  
-  @HostListener('document:keydown', ['$event'])
-  keypress(e: KeyboardEvent) {
-    
-    if (this.images && this.images.length > 1) {
-  
-      if (e.key == "ArrowLeft") {
-        this.prev();
-        this.standBy = false;
-      }
-      if (e.key == "ArrowRight") {
-        this.next();
-        this.standBy = false;
-      }
-  
-      if (e.key == "Escape") {
-        if (this.fullScreen == "fullscreen") {
-          this.fullscreen();
-        }
-      }
-    }
-  }
   
   @Output() fullscreenUpdated = new EventEmitter();
 
@@ -105,7 +84,7 @@ export class CarouselComponent {
       this.setPointer();
       this.updateFrame();
       this.createBadgeIndex();
-      setInterval(() => this.standBy ? this.next() : "", 10000);
+      setInterval(() => this.standBy ? this.next(false) : "", 10000);
     }
 
     this.instantiated = true;
@@ -117,6 +96,26 @@ export class CarouselComponent {
    */
   get images() {
     return this._images;
+  }
+  
+  @HostListener('document:keydown', ['$event'])
+  keypress(e: KeyboardEvent) {
+    
+    if (this.images && this.images.length > 1) {
+      
+      if (e.key == "ArrowLeft") {
+        this.prev();
+      }
+      if (e.key == "ArrowRight") {
+        this.next();
+      }
+      
+      if (e.key == "Escape") {
+        if (this.isFullscreen) {
+          this.fullscreen();
+        }
+      }
+    }
   }
   
   /**
@@ -155,7 +154,11 @@ export class CarouselComponent {
    * Changes the pointers indexes so the next image is displayed
    * Then updates the "window frame" with the previous, current and next image
    */
-  next() {
+  next(stopAuto = true) {
+      if (stopAuto) {
+        this.standbyOff();
+      }
+    
       for (let i = 0; i < 3; i++) {
         this.pointer[i]++;
         if (this.pointer[i] + 1 > this.images.length) {
@@ -182,7 +185,11 @@ export class CarouselComponent {
    * Changes the pointers indexes so the previous image is displayed
    * Then updates the "window frame" with the previous, current and next image
    */
-  prev() {
+  prev(stopAuto = true) {
+    if (stopAuto) {
+      this.standbyOff();
+    }
+    
       for (let i = 0; i < 3; i++) {
         this.pointer[i]--;
         if (this.pointer[i] < 0) {
@@ -265,11 +272,14 @@ export class CarouselComponent {
    * @returns {string}
    */
   getHeight(this) {
-    let percentage = 0.56; // 16:9 ratio, height is 56 % of width
-    if (this.fullWidth != 0 && this.fullWidth * percentage < 1200) {
+    if (!this.isFullscreen) {
+      let percentage = 0.70; // DEFAULT: 0.70; 16:9 ratio when height is 56 % of width
+      if (this.fullWidth != 0 && this.fullWidth * percentage < 1200) {
+        return (this.fullWidth * percentage).toString();
+      }
       return (this.fullWidth * percentage).toString();
     }
-    return (this.fullWidth * percentage).toString();
+    
   }
 
   /**
@@ -288,25 +298,9 @@ export class CarouselComponent {
    */
 
   fullscreen() {
-    this.emitFullscreen();
-    this.fullScreen.includes("fullscreen") ? (
-        this.fullScreen = "disappear", // toggles wether fullscreen should appear or not
-        this.fullScreenBackground = "", // toggles background for fullscreen
-        // toggles the image resolution to adjust depending on fullscreen or not
-        this.viewedClass = "viewed",
-        this.descClass = "", // toggles class for the description below the images
-        this.fullScreenBtn = "", // toggles class for the fullscreen button
-        this.toolbarTop = "", // toggles class for the toolbar at top
-        this.badgesClass = "" //toggles class for badges
-    ) : (
-        this.fullScreen = "fullscreen",
-        this.fullScreenBackground = "background",
-        this.viewedClass = "viewed scale-down",
-        this.descClass = "disappear",
-        this.fullScreenBtn = "fixed",
-        this.toolbarTop = "toolbar-at-top",
-        this.badgesClass = "bottom"
-    );
+    this.standbyOff();
+    this.isFullscreen = !this.isFullscreen;
+    this.fullscreenUpdated.emit(this.isFullscreen);
 
         this.angulartics2.eventTrack.next({
           action: 'ToggleFullscreen',
@@ -318,14 +312,7 @@ export class CarouselComponent {
           }
       });
   }
-  /**
-   * Emits the boolean value for when the carousel is in fullscreen or not
-   * @this.fullScreen.includes("fullscreen") {boolean}
-   */
-  emitFullscreen() {
-    this.fullscreenUpdated.emit(this.fullScreen.includes("fullscreen"));
-  }
-
+  
   /**
    * This function is used to change wether the current (shown) image
    * should be active or not and cooperates with the transitions at the top.

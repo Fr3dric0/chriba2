@@ -11,28 +11,30 @@
   
   .desc-carousel {
     bottom: 0;
+    box-sizing: border-box;
     display: flex;
     height: 3em;
+    padding: 1em;
     
-    span {
+    > span {
       flex: 6;
-      margin: 1em;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
     
     .btn-desc {
-      align-items: center;
       flex: 4;
       height: 2em;
-      margin: auto 1em;
       max-width: 11em;
-      overflow: hidden;
       padding: 0 2em 0;
       
       span {
         margin: 0;
+      }
+      
+      svg {
+        margin-left: 0.3em;
       }
       
       &:hover {
@@ -228,7 +230,9 @@
 }
 
 .background {
+  align-items: center;
   background-color: $carousel-background-color;
+  display: flex;
   height: 100vh;
   left: 0;
   position: fixed;
