@@ -28,25 +28,7 @@ export class CarouselComponent {
   badges = [];
   isFullscreen: boolean = false;
   fullWidth = window.innerWidth;
-  imgState = "active";
-
-  /**
-   * Classes depending on wether the carousel is in fullscreen or not
-   * viewedClass = current viewing image
-   * fullScreen = fullscreen mode or not
-   * descClass = if the description should disappear or not
-   * fullScrenBtn = set the fullscreen button to fixed if in fullscreen mode
-   * toolbarTop = class for the toolbar a top when in fullscreen or not
-   * bottomClass = class for badges
-   * @type {string}
-   */
-  viewedClass = "viewed";
-  fullScreen = "disappear";
-  fullScreenBackground = "";
-  descClass = "";
-  fullScreenBtn = "";
-  toolbarTop = "";
-  badgesClass = "";
+  imgState = "active"; // state for transition effect
 
   standBy = true; // As long as standBy is true, the carousel autoscrolls
 
