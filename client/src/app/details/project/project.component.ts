@@ -2,6 +2,7 @@
  * Created by Ruben Johannessen on 15.03.2017.
  */
 import { Component, OnInit, Input } from '@angular/core';
+import { FooterRelayService } from "../../shared/footer/footer-relay.service";
 
 @Component({
     selector: 'details-project',
@@ -35,21 +36,15 @@ export class ProjectComponent implements OnInit {
         this.images = thumbnails.large;
     }
 
-    constructor() { }
+    constructor(private footerRelay: FooterRelayService) { }
   
-    /**
-     * Handles the style for footer from event when fullscreen is initiated or not
-     * @param event {boolean}
-     */
-    handleFullscreenUpdated(event) {
-      // Getting DOM element with id #footer
-      let footer = document.querySelector('.footer');
-      if (event && footer) {
-        footer.className = "";
-      } else if (!event && footer) {
-        footer.className = "neg-index";
-      }
-    }
+  /**
+   * Togggle style for footer from event when fullscreen is initiated or not
+   * @param event {boolean}
+   */
+  toggleFullscreen(event) {
+    this.footerRelay.setBlur(event);
+  }
     
     ngOnInit() { }
 }

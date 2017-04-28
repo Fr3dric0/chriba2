@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { GeneralService } from '../shared/general/general.service'
 import { ThumbnailService } from '../shared/general/thumbnails.service';
 import { ChribaTitleService } from '../shared/chriba-title.service';
+import { FooterRelayService } from "../shared/footer/footer-relay.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -15,21 +16,16 @@ export class DashboardComponent implements OnInit {
 
   constructor(private gs: GeneralService,
               private ts: ThumbnailService,
-              private titleService: ChribaTitleService) {
+              private titleService: ChribaTitleService,
+              private footerRelay: FooterRelayService) {
   }
   
   /**
-   * Handles the style for footer from event when fullscreen is initiated or not
+   * Togggle style for footer from event when fullscreen is initiated or not
    * @param event {boolean}
    */
-  handleFullscreenUpdated(event) {
-    // Getting DOM element with id #footer
-    let footer = document.querySelector('.footer');
-    if (event && footer) {
-      footer.className = "";
-    } else if (!event && footer) {
-      footer.className = "neg-index";
-    }
+  toggleFullscreen(event) {
+    this.footerRelay.setBlur(event);
   }
 
   ngOnInit() {

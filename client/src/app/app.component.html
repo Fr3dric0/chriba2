@@ -4,6 +4,6 @@
     <router-outlet></router-outlet>
 </main>
 
-<app-footer class="footer"></app-footer>
+<app-footer [ngClass]="{ 'neg-index': blurFooter }"></app-footer>
 
 <simple-notifications [options]="notifOptions"></simple-notifications>
