@@ -11,7 +11,7 @@
     
     <img *ngIf="carouselFrame[2]" [src]="carouselFrame[2].img">
     
-    <div *ngIf="carouselFrame[1]" class="desc-carousel showcase" [ngClass]="{'disappear' : isFullscreen}">
+    <div *ngIf="carouselFrame[1] && carouselFrame[1].img" class="desc-carousel showcase" [ngClass]="{'disappear' : isFullscreen}">
       <span *ngIf="carouselFrame[1].description" [innerHTML]="carouselFrame[1].description"></span>
       <button *ngIf="carouselFrame[1].url" class="btn-desc btn-flat" [routerLink]="[carouselFrame[1].url]"
               angulartics2On="click" angularticsEvent="ReadMore" [angularticsCategory]="'carousel'"
@@ -24,7 +24,7 @@
       </button>
     </div>
     
-    <div *ngIf="images" class="toolbar">
+    <div *ngIf="images && carouselFrame[1].img" class="toolbar">
       <div class="toolbar-top showcase" [ngClass]="{'toolbar-at-top' : isFullscreen}">
         <span *ngIf="carouselFrame[1]" [innerHTML]="carouselFrame[1].title"></span>
         <button class="btn-fullscreen" [ngClass]="{'fixed' : isFullscreen}" (click)="fullscreen()">

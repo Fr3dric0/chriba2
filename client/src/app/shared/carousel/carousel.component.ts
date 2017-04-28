@@ -66,6 +66,8 @@ export class CarouselComponent {
       this.setPointer();
       this.updateFrame();
       this.createBadgeIndex();
+      
+      // Sets interval for autoscrolling (Default: 10000 millisec)
       setInterval(() => this.standBy ? this.next(false) : "", 10000);
     }
 
