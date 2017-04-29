@@ -24,9 +24,9 @@
       </button>
     </div>
     
-    <div *ngIf="images && carouselFrame[1].img" class="toolbar">
+    <div *ngIf="carouselFrame[1]" class="toolbar">
       <div class="toolbar-top showcase" [ngClass]="{'toolbar-at-top' : isFullscreen}">
-        <span *ngIf="carouselFrame[1]" [innerHTML]="carouselFrame[1].title"></span>
+        <span *ngIf="carouselFrame[1] && carouselFrame[1].title" [innerHTML]="carouselFrame[1].title"></span>
         <button class="btn-fullscreen" [ngClass]="{'fixed' : isFullscreen}" (click)="fullscreen()">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
             <path d="M14 28h-4v10h10v-4h-6v-6zm-4-8h4v-6h6v-4H10v10zm24 14h-6v4h10V28h-4v6zm-6-24v4h6v6h4V10H28z"/>

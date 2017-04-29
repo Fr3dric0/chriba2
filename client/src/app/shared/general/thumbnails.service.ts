@@ -47,7 +47,7 @@ export class ThumbnailService {
             let img = this.shuffleList(elem.thumbnails.large)[0];
 
             if (elem.thumbnails.large.length < 1) {
-              img = "";
+              img = "/resources/missing_image.png";
             }
 
             obj.img = img;
@@ -55,6 +55,8 @@ export class ThumbnailService {
             
             if (elem.location) {
               obj.title = `${elem.location.address} ${elem.location.addressNumber}`;
+            } else if (elem.title) {
+              obj.title = elem.title;
             }
             
             if (elem.description) {
