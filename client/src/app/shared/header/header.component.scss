@@ -29,13 +29,17 @@ header {
   position: relative;
 
   a {
+    cursor: pointer; // To force pointer on anchor without any href
     outline-style: none;
   }
 }
 
+.logo {
+  height: 1.4em;
 
-.logo svg {
-  height: 2.5rem;
+  svg {
+    height: 1.4em;
+  }
 }
 
 a,
@@ -75,11 +79,19 @@ nav {
 }
 
 .hamburger-menu {
+  align-items: flex-end;
+
   cursor: pointer;
+
+  flex-grow: 1;
 
   font-size: 1.2em;
 
+  justify-content: flex-end;
+
   padding-right: inherit;
+
+  text-align: right;
 
   user-select: none;
 }
@@ -118,4 +130,7 @@ nav {
     display: inherit;
   }
 
+  .hamburger-menu {
+    display: flex;
+  }
 }
