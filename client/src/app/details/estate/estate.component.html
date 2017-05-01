@@ -1,5 +1,5 @@
  <app-carousel (fullscreenUpdated)="toggleFullscreen($event)" [images]="images"></app-carousel>
- 
+
  <div  class="flex-container">
      <div>
          <section *ngIf="location">
@@ -20,4 +20,4 @@
      </div>
  </div>
 
- <app-map *ngIf="location.lat" [lat]="location.lat" [long]="location.long" [control]="1"></app-map>
+ <app-map *ngIf="location.lat && location.long" [lat]="location.lat" [long]="location.long" [control]="1"></app-map>
