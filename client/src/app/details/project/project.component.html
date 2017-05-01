@@ -6,7 +6,7 @@
         <a *ngIf="url" class="btn btn-find btn-details" target="_blank" [href]="url">{{url.hostname}}</a>
     </div>
 
-    <div *ngIf="description">
-        <p class="details-description" [innerHTML]="description"></p>
+    <div>
+        <p *ngIf="description" class="details-description" [innerHTML]="description"></p>
     </div>
 </div>
