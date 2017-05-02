@@ -225,10 +225,6 @@
     background-color: $primary-background-color;
   }
   
-  .toolbar-at-top {;
-    background-color: $carousel-darker-background;
-  }
-  
   .bottom {;
     background-color: $carousel-darker-background;
     bottom: 0;
@@ -249,7 +245,6 @@
 }
 
 .carousel-fullscreen {
-  background-color: transparent;
   max-height: inherit;
 }
 
