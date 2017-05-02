@@ -7,49 +7,31 @@ import { Observable } from "rxjs";
 import { Project } from "../models/project";
 import { AuthService } from '../shared/auth/auth.service';
 import { XHRService } from '../shared/xhr.service';
+import { CRUDService } from '../shared/crud.service';
 
 @Injectable()
-export class ProjectsService {
+export class ProjectsService extends CRUDService<Project> {
 
-    constructor(private http: Http,
+    constructor(protected http: Http,
                 private auth: AuthService,
-                private xhr: XHRService) { }
+                private xhr: XHRService) {
+        super(http);
 
-    /**
-     * Finds all registered projects
-     */
-    find(): Observable<Project[]> {
-        return this.http.get('/api/projects')
-            .map(res => res.json());
+        this.usePatch = true;
+        this.path = '/api/projects';
+        this.token = this.auth.getToken();
     }
 
-    findOne(name: string): Observable<Project[]> {
-        return this.http.get(`/api/projects/${name}`)
-            .map(res => res.json());
-    }
-
-    findWithPromise(): Promise<Project[]> {
-        return new Promise((rsv, rr) => {
-            this.find().subscribe((data) => rsv(data), err => rr(err));
-        });
-    }
-
-    remove (project: Project) {
-        const headers = this.auth.getAuthHeader();
-
-        return this.http.delete(`/api/projects/${project.name}`, { headers })
-            .map( res => res.json());
+    remove (project: Project): Observable<Project> {
+        return super.remove(project.name);
     }
 
     save(project: Project): Observable<Project> {
         if (!project.name || !project._id) {
-            return this.create(project);
+            return super.create(project);
         }
 
-        const headers = this.auth.getAuthHeader();
-
-        return this.http.patch(`/api/projects/${project.name}`, project, { headers })
-            .map(res => res.json());
+        return super.update(project.name, project);
     }
 
     uploadThumb(form, project: Project): Promise<any> {
@@ -72,13 +54,4 @@ export class ProjectsService {
             .map( res => res.json());
     }
 
-
-    private create(project: Project): Observable<Project> {
-        const headers = this.auth.getAuthHeader();
-
-        return this.http.post('/api/projects', project, { headers })
-            .map(res => res.json());
-    }
-
 }
-

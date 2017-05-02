@@ -18,6 +18,7 @@ import { ContentTableComponent } from './content-table/content-table.component';
 import { SubpageNavigatorComponent } from './subpage-navigator/subpage-navigator.component';
 import { LocationButtonComponent } from './location/button/button.component';
 import { CarouselComponent } from "./carousel/carousel.component";
+import { ChribaTitleService } from './chriba-title.service';
 
 export const SHARED_DECLARATIONS = [
     ItemListComponent,
@@ -40,6 +41,6 @@ export const SHARED_PROVIDERS = [
     ProjectsService,
     EstatesService,
     XHRService,
-    GeocodeService
+    GeocodeService,
+    ChribaTitleService
 ];
-

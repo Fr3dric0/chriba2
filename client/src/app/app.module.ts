@@ -14,12 +14,13 @@ import { ESTATES_DECLARATIONS, ESTATES_PROVIDERS } from './estates';
 import { ERROR_DECLARATIONS } from './error';
 import { SHARED_DECLARATIONS, SHARED_PROVIDERS } from './shared';
 import { ADMIN_DECLARATIONS, ADMIN_PROVIDERS } from './admin';
+import { DETAILS_DECLARATIONS } from "./details";
 import { LOGIN_DECLARATIONS, LOGIN_PROVIDERS } from './login';
 
 ///////////////////////////////////////
 //         3rd party modules         //
 ///////////////////////////////////////
-import { AgmCoreModule } from 'angular2-google-maps/core';
+import { AgmCoreModule } from '@agm/core';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
 
@@ -32,6 +33,7 @@ import { Angulartics2Module, Angulartics2GoogleAnalytics } from 'angulartics2';
         ...ERROR_DECLARATIONS,
         ...SHARED_DECLARATIONS,
         ...ADMIN_DECLARATIONS,
+        ...DETAILS_DECLARATIONS,
         ...LOGIN_DECLARATIONS
     ],
     imports: [

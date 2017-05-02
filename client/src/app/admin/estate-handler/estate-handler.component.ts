@@ -5,6 +5,7 @@ import { EstatesService } from '../../estates/estates.service';
 import { Estate } from '../../models/estate';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeocodeService } from '../../shared/map/geocode.service';
+import { ChribaTitleService } from '../../shared/chriba-title.service';
 
 @Component({
     selector: 'app-admin-estate-handler',
@@ -21,10 +22,13 @@ export class EstateHandlerComponent implements OnInit {
                 private route: ActivatedRoute,
                 private fb: FormBuilder,
                 private geocode: GeocodeService,
-                private notif: NotificationsService) {
+                private notif: NotificationsService,
+                private titleService: ChribaTitleService) {
     }
 
     ngOnInit() {
+        this.titleService.setTitle('Admin Eiendommer');
+
         this.form = this.fb.group({
             description: [null],
             size: [null],
@@ -109,7 +113,9 @@ export class EstateHandlerComponent implements OnInit {
 
         this.es.save(this.concatEstate(this.estate, values))
             .subscribe((estate) => {
-                this.updateForm(estate);
+                if (estate) {
+                    this.updateForm(estate);
+                }
 
                 this.saved = true;
 
@@ -195,7 +201,6 @@ export class EstateHandlerComponent implements OnInit {
 
     updateForm(estate: Estate) {
         this.estate = estate;
-
         this.form.patchValue(estate);
     }
 }
