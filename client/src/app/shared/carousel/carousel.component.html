@@ -15,10 +15,9 @@
       <span>
         <span *ngIf="carouselFrame[1] && carouselFrame[1].description"
            [innerHTML]="carouselFrame[1].description">
-          
         </span>
       </span>
-      <button *ngIf="carouselFrame[1]" class="btn-desc btn-flat" [routerLink]="[carouselFrame[1].url]"
+      <button *ngIf="carouselFrame[1] && carouselFrame[1].url" class="btn-desc btn-flat" [routerLink]="[carouselFrame[1].url]"
               angulartics2On="click" angularticsEvent="ReadMore" [angularticsCategory]="'carousel'"
               [angularticsProperties]="{ label: carouselFrame[1].url }">
         
