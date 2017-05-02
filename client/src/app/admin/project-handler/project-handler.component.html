@@ -23,7 +23,7 @@
                           placeholder="Liten forklaring om prosjektet"></textarea>
             </div>
             <small class="input-feedback" [hidden]="!form.controls['description'].value || form.controls['description'].value.length <= 355">
-                Beskrivelsen bør ikke bestå av mer enn 355 tegn. Forbi dette kan sidene se litt merkelige ut.</small>
+              Beskrivelser på over 355 tegn kan føre til at sidene ser litt merkelige ut.</small>
         </div>
 
         <button class="submit" type="submit" [disabled]="!form.valid">
