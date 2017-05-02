@@ -4,7 +4,6 @@
   
   background-color: $svg-icon;
   min-height: 9.4em;
-  max-height: 34.4em;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -77,8 +76,9 @@
     width: inherit;
   }
   
-  img.scale-down {
-    object-fit: scale-down;
+  img.cover {
+    object-fit: cover;
+    min-width: 500px;
   }
   
   .toolbar {
@@ -100,7 +100,6 @@
   
       .btn-fullscreen {
         background-color: $blurred;
-        flex: 1;
         height: inherit;
         padding: 0;
         position: absolute;
@@ -221,13 +220,14 @@
     background-color: $primary-background-color;
   }
   
-  .toolbar-at-top {
-    background-color: transparent;
-    position: fixed;
+  .toolbar-at-top {;
+    background-color: $carousel-darker-background;
   }
   
-  .bottom {
+  .bottom {;
+    background-color: $carousel-darker-background;
     bottom: 0;
+    z-index: 23;
   }
 }
 
