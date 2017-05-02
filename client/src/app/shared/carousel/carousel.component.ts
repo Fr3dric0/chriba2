@@ -263,15 +263,6 @@ export class CarouselComponent {
     }
     
   }
-  
-  /**
-   * Return the width in px depening on current window width
-   * Adjust depening on wether scrollbar is visible
-   */
-  getWidth() {
-    console.log("getWidth")
-    return document.body.clientWidth;
-  }
 
   /**
    * On resizing window, sets this.width equal to current carousel's width
