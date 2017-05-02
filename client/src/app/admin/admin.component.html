@@ -3,8 +3,8 @@
 
     <div class="metadata-container">
         <div class="last-active">
-            <span>last active: </span>
-            <time *ngIf="admin">{{admin.lastActive}}</time>
+            <span>Sist innlogget: </span>
+            <time *ngIf="admin">{{admin.lastActive.substring(0, 10) + ' ' + admin.lastActive.substring(11, 19)}}</time>
         </div>
         <div>
             <button class="btn-flat btn-logout" (click)="logout()">Logg ut</button>

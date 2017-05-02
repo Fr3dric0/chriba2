@@ -52,7 +52,7 @@ export class EstateHandlerComponent implements OnInit {
             this.es.findOne(name).subscribe(
                 (estate) => {
                     if (!estate) {
-                        return this.notif.alert('Fant ikkje eiendom', `Fant ikke eiendom: ${name}`);
+                        return this.notif.alert('Fant ikke eiendom', `Fant ikke eiendom: ${name}`);
                     }
 
                     this.updateForm(estate);
@@ -88,7 +88,7 @@ export class EstateHandlerComponent implements OnInit {
                     const {address, addressNumber, postalCode, city} = values.location;
                     return this.notif.error(
                         'Klarte ikke å hente posisjon',
-                        `Klarte ikkje å hente posisjonen til addressen ${address} ${addressNumber}, ${postalCode} ${city}`);
+                        `Klarte ikke å hente posisjonen til addressen ${address} ${addressNumber}, ${postalCode} ${city}`);
                 }
 
                 this.notif.success('Posisjon funnet', `Posisjonen er funnet ved lat: ${ location.lat.toFixed(3)} og long: ${location.long.toFixed(3)}`);
@@ -106,7 +106,7 @@ export class EstateHandlerComponent implements OnInit {
      * */
     submit(values, valid) {
         if (!valid) {
-            return this.notif.alert('Ugyldig skjema', 'Du mangler noen obligatoriske felt, og kan ikke lagre før desse er blitt fylt ut');
+            return this.notif.alert('Ugyldig skjema', 'Du mangler noen obligatoriske felt, og kan ikke lagre før disse er fylt ut');
         }
 
         this.notif.info('Lagrer...', `Eiendom ved: ${values.location.address}`);
@@ -120,9 +120,9 @@ export class EstateHandlerComponent implements OnInit {
                 this.saved = true;
 
                 this.notif.remove(); // Remove all previous notifications
-                this.notif.success('Eiendom Lagret', `Eiendommen: ${estate.location.address} ble lagret`);
+                this.notif.success('Eiendom lagret', `Eiendommen: ${estate.location.address} ble lagret`);
             }, (err) => {
-                this.notif.error('Kunne ikkje lagre eiendom', err.json().error);
+                this.notif.error('Kunne ikke lagre eiendom', err.json().error);
                 this.saved = false;
             });
     }
@@ -154,7 +154,7 @@ export class EstateHandlerComponent implements OnInit {
                 this.estate.location.lat = lat;
                 this.estate.location.long = long;
                 this.notif.remove();
-                this.notif.success(`opplastet`, `Bildet vart lastet opp`);
+                this.notif.success(`opplastet`, `Bildet ble lastet opp`);
             })
             .catch((err) => {
                 this.notif.remove();
@@ -169,15 +169,15 @@ export class EstateHandlerComponent implements OnInit {
      * */
     remove(data) {
         if (data.index < 0) {
-            return this.notif.alert('Ugyldig bilde', 'Ser ut som at bildet du valgte ikke finst');
+            return this.notif.alert('Ugyldig bilde', 'Ser ut som at bildet du valgte ikke finnes');
         }
 
         this.es.removeThumb(data.size, data.index, this.estate)
             .subscribe((estate) => {
                 this.estate = estate;
-                this.notif.success(`Bilde fjernet`, 'Bildet er blitt fjernet');
+                this.notif.success(`Bildet fjernet`, 'Bildet er blitt fjernet');
             }, (err) => {
-                this.notif.error('Kunne ikke fjerne bilde', err.json().error);
+                this.notif.error('Kunne ikke fjerne bildet', err.json().error);
             });
     }
 

@@ -1,8 +1,10 @@
 <section>
     <h3>Eiendommer</h3>
-    <p class="description">Her finner du en oversikt over alle eksisterene eiendommer på siden</p>
+    <p class="description">Tabellen viser hvilke eiendommer som ligger ute på siden,
+      samt gir deg mulighet til å <em>modifisere</em>, <em>fjerne</em> eller <em>opprette nye</em> eiendommer
+    </p>
 
-    <app-content-table [headers]="['Thumb', 'Navn', 'Beskrivelse', 'Handlinger']"
+    <app-content-table [headers]="['Bilde', 'Navn', 'Beskrivelse', 'Handlinger']"
                        [fields]="fields"
                        [create]="{ url: '/backdoor/estates' }"
                        (remove)="remove($event)"></app-content-table>

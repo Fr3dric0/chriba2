@@ -3,7 +3,7 @@
 
     <h2>Administrer eiendom</h2>
     <p class="description">Her kan du opprette nye, eller modifisere eksisterende eiendommer.
-        <strong>N.B.</strong> Hugs å oppdatere posisjon, viss du gjør endringer på addressen</p>
+        <strong>N.B.</strong> Husk å oppdatere posisjon, hvis du gjør endringer på addressen</p>
 
     <form class="material-form flexing-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
         <div>
@@ -13,15 +13,15 @@
                     <input type="text" formControlName="address" required>
                 </div>
                 <div class="input-divider">
-                    <label>Adresse nummer</label>
+                    <label>Adressenr.</label>
                     <input type="text" formControlName="addressNumber">
                 </div>
                 <div class="input-divider">
-                    <label>Postkode</label>
+                    <label>Postnr.</label>
                     <input type="text" formControlName="postalCode">
                 </div>
                 <div class="input-divider">
-                    <label>By</label>
+                    <label>Poststed</label>
                     <input type="text" formControlName="city">
                 </div>
 
@@ -48,7 +48,7 @@
                     Posisjon er det som gjør at <em>google maps</em> kan finne addressen på kartet.
                 </small>
                 <small *ngIf="!form.controls.location.controls['address'].value || !form.controls.location.controls['postalCode'].value || !form.controls.location.controls['city'].value">
-                    Trenger først <em>adresse</em>, <em>Postkode</em> og <em>By</em>
+                    Trenger først <em>adresse</em>, <em>postnummer</em> og <em>poststed</em>
                 </small>
             </div>
         </div>
@@ -59,7 +59,7 @@
                           placeholder="Liten forklaring om eiendommen"></textarea>
             </div>
             <small class="input-feedback" [hidden]="!form.controls['description'].value || form.controls['description'].value.length <= 355">
-                Beskrivelsen bør ikkje bestå av meir enn 355 tegn. Kan føre til at sidene ser litt merkelige ut.</small>
+              Beskrivelser på over 355 tegn kan føre til at sidene ser litt merkelige ut.</small>
         </div>
 
         <button class="submit" type="submit" [disabled]="!form.valid">
@@ -74,7 +74,9 @@
 <section *ngIf="estate && (estate.name || estate._id)">
     <h3>Bilder</h3>
     <p class="description">Registrerte bilder til eiendommen vil dukke opp her.
-        Hvor du har mulighet til å fjerne disse, eller legge til nye</p>
+        Du har mulighet til å fjerne eller legge til nye bilder
+        Store bilder er hva som brukes til karusellene.
+        Små bilder brukes som ikon/logo ved opplisting</p>
 
     <app-admin-thumbnail-handler [element]="estate" (upload)="upload($event)" (remove)="remove($event)"></app-admin-thumbnail-handler>
 
