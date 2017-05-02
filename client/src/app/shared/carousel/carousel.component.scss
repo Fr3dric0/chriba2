@@ -4,6 +4,7 @@
   
   background-color: $svg-icon;
   min-height: 9.4em;
+  max-height: 34.4em;
   margin: 0 auto;
   overflow: hidden;
   position: relative;
@@ -247,8 +248,9 @@
   z-index: 50;
 }
 
-.no-background {
+.carousel-fullscreen {
   background-color: transparent;
+  max-height: inherit;
 }
 
 .fullscreen {
@@ -263,7 +265,6 @@
   .viewed {
     display: block;
     left: 50%;
-    max-width: 80vw;
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 22;
