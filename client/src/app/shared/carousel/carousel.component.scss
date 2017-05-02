@@ -77,8 +77,8 @@
     width: inherit;
   }
   
-  img.cover {
-    object-fit: cover;
+  img.contain {
+    object-fit: contain;
     min-width: 500px;
   }
   

@@ -6,7 +6,7 @@
     <img *ngIf="carouselFrame[0]" [src]="carouselFrame[0].img">
     
     <img *ngIf="carouselFrame[1]"
-         class="viewed" [ngClass]="{'cover' : isFullscreen}"
+         class="viewed" [ngClass]="{'contain' : isFullscreen}"
          [@imageState]="imgState" [src]="carouselFrame[1].img">
     
     <img *ngIf="carouselFrame[2]" [src]="carouselFrame[2].img">
