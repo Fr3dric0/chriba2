@@ -109,7 +109,11 @@
         z-index: 25;
     
         &:hover {
-          background-color: $secondary-text;
+          background-color: $carousel-background-color;
+      
+          svg {
+            fill: $secondary-background-color;
+          }
         }
     
         svg {
