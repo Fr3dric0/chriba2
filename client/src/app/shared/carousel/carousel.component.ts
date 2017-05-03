@@ -269,7 +269,9 @@ export class CarouselComponent {
    * @returns {number}
    */
   getWidth() {
-    return document.body.offsetWidth;
+    if (this.isFullscreen) {
+      return document.body.offsetWidth;
+    }
   }
 
   /**

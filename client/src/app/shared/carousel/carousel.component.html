@@ -3,13 +3,17 @@
        [ngClass]="{'fullscreen carousel-fullscreen' : isFullscreen, 'disappear' : !isFullscreen}"
        (window:resize)="onResize();" [style.width.px]="getWidth()" [style.height.px]="getHeight()">
     
-    <img *ngIf="carouselFrame[0]" [src]="carouselFrame[0].img">
-    
-    <img *ngIf="carouselFrame[1]"
-         class="viewed" [ngClass]="{'contain' : isFullscreen}"
-         [@imageState]="imgState" [src]="carouselFrame[1].img">
-    
-    <img *ngIf="carouselFrame[2]" [src]="carouselFrame[2].img">
+    <div class="images">
+  
+      <img *ngIf="carouselFrame[0]" [src]="carouselFrame[0].img">
+  
+      <img *ngIf="carouselFrame[1]"
+           class="viewed" [ngClass]="{'contain' : isFullscreen}"
+           [@imageState]="imgState" [src]="carouselFrame[1].img">
+  
+      <img *ngIf="carouselFrame[2]" [src]="carouselFrame[2].img">
+      
+    </div>
     
     <div class="desc-carousel showcase" [ngClass]="{'disappear' : isFullscreen}">
       <span>

@@ -65,20 +65,28 @@
     z-index: 23;
   }
   
-  img:not(.viewed) {
-    display: none;
-  }
-  
-  img.viewed {
-    height: 100%;
-    margin: 0 auto;
-    object-fit: cover;
+  .images {
+    bottom: 3em;
+    margin: 0;
     position: absolute;
+    top: 3em;
     width: inherit;
-  }
+    
+    img:not(.viewed) {
+      display: none;
+    }
   
-  img.contain {
-    object-fit: contain;
+    img.viewed {
+      height: 100%;
+      margin: 0 auto;
+      object-fit: cover;
+      position: absolute;
+      width: inherit;
+    }
+  
+    img.contain {
+      object-fit: contain;
+    }
   }
   
   .toolbar {
