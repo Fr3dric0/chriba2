@@ -25,7 +25,7 @@ export class ProfileTableComponent implements OnInit {
                     this.projects = projects;
                     this.fields = this.createFields(projects);
                 },
-                err => this.notif.error('Project Loading Error', err.message)
+                err => this.notif.error('Klarte ikke å hente prosjektet', err.message)
             );
     }
 

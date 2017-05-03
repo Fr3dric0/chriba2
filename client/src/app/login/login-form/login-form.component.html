@@ -1,11 +1,11 @@
 <form class="material-form" [formGroup]="loginForm" (ngSubmit)="onLogin(loginForm.value, loginForm.valid)">
     <div class="input-divider">
-        <label>Email</label>
+        <label>E-post</label>
         <input type="email" name="email" formControlName="email" placeholder="email@domain.com" required>
     </div>
     <div class="input-divider">
-        <label>Password</label>
-        <input type="password" name="password" formControlName="password" placeholder="S3crEt" required>
+        <label>Passord</label>
+        <input type="password" name="password" formControlName="password" placeholder="h3mm3llig" required>
     </div>
     <button [disabled]="!loginForm.valid" type="submit">Login</button>
 </form>
