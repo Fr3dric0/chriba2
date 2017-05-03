@@ -3,6 +3,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from '../general/general.service';
+import { FooterRelayService } from "./footer-relay.service";
 
 @Component({
     selector: 'app-footer',
@@ -13,15 +14,22 @@ import { GeneralService } from '../general/general.service';
 export class FooterComponent implements OnInit{
     public business: string;
     public email: string;
-    public location: any = {address: '', addressNumbe: '', postalCode: '', city: '', country: ''};
+    public location: any = {address: '', addressNumber: '', postalCode: '', city: '', country: ''};
     public mailbox: string;
     public mobile: string;
     public lat: number;
     public long: number;
 
-    constructor(private generalService: GeneralService) { }
+    blur: boolean = false;
+    
+    constructor(private generalService: GeneralService,
+                private footerRelay: FooterRelayService) { }
 
     ngOnInit(){
+        this.footerRelay.toggleBlur.subscribe((blur) => {
+          this.blur = blur;
+        });
+      
         const sub = this.generalService.find()
             .subscribe((data) => {
                     this.business = data.business;

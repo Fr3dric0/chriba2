@@ -1,7 +1,7 @@
 /**
  * Created by toma2 on 22.01.2017.
  */
-import { Component, Input, trigger, state, style, animate, transition } from '@angular/core';
+import { Component, Input, HostListener, Output, EventEmitter, trigger, state, style, animate, transition } from '@angular/core';
 import { Angulartics2 } from 'angulartics2';
 
 @Component({
@@ -23,30 +23,19 @@ import { Angulartics2 } from 'angulartics2';
 })
 
 export class CarouselComponent {
-  carouselFrame:any = ["", "", ""];
-  pointer = [0,1,2];
+  carouselFrame: any = ["", "", ""];
+  pointer: any = [0, 1, 2];
   badges = [];
+  isFullscreen: boolean = false;
   fullWidth = window.innerWidth;
-  imgState = "active";
-
-  /**
-   * Classes depending on wether the carousel is in fullscreen or not
-   * viewedClass = current viewing image
-   * fullScreen = fullscreen mode or not
-   * descClass = if the description should disappear or not
-   * fullScrenBtn = set the fullscreen button to fixed if in fullscreen mode
-   * @type {string}
-   */
-  viewedClass = "viewed";
-  fullScreen = "disappear";
-  fullScreenBackground = "";
-  descClass = "";
-  fullScreenBtn = "";
+  imgState = "active"; // state for transition effect
 
   standBy = true; // As long as standBy is true, the carousel autoscrolls
 
   // Used to determine if analytics should start tracking events
   instantiated: boolean = false;
+  
+  @Output() fullscreenUpdated = new EventEmitter();
 
   constructor(private angulartics2: Angulartics2) {}
 
@@ -65,18 +54,21 @@ export class CarouselComponent {
   private _images;
   @Input()
   set images(images: any) {
+    this._images = images;
+    
     if ( images && typeof images[0] == "string") {
       this._images = images.map((img) => {
         return {img: img, description: undefined, url: undefined}
       })
     }
-
-    this._images = images;
+    
     if (this.images) {
-      this.prev();
+      this.setPointer();
       this.updateFrame();
       this.createBadgeIndex();
-      setInterval(() => this.standBy ? this.next() : "", 10000);
+      
+      // Sets interval for autoscrolling (Default: 10000 millisec)
+      setInterval(() => this.standBy ? this.next(false) : "", 10000);
     }
 
     this.instantiated = true;
@@ -89,6 +81,38 @@ export class CarouselComponent {
   get images() {
     return this._images;
   }
+  
+  @HostListener('document:keydown', ['$event'])
+  keypress(e: KeyboardEvent) {
+    
+    if (this.images && this.images.length > 1) {
+      
+      if (e.key == "ArrowLeft") {
+        this.prev();
+      }
+      if (e.key == "ArrowRight") {
+        this.next();
+      }
+    }
+    
+    if (this.isFullscreen && e.key == "Escape") {
+      this.fullscreen();
+    }
+  }
+  
+  /**
+   * This sets the pointer depending on wether the carousel is given 1 or 2 images
+   * If the carousel is given 1, then there will be no buttons to change image
+   * If the carousel is given 2 or more, then the buttons will appear, but it will
+   * change between the two images as shown below
+   */
+  setPointer() {
+    if (this.images.length == 2) {
+      this.pointer = [1,0,1];
+    } else if (this.images.length == 1) {
+      this.pointer = [0,0,0];
+    }
+  }
 
   /**
    * obj = {img: string, description: string, url: string}
@@ -98,20 +122,25 @@ export class CarouselComponent {
    */
   updateFrame() {
     this.changeImgState();
-    setTimeout(() =>  this.changeImgState(), 100);
-    setTimeout(() => this.carouselFrame =
-      [
+    setTimeout(() => this.changeImgState(), 100);
+    setTimeout(() => {
+      this.carouselFrame = [
         this.images[this.pointer[0]],
         this.images[this.pointer[1]],
         this.images[this.pointer[2]]
-      ], 100);
+      ]
+    }, 100);
   }
 
   /**
    * Changes the pointers indexes so the next image is displayed
    * Then updates the "window frame" with the previous, current and next image
    */
-  next() {
+  next(stopAuto = true) {
+      if (stopAuto) {
+        this.standbyOff();
+      }
+    
       for (let i = 0; i < 3; i++) {
         this.pointer[i]++;
         if (this.pointer[i] + 1 > this.images.length) {
@@ -121,7 +150,7 @@ export class CarouselComponent {
       this.updateFrame();
 
 
-    if (this.instantiated) {
+    if (this.instantiated && !this.standBy) {
         this.angulartics2.eventTrack.next({
             action: 'NextImage',
             properties: {
@@ -138,7 +167,11 @@ export class CarouselComponent {
    * Changes the pointers indexes so the previous image is displayed
    * Then updates the "window frame" with the previous, current and next image
    */
-  prev() {
+  prev(stopAuto = true) {
+    if (stopAuto) {
+      this.standbyOff();
+    }
+    
       for (let i = 0; i < 3; i++) {
         this.pointer[i]--;
         if (this.pointer[i] < 0) {
@@ -148,7 +181,7 @@ export class CarouselComponent {
 
       this.updateFrame();
 
-      if (this.instantiated) {
+      if (this.instantiated && !this.standBy) {
           this.angulartics2.eventTrack.next({
               action: 'PreviousImage',
               properties: {
@@ -184,7 +217,7 @@ export class CarouselComponent {
     this.updateFrame();
     this.isSelected(badgeIndex);
 
-    if (this.instantiated) {
+    if (this.instantiated && !this.standBy) {
         this.angulartics2.eventTrack.next({
             action: 'ChangeImageThroughBadge',
             properties: {
@@ -221,20 +254,14 @@ export class CarouselComponent {
    * @returns {string}
    */
   getHeight(this) {
-    let percentage = 0.56; // 16:9 ratio, height is 56 % of width
-    if (this.fullWidth != 0 && this.fullWidth * percentage < 1200) {
+    if (!this.isFullscreen) {
+      let percentage = 0.70; // DEFAULT: 0.70; 16:9 ratio when height is 56 % of width
+      if (this.fullWidth != 0 && this.fullWidth * percentage < 1200) {
+        return (this.fullWidth * percentage).toString();
+      }
       return (this.fullWidth * percentage).toString();
     }
-    return (this.fullWidth * percentage).toString();
-  }
-
-  /**
-   * Return the bottom value for badges depening on wether the carousel is
-   * in fullscreen or not.
-   * @returns {string}
-   */
-  getBottomClass() {
-    return this.fullScreen == "fullscreen" ? "bottom" : "";
+    
   }
 
   /**
@@ -253,20 +280,9 @@ export class CarouselComponent {
    */
 
   fullscreen() {
-    this.fullScreen.includes("fullscreen") ? (
-        this.fullScreen = "disappear", // toggles wether fullscreen should appear or not
-        this.fullScreenBackground = "", // toggles background for fullscreen
-        // toggles the image resolution to adjust depending on fullscreen or not
-        this.viewedClass = "viewed",
-        this.descClass = "", // toggles class for the description below the images
-        this.fullScreenBtn = "" // toggles class for the fullscreen button
-    ) : (
-        this.fullScreen = "fullscreen",
-        this.fullScreenBackground = "background",
-        this.viewedClass = "viewed scale-down",
-        this.descClass = "disappear",
-        this.fullScreenBtn = "fixed"
-    );
+    this.standbyOff();
+    this.isFullscreen = !this.isFullscreen;
+    this.fullscreenUpdated.emit(this.isFullscreen);
 
         this.angulartics2.eventTrack.next({
           action: 'ToggleFullscreen',
@@ -278,7 +294,7 @@ export class CarouselComponent {
           }
       });
   }
-
+  
   /**
    * This function is used to change wether the current (shown) image
    * should be active or not and cooperates with the transitions at the top.
@@ -296,6 +312,3 @@ export class CarouselComponent {
     this.standBy = false;
   }
 }
-
-
-

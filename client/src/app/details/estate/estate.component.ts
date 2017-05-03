@@ -2,6 +2,7 @@
  * Created by Ruben Johannessen on 15.03.2017.
  */
 import { Component, OnInit, Input } from '@angular/core';
+import { FooterRelayService } from "../../shared/footer/footer-relay.service";
 
 @Component({
     selector: 'details-estate',
@@ -33,11 +34,20 @@ export class EstateComponent implements OnInit {
                 + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$"))
                 .test(url) ? new URL(url) : null
         );
-        this.images = thumbnails.large;
-        this.location = location;
+  
+      this.images = thumbnails.large;
+      this.location = location;
     }
 
-    constructor() { }
+    constructor(private footerRelay: FooterRelayService) { }
+  
+  /**
+   * Togggle style for footer from event when fullscreen is initiated or not
+   * @param event {boolean}
+   */
+    toggleFullscreen(event) {
+    this.footerRelay.setBlur(event);
+  }
 
     ngOnInit() { }
 }

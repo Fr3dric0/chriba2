@@ -1,4 +1,4 @@
- <app-carousel *ngIf="images" [images]="images"></app-carousel>
+ <app-carousel (fullscreenUpdated)="toggleFullscreen($event)" [images]="images"></app-carousel>
 
  <div  class="flex-container">
      <div>
@@ -15,9 +15,9 @@
          <a *ngIf="url" [href]="url" target="_blank" class="btn btn-find btn-details">{{url.hostname}}</a>
      </div>
 
-     <div *ngIf="description">
-         <p class="details-description" [innerHTML]="description"></p>
+     <div>
+         <p *ngIf="description" class="details-description" [innerHTML]="description"></p>
      </div>
  </div>
 
- <app-map *ngIf="location.lat" [lat]="location.lat" [long]="location.long" [control]="1"></app-map>
+ <app-map *ngIf="location.lat && location.long" [lat]="location.lat" [long]="location.long" [control]="1"></app-map>

@@ -1,6 +1,6 @@
 <header>
 
-    <a [routerLink]="''" class="logo flex-container flex-hor">
+  <a [routerLink]="''" class="logo flex-container flex-hor">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 475 140">
             <style type="text/css">
 
@@ -117,15 +117,17 @@
         </svg>
     </a>
 
-    <span class="hamburger-menu hidden-on-wide" (click)="toggleMenu()">☰</span>
+  <span class="hamburger-menu hidden-on-wide" (click)="toggleMenu()">☰</span>
 
     <nav [ngClass]="{'minified-menu': !expanded, 'expanded-menu': expanded}">
 
-        <a *ngFor="let route of routes" [routerLink]="!route.route.includes('#') ? route.route : null"
-           [fragment]="route.route.includes('#') ? route.route.substring(1) : null"
+        <a *ngFor="let route of routes" [routerLink]="route.route"
 
            [ngClass]="{ 'current-route': this.location.path(true).startsWith(route.route) }">
-            {{ route.label }}</a>
+            {{ route.label }}
+        </a>
+
+        <a (click)="scrollToElement('footer')">kontakt</a>
 
         <a *ngIf="authenticated" [routerLink]="'/backdoor'"
            class="admin-route"

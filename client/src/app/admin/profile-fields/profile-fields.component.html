@@ -1,7 +1,7 @@
 <section>
     <h3>Profilinformasjon</h3>
     <p class="description">Her kan du gjøre endringer på profilen din.
-        <strong>N.B.</strong> Hugs at dette kan påvirke pålogginsinformasjonen
+        <strong>N.B.</strong> Husk at dette kan påvirke pålogginsinformasjonen
     </p>
 
     <form class="material-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
@@ -20,10 +20,10 @@
         </div>
 
         <div class="input-divider">
-            <label>Epost</label>
+            <label>E-post</label>
             <input type="email" formControlName="email" required>
 
-            <small class="input-feedback" [hidden]="form.controls['email'].valid || !form.controls['email'].dirty">Ugyldig epost adresse!</small>
+            <small class="input-feedback" [hidden]="form.controls['email'].valid || !form.controls['email'].dirty">Ugyldig e-postadresse!</small>
         </div>
 
         <div class="input-divider">
@@ -31,7 +31,7 @@
             <input type="password" formControlName="oldPassword">
 
             <small class="input-feedback" [hidden]="form.controls['oldPassword'] || (!form.controls['password'].value && !form.controls['confirmPassword'].value)">
-                Må ha gammelt passord, for å endre til nytt passord</small>
+                Du må oppgi gammelt passord før du kan sette et nytt</small>
         </div>
 
         <div class="input-divider">
@@ -39,15 +39,15 @@
             <input type="password" formControlName="password">
 
             <small class="input-feedback" [hidden]="form.controls['password'].valid || !form.controls['password'].dirty || !form.controls['password'].value">
-                Ugyldig passord! Må vere minst 8 tegn langt</small>
+                Ugyldig passord! Må være minst 8 tegn langt</small>
         </div>
 
         <div class="input-divider">
-            <label>Bekreft passord</label>
+            <label>Bekreft nytt passord</label>
             <input type="password" formControlName="confirmPassword">
 
-            <small class="input-feedback" [hidden]="form.controls['confirmPassword'].valid || !form.controls['confirmPassword'].dirty">Ugyldig passord! Må vere minst 8 tegn langt</small>
-            <small class="input-feedback" [hidden]="!form.controls['confirmPassword'].value || (form.controls['password'].value === form.controls['confirmPassword'].value)">Passord matcher ikke</small>
+            <small class="input-feedback" [hidden]="form.controls['confirmPassword'].valid || !form.controls['confirmPassword'].dirty">Ugyldig passord! Må være minst 8 tegn langt</small>
+            <small class="input-feedback" [hidden]="!form.controls['confirmPassword'].value || (form.controls['password'].value === form.controls['confirmPassword'].value)">Passordene er ikke like!</small>
         </div>
 
         <button class="submit" type="submit" [disabled]="(!form.valid || !form.dirty) || form.controls['confirmPassword'].value !== form.controls['password'].value">

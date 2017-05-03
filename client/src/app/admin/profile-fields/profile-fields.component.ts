@@ -42,7 +42,7 @@ export class ProfileFieldsComponent implements OnInit {
 
     submit(data, valid): void {
         if (!valid) {
-            this.notif.alert('Invalid Form Value', 'Your form has some invalid values, and cannot save the updates yet');
+            this.notif.alert('Ugyldige skjemaverdier', 'Skjemaet har ugyldige verdier, og kan dermed ikke lagres.');
             return;
         }
 

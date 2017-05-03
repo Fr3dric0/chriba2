@@ -19,6 +19,7 @@ body {
   margin: 0;
 
   padding: 0;
+  
 }
 
 /**
@@ -132,6 +133,10 @@ main {
   position: relative;
 
   width: 100%;
+}
+
+.neg-index {
+  z-index: -1;
 }
 
 app-map.preview {

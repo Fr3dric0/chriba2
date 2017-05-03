@@ -63,7 +63,7 @@ export class GeneralFieldsComponent implements OnInit {
                     const { address, addressNumber, postalCode, city } = values.location;
                     return this.notif.error(
                         'Klarte ikke å hente posisjon',
-                        `Klarte ikkje å hente posisjonen til addressen ${address} ${addressNumber}, ${postalCode} ${city}`);
+                        `Klarte ikke å hente posisjonen til addressen ${address} ${addressNumber}, ${postalCode} ${city}`);
                 }
 
                 this.notif.success('Posisjon funnet', `Posisjonen er funnet ved lat: ${location.lat.toFixed(3)} og long: ${location.long.toFixed(3)}`);
@@ -76,7 +76,7 @@ export class GeneralFieldsComponent implements OnInit {
 
     save(data, valid): void {
         if (!valid) {
-            this.notif.alert('Ugyldig skjemaverdier', 'Om Chriba har ugyldige verdier, og kan ikkje lagres');
+            this.notif.alert('Ugyldig skjemaverdier', '"Om Chriba" har ugyldige verdier, og kan ikke lagres');
             return;
         }
 

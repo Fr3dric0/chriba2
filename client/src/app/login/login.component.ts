@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit{
                 this.notif.remove();
                 switch (err.status) {
                     case 400:
-                        this.notif.error('Ugyldig skjema', 'Mangler epost eller passord');
+                        this.notif.error('Ugyldig skjema', 'Mangler e-post eller passord');
                         break;
                     case 403:
                     case 401:
-                        this.notif.error('Uautentisert', 'Epost eller passord er feil');
+                        this.notif.error('Uautentisert', 'Feil e-post eller passord!');
                         break;
 
                     default:
