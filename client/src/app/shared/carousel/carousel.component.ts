@@ -27,7 +27,7 @@ export class CarouselComponent {
   pointer: any = [0, 1, 2];
   badges = [];
   isFullscreen: boolean = false;
-  fullWidth = window.innerWidth;
+  fullWidth = document.body.clientWidth;
   imgState = "active"; // state for transition effect
 
   standBy = true; // As long as standBy is true, the carousel autoscrolls
@@ -253,7 +253,7 @@ export class CarouselComponent {
    * Returns the height in px depending on current carousel width (this.fullWidth)
    * @returns {string}
    */
-  getHeight(this) {
+  getHeight() {
     if (!this.isFullscreen) {
       let percentage = 0.70; // DEFAULT: 0.70; 16:9 ratio when height is 56 % of width
       if (this.fullWidth != 0 && this.fullWidth * percentage < 1200) {
@@ -263,13 +263,21 @@ export class CarouselComponent {
     }
     
   }
+  
+  /**
+   * Returns documents width in px (excluding scrollbar when it's not overlapping)
+   * @returns {number}
+   */
+  getWidth() {
+    return document.body.offsetWidth;
+  }
 
   /**
    * On resizing window, sets this.width equal to current carousel's width
    * @param event
    */
-  onResize(event) {
-    this.fullWidth = event.target.innerWidth;
+  onResize() {
+    this.fullWidth = document.body.offsetWidth;
   }
 
   /**
@@ -282,6 +290,7 @@ export class CarouselComponent {
   fullscreen() {
     this.standbyOff();
     this.isFullscreen = !this.isFullscreen;
+    this.fullWidth = this.fullWidth = document.body.clientWidth;
     this.fullscreenUpdated.emit(this.isFullscreen);
 
         this.angulartics2.eventTrack.next({

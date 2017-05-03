@@ -1,7 +1,7 @@
 <div [ngClass]="{'background' : isFullscreen}">
   <div class="carousel"
        [ngClass]="{'fullscreen carousel-fullscreen' : isFullscreen, 'disappear' : !isFullscreen}"
-       (window:resize)="onResize($event);" [style.height.px]="getHeight()">
+       (window:resize)="onResize();" [style.width.px]="getWidth()" [style.height.px]="getHeight()">
     
     <img *ngIf="carouselFrame[0]" [src]="carouselFrame[0].img">
     
