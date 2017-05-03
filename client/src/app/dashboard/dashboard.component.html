@@ -1,4 +1,4 @@
-<app-carousel [images]="images"></app-carousel>
+<app-carousel (fullscreenUpdated)="toggleFullscreen($event)" [images]="images"></app-carousel>
 <section class="introduction">
   <h2>Om Chriba</h2>
   <p [innerHTML]="description"></p>

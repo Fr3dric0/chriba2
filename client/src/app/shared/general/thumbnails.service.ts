@@ -28,11 +28,15 @@ export class ThumbnailService {
           rsv([]);
           return;
         }
-
+        
         const [estates, projects] = data;
         let flattened;
         if (estates && projects) {
           flattened = [...estates, ...projects];
+        } else if (estates) {
+          flattened = [...estates];
+        } else if (projects) {
+          flattened = [...projects];
         } else {
           flattened = [];
         }
@@ -43,17 +47,22 @@ export class ThumbnailService {
             let img = this.shuffleList(elem.thumbnails.large)[0];
 
             if (elem.thumbnails.large.length < 1) {
-              img = "";
+              img = "/resources/missing_image.png";
             }
 
             obj.img = img;
             obj.url = `/${!elem.location ? 'projects' : 'estates'}/${elem.name}`;
+            
             if (elem.location) {
-              obj.description = `
-              ${elem.location.address}<br>
-              ${elem.location.addressNumber}<br>`;
+              obj.title = `${elem.location.address} ${elem.location.addressNumber}`;
+            } else if (elem.title) {
+              obj.title = elem.title;
             }
-            obj.description = `${elem.description.substring(0, 60)}...`;
+            
+            if (elem.description) {
+              obj.description = `${elem.description}`;
+            }
+            
             return obj;
           }));
         rsv(shuffled);
