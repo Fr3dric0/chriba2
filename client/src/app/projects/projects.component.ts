@@ -24,7 +24,9 @@ export class ProjectsComponent implements OnInit {
   static parseInnerContent(elem){
   elem.innerContent = `
     <h3>${elem.title}</h3>
-    <p>${elem.description.length > 150? elem.description.substring(0, 147) + "...": elem.description}</p>`;
+    <p>${elem.description?
+      elem.description.length > 150 ? elem.description.substring(0, 147) + ' ...' : elem.description 
+      : ''}</p>`;
   return elem;
 }
 }
