@@ -62,6 +62,10 @@ function updateEstate (req, res, next) {
         err.status = 400;
         return next(err);
     }
+    
+    if (req.body._id) {
+        delete req.body._id;
+    }
 
     Estates.findOneAndUpdate(
         {_id: estate._id },
