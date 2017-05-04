@@ -42,7 +42,7 @@ function protectFields (req, res, next) {
         err.status = 400;
         return next(err);
     }
-
+    
     // Ensure that these fields cannot be directly changed by the client
     req.body._id = project._id;
     req.body.__v = project.__v;
