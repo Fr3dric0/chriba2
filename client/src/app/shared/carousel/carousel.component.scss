@@ -1,0 +1,276 @@
+@import "../../../stylesheets/declarations";
+
+.carousel {
+  background-color: $svg-icon;
+  min-height: 9.4em;
+  max-height: 34.4em;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  
+  .desc-carousel {
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    height: 3em;
+    padding: 1em;
+    
+    > span {
+      flex: 6;
+      margin-right: 1em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    .btn-desc {
+      flex: 4;
+      height: 2em;
+      max-width: 11em;
+      padding: 0 2em 0;
+      
+      span {
+        margin: 0;
+      }
+      
+      svg {
+        margin-left: 0.3em;
+      }
+      
+      &:hover {
+        background-color: $secondary-background-color;
+      }
+    
+    }
+    
+      .disappear {
+        display: none;
+      }
+  }
+  
+  .showcase {
+    align-items: center;
+    box-sizing: border-box;
+    background: $carousel-background-color;
+    bottom: 0;
+    color: $icon-text;
+    display: flex;
+    height: 3em;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 23;
+  }
+  
+  .no-background {
+    background-color: transparent;
+  }
+  
+  .images {
+    bottom: 3em;
+    margin: 0;
+    position: absolute;
+    top: 3em;
+    width: inherit;
+    
+    img:not(.viewed) {
+      display: none;
+    }
+  
+    img.viewed {
+      height: 100%;
+      margin: 0 auto;
+      object-fit: cover;
+      position: absolute;
+      width: inherit;
+    }
+  
+    img.contain {
+      object-fit: contain;
+    }
+  }
+  
+  .toolbar {
+    box-sizing: border-box;
+    display:flex;
+    height: 100%;
+    padding: 0;
+    width: 100%;
+    
+    .toolbar-top {
+      display: flex;
+      height: 3em;
+      top: 0;
+      
+      span {
+        flex: 9;
+        text-align: center;
+      }
+  
+      .btn-fullscreen {
+        background-color: $blurred;
+        height: inherit;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 3em;
+        z-index: 25;
+    
+        &:hover {
+          background-color: $carousel-background-color;
+      
+          svg {
+            fill: $secondary-background-color;
+          }
+        }
+    
+        svg {
+          fill: $secondary-background-color;
+          height: inherit;
+          width: inherit;
+        }
+      }
+    }
+    
+    .btn-container {
+      justify-content: space-between;
+      height: inherit;
+      position: absolute;
+      width: inherit;
+      
+      div:nth-child(2) {
+        right: 0;
+      }
+      
+      div {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        height: 100%;
+        position: absolute;
+        width: 40%;
+        z-index: 22;
+    
+        &:hover {
+          .btn-arrow {
+            background-color: $carousel-background-color;
+        
+            svg {
+              fill: $secondary-background-color;
+            }
+          }
+        }
+    
+        .btn-arrow {
+          background-color: $blurred;
+          border: none;
+          border-radius: 70%;
+          height: 3em;
+          margin: 1em;
+          outline:none;
+          overflow: hidden;
+          padding: 0;
+          transition:.5s;
+          width: 3em;
+          z-index: 19;
+      
+          svg {
+            fill: $svg-icon;
+            height: inherit;
+            transition:.5s;
+            width: inherit;
+          }
+        }
+    
+        .right-arrow {
+          margin-left: auto;
+        }
+    
+      }
+    }
+  }
+  
+  .disappear {
+    display: none;
+  }
+  
+  .fixed {
+    position: fixed;
+  }
+  
+  .badges {
+    align-items: center;
+    bottom: 3em;
+    color: $primary-background-color;
+    display: flex;
+    height: 2em;
+    justify-content: center;
+    position: absolute;
+    width: inherit;
+    
+      span {
+        @include transition();
+        border: 1px solid $primary-background-color;
+        border-radius: 50%;
+        box-shadow: 0 0 1px 1px $blurred;
+        cursor: pointer;
+        display: block;
+        flex-direction: row;
+        height: 1em;
+        margin: auto 0.25em;
+        width: 1em;
+        z-index: 25;
+    
+        &:hover {
+          background-color: $primary-background-color;
+        }
+      }
+  
+  }
+  
+  .selected {
+    background-color: $primary-background-color;
+  }
+  
+  .bottom {
+    bottom: 0;
+    z-index: 23;
+  }
+}
+
+.background {
+  align-items: center;
+  background-color: $carousel-darker-background;
+  display: flex;
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 50;
+}
+
+.carousel-fullscreen {
+  max-height: inherit;
+}
+
+.fullscreen {
+  background-color: transparent;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  
+  .viewed {
+    display: block;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 22;
+  }
+}

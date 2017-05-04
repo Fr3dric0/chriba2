@@ -1,0 +1,16 @@
+.introduction {
+  box-sizing: border-box;
+
+  line-height: 2em;
+
+  margin: 0 auto;
+
+  padding: 1.3em;
+
+
+  width: 100%;
+
+  > p {
+    white-space: pre-wrap;
+  }
+}

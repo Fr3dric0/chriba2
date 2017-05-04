@@ -1,0 +1,12 @@
+<app-carousel (fullscreenUpdated)="toggleFullscreen($event)" *ngIf="images" [images]="images"></app-carousel>
+
+<div  class="flex-container">
+    <div *ngIf="title">
+        <h2>{{title}}</h2>
+        <a *ngIf="url" class="btn btn-find btn-details" target="_blank" [href]="url">{{url.hostname}}</a>
+    </div>
+
+    <div>
+        <p *ngIf="description" class="details-description" [innerHTML]="description"></p>
+    </div>
+</div>

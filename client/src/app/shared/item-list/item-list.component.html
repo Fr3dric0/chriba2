@@ -1,0 +1,19 @@
+<li [routerLink]="elem.name" (window:resize)="onResize($event)" (window:onload)="onResize($event)">
+  <div class="img-container">
+    <img [src]="elem.thumbnails.small[0]" [alt]="elem.name">
+  </div>
+  <em class="collapsed-view">{{elem.title ? elem.title :
+    elem.location.addressNumber ? elem.location.address + ' ' + elem.location.addressNumber : elem.location.address }}</em>
+  <span class="arrow collapsed-view">
+    <svg width="20" height="30" xmlns="http://www.w3.org/2000/svg">
+      <g>
+        <line stroke="#000000" id="svg_1" y1="5" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line>
+        <line stroke="#000000" id="svg_1" y1="25" y2="15" x1="5" x2="12" stroke-width="3" stroke-linecap="round"></line></g>
+    </svg>
+  </span>
+  <div class="mid-content">
+    <div class="info-container" [innerHtml]="elem.innerContent"></div>
+    <button [ngClass]="'btn-bright'">Til {{type}}</button>
+  </div>
+  <app-map *ngIf="expanded && showMap && elem.location" [lat]="elem.location.lat" [long]="elem.location.long" [control]="2" class="map"></app-map>
+</li>

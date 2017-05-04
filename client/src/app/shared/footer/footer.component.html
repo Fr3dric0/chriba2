@@ -1,0 +1,18 @@
+<footer id="footer">
+  <h2>Kontakt</h2>
+  <div class="flex-container">
+    <div>
+      <footer-address
+        [location]="location"
+        [mailbox]="mailbox">
+      </footer-address>
+    </div>
+    <div>
+      <footer-phone
+        [mobile]="mobile"
+        [business]="business"
+        [email]="email"></footer-phone>
+    </div>
+    <app-map [lat]="lat" [long]="long" [control]="0"></app-map>
+  </div>
+</footer>

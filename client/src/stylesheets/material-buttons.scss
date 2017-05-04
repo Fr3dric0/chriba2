@@ -1,0 +1,277 @@
+/*
+ * @created: 2016-01-31
+ *
+ * Material-buttons contains the styles rules for the buttons, styled to
+ * follow material design
+ */
+@import "declarations";
+
+$fab-size: 3rem;
+
+button,
+.btn {
+  @include border-radius();
+  @include transition();
+
+  align-items: center;
+
+  background-color: $primary-background-color;
+  border: 0;
+  box-shadow: $shadow;
+  box-sizing: border-box;
+
+  color: $dark-primary;
+  cursor: pointer;
+
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-size: 0.9em;
+
+  justify-content: center;
+
+  padding: 0.5em 0.8em;
+
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+
+  &:active {
+    box-shadow: $shadow-active;
+  }
+
+  &[disabled] {
+    cursor: default;
+  }
+
+  svg {
+    @include transition();
+
+    $svg-size: 1.5em;
+
+    fill: $dark-primary;
+
+    height: $svg-size;
+
+    padding: 0;
+
+    width: $svg-size;
+  }
+}
+
+label.btn {
+
+  &::after {
+    content: none;
+  }
+}
+
+.btn-bright {
+  background-color: $secondary-background-color;
+  color: $dark-primary;
+
+  svg {
+    fill: $dark-primary;
+  }
+}
+
+// Floating action button
+.fab {
+  @include transition();
+
+  background-color: $primary-color;
+  border-radius: 50%;
+  box-shadow: $shadow;
+
+  height: $fab-size;
+
+  position: relative;
+
+  width: $fab-size;
+
+  svg {
+    fill: $icon-text;
+  }
+
+  &:hover {
+    box-shadow: $shadow-hover;
+
+    transform: rotate(90deg);
+  }
+
+}
+
+.submit,
+button[type="submit"] {
+  box-shadow: $shadow;
+
+  margin-top: 1em;
+
+  width: 100%;
+
+  &:disabled {
+    box-shadow: none;
+
+    color: $secondary-text;
+
+    opacity: 0.8;
+
+    svg {
+      fill: $secondary-text;
+    }
+  }
+}
+
+.btn-flat {
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: none;
+    color: $secondary-text;
+
+    svg {
+      fill: $secondary-text;
+    }
+  }
+}
+
+.btn-logout {
+  background-color: transparent;
+  color: $error-color;
+
+  &:hover {
+    background-color: $primary-background-color;
+    color: $error-color;
+  }
+
+  &:active {
+    color: $secondary-text;
+  }
+}
+
+.btn-find {
+  box-shadow: $shadow;
+
+  color: $pending-color;
+
+  width: 100%;
+
+  svg {
+    fill: $pending-color;
+
+    margin-right: .2em;
+
+    opacity: 1;
+  }
+
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+
+  &:disabled {
+    box-shadow: none;
+
+    color: $secondary-text;
+
+    opacity: 0.8;
+
+    svg {
+      fill: $secondary-text;
+    }
+
+  }
+
+}
+
+.btn-back {
+  background-color: transparent;
+  color: $pending-color;
+
+  &:hover {
+    background-color: $primary-background-color;
+
+  }
+
+  &:active {
+    background-color: transparent;
+    color: $secondary-text;
+
+    svg {
+      fill: $secondary-text;
+    }
+  }
+
+  svg {
+    fill: $pending-color;
+  }
+}
+
+.btn-radio {
+  box-shadow: $shadow;
+
+  width: 10rem;
+
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+}
+
+.fab-file {
+  align-items: center;
+
+  background-color: $pending-color;
+  box-shadow: $shadow;
+
+  display: flex;
+
+  justify-content: center;
+
+  margin: auto;
+
+  svg {
+    //margin-left: 1px;
+  }
+
+  &:hover {
+    box-shadow: $shadow-hover;
+
+    transform: rotate(0);
+  }
+
+  &:active {
+    box-shadow: $shadow-active;
+  }
+
+  &::after {
+    content: none;
+
+    display: none;
+  }
+}
+
+label.disabled {
+  background-color: $primary-background-color;
+  box-shadow: none;
+
+  color: $accent-color;
+  cursor: default;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  svg {
+    fill: $accent-color;
+  }
+}
+
+svg.small {
+  margin-right: .2em;
+
+  width: 1em;
+}
+

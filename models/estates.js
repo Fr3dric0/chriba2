@@ -6,17 +6,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 const Estates = new Schema({
     name: { type: String, unique: true },
     location: {
-        address: { type: String, required: true },
-        address_number: String,
-        postal_code: String,
+        address: { type: String },
+        addressNumber: String,
+        postalCode: String,
         city: String,
-        country: { type: String, default: 'Norway' }
+        country: { type: String, default: 'Norway' },
+        lat: Number,
+        long: Number
     },
-    about: { type: String },
+    description: { type: String },
     size: { type: Number },
     url: String,
     thumbnails: {
@@ -26,10 +27,35 @@ const Estates = new Schema({
     uploaded: { type: Date, default: Date.now }
 });
 
+
 Estates.pre('save', function (next) {
+    try {
+        validate(this);
+    } catch (e) {
+        console.log(e);
+        return next(e);
+    }
+
     this.name = createName(this.location);
     next();
 });
+
+
+
+function validate(estate) {
+    const requiredLocations = ['address'];
+
+    if (!estate.location) {
+        throw new Error(`Missing required location-fields: ${requiredLocations.join(', ')}`);
+    }
+
+    for (let loc of requiredLocations) {
+        if (!estate.location[loc]) {
+            throw new Error(`Missing required location-field: ${loc}`);
+        }
+    }
+}
+
 
 /**
  *  @param {Object}    location    An object, containing properties such as: address, address_number and city
@@ -46,8 +72,8 @@ function createName (location) {
         name += location.address;
     }
 
-    if (location.address_number) {
-        name += '_' + location.address_number;
+    if (location.addressNumber) {
+        name += '_' + location.addressNumber;
     }
 
     if (location.city && location.city != '') {

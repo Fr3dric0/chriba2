@@ -1,0 +1,35 @@
+@import "../../../stylesheets/declarations";
+
+app-map {
+  box-sizing: border-box;
+  flex: 1;
+  min-height: 10em;
+  min-width: 17em;
+  padding-bottom: 1em;
+}
+
+footer {
+  background-color: $footer-bg-color;
+  color: $primary-background-color;
+  font-family: $primary-font;
+  overflow-x: hidden;
+  padding: 0.5em 1em 0;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 70em;
+  margin: auto;
+
+  div {
+    flex: 1;
+    min-width: 13em;
+    padding: 0 1em;
+  }
+}
+
+.neg-index {
+  z-index: -1;
+}

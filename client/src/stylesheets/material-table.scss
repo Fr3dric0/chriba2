@@ -1,0 +1,122 @@
+@import "declarations";
+
+.material-table {
+  border: 0;
+  box-sizing: border-box;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $inner-width;
+
+  padding: 1em;
+  padding-bottom: 0;
+  position: relative;
+
+  width: 100%;
+
+  td {
+    border: 0;
+
+    margin: 0;
+
+    padding: 1em 0.5em;
+
+    vertical-align: top;
+  }
+
+  thead {
+    font-weight: 100;
+  }
+
+  tbody {
+    tr,
+    td {
+      @include transition();
+
+      &:hover {
+        background-color: rgb(250, 250, 250); // Use a really light shading, not dependant on the decalrations
+      }
+    }
+
+  }
+}
+
+.thumb-container {
+  img {
+    max-width: 5em;
+  }
+}
+
+.title-container {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+}
+
+.description-container {
+  max-width: 10em;
+}
+
+.modifiers {
+  display: flex;
+
+  flex-direction: row-reverse;
+
+  text-align: right;
+
+  svg {
+    border-radius: 2px;
+
+    cursor: pointer;
+
+    fill: $pending-color;
+
+    height: 30px;
+
+    padding: 5px;
+    position: relative;
+
+    width: 30px;
+    &:hover {
+      background-color: $pending-color;
+      fill: $secondary-background-color;
+    }
+  }
+
+  span:last-child {
+    svg {
+      fill: $error-color;
+
+      &:hover {
+        background-color: $error-color;
+        fill: $secondary-background-color;
+      }
+    }
+  }
+
+}
+
+.create-container {
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: row-reverse;
+
+  margin: 0 auto;
+  max-width: $inner-width;
+
+  padding: 1em;
+
+  width: 100%;
+}
+
+@media screen and (max-width: 650px) {
+  .hidden-on-narrow {
+    display: none;
+  }
+}
+

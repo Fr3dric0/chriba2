@@ -1,0 +1,59 @@
+<section>
+    <h3>Profilinformasjon</h3>
+    <p class="description">Her kan du gjøre endringer på profilen din.
+        <strong>N.B.</strong> Husk at dette kan påvirke pålogginsinformasjonen
+    </p>
+
+    <form class="material-form" [formGroup]="form" (ngSubmit)="submit(form.value, form.valid)">
+
+        <div class="input-divider">
+            <label>Fornavn</label>
+            <input type="text" formControlName="firstName" required>
+
+            <small class="input-feedback" [hidden]="form.controls['firstName'].valid || !form.controls['firstName'].dirty">Du må ha med fornavn!</small>
+        </div>
+        <div class="input-divider">
+            <label>Etternavn</label>
+            <input type="text" formControlName="lastName" required>
+
+            <small class="input-feedback" [hidden]="form.controls['lastName'].valid || !form.controls['lastName'].dirty">Du må ha med etternavn!</small>
+        </div>
+
+        <div class="input-divider">
+            <label>E-post</label>
+            <input type="email" formControlName="email" required>
+
+            <small class="input-feedback" [hidden]="form.controls['email'].valid || !form.controls['email'].dirty">Ugyldig e-postadresse!</small>
+        </div>
+
+        <div class="input-divider">
+            <label>Gammelt passord</label>
+            <input type="password" formControlName="oldPassword">
+
+            <small class="input-feedback" [hidden]="form.controls['oldPassword'] || (!form.controls['password'].value && !form.controls['confirmPassword'].value)">
+                Du må oppgi gammelt passord før du kan sette et nytt</small>
+        </div>
+
+        <div class="input-divider">
+            <label>Nytt passord</label>
+            <input type="password" formControlName="password">
+
+            <small class="input-feedback" [hidden]="form.controls['password'].valid || !form.controls['password'].dirty || !form.controls['password'].value">
+                Ugyldig passord! Må være minst 8 tegn langt</small>
+        </div>
+
+        <div class="input-divider">
+            <label>Bekreft nytt passord</label>
+            <input type="password" formControlName="confirmPassword">
+
+            <small class="input-feedback" [hidden]="form.controls['confirmPassword'].valid || !form.controls['confirmPassword'].dirty">Ugyldig passord! Må være minst 8 tegn langt</small>
+            <small class="input-feedback" [hidden]="!form.controls['confirmPassword'].value || (form.controls['password'].value === form.controls['confirmPassword'].value)">Passordene er ikke like!</small>
+        </div>
+
+        <button class="submit" type="submit" [disabled]="(!form.valid || !form.dirty) || form.controls['confirmPassword'].value !== form.controls['password'].value">
+            <span *ngIf="!saved">Oppdater profil</span>
+            <span *ngIf="saved">Profil oppdatert <i class="em em---1"></i></span>
+        </button>
+    </form>
+
+</section>

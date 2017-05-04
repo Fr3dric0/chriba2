@@ -1,0 +1,80 @@
+@import "declarations";
+@import "../stylesheets/material-buttons";
+
+$list-height: 35px;
+$list-height-large: 150px;
+$resize-width: 600px;
+
+
+.material-list {
+  box-sizing: border-box;
+  list-style: none;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  max-width: $inner-width;
+  min-width: 300px;
+
+  padding: 0 1em;
+}
+
+
+.material-list li {
+  @include border-radius();
+  @include no-user-select();
+  @include transition();
+
+  background-color: $primary-background-color;
+  box-shadow: $shadow;
+  cursor: pointer;
+
+  display: flex;
+  flex-wrap: nowrap;
+  height: $list-height;
+
+  justify-content: space-between;
+  margin-top: 5px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  &:hover {
+    box-shadow: $shadow-hover;
+  }
+
+  &:active {
+    box-shadow: $shadow-active;
+  }
+
+  .img-container {
+    background-color: $icon-text;
+    display: block;
+    height: $list-height;
+    overflow: hidden;
+    width: $list-height + 10px;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+  }
+
+  em {
+    font-style: normal;
+    margin-top: 10px;
+  }
+
+  @media screen and(min-width: $breakpoint) {
+    height: $list-height-large;
+    margin-top: 15px;
+
+    .img-container {
+      height: $list-height-large;
+      width: $list-height-large + 10px;
+    }
+  }
+}

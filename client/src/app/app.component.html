@@ -1,8 +1,9 @@
-<nav>
-    <button [routerLink]="['']">Dashboard</button>
-    <button [routerLink]="['estates']">Estates</button>
-    <button [routerLink]="['projects']">Projects</button>
-</nav>
-<div class="content">
+<app-header></app-header>
+
+<main>
     <router-outlet></router-outlet>
-</div>
+</main>
+
+<app-footer [ngClass]="{ 'neg-index': blurFooter }"></app-footer>
+
+<simple-notifications [options]="notifOptions"></simple-notifications>

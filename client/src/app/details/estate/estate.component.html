@@ -1,0 +1,23 @@
+ <app-carousel (fullscreenUpdated)="toggleFullscreen($event)" [images]="images"></app-carousel>
+
+ <div  class="flex-container">
+     <div>
+         <section *ngIf="location">
+             <h3>Adresse</h3>
+             {{location.address}} {{location.addressNumber}} <br>
+             {{location.postalCode}} {{location.city}} <br>
+             {{location.country}}
+         </section>
+         <section *ngIf="size">
+             <h3>Areal</h3>
+             {{size}} m<sup>2</sup>
+         </section>
+         <a *ngIf="url" [href]="url" target="_blank" class="btn btn-find btn-details">{{url.hostname}}</a>
+     </div>
+
+     <div>
+         <p *ngIf="description" class="details-description" [innerHTML]="description"></p>
+     </div>
+ </div>
+
+ <app-map *ngIf="location.lat && location.long" [lat]="location.lat" [long]="location.long" [control]="1"></app-map>

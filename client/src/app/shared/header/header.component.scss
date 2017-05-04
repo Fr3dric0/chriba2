@@ -1,0 +1,136 @@
+@import "../../../stylesheets/declarations";
+
+header,
+nav {
+  align-items: center;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: space-between;
+}
+
+header {
+  background: $secondary-background-color;
+  border-bottom: 2px solid $primary-color;
+  box-sizing: border-box;
+  box-shadow: $shadow;
+
+  color: $dark-primary;
+
+  font-family: $primary-font;
+  font-weight: 100;
+  font-size: 1.3rem;
+
+  overflow-x: hidden;
+
+  padding: 0.2em;
+  position: relative;
+
+  a {
+    cursor: pointer; // To force pointer on anchor without any href
+    outline-style: none;
+  }
+}
+
+.logo {
+  height: 1.4em;
+
+  svg {
+    height: 1.4em;
+  }
+}
+
+a,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.hidden-on-wide {
+  display: none;
+}
+
+nav {
+  box-sizing: border-box;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  a {
+    box-sizing: border-box;
+
+    padding: 0.2em 0.3em;
+
+    user-select: none;
+  }
+
+}
+
+.current-route {
+  border-bottom: 1px solid $primary-color;
+}
+
+
+.admin-route,
+.admin-route:visited {
+  color: $error-color !important;
+}
+
+.hamburger-menu {
+  align-items: flex-end;
+
+  cursor: pointer;
+
+  flex-grow: 1;
+
+  font-size: 1.2em;
+
+  justify-content: flex-end;
+
+  padding-right: inherit;
+
+  text-align: right;
+
+  user-select: none;
+}
+
+.minified-menu {
+  display: flex; // Default when width is over 600px
+  // check media query for correct preset
+}
+
+.expanded-menu {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  header {
+    font-size: 1.3rem;
+  }
+
+  nav {
+    flex-direction: column;
+    align-items: flex-end;
+
+    min-width: 100%;
+
+    a {
+      text-align: right;
+      display: block;
+    }
+  }
+
+  .minified-menu {
+    display: none;
+  }
+
+  .hidden-on-wide {
+    display: inherit;
+  }
+
+  .hamburger-menu {
+    display: flex;
+  }
+}

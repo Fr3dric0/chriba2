@@ -4,7 +4,7 @@
  *
  */
 const fs = require('fs');
-const PATH = 'models/about/_about.json';
+const PATH = '/var/www/chriba/models/about/_about.json';
 
 function save(elem){
     return new Promise((resolve, reject) => {

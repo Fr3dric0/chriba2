@@ -1,4 +1,7 @@
 # Chriba v2.0
+
+[![Known Vulnerabilities](https://snyk.io/test/github/fr3dric0/chriba2/badge.svg)](https://snyk.io/test/github/fr3dric0/chriba2)
+
 Hovedprosjektet gjekk strålande bra, med toppkarakter (_IT2805_) og fornøgd klient (_Chriba AS_).
 No er det påtide å gjere koden meir produksjonsvennleg. Valet datt på å bruke **Angular 2** for klient kode,
 og behalde **ExpressJS** som API kode.

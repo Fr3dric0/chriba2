@@ -1,0 +1,180 @@
+/*
+ *  Place your global styles here.
+ *
+ *  AVOID using element Ids for styling. Unnecessary in almost all situations
+ *
+ *
+ *
+ */
+@import "stylesheets/declarations";
+@import "stylesheets/material-list";
+@import "stylesheets/material-form";
+@import "stylesheets/material-buttons";
+
+body {
+  background-color: $primary-background-color;
+
+  font-family: $primary-font;
+
+  margin: 0;
+
+  padding: 0;
+  
+}
+
+/**
+ * Set the root container
+ * to use flexbox. Ensures a sticky footer without calculations
+ */
+app-root {
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 100vh;
+}
+
+/* Reserved for header title */
+h1 {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+/* Sub-titles */
+h2, h3, h4, h5, h6 {
+  box-sizing: border-box;
+  margin: 0.5em;
+  text-align: center;
+}
+
+// Remove outlining on everything
+button:focus, input:focus, textarea:focus {
+  outline: none;
+}
+
+.section-splitter {
+  position: relative;
+  background-color: $divider-color;
+
+  height: 1px;
+
+  margin: 20px auto 20px auto;
+
+  width: 100px;
+}
+
+section {
+  box-sizing: border-box;
+
+  display: block;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+/**
+ * This tag can be used to define descriptions for headers
+ * or elements
+ */
+.description {
+  box-sizing: border-box;
+
+  display: block;
+
+  color: $secondary-text;
+
+  font-size: 0.8em;
+
+  margin: 0 auto 0.5em auto;
+  max-width: $inner-width;
+
+  padding: 0 1em 0 1em;
+  position: relative;
+
+  text-align: center;
+
+  width: 100%;
+}
+
+main {
+  background-color: $secondary-background-color;
+  border-left: #EEE solid 1px;
+  border-right: #EEE solid 1px;
+  box-sizing: border-box;
+
+  flex-grow: 1;
+
+  margin: 0 auto 0 auto;
+  max-width: $container-width;
+
+  position: relative;
+
+  width: 100%;
+
+  z-index: 0;
+}
+
+.metadata-container {
+  box-sizing: border-box;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $inner-width;
+
+  padding: 0 1em 0 1em;
+  position: relative;
+
+  width: 100%;
+}
+
+.neg-index {
+  z-index: -1;
+}
+
+app-map.preview {
+  box-sizing: border-box;
+
+  display: block;
+
+  height: 35vh;
+
+  margin: auto;
+  max-height: 25em;
+  max-width: $inner-width;
+
+  padding: 1rem;
+
+  width: 100%;
+}
+
+
+/**
+ * MOBILE VIEW
+ *
+ */
+@media screen and (max-width: $breakpoint) {
+
+}
+
+/**
+ * BREAKPOINT WHERE `main` MEETS WINDOW EDGE
+ *
+ *
+ */
+@media screen and (max-width: $container-width) {
+  main {
+    border: none;
+  }
+
+  .metadata-container {
+    font-size: 0.9em;
+  }
+}
