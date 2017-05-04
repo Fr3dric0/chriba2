@@ -18,7 +18,11 @@
             [innerHTML]="field.title.label">
         </td>
 
-        <td class="description-container hidden-on-narrow" [innerHTML]="field.description ? field.description.substring(60) + ' ...' : ''"></td>
+        <td class="description-container hidden-on-narrow" [innerHTML]="
+          field.description?
+          field.description.length > 60 ? field.description.substring(0, 60) + ' ...' : field.description
+          : ''
+          "></td>
 
         <td class="modifiers">
             <span class="btn-edit" [routerLink]="field.modifiers.edit">
