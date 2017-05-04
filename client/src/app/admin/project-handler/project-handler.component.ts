@@ -67,14 +67,14 @@ export class ProjectHandlerComponent implements OnInit {
             return this.notif.alert('Ugyldig skjema', 'Du mangler noen obligatoriske felt, og kan ikke lagre før de er blitt fylt ut');
         }
 
-        this.notif.info('Lagrer...', `Eiendom ved: ${values.address}`);
+        this.notif.info('Lagrer...', `Prosjekt ved: ${values.address}`);
 
         this.ps.save(this.concatProject(this.project, values))
             .subscribe((project) => {
                 this.updateForm(project);
                 this.saved = true;
                 this.notif.remove(); // Remove all previous notifications
-                this.notif.success('Prosjekt Lagret', `Prosjekt: ${project.title} ble lagret`);
+                this.notif.success('Prosjekt lagret', `Prosjekt: ${project.title} ble lagret`);
 
                 // Makes sure that the user is redirected to the proper backdoor/projects/<id> when creating new project
                 if (this.route.snapshot.url[this.route.snapshot.url.length - 1].path != this.project.name){
@@ -103,7 +103,7 @@ export class ProjectHandlerComponent implements OnInit {
             .then((project) => {
                 this.notif.remove();
                 this.project = project;
-                this.notif.success(`opplastet`, `Bildet vart lastet opp`);
+                this.notif.success(`Opplastet`, `Bildet vart lastet opp`);
             })
             .catch((err) => {
                 this.notif.remove();

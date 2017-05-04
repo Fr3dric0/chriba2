@@ -103,7 +103,7 @@ export class EstateHandlerComponent implements OnInit {
      * @param   {Estate}    values  Estate values from the form
      * @param   {boolean}   valid   Valid if the form is valid
      *
-     * Saves the updated values to the databse
+     * Saves the updated values to the database
      * */
     submit(values, valid) {
         if (!valid) {
@@ -160,7 +160,7 @@ export class EstateHandlerComponent implements OnInit {
                 this.estate.location.lat = lat;
                 this.estate.location.long = long;
                 this.notif.remove();
-                this.notif.success(`opplastet`, `Bildet ble lastet opp`);
+                this.notif.success(`Opplastet`, `Bildet ble lastet opp`);
             })
             .catch((err) => {
                 this.notif.remove();
@@ -188,7 +188,7 @@ export class EstateHandlerComponent implements OnInit {
     }
 
     /**
-     * Manual function for concating form values with the existing estate
+     * Manual function for concatenating form values with the existing estate
      * */
     private concatEstate(estate: Estate, form) {
         const {lat, long} = estate.location;
