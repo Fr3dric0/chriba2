@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 import { EstatesService } from '../../estates/estates.service';
 import { Estate } from '../../models/estate';
@@ -24,7 +24,8 @@ export class ProjectHandlerComponent implements OnInit {
                 private route: ActivatedRoute,
                 private fb: FormBuilder,
                 private notif: NotificationsService,
-                private titleService: ChribaTitleService) {
+                private titleService: ChribaTitleService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -75,6 +76,10 @@ export class ProjectHandlerComponent implements OnInit {
                 this.notif.remove(); // Remove all previous notifications
                 this.notif.success('Prosjekt Lagret', `Prosjekt: ${project.title} ble lagret`);
 
+                // Makes sure that the user is redirected to the proper backdoor/projects/<id> when creating new project
+                if (this.route.snapshot.url[this.route.snapshot.url.length - 1].path != this.project.name){
+                  this.router.navigate(['/backdoor', 'projects', this.project.name]);
+                }
             }, (err) => {
                 this.saved = false;
                 this.notif.error('Kunne ikke lagre prosjekt', `${err.json().error}${err.json().description}`);

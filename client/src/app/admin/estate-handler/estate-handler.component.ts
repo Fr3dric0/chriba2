@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NotificationsService } from 'angular2-notifications';
 import { EstatesService } from '../../estates/estates.service';
 import { Estate } from '../../models/estate';
@@ -23,7 +23,8 @@ export class EstateHandlerComponent implements OnInit {
                 private fb: FormBuilder,
                 private geocode: GeocodeService,
                 private notif: NotificationsService,
-                private titleService: ChribaTitleService) {
+                private titleService: ChribaTitleService,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -121,6 +122,11 @@ export class EstateHandlerComponent implements OnInit {
 
                 this.notif.remove(); // Remove all previous notifications
                 this.notif.success('Eiendom lagret', `Eiendommen: ${estate.location.address} ble lagret`);
+
+                // Makes sure that the user is redirected to the proper backdoor/estates/<id> when creating new estate
+                if (this.route.snapshot.url[this.route.snapshot.url.length - 1].path != this.estate.name){
+                  this.router.navigate(['/backdoor', 'estates', this.estate.name]);
+                }
             }, (err) => {
                 this.notif.error('Kunne ikke lagre eiendom', err.json().error);
                 this.saved = false;
