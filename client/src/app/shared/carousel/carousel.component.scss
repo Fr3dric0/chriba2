@@ -1,7 +1,6 @@
 @import "../../../stylesheets/declarations";
 
 .carousel {
-  
   background-color: $svg-icon;
   min-height: 9.4em;
   max-height: 34.4em;
@@ -65,21 +64,32 @@
     z-index: 23;
   }
   
-  img:not(.viewed) {
-    display: none;
+  .no-background {
+    background-color: transparent;
   }
   
-  img.viewed {
-    height: 100%;
-    margin: 0 auto;
-    object-fit: cover;
+  .images {
+    bottom: 3em;
+    margin: 0;
     position: absolute;
+    top: 3em;
     width: inherit;
-  }
+    
+    img:not(.viewed) {
+      display: none;
+    }
   
-  img.contain {
-    object-fit: contain;
-    min-width: 500px;
+    img.viewed {
+      height: 100%;
+      margin: 0 auto;
+      object-fit: cover;
+      position: absolute;
+      width: inherit;
+    }
+  
+    img.contain {
+      object-fit: contain;
+    }
   }
   
   .toolbar {
@@ -225,8 +235,7 @@
     background-color: $primary-background-color;
   }
   
-  .bottom {;
-    background-color: $carousel-darker-background;
+  .bottom {
     bottom: 0;
     z-index: 23;
   }
