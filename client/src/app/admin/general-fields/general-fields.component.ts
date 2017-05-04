@@ -42,7 +42,7 @@ export class GeneralFieldsComponent implements OnInit {
             .subscribe(
                 about => this.updateForm(about),
                 err => this.notif.error(
-                    'Innlastingsfeil (om chriba)',
+                    'Innlastingsfeil (om Chriba)',
                     err.json().error || err.json())
             );
     }
@@ -87,10 +87,10 @@ export class GeneralFieldsComponent implements OnInit {
             .subscribe((about) => {
                     this.updateForm(about);
                     this.saved = true;
-                    this.notif.success('Lagret (om chriba)', 'De nye verdiene har blitt lagret og siden er blitt oppdatert');
+                    this.notif.success('Lagret (om Chriba)', 'De nye verdiene har blitt lagret og siden er blitt oppdatert');
                 }, (err) => {
                     this.notif.error(
-                        'Lagringsfeil (om chriba)',
+                        'Lagringsfeil (om Chriba)',
                         err.json().error || err.json());
                     this.saved = false;
                 }

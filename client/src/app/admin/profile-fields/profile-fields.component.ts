@@ -21,7 +21,7 @@ export class ProfileFieldsComponent implements OnInit {
     }
     get admin(): Admin { return this._admin; }
 
-    @Output() save = new EventEmitter<any>();   // AdminComponent has the responsebility of forwarding the information/
+    @Output() save = new EventEmitter<any>();   // AdminComponent has the responsibility of forwarding the information/
                                                 // Therefore, will we only forward the updated values
 
     constructor(private fb: FormBuilder,
