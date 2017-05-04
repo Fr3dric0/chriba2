@@ -216,7 +216,7 @@ app.use((err, req, res, next) => {
     if ((req.app.get('env') === 'development') && err.stack && err.status > 499) {
         e.stack = err.stack;
     }
-
+	
     if (err.description) {
         e.description = err.description;
     }

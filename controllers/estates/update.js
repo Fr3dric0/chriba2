@@ -62,11 +62,12 @@ function updateEstate (req, res, next) {
         err.status = 400;
         return next(err);
     }
-    
+
     // Ensure that these fields cannot be directly changed by the client
-    req.body._id = estate._id;
-    req.body.__v = estate.__v;
-    req.body.name = estate.name;
+
+    delete req.body._id;
+    delete req.body.__v;
+    delete req.body.name;
 
     Estates.findOneAndUpdate(
         {_id: estate._id },
