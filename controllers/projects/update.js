@@ -43,10 +43,6 @@ function protectFields (req, res, next) {
         return next(err);
     }
     
-    if (req.body._id) {
-        delete req.body._id;
-    }
-    
     // Ensure that these fields cannot be directly changed by the client
     req.body._id = project._id;
     req.body.__v = project.__v;
