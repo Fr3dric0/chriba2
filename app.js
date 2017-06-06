@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const mailgunContainer = require('mailgun-js');
 const routeProtector = require('./middleware/route-protector');
+const restful = require('restful-node');
 
 const app = express();
 

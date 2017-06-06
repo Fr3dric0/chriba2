@@ -1,7 +1,0 @@
-
-scss:
-  enabled: true
-
-jshint:
-  enabled: true
-  config_file: .jshintrc
