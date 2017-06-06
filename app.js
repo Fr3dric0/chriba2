@@ -5,7 +5,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const mailgunContainer = require('mailgun-js');
-const routeProtector = require('./middleware/route-protector');
 const restful = require('restful-node');
 
 const app = express();
@@ -39,17 +38,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
-////////////////////////////////////////
-//           ROUTE PROTECTOR          //
-// To prevent unnecessary request to  //
-// bad pages, we setup a blacklisting //
-// module. to block IPs.               //
-////////////////////////////////////////
-app.use(routeProtector({
-    allowTokenBearer: true,
-    deniedFile: path.join(__dirname, 'resources', 'denied.gif')
-}));
 
 ////////////////////////////////////////
 //            STATIC PATHS            //
