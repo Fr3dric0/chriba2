@@ -42,13 +42,12 @@ app.use((req, res, next) => {
 ////////////////////////////////////////
 //            STATIC PATHS            //
 ////////////////////////////////////////
-app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
 
 /**
- * Because we cannot rely on every developer having nginx running,
- * we will enable nodejs to server the static-resources in 'development'
+ * We do not expect Nginx to serve this content in dev.
  * */
 if (app.get('env') === 'development') {
+    app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
     app.use('/resources', express.static(path.join(__dirname, 'resources')));
 }
 
