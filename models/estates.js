@@ -5,6 +5,7 @@
  */
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { BadRequestError } = require('restful-node').errors;
 
 const Estates = new Schema({
     name: { type: String, unique: true },
@@ -37,6 +38,23 @@ Estates.pre('save', function (next) {
     }
 
     this.name = createName(this.location);
+    next();
+});
+
+Estates.post('save', function(err, doc, next) {
+    if (err.name === 'ValidationError') {
+        return next(new BadRequestError(
+            err.errors && err.errors.description ?
+                err.errors.description.message :
+                err
+        ));
+    }
+    
+    // Duplicate key error (Admin already exists)
+    if (err.message.startsWith('E11000')) {
+        return next(new BadRequestError(`Estate: ${doc.address} already exists`));
+    }
+    
     next();
 });
 
