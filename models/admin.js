@@ -6,6 +6,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Bcrypt = require('bcryptjs');
+const { BadRequestError } = require('restful-node').errors;
 const HASH_ROUNDS = 12;
 
 const Admins = new Schema({
@@ -49,22 +50,22 @@ Admins.statics.verifyPassword = function (uid, pwd) {
             if (err) {
                 return rr(err);
             }
-
+            
             if (!user) {
                 let userErr = new Error('No such user');
                 userErr.status = 500;
                 return rr(userErr);
             }
-
+            
             Bcrypt.compare(pwd, user.password, (compErr, result) => {
                 if (compErr) {
                     return rr(new Error('Could not compare passwords'));
                 }
-
+                
                 if (!result) {
-                    return rr(new Error('Password do not match'));
+                    return rr(new Error('Wrong password'));
                 }
-
+                
                 return rsv(true);
             });
         });
@@ -85,7 +86,7 @@ Admins.statics.hashField = function (pwd) {
             if (err) {
                 return rr(err);
             }
-
+            
             return rsv(hash);
         });
     })
@@ -105,18 +106,18 @@ Admins.statics.authenticate = function (email, pwd) {
             if (err) {
                 return rr(err);
             }
-
+            
             if (!user) {
                 const userErr = new Error('Could not find user in DB');
                 userErr.status = 403;
                 return rr(userErr)
             }
-
+            
             Bcrypt.compare(pwd, user.password, function (compareErr, result) {
                 if (compareErr) {
                     return rr(compareErr);
                 }
-
+                
                 if (result) {
                     user.password = ''; // Wipe the password from the response
                     delete user.password;
@@ -134,34 +135,53 @@ Admins.statics.authenticate = function (email, pwd) {
 
 Admins.pre('save', function (next) {
     let adm = this;
-
-    // Check if admin already exists
-    this.constructor.findOne({ email: this.email }, function (err, data) {
-        if (err) {
-            return next(err);
+    
+    // Hash password, and save user
+    Bcrypt.hash(adm.password, HASH_ROUNDS, function (hashErr, hash) {
+        if (hashErr) {
+            return next(hashErr);
         }
-
-        if (data) {
-            let err = new Error('Admin already exist');
-            err.status = 400;
-            return next(err);
-        }
-
-
-        // Hash password, and save user
-        Bcrypt.hash(adm.password, HASH_ROUNDS, function (hashErr, hash) {
-            if (hashErr) {
-                console.error(hashErr);
-                return next(hashErr);
-            }
-
-            // Replace the password with the hashed version
-            adm.password = hash;
-            return next();
-        });
+        
+        // Replace the password with the hashed version
+        adm.password = hash;
+        return next();
     });
-
-
+    
 });
+
+// Post save without errors
+Admins.post('save', function(doc, next) {
+   this.password = null;
+   next();
+});
+
+// Post save WITH errors
+Admins.post('save', function (err, doc, next) {
+    if (err.name === 'ValidationError') {
+        return next(new BadRequestError(
+            err.errors && err.errors.description ?
+                err.errors.description.message :
+                err
+        ));
+    }
+    
+    // Duplicate key error (Admin already exists)
+    if (err.message.startsWith('E11000')) {
+        return next(new BadRequestError(`Admin: ${doc.email} already exists`));
+    }
+    
+    next();
+});
+
+// Post find, etc.
+Admins.post('init', function (doc, next) {
+    // Ensure the password
+    // is never leaked
+    // TODO:ffl - find a better way to prevent leakage
+    // this.password = null;
+    
+    next();
+});
+
 
 module.exports = mongoose.model('Admins', Admins);
