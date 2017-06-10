@@ -150,9 +150,9 @@ Admins.pre('save', function (next) {
 });
 
 // Post save without errors
-Admins.post('save', function(doc, next) {
-   this.password = null;
-   next();
+Admins.post('save', function (doc, next) {
+    this.password = null;
+    next();
 });
 
 // Post save WITH errors

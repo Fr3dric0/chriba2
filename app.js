@@ -157,18 +157,30 @@ const AdminController = require('./controllers/admin.controller');
 const TokenController = require('./controllers/token.controller');
 const EstateController = require('./controllers/estate.controller');
 const ProjectController = require('./controllers/project.controller');
+const GeneralController = require('./controllers/general.controller');
+
+const EstateThumbController = require('./controllers/estate-thumb.controller');
+const ProjectThumbController = require('./controllers/project-thumb.controller');
 
 const tokenConfig = {
     secret: config['token-secret'],
     debug: app.get('env') !== 'production'
 };
 
+const fileConfig = tokenConfig; // Same as `tokenConfig`, just with file-root
+fileConfig.root = config.media.url;
+
 // REGISTER ROUTES
 restful.routes.urls(app, '/api', [
     { url: '/admin/token', controller: new TokenController(tokenConfig) },
     { url: '/admin', controller: new AdminController(tokenConfig) },
+    
+    { url: '/estates/thumb', controller: new EstateThumbController(fileConfig)},
+    { url: '/projects/thumb', controller: new ProjectThumbController(fileConfig)},
+    
     { url: '/estates', controller: new EstateController(tokenConfig)},
-    { url: '/projects', controller: new ProjectController(tokenConfig)}
+    { url: '/projects', controller: new ProjectController(tokenConfig)},
+    { url: '/general', controller: new GeneralController(tokenConfig)}
 ]);
 
 ////////////////////////////////////////

@@ -10,7 +10,7 @@ class TokenController extends AuthController {
         this.disable.push('list', 'retrieve', 'update', 'destroy');
         
         this.secret = config.secret || '';
-        this.ttl =  config.ttl || 21600; //ms (6 hours)
+        this.ttl =  config.ttl || 43200; //ms (12 hours)
         this.jwt = new JWT(this.secret, this.ttl);
         
         this.authFilters.push(new RequireUserFilter(this.model));

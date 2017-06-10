@@ -87,17 +87,17 @@ export class ProjectHandlerComponent implements OnInit {
     }
 
     upload(form) {
-        if (!form || !form.thumb || !form.thumb.value) {
+        if (!form || !form.file || !form.file.value) {
             this.notif.alert(`Bildet mangler`, 'Det ser ikke ut som at du har lagt til noe bilde for opplasting');
             return;
         }
 
         // Add a simple warning for some large files
-        if (form.thumb.value.endsWith('.mp4') || form.thumb.value.endsWith('.mkv')) {
+        if (form.file.value.endsWith('.mp4') || form.file.value.endsWith('.mkv')) {
             this.notif.alert('Obs. Mulig ulovlig filtype', 'Mulig videofiler er for store for siden');
         }
 
-        this.notif.info('Laster opp', `fil: ${form.thumb.value}`);
+        this.notif.info('Laster opp', `fil: ${form.file.value}`);
 
         this.ps.uploadThumb(form, this.project)
             .then((project) => {

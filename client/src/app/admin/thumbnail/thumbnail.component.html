@@ -6,7 +6,7 @@
                 <path d="M18 32h12V20h8L24 6 10 20h8zm-8 4h28v4H10z"/>
             </svg>
         </label>
-        <input id="uploader" type="file" name="thumb" style="display:none;" (change)="fileChange($event)"
+        <input id="uploader" type="file" name="file" style="display:none;" (change)="fileChange($event)"
                required>
         <p class="description" *ngIf="filename">{{filename}}</p>
     </div>

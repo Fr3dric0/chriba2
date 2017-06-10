@@ -1,6 +1,12 @@
 const { Filter } = require('restful-node').auth;
 const { BadRequestError, ForbiddenError } = require('restful-node').errors;
 
+/**
+ * Ensures a user with the given login
+ * credentials actually exists.
+ *
+ * Attaches `admin` to `req` if so.
+ * */
 class RequireUserFilter extends Filter {
 
     constructor (model) {
@@ -11,12 +17,10 @@ class RequireUserFilter extends Filter {
     async canAccess(req, res) {
         const { email, password } = req.body;
         
-        if (!email) {
-            throw new BadRequestError('Missing required field: "email"');
-        }
-        
-        if (!password) {
-            throw new BadRequestError('Missing required field: "password"');
+        if (!email || !password) {
+            throw new BadRequestError(!email ?
+                'Missing required field: "email"' :
+                'Missing required field: "password"');
         }
         
         let admin;
