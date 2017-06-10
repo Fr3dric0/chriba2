@@ -12,18 +12,13 @@ const app = express();
 app.disable('x-powered-by');
 app.set('trust-proxy', 'loopback'); // Trust the proxy with localhost IPs
 
-
-////////////////////////////////////////
-//             API CONFIG             //
-////////////////////////////////////////
 app.use(logger('dev'));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 app.use(cookieParser());
 
-
 ////////////////////////////////////////
-//            CONFIG SETUP            //
+//             LOAD CONFIG            //
 ////////////////////////////////////////
 const config = require('./bin/config/_config.json');
 
@@ -32,20 +27,13 @@ if (!config) {
     throw new Error('Missing config file "./bin/config/_config.json"');
 }
 
-// Place config in request object
-app.use((req, res, next) => {
-    req.config = config;
-    next();
-});
-
+app.use(restful.setup.settings(app, config)); // attach config to `req.settings`, and `app.restful.settings`
 
 ////////////////////////////////////////
 //            STATIC PATHS            //
+// In production will Nginx be        //
+// responsible to serve this content  //
 ////////////////////////////////////////
-
-/**
- * We do not expect Nginx to serve this content in dev.
- * */
 if (app.get('env') === 'development') {
     app.use(express.static(path.join(__dirname, 'client', 'dist'))); // Angular
     app.use('/resources', express.static(path.join(__dirname, 'resources')));
@@ -57,14 +45,12 @@ if (app.get('env') === 'development') {
 //  for our project, atleast under    //
 //  development.                      //
 ////////////////////////////////////////
-let mailConfig;
+let mailConfig, Mailgun;
 try {
     mailConfig = require('./bin/config/_email.json');
 } catch (e) {
     console.warn('[WARN] Missing _email.json in config. You will not receive email warnings')
 }
-
-let Mailgun;
 
 if (mailConfig) {
     Mailgun = mailgunContainer({
@@ -73,7 +59,7 @@ if (mailConfig) {
     });
 }
 
-// Store library in request object
+// Store mailgun in request
 app.use((req, res, next) => {
     req.email = {};
     req.email.Mailgun = Mailgun;
@@ -87,7 +73,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
 ////////////////////////////////////////
 //           MONGOOSE SETUP           //
 ////////////////////////////////////////
@@ -97,16 +82,13 @@ if (!database) {
     throw new Error('Missing database-config error: Cannot resolve property "database" in _config.jsons');
 }
 
-// restful-node expects config to have a 'database' field,
-// most of our dev code has used 'db'. Thus a quick-fix
+// restful-node expects `config` to have a 'database' field,
+// most of our dev code has used 'db'
 if (!database.database && database.db) {
     database.database = database.db;
 }
 
 restful.database.setupMongoose(database)
-    .then((db) => {
-        console.log(`Database Connection Established: ${database.database}`);
-    })
     .catch((err) => {
         console.error('Database Connection Error\n');
         console.error(err);
@@ -137,22 +119,11 @@ restful.database.setupMongoose(database)
     });
 
 ////////////////////////////////////////
-//             API ROUTES             //
+//          REST-CONTROLLERS          //
+// Loads all the restful-node         //
+// controllers, and connects them     //
+// to routes                          //
 ////////////////////////////////////////
-// const apiRoot = './controllers';
-// const index = require(`${apiRoot}`);
-// const admin = require(`${apiRoot}/admin/`);
-// const estates = require(`${apiRoot}/estates`);
-// const projects = require(`${apiRoot}/projects`);
-// const general = require(`${apiRoot}/general`);
-
-// const api = '/api';
-// app.use(`${api}/admin`, admin);
-// app.use(`${api}/projects`, projects);
-// app.use(`${api}/estates`, estates);
-// app.use(`${api}/general`, general);
-// app.use(`${api}`, index); // MUST BE LAST ROUTE!
-
 const AdminController = require('./controllers/admin.controller');
 const TokenController = require('./controllers/token.controller');
 const EstateController = require('./controllers/estate.controller');
@@ -164,19 +135,18 @@ const ProjectThumbController = require('./controllers/project-thumb.controller')
 
 const tokenConfig = {
     secret: config['token-secret'],
-    debug: app.get('env') !== 'production'
+    debug: app.get('env') !== 'production',
+    ttl: 43200, // 12 hours
+    root: config.media.url
 };
 
-const fileConfig = tokenConfig; // Same as `tokenConfig`, just with file-root
-fileConfig.root = config.media.url;
-
-// REGISTER ROUTES
+// Register routes
 restful.routes.urls(app, '/api', [
     { url: '/admin/token', controller: new TokenController(tokenConfig) },
     { url: '/admin', controller: new AdminController(tokenConfig) },
     
-    { url: '/estates/thumb', controller: new EstateThumbController(fileConfig)},
-    { url: '/projects/thumb', controller: new ProjectThumbController(fileConfig)},
+    { url: '/estates/thumb', controller: new EstateThumbController(tokenConfig)},
+    { url: '/projects/thumb', controller: new ProjectThumbController(tokenConfig)},
     
     { url: '/estates', controller: new EstateController(tokenConfig)},
     { url: '/projects', controller: new ProjectController(tokenConfig)},
@@ -184,52 +154,24 @@ restful.routes.urls(app, '/api', [
 ]);
 
 ////////////////////////////////////////
-//           RESOURCE ROUTER          //
+//              DEV ROUTES            //
 //                                    //
-// Responsible for catching 404 err   //
-// for the static resources folder.   //
-// Thus preventing us from sending    //
-// the index.html file every time a   //
-// resource WASN'T found              //
+// Catches 404 errors on resources/   //
+// and serves the client-code,        //
+// in development mode                //
 ////////////////////////////////////////
 if (app.get('env') === 'development') {
-    app.all('/resource/*', (req, res) => {
-        res.status(404).send();
+    app.all('/resources/*', (req, res) => {
+        res.sendStatus(404);
     });
-}
-
-
-////////////////////////////////////////
-//           CLIENT ROUTER            //
-//                                    //
-// Responsible for serving the        //
-// angular site on all non api- and   //
-// resources- routes                  //
-////////////////////////////////////////
-if (app.get('env') === 'development') {
+    
+    // Serves the client
+    // MUST be last (it catches everything)
     app.all('*', (req, res) => {
-        // Sends the HTML file, instead of using a view-engine
-        res.sendFile(path.join('client', 'dist', 'index.html'), { root: __dirname });
+        res.sendFile(
+            path.join('client', 'dist', 'index.html'),
+            { root: __dirname });
     });
 }
-
-////////////////////////////////////////
-//           ERROR HANDLER            //
-////////////////////////////////////////
-app.use((err, req, res, next) => {
-    const e = { error: err.message };
-    // Show stack only when dev & if stack exists & if status-code is >=500
-    if ((req.app.get('env') === 'development') && err.stack && err.status > 499) {
-        e.stack = err.stack;
-    }
-    
-    if (err.description) {
-        e.description = err.description;
-    }
-    
-    // render the error page
-    res.status(err.status || 500)
-        .json(e);
-});
 
 module.exports = app;
