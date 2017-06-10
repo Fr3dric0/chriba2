@@ -184,17 +184,6 @@ restful.routes.urls(app, '/api', [
 ]);
 
 ////////////////////////////////////////
-//           ROBOTS ROUTER            //
-// Responsible for serving the        //
-// robots.txt file on a root url      //
-////////////////////////////////////////
-if (app.get('env') === 'development') {
-    app.all('/robots.txt', (req, res) => {
-        res.status(200).sendFile('robots.txt', { root: __dirname });
-    });
-}
-
-////////////////////////////////////////
 //           RESOURCE ROUTER          //
 //                                    //
 // Responsible for catching 404 err   //
