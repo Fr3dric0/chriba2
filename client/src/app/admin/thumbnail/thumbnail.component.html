@@ -1,7 +1,10 @@
 <form class="material-form upload-form" (ngSubmit)="submit($event)" enctype="multipart/form-data">
     <div class="input-divider">
         <strong class="description">{{ !filename ? 'Velg fil' : 'Fil valgt'}}</strong>
-        <label class="btn fab fab-file" for="uploader" [ngClass]="{'disabled': filename}">
+        <label class="btn fab fab-file"
+               for="uploader"
+               [ngClass]="{'disabled': filename}"
+               title="Velg fil">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45">
                 <path d="M18 32h12V20h8L24 6 10 20h8zm-8 4h28v4H10z"/>
             </svg>
