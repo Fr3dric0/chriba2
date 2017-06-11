@@ -39,7 +39,7 @@ export class ProjectsService extends CRUDService<Project> {
         const formData: FormData = new FormData(form);
 
         return this.xhr.post({
-            url: `/api/projects/${project.name}/thumb/${form.size ? form.size.value : 'large'}`
+            url: `/api/projects/thumb/${project.name}?size=${form.size ? form.size.value : 'large'}`
         }, headers, formData);
     }
 
@@ -47,9 +47,11 @@ export class ProjectsService extends CRUDService<Project> {
         const headers = this.auth.getAuthHeader();
 
         return this.http.delete(
-            `/api/projects/${project.name}/thumb/${size}`, new RequestOptions({
+            `/api/projects/thumb/${project.name}?size=${size}`, new RequestOptions({
                 headers,
-                body: { index }
+                body: {
+                    path: project.thumbnails[size][index]
+                }
             }))
             .map( res => res.json());
     }

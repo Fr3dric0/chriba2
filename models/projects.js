@@ -5,6 +5,7 @@
  */
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { BadRequestError } = require('restful-node').errors;
 
 const Projects = new Schema({
     name: { type: String, unique: true },
@@ -21,6 +22,24 @@ const Projects = new Schema({
 
 Projects.pre('save', function (next) {
     this.name = createName(this.title);
+    next();
+});
+
+
+Projects.post('save', function(err, doc, next) {
+    if (err.name === 'ValidationError') {
+        return next(new BadRequestError(
+            err.errors && err.errors.description ?
+                err.errors.description.message :
+                err
+        ));
+    }
+    
+    // Duplicate key error (Admin already exists)
+    if (err.message.startsWith('E11000')) {
+        return next(new BadRequestError(`Project: ${doc.title} already exists`));
+    }
+    
     next();
 });
 

@@ -40,7 +40,7 @@ export class EstatesService extends CRUDService<Estate> {
         const formData: FormData = new FormData(form);
 
         return this.xhr.post({
-            url: `/api/estates/${estate.name}/thumb/${form.size ? form.size.value : 'large'}`
+            url: `/api/estates/thumb/${estate.name}?size=${form.size ? form.size.value : 'large'}`
         }, headers, formData);
     }
 
@@ -48,9 +48,11 @@ export class EstatesService extends CRUDService<Estate> {
         const headers = this.auth.getAuthHeader();
 
         return this.http.delete(
-            `/api/estates/${estate.name}/thumb/${size}`, new RequestOptions({
+            `/api/estates/thumb/${estate.name}?size=${size}`, new RequestOptions({
                 headers,
-                body: { index }
+                body: {
+                    path: estate.thumbnails[size][index]
+                }
             }))
             .map( res => res.json());
     }

@@ -37,7 +37,7 @@ export class AuthService {
     }
 
     getToken(): string {
-        return localStorage.getItem(this.tokenKey);
+        return 'bearer ' + localStorage.getItem(this.tokenKey);
     }
 
     /**
