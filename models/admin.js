@@ -56,6 +56,7 @@ Admins.statics.verifyPassword = function (uid, pwd) {
                 return rr(userErr);
             }
 
+
             Bcrypt.compare(pwd, user.password, (compErr, result) => {
                 if (compErr) {
                     return rr(new Error('Could not compare passwords'));
@@ -105,28 +106,32 @@ Admins.statics.authenticate = function (email, pwd) {
             if (err) {
                 return rr(err);
             }
-
+            
             if (!user) {
-                const userErr = new Error('Could not find user in DB');
+                const userErr = new Error('[UERR 101] Could not find user in DB');
                 userErr.status = 403;
                 return rr(userErr)
             }
 
-            Bcrypt.compare(pwd, user.password, function (compareErr, result) {
-                if (compareErr) {
-                    return rr(compareErr);
-                }
+	    if (!user.password) {
+		const userErr = new Error('[UERR 102] User has no password registered (contact support)');
+		userErr.status = 403;
+		return rr(userErr);
+	    }
 
-                if (result) {
-                    user.password = ''; // Wipe the password from the response
-                    delete user.password;
-                    return rsv(user);
-                } else {
-                    const authErr = new Error('Admins not authenticated');
-                    authErr.status = 403;
-                    return rr(authErr);
-                }
-            });
+            Bcrypt.compare(pwd, user.password)
+		.then((result) => {
+		    if (result) {
+		        user.password = ''; // Wipe the password from the response
+                    	delete user.password;
+                    	return rsv(user);
+                    } else {
+                    	const authErr = new Error('[UERR 100] Admins not authenticated');
+                    	authErr.status = 403;
+                    	return rr(authErr);
+                    }
+            	})
+		.catch(err => rr(err));
         });
     })
 };
