@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const logger = require('morgan');
+const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -12,7 +12,14 @@ const app = express();
 app.disable('x-powered-by');
 app.set('trust-proxy', 'loopback'); // Trust the proxy with localhost IPs
 
-app.use(logger('dev'));
+app.use(app.get('env') === 'production' ?
+    morgan('combined', {
+        skip: function (req, res) {
+            return res.statusCode < 400 // Only log requests of type error
+        }
+    }) :
+    morgan('dev')
+);
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 app.use(cookieParser());
@@ -79,7 +86,7 @@ app.use((req, res, next) => {
 mongoose.Promise = global.Promise;
 const { database } = config;
 if (!database) {
-    throw new Error('Missing database-config error: Cannot resolve property "database" in _config.jsons');
+    throw new Error('Database Config Error: Cannot resolve property "database" in _config.json');
 }
 
 // restful-node expects `config` to have a 'database' field,
@@ -88,7 +95,8 @@ if (!database.database && database.db) {
     database.database = database.db;
 }
 
-restful.database.setupMongoose(database)
+restful.database.setupMongoose(mongoose, database)
+    .then((db) => console.log(`Database Connected (${new Date()})`))
     .catch((err) => {
         console.error('Database Connection Error\n');
         console.error(err);

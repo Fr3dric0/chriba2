@@ -1,5 +1,5 @@
 const { Filter } = require('restful-node').auth;
-const { BadRequestError, ForbiddenError } = require('restful-node').errors;
+const { BadRequestError } = require('restful-node').errors;
 
 /**
  * Ensures a user with the given login
@@ -27,9 +27,13 @@ class RequireUserFilter extends Filter {
         try {
             admin = await this.model.authenticate(email, password);
         } catch (e) {
-            throw new ForbiddenError('Wrong email or passsword');
+            // UERR 100 is the bad password error.
+            // Every other error is unknown or critical
+            if (!e.message.startsWith('[UERR 100]')) {
+                console.error(e);
+            }
+            throw e;
         }
-        
         req.admin = admin;
     }
 }
