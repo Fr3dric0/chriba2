@@ -9,6 +9,7 @@ class ProjectController extends JWTAuthController {
         this.ignoreMethods.push('list', 'retrieve');
         this.model = require('../models/projects');
     }
+    
 }
 
 module.exports = ProjectController;

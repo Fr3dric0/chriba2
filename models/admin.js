@@ -6,7 +6,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Bcrypt = require('bcryptjs');
-const { BadRequestError } = require('restful-node').errors;
+const { BadRequestError, ForbiddenError } = require('restful-node').errors;
 const HASH_ROUNDS = 12;
 
 const Admins = new Schema({
@@ -102,34 +102,31 @@ Admins.statics.hashField = function (pwd) {
  * */
 Admins.statics.authenticate = function (email, pwd) {
     return new Promise((rsv, rr) => {
-        this.findOne({ email: email }, (err, user) => {
-            if (err) {
-                return rr(err);
-            }
-            
-            if (!user) {
-                const userErr = new Error('Could not find user in DB');
-                userErr.status = 403;
-                return rr(userErr)
-            }
-            
-            Bcrypt.compare(pwd, user.password, function (compareErr, result) {
-                if (compareErr) {
-                    return rr(compareErr);
+        this.findOne({ email })
+            .then((user) => {
+                if (!user) {
+                    return rr(new ForbiddenError(`[UERR 101] Cannot find user: ${email}`));
                 }
                 
-                if (result) {
-                    user.password = ''; // Wipe the password from the response
-                    delete user.password;
-                    return rsv(user);
-                } else {
-                    const authErr = new Error('Admins not authenticated');
-                    authErr.status = 403;
-                    return rr(authErr);
+                if (!user.password) {
+                    return rr(new ForbiddenError(`[UERR 102] User has no password (contact support)`));
                 }
-            });
-        });
-    })
+                
+                Bcrypt.compare(pwd, user.password)
+                    .then((result) => {
+                        if (!result) {
+                            return rr(new ForbiddenError('[UERR 100] Admin is not authenticated'));
+                        }
+                        
+                        user.password = ''; // Wipe the password from the response
+                        delete user.password;
+                        rsv(user);
+                    })
+                    .catch(err => rr(err));
+                
+            })
+            .catch(err => rr(err));
+    });
 };
 
 
@@ -149,12 +146,6 @@ Admins.pre('save', function (next) {
     
 });
 
-// Post save without errors
-Admins.post('save', function (doc, next) {
-    this.password = null;
-    next();
-});
-
 // Post save WITH errors
 Admins.post('save', function (err, doc, next) {
     if (err.name === 'ValidationError') {
@@ -169,16 +160,6 @@ Admins.post('save', function (err, doc, next) {
     if (err.message.startsWith('E11000')) {
         return next(new BadRequestError(`Admin: ${doc.email} already exists`));
     }
-    
-    next();
-});
-
-// Post find, etc.
-Admins.post('init', function (doc, next) {
-    // Ensure the password
-    // is never leaked
-    // TODO:ffl - find a better way to prevent leakage
-    // this.password = null;
     
     next();
 });

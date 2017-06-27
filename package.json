@@ -14,9 +14,9 @@
     "express": "^4.15.3",
     "jsonwebtoken": "^7.2.1",
     "mailgun-js": "^0.10.1",
-    "mongoose": "^4.10.4",
+    "mongoose": "^4.10.8",
     "morgan": "^1.8.2",
-    "restful-node": "^1.6.0",
+    "restful-node": "^1.6.4",
     "serve-favicon": "~2.4.3",
     "shortid": "^2.2.8"
   },
