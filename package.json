@@ -13,7 +13,7 @@
     "cookie-parser": "~1.4.3",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.2.1",
-    "mailgun-js": "^0.10.1",
+    "mailgun-js": "^0.11.3",
     "mongoose": "^4.10.8",
     "morgan": "^1.8.2",
     "restful-node": "^1.6.4",
