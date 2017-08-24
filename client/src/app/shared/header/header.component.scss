@@ -21,12 +21,14 @@ header {
 
   font-family: $primary-font;
   font-weight: 100;
-  font-size: 1.3rem;
+  font-size: 0.7em;
 
   overflow-x: hidden;
 
   padding: 0.2em;
   position: relative;
+  
+  text-transform: uppercase;
 
   a {
     cursor: pointer; // To force pointer on anchor without any href
@@ -61,7 +63,7 @@ nav {
   a {
     box-sizing: border-box;
 
-    padding: 0.2em 0.3em;
+    padding: 0.2em 0.3em 0 0.3em;
 
     user-select: none;
   }
