@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "build": "node ./node_modules/concurrently/src/main.js \"npm start --prefix ./client\" \"npm start\"",
-    "watch": "node ./node_modules/concurrently/src/main.js \"npm run watch --prefix ./client\" \"nodemon\""
+    "watch": "node ./node_modules/concurrently/src/main.js \"npm run watch --prefix ./client\" \"nodemon\"",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "bcryptjs": "^2.4.0",
@@ -18,12 +20,14 @@
     "morgan": "^1.8.2",
     "restful-node": "^1.6.4",
     "serve-favicon": "~2.4.3",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "snyk": "^1.41.1"
   },
   "devDependencies": {
     "concurrently": "^3.1.0",
     "eslint": "^3.13.0",
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.2.0"
-  }
+  },
+  "snyk": true
 }
